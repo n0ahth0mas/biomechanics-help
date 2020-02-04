@@ -26,6 +26,10 @@ a {
   background: #555;
   color: #FFF;
 }
+#content{
+    width:65% !important;
+}
+
 /* Main elements end */
 
 
