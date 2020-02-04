@@ -45,6 +45,10 @@ def login_required(test):
 def home():
     return render_template('pages/placeholder.home.html')
 
+@app.route('/student')
+def student():
+    return render_template('pages/placeholder.student.html')
+
 
 @app.route('/about')
 def about():
