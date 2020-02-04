@@ -45,6 +45,9 @@ def login_required(test):
 def home():
     return render_template('pages/placeholder.home.html')
 
+@app.route('/landing')
+def landingPage():
+    return render_template('pages/landing.html')
 
 @app.route('/about')
 def about():
