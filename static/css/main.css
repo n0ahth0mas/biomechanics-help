@@ -44,21 +44,55 @@ a {
 
 /* Place text in the middle of the image */
 .hero-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
+    text-align: center;
+    position: absolute;
+    top: 70%;
+    color: white;
+    left: 43%;
 }
 
-.hero-img{
-    width: 100%;
-    height: 50% !important;
+.learn-more-btn{
+    border-radius: 2px;
+    border: 2px !important;
+    float: left;
+    background-color: #007bff !important;
+    padding: 15px 20px 15px 20px;
+    color: white;
 }
 
-.call-to-action{
-    width: 200px;
+.get-started-btn{
+    border-radius: 2px;
+    float: right;
+    border: 2px !important;
+    background-color: #17a2b8 !important;
+    padding: 15px 20px 15px 20px;
+    color: white;
+}
+
+.get-started-btn:hover{
+    color: #17a2b8 !important;
+    border: 2px solid #17a2b8 !important;
+    background-color: white !important;
+}
+
+.learn-more-btn:hover{
+    color: #007bff !important;
+    border: 2px solid #007bff !important;
+    background-color: white !important;
+}
+
+.call-to-action-div{
+    display: block;
+    width: 250px;
+    text-align: center;
+    position: relative;
+}
+
+#content{
+    width: 100% !important;
+    padding: 0px !important;
+    height: 815px;
+    overflow: hidden;
 }
 /* Main elements end */
 
