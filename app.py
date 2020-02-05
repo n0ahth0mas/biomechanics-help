@@ -40,14 +40,9 @@ def login_required(test):
 # Controllers.
 #----------------------------------------------------------------------------#
 
-
 @app.route('/')
 def home():
-    return render_template('pages/placeholder.home.html')
-
-@app.route('/landing')
-def landingPage():
-    return render_template('pages/landing.html')
+    return render_template('pages/landing.html', homepage=True)
 
 @app.route('/student')
 def student():
