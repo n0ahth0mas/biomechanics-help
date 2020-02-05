@@ -49,6 +49,11 @@ def home():
 def landingPage():
     return render_template('pages/landing.html')
 
+@app.route('/student')
+def student():
+    return render_template('pages/placeholder.student.html')
+
+
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
