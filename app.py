@@ -42,7 +42,7 @@ def login_required(test):
 
 @app.route('/')
 def home():
-    return render_template('pages/landing.html')
+    return render_template('pages/landing.html', homepage=True)
 
 @app.route('/student')
 def student():
