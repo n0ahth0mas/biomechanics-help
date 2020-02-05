@@ -27,7 +27,9 @@ a {
   color: #FFF;
 }
 #content{
-    width:65% !important;
+    padding-left: 20% !important;
+    padding-right: 5% !important;
+    width:100% !important;
 }
 
 /* Main elements end */
