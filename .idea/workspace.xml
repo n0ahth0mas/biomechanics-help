@@ -4,13 +4,12 @@
     <list default="true" id="752fe264-883b-4d0d-9e28-69fce0dde793" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
@@ -92,6 +91,8 @@
       </file>
     </leaf>
   </component>
+=======
+>>>>>>> 04fe450b6b6c7e5d4a1bf3ef8c214ffb09dcec18
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -193,18 +194,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SoftwareConsultingWebsite/flask-boilerplate" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <module name="flask-boilerplate" />
@@ -213,7 +202,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\Scripts\python.exe" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -223,6 +212,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SvnConfiguration">
