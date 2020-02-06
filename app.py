@@ -54,7 +54,7 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-@app.route('/login')
+@app.route('/professor-login')
 def login():
     form = LoginForm(request.form)
     return render_template('forms/login.html', form=form)
@@ -62,6 +62,8 @@ def login():
 @app.route('/student-login')
 def studentLogin():
     form = ClassCodeForm(request.form)
+    #if form.validate_on_submit():
+
     return render_template('forms/classcode.html', form=form)
 
 
