@@ -59,6 +59,11 @@ def login():
     form = LoginForm(request.form)
     return render_template('forms/login.html', form=form)
 
+@app.route('/student-login')
+def studentLogin():
+    form = ClassCodeForm(request.form)
+    return render_template('forms/classcode.html', form=form)
+
 
 @app.route('/register')
 def register():

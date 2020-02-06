@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, StringField
 from wtforms.validators import DataRequired, EqualTo, Length
 
 # Set your classes here.
@@ -30,4 +30,9 @@ class LoginForm(Form):
 class ForgotForm(Form):
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
+    )
+
+class ClassCodeForm(Form):
+    classCode = StringField(
+        'Your Classcode', validators=[DataRequired()]
     )
