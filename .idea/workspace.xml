@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="752fe264-883b-4d0d-9e28-69fce0dde793" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/flask-boilerplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/flask-boilerplate.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/forms/classcode.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/forms/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/forms/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/landing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/landing.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +28,7 @@
       <find>hover</find>
       <find>hero-t</find>
       <find>cont</find>
+      <find>call-to-</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -39,8 +42,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/SoftwareConsultingWebsite/flask-boilerplate" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
@@ -77,27 +80,5 @@
       <updated>1580426211455</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1659" height="294" key="GridCell.Tab.0.bottom" timestamp="1581026931468">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="294" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581026931468" />
-    <state width="1659" height="294" key="GridCell.Tab.0.center" timestamp="1581026931467">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="294" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581026931467" />
-    <state width="1659" height="294" key="GridCell.Tab.0.left" timestamp="1581026931466">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="294" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581026931466" />
-    <state width="1659" height="294" key="GridCell.Tab.0.right" timestamp="1581026931468">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="1659" height="294" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581026931468" />
-    <state x="341" y="164" key="SettingsEditor" timestamp="1580940674672">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="341" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1580940674672" />
   </component>
 </project>
