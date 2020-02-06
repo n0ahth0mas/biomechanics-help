@@ -29,12 +29,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-865" />
-    <option name="y" value="-25" />
-    <option name="width" value="2065" />
-    <option name="height" value="1120" />
-  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$USER_HOME$/SoftwareConsultingWebsite/flask-boilerplate" />
