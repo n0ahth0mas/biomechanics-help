@@ -97,6 +97,12 @@ a {
     overflow: hidden;
 }
 
+#structure {
+    padding-left: 20% !important;
+    padding-right: 5% !important;
+    width: 100% !important;
+}
+
 .student-login-form{
     width: 35%;
     left: 32%;
