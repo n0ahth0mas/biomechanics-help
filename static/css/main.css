@@ -96,11 +96,16 @@ a {
     height: 815px;
     overflow: hidden;
 }
-/*
-#content{
+
+/* CSS for student page */
+#structure{
     padding-left: 20% !important;
     padding-right: 5% !important;
     width:100% !important;
+}
+/*
+#content{
+
 }
 */
 /* Main elements end */
