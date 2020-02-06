@@ -96,6 +96,17 @@ a {
     height: 815px;
     overflow: hidden;
 }
+
+.student-login-form{
+    width: 35%;
+    left: 32%;
+    position: relative;
+    margin-top: 250px;
+}
+
+.student-login-submit{
+    margin-top: 20px;
+}
 /*
 #content{
     padding-left: 20% !important;
