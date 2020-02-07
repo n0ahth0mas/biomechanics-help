@@ -55,12 +55,15 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-@app.route('/professor-login')
+@app.route('/professor-login',methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
+    #if form.validate_on_submit():
+        #userID = form.data['UserID']
+        #password = form.data['password']
     return render_template('forms/login.html', form=form)
 
-@app.route('/student-login')
+@app.route('/student-login', methods=['GET', 'POST'])
 def studentLogin():
     form = ClassCodeForm(request.form)
     #if form.validate_on_submit():
