@@ -14,6 +14,22 @@
 <div id="start">Start Quiz!</div>
 <div id = "quiz" style = "display : none;">
     <div id="qImage"><img src="quizimg.png"> </div>
-    <div id="question"><p> Question
+    <div id="question"><p> Question </p> </div>
+    <div id="timer">
+        <div id = "counter">6</div>
+        <div id="btimeGauge"></div>
+    </div>
+    <div id="choices">
+        <div class="choice" id="A" onclick="checkAnswer('A')">A</div>
+        <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
+        <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
+    </div>
+    <div id="progress"><div class="prog"></div>
+</div>
+</div>
+<div id="scoreContainer" style = "display : none;">
+    <img src="smile.png"><p>50%</p>
+</div>
+<script src="quiz.js"></script>
 </body>
 {% endblock %}
