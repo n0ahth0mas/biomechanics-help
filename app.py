@@ -45,9 +45,13 @@ def login_required(test):
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/student')
+@app.route('/student-quiz')
 def student():
-    return render_template('pages/placeholder.student.html')
+    return render_template('pages/placeholder.student.quiz.html')\
+
+@app.route('/student-short')
+def student():
+    return render_template('pages/placeholder.student.short.html')
 
 
 @app.route('/about')

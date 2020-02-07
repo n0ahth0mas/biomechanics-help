@@ -28,20 +28,19 @@
 }
 
 #qImg{
-    width : 200px;
-    height : 200px;
+    width : 25%;
+    height : 65%;
     position: absolute;
     left : 0px;
     top : 0px;
 }
 #qImg img{
-    width : 200px;
-    height : 200px;
-    border-top-left-radius: 5px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #question{
-    width:50%;
+    width:75%;
     left-padding:25%;
     height : 100%;
     right:0;
@@ -55,8 +54,9 @@
 }
 
 #choices{
-    width : 480px;
+    width : 75%;
     position: absolute;
+    left-padding: 25%;
     right : 0;
     top : 125px;
     padding : 10px
@@ -119,28 +119,26 @@
 #scoreContainer{
     margin : 20px auto;
     background-color: white;
-    opacity: 0.99;
     height: 100%;
-    width : 100%;
+    min-width : 100%;
     border-radius: 5px;
     box-shadow: 0px 5px 15px 0px;
     position: relative;
     display: none;
 }
 #scoreContainer img{
-    margin: auto !important;
+    max-width: 100%;
+    height: 75%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 #scoreContainer p{
-    position: center;
     display: block;
-    width : 59px;
-    height :59px;
-    top-padding: 40%;
-
-    bottom-padding: 40%
-    font-size: 1.5em;
-    font-weight: bold;
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    font-size: 50px;
 }
 
 

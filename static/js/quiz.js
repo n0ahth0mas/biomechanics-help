@@ -6,6 +6,7 @@ const qImg = document.getElementById("qImg");
 const choiceA = document.getElementById("A");
 const choiceB = document.getElementById("B");
 const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
@@ -15,24 +16,27 @@ const scoreDiv = document.getElementById("scoreContainer");
 let questions = [
     {
         question : "What does HTML stand for?",
-        imgSrc : "img/html.png",
+        imgSrc : "/static/img/question.png",
         choiceA : "Correct",
         choiceB : "Wrong",
         choiceC : "Wrong",
+        choiceD : "Wrong",
         correct : "A"
     },{
         question : "What does CSS stand for?",
-        imgSrc : "img/css.png",
+        imgSrc : "/static/img/question.png",
         choiceA : "Wrong",
         choiceB : "Correct",
         choiceC : "Wrong",
+        choiceD : "Wrong",
         correct : "B"
     },{
         question : "What does JS stand for?",
-        imgSrc : "img/js.png",
+        imgSrc : "/static/img/question.png",
         choiceA : "Wrong",
         choiceB : "Wrong",
         choiceC : "Correct",
+        choiceD : "Wrong",
         correct : "C"
     }
 ];
@@ -42,7 +46,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 10; // 10s
+const questionTime = 20; // 15s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -57,6 +61,7 @@ function renderQuestion(){
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
+    choiceD.innerHTML = q.choiceD;
 }
 
 start.addEventListener("click",startQuiz);
