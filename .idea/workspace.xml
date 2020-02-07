@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="752fe264-883b-4d0d-9e28-69fce0dde793" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/pages/placeholder.student.quiz.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/quiz.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/score.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/quiz.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/layouts/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/placeholder.student.quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/placeholder.student.quiz.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +43,11 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$USER_HOME$/SoftwareConsultingWebsite/flask-boilerplate" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/img" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
@@ -75,21 +90,33 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="304" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1581028443136" />
-    <state width="1659" height="286" key="GridCell.Tab.0.bottom" timestamp="1581028482409">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state x="883" y="129" key="CommitChangelistDialog2" timestamp="1581030742305">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="883" y="129" key="CommitChangelistDialog2/0.0.1680.1050@0.0.1680.1050" timestamp="1581030742305" />
+    <state width="1659" height="286" key="GridCell.Tab.0.bottom" timestamp="1581042094476">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1659" height="286" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1581042094476" />
     <state width="1659" height="286" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1581028482409" />
-    <state width="1659" height="286" key="GridCell.Tab.0.center" timestamp="1581028482408">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1659" height="286" key="GridCell.Tab.0.center" timestamp="1581042094475">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state width="1659" height="286" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1581042094475" />
     <state width="1659" height="286" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1581028482408" />
-    <state width="1659" height="286" key="GridCell.Tab.0.left" timestamp="1581028482408">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1659" height="286" key="GridCell.Tab.0.left" timestamp="1581042094474">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state width="1659" height="286" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1581042094474" />
     <state width="1659" height="286" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1581028482408" />
-    <state width="1659" height="286" key="GridCell.Tab.0.right" timestamp="1581028482409">
-      <screen x="0" y="23" width="1680" height="1027" />
+    <state width="1659" height="286" key="GridCell.Tab.0.right" timestamp="1581042094476">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state width="1659" height="286" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1581042094476" />
     <state width="1659" height="286" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1581028482409" />
+    <state x="922" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1581030756774">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="922" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1581030756774" />
   </component>
 </project>
