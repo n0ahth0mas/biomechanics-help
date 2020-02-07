@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="752fe264-883b-4d0d-9e28-69fce0dde793" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/quiz.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/quiz.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layouts/student.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layouts/student.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pages/placeholder.student.quiz.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/placeholder.student.quiz.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
