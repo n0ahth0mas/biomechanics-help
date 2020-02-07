@@ -1,6 +1,6 @@
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Imports
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
 # from flask.ext.sqlalchemy import SQLAlchemy
@@ -10,9 +10,9 @@ from forms import *
 import os
 import sqlite3
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # App Config.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -37,17 +37,25 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 '''
-#----------------------------------------------------------------------------#
+
+
+# ----------------------------------------------------------------------------#
 # Controllers.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 @app.route('/')
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/student')
+
+@app.route('/student-quiz')
 def student():
     return render_template('pages/placeholder.student.quiz.html')
+
+
+@app.route('/student-short') # errors in the def, something we need to figure out/help me with
+def student_short():
+    return render_template('pages/placeholder.student.short.html')
 
 
 @app.route('/about')
@@ -55,18 +63,19 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-@app.route('/professor-login',methods=['GET', 'POST'])
+@app.route('/professor-login', methods=['GET', 'POST'])
 def login():
     form = LoginForm(request.form)
-    #if form.validate_on_submit():
-        #userID = form.data['UserID']
-        #password = form.data['password']
+    # if form.validate_on_submit():
+    # userID = form.data['UserID']
+    # password = form.data['password']
     return render_template('forms/login.html', form=form)
+
 
 @app.route('/student-login', methods=['GET', 'POST'])
 def studentLogin():
     form = ClassCodeForm(request.form)
-    #if form.validate_on_submit():
+    # if form.validate_on_submit():
 
     return render_template('forms/classcode.html', form=form)
 
@@ -82,17 +91,18 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+
 # Error handlers.
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    #db_session.rollback()
+    # db_session.rollback()
     return render_template('errors/500.html'), 500
 
 
-#@app.errorhandler(404)
-#def not_found_error(error):
+# @app.errorhandler(404)
+# def not_found_error(error):
 #    return render_template('errors/404.html'), 404
 
 if not app.debug:
@@ -105,9 +115,9 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Launch.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 # Default port:
 if __name__ == '__main__':
