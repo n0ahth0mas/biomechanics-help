@@ -49,11 +49,11 @@ def home():
 
 
 @app.route('/student-quiz')
-def student():
+def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
 
-@app.route('/student-short') # errors in the def, something we need to figure out/help me with
+@app.route('/student-short')
 def student_short():
     return render_template('pages/placeholder.student.short.html')
 

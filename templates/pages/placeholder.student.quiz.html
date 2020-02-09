@@ -2,12 +2,15 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+<link type="text/css" rel="stylesheet" href="/static/css/quiz.css" />
+
+
 <div class="page-header">
   <h1>Chapter X: Section X</h1>
 </div>
 {% endblock %}
 
-{% block previd%} <p class="lead"><a href="pages/placeholder.student.short.html"> Short Answers </a> </p> {% endblock %}
+{% block previd%} <p class="lead"><a href="{{ url_for('student_short') }}"> Short Answers </a> </p> {% endblock %}
 
 {% block postvid%}
   <div id="quizContainer">

@@ -2,24 +2,25 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+<link type="text/css" rel="stylesheet" href="/static/css/short.css" />
+
+
 <div class="page-header">
-  <h1>Chapter X: Section X</h1>
+  <h1>Chapter X: Section X - Short</h1>
 </div>
 {% endblock %}
 
-{% block previd%} <p class="lead"> This is where pre video info will go </p> {% endblock %}
+{% block previd%} <p class="lead">  <p class="lead"><a href="{{ url_for('student_quiz') }}"> Quiz </a> </p> </p> {% endblock %}
 
 {% block postvid%}
-  <div id="quizContainer">
+  <div id="shortContainer">
         <div id="start">Start Quiz!</div>
         <div id="quiz" style="display: none">
             <div id="question"></div>
             <div id="qImg"></div>
-            <div id="choices">
-                <div class="choice" id="A" onclick="checkAnswer('A')"></div>
-                <div class="choice" id="B" onclick="checkAnswer('B')"></div>
-                <div class="choice" id="C" onclick="checkAnswer('C')"></div>
-                <div class="choice" id="D" onclick="checkAnswer('D')"></div>
+            <div id="answer">
+                <input type="text" placeholder="Enter Answer Here" id="shortAns" name="shortAns">
+                 <button type="button" id="submitBtn" onclick="getInputValue();">Submit</button>
             </div>
             <div id="timer">
                 <div id="counter"></div>
@@ -30,5 +31,5 @@
         </div>
         <div id="scoreContainer" style="display: none"></div>
     </div>
-    <script src="/static/js/quiz.js"></script>
+    <script src="/static/js/short.js"></script>
 {% endblock %}
