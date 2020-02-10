@@ -8,6 +8,8 @@ import logging
 from logging import Formatter, FileHandler
 from forms import *
 import os
+import sqlite3
+import hashlib
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -15,7 +17,10 @@ import os
 
 app = Flask(__name__)
 app.config.from_object('config')
-#db = SQLAlchemy(app)
+db = sqlite3.connect('login.db')
+
+cur = db.cursor()
+
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -54,16 +59,25 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-@app.route('/professor-login')
+@app.route('/professor-login', methods=('GET', 'POST'))
 def login():
     form = LoginForm(request.form)
+    if form.validate_on_submit():
+        username = form.data["name"]
+        password = form.data["password"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        print(passhash)
+        #check passhash against the database
+        print(username + " tried to login with passcode: " + password)
     return render_template('forms/login.html', form=form)
 
-@app.route('/student-login')
+@app.route('/student-login', methods=('GET', 'POST'))
 def studentLogin():
-    form = ClassCodeForm(request.form)
-    #if form.validate_on_submit():
-
+    form = ClassCodeForm()
+    if form.validate_on_submit():
+        userCode = form.data["classCode"]
+        print("thinks we submitted the form: " + userCode)
     return render_template('forms/classcode.html', form=form)
 
 

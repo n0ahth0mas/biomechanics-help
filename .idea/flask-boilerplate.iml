@@ -2,10 +2,11 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.7 virtualenv at C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
+>>>>>>> 04238f8627a110cec4bcf3bd997b23383df04be2
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>
