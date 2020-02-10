@@ -1,6 +1,6 @@
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Imports
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
 # from flask.ext.sqlalchemy import SQLAlchemy
@@ -11,9 +11,9 @@ import os
 import sqlite3
 import hashlib
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # App Config.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -41,23 +41,30 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 '''
-#----------------------------------------------------------------------------#
+
+
+# ----------------------------------------------------------------------------#
 # Controllers.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 @app.route('/')
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/student')
-def student():
-    return render_template('pages/placeholder.student.html')
+
+@app.route('/student-quiz')
+def student_quiz():
+    return render_template('pages/placeholder.student.quiz.html')
+
+
+@app.route('/student-short')
+def student_short():
+    return render_template('pages/placeholder.student.short.html')
 
 
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
-
 
 @app.route('/professor-login', methods=('GET', 'POST'))
 def login():
@@ -92,17 +99,18 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+
 # Error handlers.
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    #db_session.rollback()
+    # db_session.rollback()
     return render_template('errors/500.html'), 500
 
 
-#@app.errorhandler(404)
-#def not_found_error(error):
+# @app.errorhandler(404)
+# def not_found_error(error):
 #    return render_template('errors/404.html'), 404
 
 if not app.debug:
@@ -115,9 +123,9 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Launch.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 # Default port:
 if __name__ == '__main__':

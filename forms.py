@@ -22,7 +22,6 @@ class RegisterForm(FlaskForm):
          EqualTo('password', message='Passwords must match')]
     )
 
-
 class LoginForm(FlaskForm):
     name = TextField('Username', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])

@@ -1,0 +1,164 @@
+
+#quizContainer{
+    margin : 20px auto;
+    background-color: white;
+    height: 300px;
+    width : 75%;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: relative;
+}
+#start{
+    font-size: 1.5em;
+    text-align: center !important;
+    font-weight: bolder;
+    word-break: break-all;
+    height: 100%;
+    width: 100%;
+    margin: auto
+    border : 2px solid lightgrey;
+    text-align: center;
+    cursor: pointer;
+    color : lightgrey;
+    position: absolute;
+}
+#start:hover{
+    border: 3px solid lightseagreen;
+    color : lightseagreen;
+}
+
+#qImg{
+    width : 25%;
+    height : 65%;
+    position: absolute;
+    left : 0px;
+    top : 0px;
+}
+#qImg img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#qImg img:hover{
+ transform: scale(3);
+}
+
+#question{
+    width:75%;
+    left-padding:25%;
+    height : 100%;
+    right:0;
+    top:0;
+    position: absolute;
+}
+#question p{
+    margin : 0;
+    padding : 15px;
+    font-size: 1.25em;
+}
+
+#choices{
+    width : 75%;
+    position: absolute;
+    left-padding: 25%;
+    right : 0;
+    top : 125px;
+    padding : 10px
+}
+.choice{
+    display: inline-block;
+    width : 135px;
+    text-align: center;
+    border : 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+    padding : 5px;
+}
+.choice:hover{
+    border : 2px solid grey;
+    font-weight: bold;
+}
+
+#timer{
+    position: absolute;
+    height : 100px;
+    width : 200px;
+    bottom : 0px;
+    text-align: center;
+}
+#counter{
+    font-size: 3em;
+}
+#btimeGauge{
+    width : 150px;
+    height : 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+    margin-left : 25px;
+}
+#timeGauge{
+    height : 10px;
+    border-radius: 10px;
+    background-color: mediumseagreen;
+    margin-top : -10px;
+    margin-left : 25px;
+}
+#progress{
+    width : 500px;
+    position: absolute;
+    bottom : 0px;
+    right : 0px;
+    padding:5px;
+    text-align: right;
+}
+.prog{
+    width : 25px;
+    height : 25px;
+    border: 1px solid #000;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left : 5px;
+    margin-right : 5px;
+}
+#scoreContainer{
+    margin : 20px auto;
+    background-color: white;
+    height: 100%;
+    min-width : 100%;
+    border-radius: 5px;
+    box-shadow: 0px 5px 15px 0px;
+    position: relative;
+    display: none;
+}
+#scoreContainer img{
+    max-width: 100%;
+    height: 75%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#scoreContainer p{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    font-size: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
