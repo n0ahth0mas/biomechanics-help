@@ -5,6 +5,7 @@
 <link type="text/css" rel="stylesheet" href="/static/css/quiz.css" />
 
 
+
 <div class="page-header">
   <h1>Chapter X: Section X</h1>
 </div>
@@ -13,11 +14,13 @@
 {% block previd%} <p class="lead"><a href="{{ url_for('student_short') }}"> Short Answers </a> </p> {% endblock %}
 
 {% block postvid%}
+
   <div id="quizContainer">
         <div id="start">Start Quiz!</div>
         <div id="quiz" style="display: none">
             <div id="question"></div>
-            <div id="qImg"></div>
+            <div id="qImg">
+            </div>
             <div id="choices">
                 <div class="choice" id="A" onclick="checkAnswer('A')"></div>
                 <div class="choice" id="B" onclick="checkAnswer('B')"></div>
@@ -34,4 +37,5 @@
         <div id="scoreContainer" style="display: none"></div>
     </div>
     <script src="/static/js/quiz.js"></script>
+
 {% endblock %}

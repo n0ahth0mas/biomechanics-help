@@ -61,6 +61,10 @@ def student_quiz():
 def student_short():
     return render_template('pages/placeholder.student.short.html')
 
+@app.route('/infoSlide')
+def infoSlide():
+    return render_template('layouts/infoSlide.html')
+
 
 @app.route('/about')
 def about():

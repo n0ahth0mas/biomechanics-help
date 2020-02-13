@@ -39,10 +39,6 @@
     max-height: 100%;
 }
 
-#qImg img:hover{
- transform: scale(3);
-}
-
 #question{
     width:75%;
     left-padding:25%;

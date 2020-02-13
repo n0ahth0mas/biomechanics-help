@@ -57,7 +57,7 @@ function renderQuestion(){
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.question +"</p>";
-    qImg.innerHTML = "<img src="+ q.imgSrc +">";
+    qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
     choiceA.innerHTML = q.choiceA;
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
@@ -68,12 +68,14 @@ start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
+    scoreDiv.style.display = "none";
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
     renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
+    console.log("starting")
 }
 
 // render progress
@@ -139,6 +141,10 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
+function testBtn(){
+    console.log("try again");
+}
+
 // score render
 function scoreRender(){
     scoreDiv.style.display = "block";
@@ -155,6 +161,15 @@ function scoreRender(){
 
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
+}
+
+function restart(){
+    score = 0;
+    runningQuestion = 0;
+    count = 0;
+    startQuiz();
+    console.log('clicked');
 }
 
 
