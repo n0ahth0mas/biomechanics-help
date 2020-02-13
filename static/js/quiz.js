@@ -52,6 +52,7 @@ const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
+
 // render a question
 function renderQuestion(){
     let q = questions[runningQuestion];
@@ -80,6 +81,7 @@ function startQuiz(){
 
 // render progress
 function renderProgress(){
+    progress.innerHTML = ""
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
@@ -169,9 +171,7 @@ function restart(){
     runningQuestion = 0;
     count = 0;
     startQuiz();
-    console.log('clicked');
 }
-
 
 
 

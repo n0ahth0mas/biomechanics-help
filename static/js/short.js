@@ -58,6 +58,7 @@ start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
+    scoreDiv.style.display = "none";
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
@@ -68,6 +69,7 @@ function startQuiz(){
 
 // render progress
 function renderProgress(){
+    progress.innerHTML = ""
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
@@ -145,8 +147,15 @@ function scoreRender(){
 
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
 }
 
+function restart(){
+    score = 0;
+    runningQuestion = 0;
+    count = 0;
+    startQuiz();
+}
 
 
 
