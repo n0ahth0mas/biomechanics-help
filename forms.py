@@ -1,11 +1,12 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField, StringField
 from wtforms.validators import DataRequired, EqualTo, Length
+
 
 # Set your classes here.
 
 
-class RegisterForm(Form):
+class RegisterForm(FlaskForm):
     name = TextField(
         'Username', validators=[DataRequired(), Length(min=6, max=25)]
     )
@@ -18,21 +19,18 @@ class RegisterForm(Form):
     confirm = PasswordField(
         'Repeat Password',
         [DataRequired(),
-        EqualTo('password', message='Passwords must match')]
+         EqualTo('password', message='Passwords must match')]
     )
 
-
-class LoginForm(Form):
-    name = TextField('User ID', [DataRequired()])
+class LoginForm(FlaskForm):
+    name = TextField('Username', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
 
 
-class ForgotForm(Form):
+class ForgotForm(FlaskForm):
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
 
-class ClassCodeForm(Form):
-    classCode = StringField(
-        'Your Classcode', validators=[DataRequired()]
-    )
+class ClassCodeForm(FlaskForm):
+    classCode = StringField('Your Classcode', validators=[DataRequired()])
