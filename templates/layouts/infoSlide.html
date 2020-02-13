@@ -51,19 +51,6 @@
   margin-left: 50px;
 }
 
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-}
-
-.openbtn:hover {
-  background-color: #444;
-}
-
  </style>
 <!-- /styles -->
 
@@ -84,12 +71,6 @@
 </head>
 <body>
   <div id="infoSideBar" class="sidenav">
-      <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>-->
-    <button type="button" class="sideBar-toggle" data-toggle="collapse" data-target=".infoSideBar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-    </button>
     <a href="#about">A</a> <!--Link to A page in Glossary-->
     <a href="#about">B</a> <!--Link to B page in Glossary-->
     <a href="#about">C</a> <!--Link to C page in Glossary-->
@@ -133,19 +114,8 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            <li {% if request.endpoint == 'student' %} class="active" {% endif %}><a href="{{ url_for('student') }}">Student</a></li>
+            <li {% if request.endpoint == 'student' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Student</a></li>
             <li {% if request.endpoint == 'glossary' %} class="active" {% endif %}><a href="{{ url_for('infoSlide') }}">Glossary</a></li>
-           <!-- <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Directory <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a>Glossary</a></li>
-                <li><a>Student Homepage</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a>Separated link</a></li>
-                <li><a>One more separated link</a></li>
-              </ul>
-            </li>-->
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li><a href="{{ url_for('register') }}">Signup</a></li>
@@ -157,9 +127,6 @@
 
     <!-- Begin page content -->
     <main id="structure" role="main" class="container">
-        <div id="sidebarbtn">
-            <button class="openbtn" onclick="openNav()">Open Sidebar</button>
-        </div>
       {% with messages = get_flashed_messages() %}
         {% if messages %}
           {% for message in messages %}
@@ -175,16 +142,28 @@
 
       {% block previd %}{% endblock %}
 
-      <div id="infoText" style="border: 2px solid Black;">
-          <p>
-              Insert information that makes up info slides here!!!
-          </p>
+      <div>
+        <h1>Page Topic Title</h1>
       </div>
 
+      <!--Section relating to the text on this page-->
+      <div id="infoText" style="border: 2px solid Black;">
+          <pre>
+            <p style="background-color:powderblue;">
+              Insert information that makes up info slides here!!!
+            </p>
+            <hr>
+            <p style="text-align:center;"> More text we like in the center now</p>
+            <hr>
+                Playing around with
+                                    the words and stuff
+          </pre>
+      </div>
+
+      <!-- Section relating to image on page-->
       <div id="infoImage">
           <p title="Image Relevant Information">
-              <!--<img src="/images/fireElmo.jpg" alt="Slide Image" width="250" height="250">-->
-              <img src="https://i.ytimg.com/vi/rjo2Lj7Ql5s/maxresdefault.jpg" alt="Slide Image" width="562" height="400">
+              <img src="/static/img/fireElmo.jpg" alt="Slide Image" width="562" height="400">
           </p>
       </div>
     <script>
