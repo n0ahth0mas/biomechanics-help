@@ -76,6 +76,10 @@ def login():
         passhash = h.hexdigest()
         print(passhash)
         #check passhash against the database
+        c = db.cursor()
+        c.execute('SELECT * from login WHERE username="%s" AND password="%s"' % (username, passhash))
+        if c.fetchone() is not None:
+            print("Welcome")
         print(username + " tried to login with passcode: " + password)
     return render_template('forms/login.html', form=form)
 
