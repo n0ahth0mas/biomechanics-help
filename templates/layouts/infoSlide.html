@@ -84,7 +84,12 @@
 </head>
 <body>
   <div id="infoSideBar" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
+      <!--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>-->
+    <button type="button" class="sideBar-toggle" data-toggle="collapse" data-target=".infoSideBar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+    </button>
     <a href="#about">A</a> <!--Link to A page in Glossary-->
     <a href="#about">B</a> <!--Link to B page in Glossary-->
     <a href="#about">C</a> <!--Link to C page in Glossary-->
@@ -123,24 +128,24 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Project name</a>
+          <a class="navbar-brand" href="/infoSlide">InfoSlide Template</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li {% if request.endpoint == 'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
             <li {% if request.endpoint == 'student' %} class="active" {% endif %}><a href="{{ url_for('student') }}">Student</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <li {% if request.endpoint == 'glossary' %} class="active" {% endif %}><a href="{{ url_for('infoSlide') }}">Glossary</a></li>
+           <!-- <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown">Directory <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a>Action</a></li>
-                <li><a>Another action</a></li>
-                <li><a>Something else here</a></li>
+                <li><a>Glossary</a></li>
+                <li><a>Student Homepage</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Nav header</li>
                 <li><a>Separated link</a></li>
                 <li><a>One more separated link</a></li>
               </ul>
-            </li>
+            </li>-->
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li><a href="{{ url_for('register') }}">Signup</a></li>
@@ -177,8 +182,9 @@
       </div>
 
       <div id="infoImage">
-          <p>
-              <img src="/images/fireElmo.jpg" alt="Slide Image" width="250" height="205">
+          <p title="Image Relevant Information">
+              <!--<img src="/images/fireElmo.jpg" alt="Slide Image" width="250" height="250">-->
+              <img src="https://i.ytimg.com/vi/rjo2Lj7Ql5s/maxresdefault.jpg" alt="Slide Image" width="562" height="400">
           </p>
       </div>
     <script>
