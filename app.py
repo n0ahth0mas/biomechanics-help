@@ -49,10 +49,13 @@ def home():
 def student():
     return render_template('pages/placeholder.student.html')
 
-@app.route('/infoSlide')
+@app.route('/info-slide')
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
+@app.route('/glossary-template')
+def glossaryTemplate():
+    return render_template('layouts/glossary-template.html')
 
 @app.route('/about')
 def about():
