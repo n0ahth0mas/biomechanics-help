@@ -95,6 +95,17 @@ def studentLogin():
         print("thinks we submitted the form: " + userCode)
     return render_template('forms/classcode.html', form=form)
 
+@app.route('/new-professor-account', methods=['GET', 'POST'])
+def new_prof_acc():
+    form = ProfessorRegForm()
+    if form.validate_on_submit():
+        print("form was validated")
+        print(form.data["fullName"])
+        password = form.data["password"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        print(passhash)
+    return render_template('forms/NewProfAccount.html', form=form)
 
 @app.route('/register')
 def register():
