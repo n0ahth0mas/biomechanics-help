@@ -7,20 +7,25 @@ const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const modalHead = document.getElementById("modal-heading");
+const modalBody = document.getElementById("modal-body");
 
 // create our questions
 let questions = [
     {
         question : "What does HTML stand for?",
         imgSrc : "/static/img/question.png",
+        reasoning : "this is the reasoning behind the answer",
         correct : "test"
     },{
         question : "What does CSS stand for?",
         imgSrc : "/static/img/question.png",
+        reasoning : "this is the reasoning behind the answer",
         correct : "test"
     },{
         question : "What does JS stand for?",
         imgSrc : "/static/img/question.png",
+        reasoning : "this is the reasoning behind the answer",
         correct : "test"
     }
 ];
@@ -50,7 +55,7 @@ let score = 0;
 function renderQuestion(){
     let q = questions[runningQuestion];
 
-    question.innerHTML = "<p>"+ q.question +"</p>";
+   question.innerHTML = "<p>"+ q.question +"</p>";
    qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
 }
 
@@ -104,10 +109,12 @@ function checkAnswer(answer){
         // answer is correct
         score++;
         // change progress color to green
+        answerIsClicked(true);
         answerIsCorrect();
     }else{
         // answer is wrong
         // change progress color to red
+        answerIsClicked(false);
         answerIsWrong();
     }
     count = 0;
@@ -119,6 +126,17 @@ function checkAnswer(answer){
         clearInterval(TIMER);
         scoreRender();
     }
+}
+
+// provides feedback on clicked answer
+function answerIsClicked(correct){
+    if(correct){
+        modalHead.innerHTML = "<p>Correct!<p>";
+    } else{
+        modalHead.innerHTML = "<p>Incorrect<p>";
+    }
+
+    modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning + "</p>";
 }
 
 // answer is correct
