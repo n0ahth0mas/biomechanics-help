@@ -1,6 +1,6 @@
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Imports
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request
 # from flask.ext.sqlalchemy import SQLAlchemy
@@ -9,14 +9,18 @@ from logging import Formatter, FileHandler
 from forms import *
 import os
 import sqlite3
+import hashlib
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # App Config.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = sqlite3.connect('login.db')
+
+cur = db.cursor()
+
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -37,17 +41,25 @@ def login_required(test):
             return redirect(url_for('login'))
     return wrap
 '''
-#----------------------------------------------------------------------------#
+
+
+# ----------------------------------------------------------------------------#
 # Controllers.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 @app.route('/')
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/student')
-def student():
-    return render_template('pages/placeholder.student.html')
+
+@app.route('/student-quiz')
+def student_quiz():
+    return render_template('pages/placeholder.student.quiz.html')
+
+
+@app.route('/student-short')
+def student_short():
+    return render_template('pages/placeholder.student.short.html')
 
 @app.route('/info-slide')
 def infoSlide():
@@ -61,20 +73,25 @@ def glossaryTemplate():
 def about():
     return render_template('pages/placeholder.about.html')
 
-
-@app.route('/professor-login',methods=['GET', 'POST'])
+@app.route('/professor-login', methods=('GET', 'POST'))
 def login():
     form = LoginForm(request.form)
-    #if form.validate_on_submit():
-        #userID = form.data['UserID']
-        #password = form.data['password']
+    if form.validate_on_submit():
+        username = form.data["name"]
+        password = form.data["password"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        print(passhash)
+        #check passhash against the database
+        print(username + " tried to login with passcode: " + password)
     return render_template('forms/login.html', form=form)
 
-@app.route('/student-login', methods=['GET', 'POST'])
+@app.route('/student-login', methods=('GET', 'POST'))
 def studentLogin():
-    form = ClassCodeForm(request.form)
-    #if form.validate_on_submit():
-
+    form = ClassCodeForm()
+    if form.validate_on_submit():
+        userCode = form.data["classCode"]
+        print("thinks we submitted the form: " + userCode)
     return render_template('forms/classcode.html', form=form)
 
 
@@ -89,17 +106,18 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+
 # Error handlers.
 
 
 @app.errorhandler(500)
 def internal_error(error):
-    #db_session.rollback()
+    # db_session.rollback()
     return render_template('errors/500.html'), 500
 
 
-#@app.errorhandler(404)
-#def not_found_error(error):
+# @app.errorhandler(404)
+# def not_found_error(error):
 #    return render_template('errors/404.html'), 404
 
 if not app.debug:
@@ -112,9 +130,9 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 # Launch.
-#----------------------------------------------------------------------------#
+# ----------------------------------------------------------------------------#
 
 # Default port:
 if __name__ == '__main__':

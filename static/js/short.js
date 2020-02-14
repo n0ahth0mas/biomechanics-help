@@ -3,10 +3,6 @@ const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
 const question = document.getElementById("question");
 const qImg = document.getElementById("qImg");
-const choiceA = document.getElementById("A");
-const choiceB = document.getElementById("B");
-const choiceC = document.getElementById("C");
-const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
@@ -17,29 +13,27 @@ let questions = [
     {
         question : "What does HTML stand for?",
         imgSrc : "/static/img/question.png",
-        choiceA : "Correct",
-        choiceB : "Wrong",
-        choiceC : "Wrong",
-        choiceD : "Wrong",
-        correct : "A"
+        correct : "test"
     },{
         question : "What does CSS stand for?",
         imgSrc : "/static/img/question.png",
-        choiceA : "Wrong",
-        choiceB : "Correct",
-        choiceC : "Wrong",
-        choiceD : "Wrong",
-        correct : "B"
+        correct : "test"
     },{
         question : "What does JS stand for?",
         imgSrc : "/static/img/question.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        choiceD : "Wrong",
-        correct : "C"
+        correct : "test"
     }
 ];
+
+//get value sent from submit button
+ function getInputValue(){
+    // Selecting the input element and get its value
+    var inputVal = document.getElementById("shortAns").value;
+
+    checkAnswer(inputVal);
+
+    document.getElementById("shortAns").value = "";
+}
 
 // create some variables
 
@@ -57,25 +51,19 @@ function renderQuestion(){
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.question +"</p>";
-    qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
+   qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
 }
 
 start.addEventListener("click",startQuiz);
 
 // start quiz
 function startQuiz(){
-    scoreDiv.style.display = "none";
     start.style.display = "none";
     renderQuestion();
     quiz.style.display = "block";
     renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
-    console.log("starting")
 }
 
 // render progress
@@ -110,7 +98,7 @@ function renderCounter(){
 // checkAnwer
 
 function checkAnswer(answer){
-    if( answer == questions[runningQuestion].correct){
+    if(answer.includes(questions[runningQuestion].correct)){
         // answer is correct
         score++;
         // change progress color to green
@@ -141,10 +129,6 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
-function testBtn(){
-    console.log("try again");
-}
-
 // score render
 function scoreRender(){
     scoreDiv.style.display = "block";
@@ -161,16 +145,10 @@ function scoreRender(){
 
     scoreDiv.innerHTML = "<img src="+ img +">";
     scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
-    scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
 }
 
-function restart(){
-    score = 0;
-    runningQuestion = 0;
-    count = 0;
-    startQuiz();
-    console.log('clicked');
-}
+
+
 
 
 

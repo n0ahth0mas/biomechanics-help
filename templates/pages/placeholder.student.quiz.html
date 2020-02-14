@@ -2,34 +2,40 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
+<link type="text/css" rel="stylesheet" href="/static/css/quiz.css" />
+
+
+
 <div class="page-header">
-  <h1>Chapter X: Section X: QUIZ EX</h1>
+  <h1>Chapter X: Section X</h1>
 </div>
 {% endblock %}
 
-{% block previd%} <p class="lead"> This is where pre video info will go </p> {% endblock %}
+{% block previd%} <p class="lead"><a href="{{ url_for('student_short') }}"> Short Answers </a> </p> {% endblock %}
 
 {% block postvid%}
-<body>
-<div id="start">Start Quiz!</div>
-<div id = "quiz" style = "display : none;">
-    <div id="qImage"><img src="quizimg.png"> </div>
-    <div id="question"><p> Question </p> </div>
-    <div id="timer">
-        <div id = "counter">6</div>
-        <div id="btimeGauge"></div>
+
+  <div id="quizContainer">
+        <div id="start">Start Quiz!</div>
+        <div id="quiz" style="display: none">
+            <div id="question"></div>
+            <div id="qImg">
+            </div>
+            <div id="choices">
+                <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+                <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+                <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+                <div class="choice" id="D" onclick="checkAnswer('D')"></div>
+            </div>
+            <div id="timer">
+                <div id="counter"></div>
+                <div id="btimeGauge"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div id="progress"></div>
+        </div>
+        <div id="scoreContainer" style="display: none"></div>
     </div>
-    <div id="choices">
-        <div class="choice" id="A" onclick="checkAnswer('A')">A</div>
-        <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
-        <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
-    </div>
-    <div id="progress"><div class="prog"></div>
-</div>
-</div>
-<div id="scoreContainer" style = "display : none;">
-    <img src="smile.png"><p>50%</p>
-</div>
-<script src="quiz.js"></script>
-</body>
+    <script src="/static/js/quiz.js"></script>
+
 {% endblock %}
