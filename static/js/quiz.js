@@ -11,6 +11,8 @@ const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const modalHead = document.getElementById("modal-heading");
+const modalBody = document.getElementById("modal-body");
 
 // create our questions
 let questions = [
@@ -21,6 +23,7 @@ let questions = [
         choiceB : "Wrong",
         choiceC : "Wrong",
         choiceD : "Wrong",
+        reasoning : {A: 'this is correct', B:'this is incorrect', C:'this is incorrect', D: 'this is incorrect'},
         correct : "A"
     },{
         question : "What does CSS stand for?",
@@ -29,6 +32,7 @@ let questions = [
         choiceB : "Correct",
         choiceC : "Wrong",
         choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is correct', C:'this is incorrect', D: 'this is incorrect'},
         correct : "B"
     },{
         question : "What does JS stand for?",
@@ -37,6 +41,7 @@ let questions = [
         choiceB : "Wrong",
         choiceC : "Correct",
         choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is incorrect', C:'this is correct', D: 'this is incorrect'},
         correct : "C"
     }
 ];
@@ -51,6 +56,7 @@ const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
+
 
 // render a question
 function renderQuestion(){
@@ -80,6 +86,7 @@ function startQuiz(){
 
 // render progress
 function renderProgress(){
+    progress.innerHTML = ""
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
@@ -107,18 +114,22 @@ function renderCounter(){
     }
 }
 
-// checkAnwer
+// checkAnswer
 
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
         // answer is correct
         score++;
         // change progress color to green
+        answerIsClicked(true, answer);
         answerIsCorrect();
+
     }else{
         // answer is wrong
         // change progress color to red
+        answerIsClicked(false, answer);
         answerIsWrong();
+
     }
     count = 0;
     if(runningQuestion < lastQuestion){
@@ -131,6 +142,21 @@ function checkAnswer(answer){
     }
 }
 
+// provides feedback on clicked answer
+function answerIsClicked(correct, answer){
+    if(correct){
+        modalHead.innerHTML = "<p>Correct!<p>";
+    } else{
+        modalHead.innerHTML = "<p>Incorrect<p>";
+    }
+
+    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.A + "</p>";
+    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.B + "</p>";
+    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.C + "</p>";
+    else modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.D + "</p>";
+}
+
+
 // answer is correct
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
@@ -141,9 +167,6 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
-function testBtn(){
-    console.log("try again");
-}
 
 // score render
 function scoreRender(){
@@ -164,14 +187,13 @@ function scoreRender(){
     scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
 }
 
+//restart the quiz by resetting all of the data
 function restart(){
     score = 0;
     runningQuestion = 0;
     count = 0;
     startQuiz();
-    console.log('clicked');
 }
-
 
 
 
