@@ -97,7 +97,7 @@
                     <li {% if request.endpoint==
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
-                    'student' %} class="active" {% endif %}><a href="{{ url_for('infoSlide') }}">Student</a></li>
+                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Student</a></li>
                     <li {% if request.endpoint==
                     'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
                 </ul>
@@ -105,30 +105,8 @@
                     <li><a href="{{ url_for('register') }}">Signup</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div><!--/.nav-collapse-->
         </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li {% if request.endpoint =='home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-            <li {% if request.endpoint =='student_quiz' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Student</a></li>
-            <li {% if request.endpoint =='glossary' %} class="active" {% endif %}><a href="{{ url_for('infoSlide') }}">Glossary</a></li>
-           <!-- <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">Directory <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a>Glossary</a></li>
-                <li><a>Student Homepage</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a>Separated link</a></li>
-                <li><a>One more separated link</a></li>
-              </ul>
-            </li>-->
-          </ul>
-          <ul class="nav navbar-nav pull-right">
-            <li><a href="{{ url_for('register') }}">Signup</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
     </div>
 
