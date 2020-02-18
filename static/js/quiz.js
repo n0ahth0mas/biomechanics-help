@@ -14,6 +14,7 @@ const scoreDiv = document.getElementById("scoreContainer");
 const modalHead = document.getElementById("modal-heading");
 const modalBody = document.getElementById("modal-body");
 
+let pastAnswers = [];
 // create our questions
 let questions = [
     {
@@ -51,7 +52,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 20; // 15s
+const questionTime = 60; // 15s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -81,7 +82,6 @@ function startQuiz(){
     renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
-    console.log("starting")
 }
 
 // render progress
@@ -117,28 +117,35 @@ function renderCounter(){
 // checkAnswer
 
 function checkAnswer(answer){
+    let currentAnswer = true
     if( answer == questions[runningQuestion].correct){
         // answer is correct
         score++;
         // change progress color to green
-        answerIsClicked(true, answer);
+        answerIsClicked(currentAnswer, answer);
         answerIsCorrect();
 
     }else{
         // answer is wrong
         // change progress color to red
-        answerIsClicked(false, answer);
+        currentAnswer = false
+        answerIsClicked(currentAnswer, answer);
+        changeColor(pastAnswers);
         answerIsWrong();
 
     }
     count = 0;
-    if(runningQuestion < lastQuestion){
-        runningQuestion++;
+    if (currentAnswer){
+        if(runningQuestion < lastQuestion){
+            runningQuestion++;
+            renderQuestion();
+        }else{
+            // end the quiz and show the score
+            clearInterval(TIMER);
+            scoreRender();
+        }
+    } else {
         renderQuestion();
-    }else{
-        // end the quiz and show the score
-        clearInterval(TIMER);
-        scoreRender();
     }
 }
 
@@ -146,8 +153,10 @@ function checkAnswer(answer){
 function answerIsClicked(correct, answer){
     if(correct){
         modalHead.innerHTML = "<p>Correct!<p>";
+        pastAnswers = [];
     } else{
         modalHead.innerHTML = "<p>Incorrect<p>";
+        pastAnswers += answer
     }
 
     if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.A + "</p>";
@@ -157,9 +166,44 @@ function answerIsClicked(correct, answer){
 }
 
 
+function changeColor(pastAnswers){
+    for(i=0; i<pastAnswers.length; i++){
+        if (pastAnswers[i] == "A"){
+            choiceA.style.backgroundColor ="#808080"
+            choiceA.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "B"){
+            choiceB.style.backgroundColor ="#808080"
+            choiceB.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "C"){
+            choiceC.style.backgroundColor ="#808080"
+            choiceC.style.pointerEvents = "none";
+        } else {
+            choiceD.style.backgroundColor ="#808080"
+            choiceD.style.pointerEvents = "none";
+        }
+    }
+}
+
+function resetColor(){
+    console.log("Running");
+    pastAnswers = "";
+
+    choiceA.style.backgroundColor ="#ffffff";
+    choiceB.style.backgroundColor ="#ffffff";
+    choiceC.style.backgroundColor ="#ffffff";
+    choiceD.style.backgroundColor ="#ffffff";
+
+    choiceA.style.pointerEvents = "auto";
+    choiceB.style.pointerEvents = "auto";
+    choiceC.style.pointerEvents = "auto";
+    choiceD.style.pointerEvents = "auto";
+}
+
+
 // answer is correct
 function answerIsCorrect(){
     document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+    resetColor();
 }
 
 // answer is Wrong
