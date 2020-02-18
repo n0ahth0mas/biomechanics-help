@@ -103,6 +103,7 @@ function renderCounter(){
         count = 0;
         // change progress color to red
         answerIsWrong();
+        resetColor();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
