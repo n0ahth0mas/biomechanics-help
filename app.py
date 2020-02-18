@@ -65,6 +65,10 @@ def student_short():
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
+@app.route('/professor-home')
+def profHome():
+    return render_template('layouts/professor-home.html')
+
 @app.route('/glossary-template')
 def glossaryTemplate():
     return render_template('layouts/glossary-template.html')
