@@ -45,7 +45,7 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 20; // 15s
+const questionTime = 60; // 15s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
@@ -102,7 +102,7 @@ function renderCounter(){
     }
 }
 
-// checkAnwer
+// checkAnswer
 
 function checkAnswer(answer){
     if(answer.includes(questions[runningQuestion].correct)){
