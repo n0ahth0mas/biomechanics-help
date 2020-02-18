@@ -1,7 +1,7 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
-  <form method="post" class="form">
+  <form method="post" class="form student-login-form">
       {{ form.csrf_token }}
     <h3 class="form-heading">Professor Registration <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
     {{ form.fullName(class_ = 'form-control first-input', placeholder = form.fullName.label.text, required = true, autofocus = true) }}
