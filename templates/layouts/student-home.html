@@ -48,15 +48,8 @@
             <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                     <li {% if request.endpoint==
-<<<<<<< HEAD
-                    'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-                    <li {% if request.endpoint==
-                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">About</a></li>
-                    <li {% if request.endpoint==
-                    'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Help</a></li>
-=======
                     'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
->>>>>>> 4a24ff4ef5b2e5cba3f4573da08589fbe1da4266
+
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -69,20 +62,6 @@
         {% block content %}{% endblock %}
 
         {% block previd %}{% endblock %}
-<<<<<<< HEAD
-
-        <div>
-            <h1>Welcome <i>Professor</i></h1>
-        </div>
-
-        <!--Section relating to the text on this page-->
-        <div id="infoText" style="border: 2px solid Black;">
-          <p style="color:blue">
-            Welcome Students! This is the student home page where you can select different chapters for the class you are currently enrolled in<br><br><br>
-          </p>
-        </div>
-=======
->>>>>>> 4a24ff4ef5b2e5cba3f4573da08589fbe1da4266
     </main>
 
 </div>
