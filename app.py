@@ -92,11 +92,6 @@ def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
 
-@app.route('/student-home')
-def student_home():
-    return render_template('layouts/student.home.html')
-
-
 
 @app.route('/professor-home')
 @login_required
