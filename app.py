@@ -77,7 +77,7 @@ def student_quiz():
 
 @app.route('/student-home')
 def student_home():
-    return render_template('layouts/student-home.html')
+    return render_template('layouts/student.home.html')
 
 
 @app.route('/professor-home')

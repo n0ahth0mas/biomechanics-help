@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,12 +26,6 @@
     <!-- /scripts -->
 </head>
 <body>
-<div id="infoSideBar" class="sidenav">
-    <a href="#about">We</a>
-    <a href="#about">Want to </a>
-    <a href="#about">Access the </a>
-    <a href="#about">Different chapters here</a>
-</div>
 <!-- Wrap all page content here -->
 <div id="wrap">
     <!-- Fixed navbar -->
@@ -48,7 +42,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li {% if request.endpoint==
-                    'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
+                    'home' %} class="active" {% endif %}><a href="{{ url_for('student-home') }}">Home</a></li>
                     <li {% if request.endpoint==
                     'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">About</a></li>
                     <li {% if request.endpoint==
@@ -77,45 +71,16 @@
         {% block previd %}{% endblock %}
 
         <div>
-            <h1>Welcome <i>Professor</i></h1>
+            <h1>Welcome <i>Student</i></h1>
         </div>
 
         <!--Section relating to the text on this page-->
         <div id="infoText" style="border: 2px solid Black;">
-          <p style="color:blue">
-            Welcome Students! This is the student home page where you can select different chapters for the class you are currently enrolled in<br><br><br>
+          <p style="color:black">
+            Welcome Student! This is a homepage for students to access different chapters for each class. <br><br><br>
           </p>
         </div>
     </main>
-
 </div>
-
-<div id="footer">
-    <div class="container">
-        {% block footer %}{% endblock %}
-    </div>
-    <p style="color:darkgreen; text-align:center;">
-        This Project was brought to you by the Help! in Biomechanics Sqwad.
-    </p>
-</div>
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"><\/script>')
-
-</script>
-<script type="text/javascript" src="/static/js/libs/bootstrap-3.1.1.min.js" defer></script>
-<script type="text/javascript" src="/static/js/plugins.js" defer></script>
-<script type="text/javascript" src="/static/js/script.js" defer></script>
-<!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
-<script>
-  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-  Modernizr.load({
-    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-  });
-
-
-</script>
-
 </body>
 </html>
