@@ -58,23 +58,13 @@
                 <a class="navbar-brand" href="/">Project name</a>
             </div>
             <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
                     <li {% if request.endpoint==
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
                     'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Student</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a>Action</a></li>
-                            <li><a>Another action</a></li>
-                            <li><a>Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a>Separated link</a></li>
-                            <li><a>One more separated link</a></li>
-                        </ul>
-                    </li>
+                    <li {% if request.endpoint==
+                    'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="{{ url_for('register') }}">Signup</a></li>
@@ -102,9 +92,12 @@
 
         {% block previd %}{% endblock %}
 
-        <iframe src="https://www.youtube.com/embed/a3ICNMQW7Ok" width="100%" height="500px" frameborder="0"
+        <!--<iframe src="https://www.youtube.com/embed/a3ICNMQW7Ok" width="100%" height="500px" frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> -->
+        <video width="100%" height="500px" controls>
+            <source src="/static/video/samplevid.mp4" type="video/mp4"/>
+        </video>
 
         <!-- Modal -->
         <div id="answerModal" class="modal fade" role="dialog">

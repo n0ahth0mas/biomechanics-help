@@ -14,6 +14,8 @@ const scoreDiv = document.getElementById("scoreContainer");
 const modalHead = document.getElementById("modal-heading");
 const modalBody = document.getElementById("modal-body");
 
+let firstAttempt = true;
+
 let pastAnswers = [];
 // create our questions
 let questions = [
@@ -103,6 +105,7 @@ function renderCounter(){
         count = 0;
         // change progress color to red
         answerIsWrong();
+        resetColor();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
@@ -120,15 +123,17 @@ function checkAnswer(answer){
     let currentAnswer = true
     if( answer == questions[runningQuestion].correct){
         // answer is correct
-        score++;
+        if (firstAttempt) score++;
         // change progress color to green
         answerIsClicked(currentAnswer, answer);
         answerIsCorrect();
+        firstAttempt = true;
 
     }else{
         // answer is wrong
         // change progress color to red
-        currentAnswer = false
+        currentAnswer = false;
+        firstAttempt = false;
         answerIsClicked(currentAnswer, answer);
         changeColor(pastAnswers);
         answerIsWrong();
@@ -202,7 +207,8 @@ function resetColor(){
 
 // answer is correct
 function answerIsCorrect(){
-    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+    if (firstAttempt) document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+    else document.getElementById(runningQuestion).style.backgroundColor = "#FFA500";
     resetColor();
 }
 
@@ -227,7 +233,7 @@ function scoreRender(){
               "/static/img/1.png";
 
     scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<p> You got "+ scorePerCent +"% correct on the first try</p>";
     scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
 }
 
