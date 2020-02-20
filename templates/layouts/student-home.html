@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Home Page</title>
+
+     <!-- meta -->
+    <meta name="description" content="Professor Home Page after logging in">
+    <meta name="author" content="Ricardo Barraza">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- /meta -->
+
+    <!-- styles -->
+    <link type="text/css" rel="stylesheet" href="/static/css/font-awesome-4.1.0.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme-3.1.1.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/layout.main.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/sidenav.css"/>
+    <!-- /styles -->
+
+     <!-- scripts -->
+    <script src=""></script>
+    <!-- /scripts -->
+</head>
+<body>
+<!-- Wrap all page content here -->
+<div id="wrap">
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/info-slide"><i>Title of Class</i></a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li {% if request.endpoint==
+                    'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
+                </ul>
+            </div><!--/.nav-collapse-->
+        </div>
+      </div>
+    </div>
+
+    <!-- Begin page content -->
+    <main id="structure" role="main" class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-block alert-error fade in">
+            <a class="close" data-dismiss="alert">&times;</a>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+
+        {% block previd %}{% endblock %}
+
+        <div>
+            <h1>Welcome <i>Student</i></h1>
+        </div>
+
+        <!--Section relating to the text on this page-->
+        <div id="infoText" style="border: 2px solid Black;">
+          <p style="color:black">
+            Welcome Student! This is a homepage for students to access different classes<br><br><br>
+          </p>
+        </div>
+    </main>
+</div>
+</body>
+</html>
