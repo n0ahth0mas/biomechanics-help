@@ -37,6 +37,7 @@ create TABLE Questions(
         questionID    INTEGER,
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
+        questionType  TEXT check(questionType IS NOT NULL)
         PRIMARY KEY (questionID, sectionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -48,7 +49,7 @@ create TABLE Answers(
         questionID    INTEGER,
         correctness   BOOLEAN check(correctness IS NOT NULL),
         answerText    TEXT check(answerText IS NOT NULL),
-        answerReason  TEXT
+        answerReason  TEXT,
         PRIMARY KEY (answerID, questionID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
               ON UPDATE CASCADE
