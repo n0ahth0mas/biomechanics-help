@@ -94,6 +94,10 @@ def infoSlide():
 def profHome():
     return render_template('layouts/professor-home.html')
 
+@app.route('/student-home')
+def studentHome():
+    return render_template('layouts/student-home.html')
+
 @app.route('/glossary-template')
 def glossaryTemplate():
     return render_template('layouts/glossary-template.html')
