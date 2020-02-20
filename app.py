@@ -2,23 +2,25 @@
 # Imports
 # ----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, url_for
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
+from user import *
 import os
 import sqlite3
 import hashlib
 from flask import g, redirect, abort
 from flask import session
+from flask_login import current_user, login_user, LoginManager, UserMixin
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.config.from_object('config')
-
+login = LoginManager(app)
 pathToDB = os.path.abspath("studentlogin.db")
 print(pathToDB)
 
@@ -29,6 +31,11 @@ def get_db():
         db = g._database = sqlite3.connect(pathToDB)
     return db
 
+@login.user_loader
+def load_user(email):
+    user_object = query_db('select * from StudentAccounts where email= ? ', [email], one=True)
+    user = User(email=user_object[0], password=user_object[1], active=True)
+    return user
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -46,11 +53,11 @@ def shutdown_session(exception=None):
 
 def login_required(test):
     def wrap(*args, **kwargs):
-        if 'logged_in' in session:
+        if current_user.is_authenticated:
             return test(*args, **kwargs)
         else:
             flash('You need to login first.')
-            return redirect(url_for('login'))
+            return redirect(url_for('home'))
     return wrap
 
 
@@ -65,6 +72,7 @@ def home():
 
 
 @app.route('/student-quiz')
+@login_required
 def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
@@ -84,6 +92,10 @@ def glossaryTemplate():
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
+
+@app.route('/professor-home')
+def profHome():
+    return render_template('layouts/professor-home.html')
 
 @app.route('/professor-login', methods=('GET', 'POST'))
 def login():
@@ -114,6 +126,10 @@ def studentLogin():
         if user_object is None:
             print('No such class')
         else:
+            user = User(email=user_object[0], password=user_object[1], active=True)
+            login_user(user)
+            if current_user.is_authenticated:
+                print("current user authenticated")
             return redirect(home_url + "student-quiz")
     return render_template('forms/classcode.html', form=form)
 
