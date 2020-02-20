@@ -23,7 +23,7 @@ from functools import wraps
 app = Flask(__name__)
 app.config.from_object('config')
 login = LoginManager(app)
-pathToDB = os.path.abspath("studentlogin.db")
+pathToDB = os.path.abspath("database/help.db")
 print(pathToDB)
 
 home_url = "http://127.0.0.1:5000/"
@@ -37,7 +37,7 @@ def get_db():
 
 @login.user_loader
 def load_user(email):
-    user_object = query_db('select * from StudentAccounts where email= ? ', [email], one=True)
+    user_object = query_db('select * from Students where emailS= ? ', [email], one=True)
     user = User(email=user_object[0], password=user_object[1], classes=user_object[2], active=True)
     return user
 
