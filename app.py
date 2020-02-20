@@ -2,16 +2,19 @@
 # Imports
 # ----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, url_for
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
+from user import *
 import os
 import sqlite3
 import hashlib
 from flask import g, redirect, abort
 from flask import session
+from flask_login import current_user, login_user, LoginManager, UserMixin
+from functools import wraps
 
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -19,7 +22,7 @@ from flask import session
 
 app = Flask(__name__)
 app.config.from_object('config')
-
+login = LoginManager(app)
 pathToDB = os.path.abspath("studentlogin.db")
 print(pathToDB)
 
@@ -32,6 +35,11 @@ def get_db():
         db = g._database = sqlite3.connect(pathToDB)
     return db
 
+@login.user_loader
+def load_user(email):
+    user_object = query_db('select * from StudentAccounts where email= ? ', [email], one=True)
+    user = User(email=user_object[0], password=user_object[1], classes=user_object[2], active=True)
+    return user
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -51,13 +59,13 @@ def shutdown_session(exception=None):
 # Login required decorator.
 
 def login_required(test):
+    @wraps(test)
     def wrap(*args, **kwargs):
-        if 'logged_in' in session:
+        if current_user.is_authenticated:
             return test(*args, **kwargs)
         else:
             flash('You need to login first.')
-            return redirect(url_for('login'))
-
+            return redirect(url_for('home'))
     return wrap
 
 
@@ -69,33 +77,49 @@ def login_required(test):
 def home():
     return render_template('pages/landing.html', homepage=True)
 
+@app.route('/student-home')
+@login_required
+def student_home():
+    print("called student home")
+    classes = current_user.get_classes()
+    print(classes)
+    return render_template('pages/studentHome.html', classes=classes)
+
 
 @app.route('/student-quiz')
+@login_required
 def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
+<<<<<<< HEAD
 
 @app.route('/student-home')
 def student_home():
     return render_template('layouts/student.home.html')
 
 
+=======
+>>>>>>> 4a24ff4ef5b2e5cba3f4573da08589fbe1da4266
 @app.route('/professor-home')
+@login_required
 def professor_home():
     return render_template('layouts/professor-home.html')
 
 
 @app.route('/student-short')
+@login_required
 def student_short():
     return render_template('pages/placeholder.student.short.html')
 
 
 @app.route('/info-slide')
+@login_required
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
 
 @app.route('/glossary-template')
+@login_required
 def glossaryTemplate():
     return render_template('layouts/glossary-template.html')
 
@@ -104,6 +128,10 @@ def glossaryTemplate():
 def about():
     return render_template('pages/placeholder.about.html')
 
+@app.route('/professor-home')
+@login_required
+def profHome():
+    return render_template('layouts/professor-home.html')
 
 @app.route('/professor-login', methods=('GET', 'POST'))
 def login():
@@ -136,7 +164,11 @@ def studentLogin():
         if user_object is None:
             print('No such class')
         else:
-            return redirect(home_url + "student-quiz")
+            user = User(email=user_object[0], password=user_object[1], classes=user_object[2], active=True)
+            login_user(user)
+            if current_user.is_authenticated:
+                print("current user authenticated")
+            return redirect(home_url + "student-home")
     return render_template('forms/classcode.html', form=form)
 
 

@@ -1,11 +1,11 @@
-from flask.ext.sqlalchemy import SQLAlchemy
 from app import *
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
 
+from flask_login import UserMixin
 
-
+class User(UserMixin):
 #...
-
-class User(db.Model):
     """An admin user capable of viewing reports.
 
     :param str email: email address of user
@@ -14,9 +14,19 @@ class User(db.Model):
     """
     __tablename__ = 'user'
 
-    email = db.Column(db.String, primary_key=True)
-    password = db.Column(db.String)
-    authenticated = db.Column(db.Boolean, default=False)
+
+    def __init__(self, email, password, classes, active = True):
+        self.email = email
+        self.password = password
+        self.active = active
+        self.classes = classes
+
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def is_active(self):
         """True, as all users are active."""
@@ -33,3 +43,6 @@ class User(db.Model):
     def is_anonymous(self):
         """False, as anonymous users aren't supported."""
         return True
+
+    def get_classes(self):
+        return self.classes

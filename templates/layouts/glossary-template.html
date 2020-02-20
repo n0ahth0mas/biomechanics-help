@@ -79,13 +79,13 @@
                     <li {% if request.endpoint==
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
-                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Student</a></li>
+                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_home') }}">Student</a></li>
                     <li {% if request.endpoint==
                     'glossary' %} class="active" {% endif %}><a
                         href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <li><a href="{{ url_for('register') }}">Signup</a></li>
+                    <li><a href="{{ url_for('new_prof_acc') }}">Signup</a></li>
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
