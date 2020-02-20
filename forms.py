@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField, StringField
 from wtforms.validators import DataRequired, EqualTo, Length
+from wtforms.fields.html5 import EmailField
+from wtforms import validators
 
 
 # Set your classes here.
@@ -34,3 +36,13 @@ class ForgotForm(FlaskForm):
 
 class ClassCodeForm(FlaskForm):
     classCode = StringField('Your Classcode', validators=[DataRequired()])
+
+class ProfessorRegForm(FlaskForm):
+    fullName = StringField('Full name', validators=[DataRequired()])
+    email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm = PasswordField(
+        'Repeat Password',
+        [DataRequired(),
+         EqualTo('password', message='Passwords must match')]
+    )

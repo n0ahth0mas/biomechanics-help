@@ -11,7 +11,12 @@ const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const modalHead = document.getElementById("modal-heading");
+const modalBody = document.getElementById("modal-body");
 
+let firstAttempt = true;
+
+let pastAnswers = [];
 // create our questions
 let questions = [
     {
@@ -21,6 +26,7 @@ let questions = [
         choiceB : "Wrong",
         choiceC : "Wrong",
         choiceD : "Wrong",
+        reasoning : {A: 'this is correct', B:'this is incorrect', C:'this is incorrect', D: 'this is incorrect'},
         correct : "A"
     },{
         question : "What does CSS stand for?",
@@ -29,6 +35,7 @@ let questions = [
         choiceB : "Correct",
         choiceC : "Wrong",
         choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is correct', C:'this is incorrect', D: 'this is incorrect'},
         correct : "B"
     },{
         question : "What does JS stand for?",
@@ -37,6 +44,7 @@ let questions = [
         choiceB : "Wrong",
         choiceC : "Correct",
         choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is incorrect', C:'this is correct', D: 'this is incorrect'},
         correct : "C"
     }
 ];
@@ -46,11 +54,12 @@ let questions = [
 const lastQuestion = questions.length - 1;
 let runningQuestion = 0;
 let count = 0;
-const questionTime = 20; // 15s
+const questionTime = 60; // 15s
 const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
+
 
 // render a question
 function renderQuestion(){
@@ -75,11 +84,11 @@ function startQuiz(){
     renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
-    console.log("starting")
 }
 
 // render progress
 function renderProgress(){
+    progress.innerHTML = ""
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
     }
@@ -96,6 +105,7 @@ function renderCounter(){
         count = 0;
         // change progress color to red
         answerIsWrong();
+        resetColor();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
@@ -107,33 +117,99 @@ function renderCounter(){
     }
 }
 
-// checkAnwer
+// checkAnswer
 
 function checkAnswer(answer){
+    let currentAnswer = true
     if( answer == questions[runningQuestion].correct){
         // answer is correct
-        score++;
+        if (firstAttempt) score++;
         // change progress color to green
+        answerIsClicked(currentAnswer, answer);
         answerIsCorrect();
+        firstAttempt = true;
+
     }else{
         // answer is wrong
         // change progress color to red
+        currentAnswer = false;
+        firstAttempt = false;
+        answerIsClicked(currentAnswer, answer);
+        changeColor(pastAnswers);
         answerIsWrong();
+
     }
     count = 0;
-    if(runningQuestion < lastQuestion){
-        runningQuestion++;
+    if (currentAnswer){
+        if(runningQuestion < lastQuestion){
+            runningQuestion++;
+            renderQuestion();
+        }else{
+            // end the quiz and show the score
+            clearInterval(TIMER);
+            scoreRender();
+        }
+    } else {
         renderQuestion();
-    }else{
-        // end the quiz and show the score
-        clearInterval(TIMER);
-        scoreRender();
     }
 }
 
+// provides feedback on clicked answer
+function answerIsClicked(correct, answer){
+    if(correct){
+        modalHead.innerHTML = "<p>Correct!<p>";
+        pastAnswers = [];
+    } else{
+        modalHead.innerHTML = "<p>Incorrect<p>";
+        pastAnswers += answer
+    }
+
+    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.A + "</p>";
+    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.B + "</p>";
+    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.C + "</p>";
+    else modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.D + "</p>";
+}
+
+
+function changeColor(pastAnswers){
+    for(i=0; i<pastAnswers.length; i++){
+        if (pastAnswers[i] == "A"){
+            choiceA.style.backgroundColor ="#808080"
+            choiceA.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "B"){
+            choiceB.style.backgroundColor ="#808080"
+            choiceB.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "C"){
+            choiceC.style.backgroundColor ="#808080"
+            choiceC.style.pointerEvents = "none";
+        } else {
+            choiceD.style.backgroundColor ="#808080"
+            choiceD.style.pointerEvents = "none";
+        }
+    }
+}
+
+function resetColor(){
+    console.log("Running");
+    pastAnswers = "";
+
+    choiceA.style.backgroundColor ="#ffffff";
+    choiceB.style.backgroundColor ="#ffffff";
+    choiceC.style.backgroundColor ="#ffffff";
+    choiceD.style.backgroundColor ="#ffffff";
+
+    choiceA.style.pointerEvents = "auto";
+    choiceB.style.pointerEvents = "auto";
+    choiceC.style.pointerEvents = "auto";
+    choiceD.style.pointerEvents = "auto";
+}
+
+
 // answer is correct
 function answerIsCorrect(){
-    document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+    if (firstAttempt) document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+    else document.getElementById(runningQuestion).style.backgroundColor = "#FFA500";
+    resetColor();
 }
 
 // answer is Wrong
@@ -141,9 +217,6 @@ function answerIsWrong(){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
 
-function testBtn(){
-    console.log("try again");
-}
 
 // score render
 function scoreRender(){
@@ -160,18 +233,17 @@ function scoreRender(){
               "/static/img/1.png";
 
     scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+    scoreDiv.innerHTML += "<p> You got "+ scorePerCent +"% correct on the first try</p>";
     scoreDiv.innerHTML += "<button type=\"button\" id=\"retryBtn\" onclick=\"restart()\">Retry</button>"
 }
 
+//restart the quiz by resetting all of the data
 function restart(){
     score = 0;
     runningQuestion = 0;
     count = 0;
     startQuiz();
-    console.log('clicked');
 }
-
 
 
 

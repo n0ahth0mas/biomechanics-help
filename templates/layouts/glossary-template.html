@@ -17,36 +17,8 @@
     <link type="text/css" rel="stylesheet" href="/static/css/main.css"/>
     <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css"/>
     <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/sidenav.css"/>
 
-    <style>
-   .sidenav {
-  height: 100%;
-  width: 15%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
-  margin-top: 48px;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 15px;
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-
-
-    </style>
     <!-- /styles -->
 
     <!-- scripts -->
@@ -56,22 +28,17 @@
 </head>
 
 <body>
+
 <div id="sidebar" class="sidenav">
-<<<<<<< Updated upstream
-    <a href="#entry6">A</a> <!--Link to A page in Glossary-->
-    <a href="#entry5">B</a> <!--Link to B page in Glossary-->
-    <a href="#entry4">C</a> <!--Link to C page in Glossary-->
-    <a href="#entry3">D</a> <!--Link to D page in Glossary-->
-    <a href="#entry2">E</a> <!--Link to E page in Glossary-->
-    <a href="#entry1">F</a> <!--Link to F page in Glossary-->
-=======
+
+<div id="sidebar" class="sidenav" style="font-size:15px;">
+
     <a href="#glossA">A</a> <!--Link to A page in Glossary-->
     <a href="#glossB">B</a> <!--Link to B page in Glossary-->
     <a href="#glossC">C</a> <!--Link to C page in Glossary-->
     <a href="#glossC">D</a> <!--Link to D page in Glossary-->
     <a href="#glossB">E</a> <!--Link to E page in Glossary-->
     <a href="#glossA">F</a> <!--Link to F page in Glossary-->
->>>>>>> Stashed changes
     <a href="#about">G</a> <!--Link to G page in Glossary-->
     <a href="#about">H</a> <!--Link to H page in Glossary-->
     <a href="#about">I</a> <!--Link to I page in Glossary-->
@@ -112,7 +79,7 @@
                     <li {% if request.endpoint==
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
-                    'student' %} class="active" {% endif %}><a href="{{ url_for('infoSlide') }}">Student</a></li>
+                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Student</a></li>
                     <li {% if request.endpoint==
                     'glossary' %} class="active" {% endif %}><a
                         href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
