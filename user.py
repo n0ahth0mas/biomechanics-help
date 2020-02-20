@@ -15,10 +15,11 @@ class User(UserMixin):
     __tablename__ = 'user'
 
 
-    def __init__(self, email, password, active = True):
+    def __init__(self, email, password, classes, active = True):
         self.email = email
         self.password = password
         self.active = active
+        self.classes = classes
 
 
     def set_password(self, password):
@@ -42,3 +43,6 @@ class User(UserMixin):
     def is_anonymous(self):
         """False, as anonymous users aren't supported."""
         return True
+
+    def get_classes(self):
+        return self.classes
