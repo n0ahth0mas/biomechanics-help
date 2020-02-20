@@ -34,8 +34,18 @@ class ForgotForm(FlaskForm):
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
 
-class ClassCodeForm(FlaskForm):
-    classCode = StringField('Your Classcode', validators=[DataRequired()])
+class StudentLoginForm(FlaskForm):
+    email = EmailField('Email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+
+class StudentRegForm(FlaskForm):
+    email = EmailField('Your email', validators=[DataRequired()])
+    password = PasswordField('Your password', validators=[DataRequired()])
+    confirm = PasswordField(
+        'Repeat Password',
+        [DataRequired(),
+         EqualTo('password', message='Passwords must match')]
+    )
 
 class ProfessorRegForm(FlaskForm):
     fullName = StringField('Full name', validators=[DataRequired()])

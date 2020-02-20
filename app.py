@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
@@ -67,36 +66,16 @@ def home():
 
 @app.route('/student-quiz')
 def student_quiz():
-    try:
-        session["logged_in"]
-        return render_template('pages/placeholder.student.quiz.html')
-    except KeyError:
-        return abort(401)
+    return render_template('pages/placeholder.student.quiz.html')
 
 
 @app.route('/student-short')
 def student_short():
-    try:
-        session["logged_in"]
-        return render_template('pages/placeholder.student.short.html')
-    except KeyError:
-        return abort(401)
+    return render_template('pages/placeholder.student.short.html')
 
 @app.route('/info-slide')
 def infoSlide():
-    try:
-        session["logged_in"]
-        return render_template('layouts/infoSlide.html')
-    except KeyError:
-        return abort(401)
-
-@app.route('/professor-home')
-def profHome():
-    return render_template('layouts/professor-home.html')
-
-@app.route('/student-home')
-def studentHome():
-    return render_template('layouts/student-home.html')
+    return render_template('layouts/infoSlide.html')
 
 @app.route('/glossary-template')
 def glossaryTemplate():
@@ -125,16 +104,16 @@ def login():
 
 @app.route('/student-login', methods=('GET', 'POST'))
 def studentLogin():
-    form = ClassCodeForm()
+    form = StudentLoginForm()
     if form.validate_on_submit():
-        user_code = form.data["classCode"]
-
-        class_object = query_db('select * from ClassCodes where ClassCode = ?',
-                                [user_code], one=True)
-        if class_object is None:
+        email = form.data["email"]
+        password = form.data["password"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        user_object = query_db('select * from StudentAccounts where email="%s" AND password="%s"' % (email, passhash), one=True)
+        if user_object is None:
             print('No such class')
         else:
-            session["logged_in"] = True
             return redirect(home_url + "student-quiz")
     return render_template('forms/classcode.html', form=form)
 
@@ -161,6 +140,40 @@ def new_prof_acc():
 
         print("past insertion")
     return render_template('forms/NewProfAccount.html', form=form)
+
+@app.route('/new-student-account', methods=['GET', 'POST'])
+def new_student_account():
+    form = StudentRegForm()
+    if form.validate_on_submit():
+
+        password = form.data["password"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        print(passhash)
+
+        # check that we don't already have this user registered
+        user_object = query_db(
+            'select * from StudentAccounts where email= ? ', [form.data["email"]], one=True)
+        # insert them into the db
+        if user_object is None:
+            cursor = get_db().cursor()
+            courses = "BioPhysics"
+            password = form.data["password"]
+            h = hashlib.md5(password.encode())
+            passhash = h.hexdigest()
+            cursor.execute(
+                'INSERT INTO StudentAccounts (email,password,courses) values (?,?,?)',
+                (
+                    str(form.data["email"]),
+                    str(passhash),
+                    courses
+                )
+            )
+            get_db().commit()
+            return redirect(home_url)
+        else:
+            return render_template('forms/NewStudentAccount.html', form=form)
+    return render_template('forms/NewStudentAccount.html', form=form)
 
 
 @app.route('/forgot')
@@ -210,4 +223,3 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 '''
-
