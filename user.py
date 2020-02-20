@@ -1,10 +1,11 @@
 from flask.ext.sqlalchemy import SQLAlchemy
+from app import *
 
-db = SQLAlchemy()
+
 
 #...
 
-class User():
+class User(db.Model):
     """An admin user capable of viewing reports.
 
     :param str email: email address of user

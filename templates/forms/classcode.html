@@ -4,7 +4,10 @@
   <form method="post" class="form student-login-form">
     {{ form.csrf_token }}
     <h3 class="form-heading">Login <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
-    {{ form.classCode(class_ = 'form-control first-input', placeholder = form.classCode.label.text, required = true, autofocus = true) }}
+    {{ form.email(class_ = 'form-control first-input', placeholder = form.email.label.text, required = true, autofocus = true) }}
+    {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
+    <p class="pull-left"><a href="{{ url_for('forgot') }}">Forgot Password?</a></p>
+    <h4 class="pull-right"><a href="{{ url_for('new_student_account') }}">Register</a></h4>
     <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block student-login-submit">
   </form>
 {% endblock %}
