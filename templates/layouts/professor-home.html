@@ -83,23 +83,22 @@
 
         <!--Section relating to the text on this page-->
         <div id="infoText" style="border: 2px solid Black;">
-          <pre>
-            <p style="background-color:powderblue;">
-              Insert information that makes up info slides here!!!
-            </p>
-            <hr>
-            <p style="text-align:center;"> More text we like in the center now</p>
-            <hr>
-                Playing around with
-                                    the words and stuff
-          </pre>
+          <p style="color:blue">
+            Welcome Professor! This is your homepage where you may do cool stuff relating
+              to you classes and tests for your students!!!<br><br><br>
+          </p>
+            <a href="{{ url_for('student_quiz') }}">
+                See what your students see! Take your test!
+            </a>
         </div>
 
         <!-- Section relating to image on page-->
         <div id="infoImage">
+            <center>
             <p title="Image Relevant Information">
-                <img src="/static/img/fireElmo.jpg" alt="Slide Image" width="562" height="400">
+                <img src="/static/img/nature.jpg" alt="Professor Image???" width="800" height="600">
             </p>
+            </center>
         </div>
     </main>
 
