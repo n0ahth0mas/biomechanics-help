@@ -12,6 +12,7 @@ import sqlite3
 import hashlib
 from flask import g, redirect, abort
 from flask import session
+
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
@@ -23,6 +24,8 @@ pathToDB = os.path.abspath("studentlogin.db")
 print(pathToDB)
 
 home_url = "http://127.0.0.1:5000/"
+
+
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -35,12 +38,15 @@ def query_db(query, args=(), one=False):
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
+
+
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
 '''
+
 
 # Login required decorator.
 
@@ -51,8 +57,8 @@ def login_required(test):
         else:
             flash('You need to login first.')
             return redirect(url_for('login'))
-    return wrap
 
+    return wrap
 
 
 # ----------------------------------------------------------------------------#
@@ -69,21 +75,35 @@ def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
 
+@app.route('/student-home')
+def student_home():
+    return render_template('layouts/student-home.html')
+
+
+@app.route('/professor-home')
+def professor_home():
+    return render_template('layouts/professor-home.html')
+
+
 @app.route('/student-short')
 def student_short():
     return render_template('pages/placeholder.student.short.html')
+
 
 @app.route('/info-slide')
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
+
 @app.route('/glossary-template')
 def glossaryTemplate():
     return render_template('layouts/glossary-template.html')
 
+
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
+
 
 @app.route('/professor-login', methods=('GET', 'POST'))
 def login():
@@ -94,13 +114,14 @@ def login():
         h = hashlib.md5(password.encode())
         passhash = h.hexdigest()
         print(passhash)
-        #check passhash against the database
+        # check passhash against the database
         c = db.cursor()
         c.execute('SELECT * from login WHERE username="%s" AND password="%s"' % (username, passhash))
         if c.fetchone() is not None:
             print("Welcome")
         print(username + " tried to login with passcode: " + password)
     return render_template('forms/login.html', form=form)
+
 
 @app.route('/student-login', methods=('GET', 'POST'))
 def studentLogin():
@@ -110,12 +131,14 @@ def studentLogin():
         password = form.data["password"]
         h = hashlib.md5(password.encode())
         passhash = h.hexdigest()
-        user_object = query_db('select * from StudentAccounts where email="%s" AND password="%s"' % (email, passhash), one=True)
+        user_object = query_db('select * from StudentAccounts where email="%s" AND password="%s"' % (email, passhash),
+                               one=True)
         if user_object is None:
             print('No such class')
         else:
             return redirect(home_url + "student-quiz")
     return render_template('forms/classcode.html', form=form)
+
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])
 def new_prof_acc():
@@ -128,7 +151,6 @@ def new_prof_acc():
         passhash = h.hexdigest()
         print(passhash)
 
-
         cursor.execute(
             'insert into login (username,email,password) values (?,?,?)',
             (
@@ -140,6 +162,7 @@ def new_prof_acc():
 
         print("past insertion")
     return render_template('forms/NewProfAccount.html', form=form)
+
 
 @app.route('/new-student-account', methods=['GET', 'POST'])
 def new_student_account():
@@ -193,11 +216,13 @@ def internal_error(error):
 
 @app.errorhandler(404)
 def not_found_error(error):
-   return render_template('errors/404.html'), 404
+    return render_template('errors/404.html'), 404
+
 
 @app.errorhandler(401)
 def not_authed_error(error):
-   return render_template('errors/401.html'), 404
+    return render_template('errors/401.html'), 404
+
 
 if not app.debug:
     file_handler = FileHandler('error.log')
