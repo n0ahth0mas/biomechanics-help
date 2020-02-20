@@ -10,7 +10,9 @@ drop table if exists Admin;
 
 create TABLE Class(
         classID       INTEGER PRIMARY KEY,
-        className     TEXT check(className IS NOT NULL)
+        className     TEXT check(className IS NOT NULL),
+        classCode     TEXT check(classCode IS NOT NULL),
+        UNIQUE (classCode)
 );
 
 create TABLE Chapters(
@@ -37,7 +39,7 @@ create TABLE Questions(
         questionID    INTEGER,
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        questionType  TEXT check(questionType IS NOT NULL)
+        questionType  TEXT check(questionType IS NOT NULL),
         PRIMARY KEY (questionID, sectionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
