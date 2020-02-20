@@ -91,15 +91,13 @@ def student_home():
 def student_quiz():
     return render_template('pages/placeholder.student.quiz.html')
 
-<<<<<<< HEAD
 
 @app.route('/student-home')
 def student_home():
     return render_template('layouts/student.home.html')
 
 
-=======
->>>>>>> 4a24ff4ef5b2e5cba3f4573da08589fbe1da4266
+
 @app.route('/professor-home')
 @login_required
 def professor_home():
