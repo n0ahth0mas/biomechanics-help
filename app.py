@@ -1,7 +1,6 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
-
 from flask import Flask, render_template, request, flash, url_for
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
