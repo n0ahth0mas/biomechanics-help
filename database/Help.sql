@@ -34,9 +34,6 @@ create TABLE Sections(
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-        FOREIGN KEY (classID) REFERENCES Chapters (classID)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
 );
 
 create TABLE Questions(
