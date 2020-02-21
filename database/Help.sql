@@ -20,7 +20,7 @@ create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
         classID       INTEGER,
-        PRIMARY KEY (chapterID, classID),
+        PRIMARY KEY (chapterID),
         FOREIGN KEY (classID) REFERENCES Class(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -28,10 +28,13 @@ create TABLE Chapters(
 
 create TABLE Sections(
         sectionID     INTEGER,
-        chapterID     INTEGER check(chapterID),
+        chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   INTEGER check(sectionName IS NOT NULL),
-        PRIMARY KEY (sectionID, chapterID),
+        PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+        FOREIGN KEY (classID) REFERENCES Chapters (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -40,8 +43,9 @@ create TABLE Questions(
         questionID    INTEGER,
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
+        classID       INTEGER check(classID IS NOT NULL),
         questionType  TEXT check(questionType IS NOT NULL),
-        PRIMARY KEY (questionID, sectionID),
+        PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -51,6 +55,8 @@ create TABLE InfoSlide(
         infoSlideID    INTEGER,
         infoSlideText  TEXT check(infoSlideText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
+        chapterID     INTEGER check(chapterID IS NOT NULL),
+        classID       INTEGER check(classID IS NOT NULL),
         PRIMARY KEY (infoSlideID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -60,6 +66,7 @@ create TABLE InfoSlide(
 create TABLE Answers(
         answerID      INTEGER,
         questionID    INTEGER,
+        classID       INTEGER check(classID IS NOT NULL),
         correctness   BOOLEAN check(correctness IS NOT NULL),
         answerText    TEXT check(answerText IS NOT NULL),
         answerReason  TEXT,
@@ -82,6 +89,9 @@ create TABLE Glossary(
 
 create TABLE QuestionImages(
         questionID     INTEGER,
+        sectionID     INTEGER check(sectionID IS NOT NULL),
+        chapterID     INTEGER check(chapterID IS NOT NULL),
+        classID       INTEGER check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
@@ -91,6 +101,7 @@ create TABLE QuestionImages(
 
 create TABLE QuestionInfoSlide(
         infoSlideID    INTEGER,
+        classID       INTEGER check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
@@ -99,7 +110,7 @@ create TABLE QuestionInfoSlide(
 );
 
 create TABLE Videos(
-        sectionID      INTEGER,
+        sectionID      INTEGER check(sectionID),
         videoFile      TEXT check(videoFile IS NOT NULL),
         PRIMARY KEY (videoFile),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
