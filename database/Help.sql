@@ -7,6 +7,7 @@ drop table if exists Glossary;
 drop table if exists Images;
 drop table if exists Videos;
 drop table if exists Admin;
+drop table if exists InfoSlide;
 
 create TABLE Class(
         classID       INTEGER PRIMARY KEY,
@@ -46,6 +47,16 @@ create TABLE Questions(
             ON DELETE CASCADE
 );
 
+create TABLE InfoSlide(
+        infoSlideID    INTEGER,
+        infoSlideText  TEXT check(infoSlideText IS NOT NULL),
+        sectionID     INTEGER check(sectionID IS NOT NULL),
+        PRIMARY KEY (infoSlideID),
+        FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+);
+
 create TABLE Answers(
         answerID      INTEGER,
         questionID    INTEGER,
@@ -69,15 +80,20 @@ create TABLE Glossary(
             ON DELETE CASCADE
 );
 
-create TABLE Images(
+create TABLE QuestionImages(
         questionID     INTEGER,
-        infoSlideID    INTEGER,
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-        FOREIGN KEY (questionID) REFERENCES Questions (questionID)
+);
+
+create TABLE QuestionInfoSlide(
+        infoSlideID    INTEGER,
+        imageFile      TEXT check(imageFile IS NOT NULL),
+        PRIMARY KEY (imageFile),
+        FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -92,10 +108,25 @@ create TABLE Videos(
 );
 
 CREATE TABLE Admin(
-        upsID				   INTEGER PRIMARY KEY,
-        firstName 	   TEXT check(firstName IS NOT NULL),
-        lastName		   TEXT check(lastName IS NOT NULL),
-        middleName	   TEXT,
+        fullName        TEXT  check(fullName IS NOT NULL),
+        emailA				   TEXT check(emailA IS NOT NULL),
         password		   TEXT check(password IS NOT NULL),
-        email				   TEXT check(email IS NOT NULL)
+        PRIMARY KEY(emailA)
+);
+
+CREATE TABLE Students(
+        emailS         TEXT PRIMARY KEY,
+        password       TEXT check(password IS NOT NULL)
+);
+
+CREATE TABLE Enroll(
+        emailS      TEXT,
+        classID     INTEGER,
+        PRIMARY KEY (emailS,classID),
+        FOREIGN KEY (emailS) REFERENCES Students (emailS)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+        FOREIGN KEY (classID) REFERENCES Class (classID)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
 );
