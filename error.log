@@ -6956,3 +6956,5 @@ sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed
 [SQL: INSERT INTO "Classes" ("classCode", "className") VALUES (?, ?)]
 [parameters: ('XYZ', 'Biology')]
 (Background on this error at: http://sqlalche.me/e/gkpj)
+2020-02-25 22:10:22,024 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:288]
+2020-02-25 22:11:42,971 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:288]
