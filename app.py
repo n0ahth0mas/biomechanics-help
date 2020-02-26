@@ -134,10 +134,12 @@ def student_home():
 @app.route('/student-quiz', methods=['GET'])
 @login_required
 def student_quiz():
-    chapter = int(request.args.get('chapter'))
-    section = int(request.args.get('section'))
-    q_list = query_db('select * from Questions where sectionID=1.1' % (chapter, section), one=True)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
+    chapter = (request.args.get('chapter', default=1, type=int))
+    section = (request.args.get('section', default=1, type=int))
+    chapter = int(chapter)
+    section = int(section)
+    #q_list = query_db('select * from Questions where sectionID=%c.%s' % (chapter, section), one=True)
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section)
 
 
 @app.route('/professor-home')
