@@ -66,6 +66,11 @@ def shutdown_session(exception=None):
 login = LoginManager()
 login.init_app(app)
 
+class Class(db.Model):
+    __tablename__ = "Classes"
+    classCode = db.Column(db.String(), primary_key=True)
+    className = db.Column(db.String())
+
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
@@ -75,7 +80,7 @@ class UserClasses(db.Model):
 class Role(db.Model):
     __tablename__ = 'Roles'
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50))
 
 # Define the UserRoles association table
 class UserRoles(db.Model):
@@ -92,6 +97,7 @@ class User(db.Model, UserMixin):
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
     roles = db.relationship('Role', secondary='User_roles')
+    classes = db.relationship('Class', secondary='Enroll')
     # User fields
     active = True
     name = db.Column(db.String(255))
@@ -110,14 +116,18 @@ def student_home():
     form = AddClass()
     if form.validate_on_submit():
         _class = query_db('SELECT * from Classes WHERE classCode="%s"' % form.data["class_code"], one=True)
-        current_user.classes.append(Class(classCode=form.data["class_code"], className=_class[0]))
-        db.session.commit()
+        print(_class[1])
+        current_user.classes.append(UserClasses(email=current_user.id, classCode=form.data["class_code"]))
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        new_class = Class()
+        #db.session.commit()
 
     #render our classes
     classes_list = []
     print(current_user.classes)
     for _class in current_user.classes:
-        classes_list.append(_class.name)
+        classes_list.append(_class[1])
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
