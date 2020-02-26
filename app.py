@@ -66,21 +66,23 @@ def shutdown_session(exception=None):
 login = LoginManager()
 login.init_app(app)
 
-class Course(db.Model):
-    __tablename__ = "Courses"
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-
-class UserCourses(db.Model):
+class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
-    email = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
-    classID = db.Column(db.Integer(), db.ForeignKey('Courses.id', ondelete='CASCADE'))
+    email = db.Column(db.String(), db.ForeignKey('Users.email'))
+    classCode = db.Column(db.Integer(), db.ForeignKey('Classes.classCode'))
 
 class Role(db.Model):
     __tablename__ = 'Roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
+
+# Define the UserRoles association table
+class UserRoles(db.Model):
+    __tablename__ = 'User_roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
+    role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
 
 class User(db.Model, UserMixin):
     __tablename__ = 'Users'
@@ -90,17 +92,9 @@ class User(db.Model, UserMixin):
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
     roles = db.relationship('Role', secondary='User_roles')
-    courses = db.relationship('Course', secondary='Enroll')
     # User fields
     active = True
     name = db.Column(db.String(255))
-
-# Define the UserRoles association table
-class UserRoles(db.Model):
-    __tablename__ = 'User_roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
-    role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
@@ -113,18 +107,18 @@ def home():
 @roles_required('Student')
 def student_home():
     #add a class form
-    form = AddCourse()
+    form = AddClass()
     if form.validate_on_submit():
-        current_user.courses.append(Course(name=form.data["course_name"]))
+        _class = query_db('SELECT * from Classes WHERE classCode="%s"' % form.data["class_code"], one=True)
+        current_user.classes.append(Class(classCode=form.data["class_code"], className=_class[0]))
         db.session.commit()
 
     #render our classes
-    courses_list = []
-    print(current_user.courses)
-    for course in current_user.courses:
-        print(course.name)
-        courses_list.append(course.name)
-    return render_template('pages/studentHome.html', name=current_user.name, form=form, courses=courses_list)
+    classes_list = []
+    print(current_user.classes)
+    for _class in current_user.classes:
+        classes_list.append(_class.name)
+    return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
 @app.route('/student-quiz')

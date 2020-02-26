@@ -58,5 +58,5 @@ class ProfessorRegForm(FlaskForm):
          EqualTo('password', message='Passwords must match')]
     )
 
-class AddCourse(FlaskForm):
-    course_name = StringField('Course Name', validators=[DataRequired()])
+class AddClass(FlaskForm):
+    class_code = StringField('Class Code', validators=[DataRequired()])
