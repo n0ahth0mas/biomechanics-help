@@ -16,6 +16,8 @@ const modalBody = document.getElementById("modal-body");
 
 let firstAttempt = true;
 
+//change answer storing and accessing to make things in a list
+
 let pastAnswers = [];
 // create our questions
 let questions = [
