@@ -1,4 +1,4 @@
-drop table if exists Class;
+drop table if exists Classes;
 drop table if exists Chapters;
 drop table if exists Sections;
 drop table if exists Questions;
@@ -40,7 +40,8 @@ create TABLE Questions(
         questionID    INTEGER,
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        classCode       TEXT check(classCode IS NOT NULL),
+        chapterID     INTEGER check(chapterID IS NOT NULL),
+        classCode     TEXT check(classCode IS NOT NULL),
         questionType  TEXT check(questionType IS NOT NULL),
         PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)

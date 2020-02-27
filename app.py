@@ -131,15 +131,12 @@ def student_home():
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
-@app.route('/student-quiz', methods=['GET'])
+@app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
 @login_required
-def student_quiz():
-    chapter = (request.args.get('chapter', default=1, type=int))
-    section = (request.args.get('section', default=1, type=int))
-    chapter = int(chapter)
-    section = int(section)
-    #q_list = query_db('select * from Questions where sectionID=%c.%s' % (chapter, section), one=True)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section)
+def student_quiz(chapter, section):
+    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (int(chapter), int(section)),
+                      one=True)
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
 
 
 @app.route('/professor-home')
