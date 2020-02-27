@@ -134,8 +134,8 @@ def student_home():
 @app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
 @login_required
 def student_quiz(chapter, section):
-    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (int(chapter), int(section)),
-                      one=True)
+    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
+    print(q_list)
     return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
 
 
