@@ -20,6 +20,9 @@ let firstAttempt = true;
 
 let pastAnswers = [];
 // create our questions
+var q_list = '{{q_list}}';
+console.log(q_list);
+
 let questions = [
     {
         question : "What does HTML stand for?",

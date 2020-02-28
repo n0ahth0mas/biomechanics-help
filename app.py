@@ -134,9 +134,17 @@ def student_home():
 @app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
 @login_required
 def student_quiz(chapter, section):
+    a_list = []
+    #creating a list of questions for the page
     q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
-    print(q_list)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
+    #finding all the answers of the questions on the page
+    for questions in q_list:
+        answer_id = questions[0]
+        print(answer_id)
+        print("{}".format(answer_id))
+        a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list,
+                           a_list=a_list)
 
 
 @app.route('/professor-home')
