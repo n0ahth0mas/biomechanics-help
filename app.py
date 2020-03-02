@@ -116,6 +116,8 @@ def student_home():
     if form.validate_on_submit():
         one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
         current_user.classes.append(one_class)
+        db.session.commit()
+
     #render our classes
     classes_list = []
     print(current_user.classes)
@@ -126,10 +128,12 @@ def student_home():
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
-@app.route('/student-quiz')
+@app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
 @login_required
-def student_quiz():
-    return render_template('pages/placeholder.student.quiz.html')
+def student_quiz(chapter, section):
+    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
+    print(q_list)
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
 
 
 @app.route('/professor-home')
