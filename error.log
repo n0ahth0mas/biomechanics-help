@@ -7848,3 +7848,485 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 127, in student_home
     classes_list.append(_class.name)
 AttributeError: 'UserClasses' object has no attribute 'name'
+2020-02-26 13:14:25,420 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-02-26 13:14:30,228 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 127, in student_home
+    classes_list.append(_class[1])
+TypeError: 'UserClasses' object is not subscriptable
+2020-02-26 13:19:33,050 ERROR: Exception on /user/sign-in [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\user_manager.py", line 416, in login_stub
+    return self.login_view()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\user_manager__views.py", line 379, in login_view
+    if request.method == 'POST' and login_form.validate():
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\forms.py", line 190, in validate
+    user = user_manager.db_manager.find_user_by_username(self.username.data)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\db_manager.py", line 138, in find_user_by_username
+    return self.db_adapter.ifind_first_object(self.UserClass, username=username)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\db_adapters\sql_db_adapter.py", line 133, in ifind_first_object
+    raise KeyError("BaseAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
+KeyError: "BaseAlchemyAdapter.find_first_object(): Class '<class '__main__.User'>' has no field 'username'."
+2020-02-26 14:28:36,292 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:308]
+2020-02-26 14:47:36,871 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:294]
+2020-02-26 14:48:00,564 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 117, in student_home
+    new_class = Class(form.data["classCode"])
+KeyError: 'classCode'
+2020-02-26 14:48:37,873 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:294]
+2020-02-26 14:48:41,163 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 117, in student_home
+    new_class = Class(form.data["class_code"])
+TypeError: __init__() takes 1 positional argument but 2 were given
+2020-02-26 14:49:55,689 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
+2020-02-26 14:50:26,378 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
+2020-02-26 14:50:30,591 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 117, in student_home
+    current_user.classes.append(Class(form.data["class_code"]))
+TypeError: __init__() takes 1 positional argument but 2 were given
+2020-02-26 14:51:11,872 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
+2020-02-26 14:51:16,147 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 124, in student_home
+    classes_list.append(_class[1])
+TypeError: 'NoneType' object is not subscriptable
+2020-02-26 14:51:38,738 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
+2020-02-27 13:33:38,517 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-27 13:36:54,886 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-27 13:37:23,954 ERROR: Exception on /new-professor-account [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Roles.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 223, in new_prof_acc
+    db.session.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 1036, in commit
+    self.transaction.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 503, in commit
+    self._prepare_impl()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 482, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2479, in flush
+    self._flush(objects)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2617, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2577, in _flush
+    flush_context.execute()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 586, in execute
+    persistence.save_obj(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 239, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 1084, in _emit_insert_statements
+    c = cached_connections[connection].execute(statement, multiparams)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Roles.id
+[SQL: INSERT INTO "Roles" (id, name) VALUES (?, ?)]
+[parameters: (35, None)]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2020-02-27 13:43:40,949 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-27 13:44:14,143 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-27 13:44:52,727 ERROR: Exception on /new-professor-account [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 221, in new_prof_acc
+    user.roles = Role(id=prof_role_id)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\attributes.py", line 267, in __set__
+    self.impl.set(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\attributes.py", line 1281, in set
+    raise TypeError(
+TypeError: Incompatible collection type: Role is not list-like
+2020-02-28 11:04:33,960 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-28 11:06:19,395 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-28 11:06:43,600 ERROR: Exception on /new-professor-account [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Roles.id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 223, in new_prof_acc
+    db.session.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 1036, in commit
+    self.transaction.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 503, in commit
+    self._prepare_impl()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 482, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2479, in flush
+    self._flush(objects)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2617, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2577, in _flush
+    flush_context.execute()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 586, in execute
+    persistence.save_obj(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 239, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 1084, in _emit_insert_statements
+    c = cached_connections[connection].execute(statement, multiparams)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Roles.id
+[SQL: INSERT INTO "Roles" (id, name) VALUES (?, ?)]
+[parameters: (35, None)]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2020-02-28 11:22:07,997 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-02-28 13:09:19,879 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-03-02 10:05:05,997 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-03-02 10:27:08,043 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 10:27:44,483 ERROR: Exception on /new-student-account [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3347, in one
+    ret = self.one_or_none()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3324, in one_or_none
+    raise orm_exc.MultipleResultsFound(
+sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one_or_none()
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 246, in new_student_account
+    role = Role.query.filter_by(name='Student').one()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3349, in one
+    raise orm_exc.MultipleResultsFound(
+sqlalchemy.orm.exc.MultipleResultsFound: Multiple rows were found for one()
+2020-03-02 10:30:28,911 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 10:31:03,041 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 10:31:40,021 ERROR: Exception on /new-professor-account [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: database is locked
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 223, in new_prof_acc
+    db.session.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 1036, in commit
+    self.transaction.commit()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 503, in commit
+    self._prepare_impl()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 482, in _prepare_impl
+    self.session.flush()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2479, in flush
+    self._flush(objects)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2617, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 153, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\session.py", line 2577, in _flush
+    flush_context.execute()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 586, in execute
+    persistence.save_obj(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 239, in save_obj
+    _emit_insert_statements(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\persistence.py", line 1084, in _emit_insert_statements
+    c = cached_connections[connection].execute(statement, multiparams)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) database is locked
+[SQL: INSERT INTO "Users" (email, password, name) VALUES (?, ?, ?)]
+[parameters: ('mooshk@gmail.com', '630780fe7bdec1c6d7982402bb120ed8', 'Jack Riley')]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-03-02 10:32:13,471 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 10:42:51,920 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]
+2020-03-02 10:43:44,223 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]
+2020-03-02 10:44:15,994 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]
+2020-03-02 10:45:56,458 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]
+2020-03-02 10:46:03,430 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\base.py", line 399, in _entity_descriptor
+    return getattr(entity, key)
+AttributeError: type object 'Class' has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 117, in student_home
+    one_class = Class.query.filter_by(name='Professor').one()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 1845, in filter_by
+    clauses = [
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 1846, in <listcomp>
+    _entity_descriptor(self._joinpoint_zero(), key) == value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\base.py", line 401, in _entity_descriptor
+    raise sa_exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Entity '<class '__main__.Class'>' has no property 'name'
+2020-03-02 10:47:06,657 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]
+2020-03-02 10:47:10,604 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 117, in student_home
+    one_class = Class.query.filter_by(className=form.data["class_code"]).one()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3354, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-03-02 10:47:44,985 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:296]

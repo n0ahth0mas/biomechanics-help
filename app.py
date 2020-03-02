@@ -68,19 +68,19 @@ login.init_app(app)
 
 class Class(db.Model):
     __tablename__ = "Classes"
-    classCode = db.Column(db.String(), primary_key=True)
-    className = db.Column(db.String())
+    classID = db.Column(db.Integer(), primary_key=True)
+    className = db.Column(db.String(), unique=True)
 
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
     email = db.Column(db.String(), db.ForeignKey('Users.email'))
-    classCode = db.Column(db.Integer(), db.ForeignKey('Classes.classCode'))
+    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'))
 
 class Role(db.Model):
     __tablename__ = 'Roles'
     id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(50), unique=True)
 
 # Define the UserRoles association table
 class UserRoles(db.Model):
@@ -98,7 +98,6 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     roles = db.relationship('Role', secondary='User_roles')
     classes = db.relationship('Class', secondary='Enroll')
-    # User fields
     active = True
     name = db.Column(db.String(255))
 
@@ -115,18 +114,14 @@ def student_home():
     #add a class form
     form = AddClass()
     if form.validate_on_submit():
-        _class = query_db('SELECT * from Classes WHERE classCode="%s"' % form.data["class_code"], one=True)
-        print(_class[1])
-        current_user.classes.append(UserClasses(email=current_user.id, classCode=form.data["class_code"]))
-        Session = sessionmaker(bind=engine)
-        session = Session()
-        new_class = Class()
-        #db.session.commit()
-
+        one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+        current_user.classes.append(one_class)
     #render our classes
     classes_list = []
     print(current_user.classes)
     for _class in current_user.classes:
+        #we want to use the class code to get a class name from classes
+        _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         classes_list.append(_class[1])
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
@@ -223,7 +218,8 @@ def new_prof_acc():
             h = hashlib.md5(password.encode())
             passhash = h.hexdigest()
             user = User(id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True, password=passhash)
-            user.roles = [Role(name="Professor")]
+            role = Role.query.filter_by(name='Professor').one()
+            user.roles.append(role)
             db.session.add(user)
             db.session.commit()
             user = User.query.filter_by(email=form.email.data).first()
@@ -246,8 +242,10 @@ def new_student_account():
             user = User(
                 id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
                 password=passhash)
-            prof_role = Role(name='Student')
-            user.roles = [prof_role]
+            #prof_role = Role(name='Student')
+            #user.roles = [prof_role]
+            role = Role.query.filter_by(name='Student').one()
+            user.roles.append(role)
             db.session.add(user)
             db.session.commit()
             #log in the user
