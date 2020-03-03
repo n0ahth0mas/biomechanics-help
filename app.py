@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
-from flask import Flask, render_template, request, flash, url_for
+from flask import Flask, render_template, request, flash, url_for, json
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -137,14 +137,16 @@ def student_quiz(chapter, section):
     a_list = []
     #creating a list of questions for the page
     q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
+    q_list2 = json.dumps(q_list)
     #finding all the answers of the questions on the page
     for questions in q_list:
         answer_id = questions[0]
         print(answer_id)
         print("{}".format(answer_id))
         a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list,
-                           a_list=a_list)
+    a_list2 = json.dumps(a_list)
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
+                           a_list=a_list2)
 
 
 @app.route('/professor-home')
