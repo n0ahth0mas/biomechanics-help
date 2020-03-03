@@ -9128,3 +9128,90 @@ werkzeug.routing.BuildError: Could not build url for endpoint 'new_student_acc'.
 2020-03-02 17:02:39,211 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
 2020-03-02 17:03:07,395 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:292]
 2020-03-02 17:05:36,224 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:293]
+2020-03-02 20:08:43,951 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 20:10:53,838 ERROR: Exception on /new-student-account [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 254, in new_student_account
+    return render_template('forms/NewStudentAccount.html', form=form)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\forms\NewStudentAccount.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\forms\NewStudentAccount.html", line 11, in block "content"
+    <p class="pull-left"><a href="{{ url_for('studentLogin') }}">Login</a></p>
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\werkzeug\routing.py", line 2020, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'studentLogin'. Did you mean 'student_home' instead?
+2020-03-02 20:11:00,807 ERROR: Exception on /new-student-account [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 254, in new_student_account
+    return render_template('forms/NewStudentAccount.html', form=form)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\forms\NewStudentAccount.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\forms\NewStudentAccount.html", line 11, in block "content"
+    <p class="pull-left"><a href="{{ url_for('studentLogin') }}">Login</a></p>
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\helpers.py", line 357, in url_for
+    rv = url_adapter.build(
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\werkzeug\routing.py", line 2020, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'studentLogin'. Did you mean 'student_home' instead?
