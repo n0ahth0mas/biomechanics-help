@@ -194,10 +194,12 @@ def login():
             login_user(user)
             print(current_user.email)
             if current_user.is_authenticated:
-                if current_user.has_roles('Professor'):
+                if query_db('SELECT * from User_roles WHERE user_id="%s" AND role_id="%s"' % (email, 35),
+                                       one=True):
                     print("thinks that it has the role Professor")
                     return redirect(home_url + "professor-home")
-                elif current_user.has_roles('Student'):
+                elif query_db('SELECT * from User_roles WHERE user_id="%s" AND role_id="%s"' % (email, 36),
+                                       one=True):
                     print("think that it has the role ")
                     return redirect(home_url + "student-home")
                 else:
