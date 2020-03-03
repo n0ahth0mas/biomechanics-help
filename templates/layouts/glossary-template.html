@@ -96,9 +96,11 @@
         <div>
             <h1>Glossary</h1>
         </div>
-
+        <p><strong>Test:</strong>{{defns}}<strong> End Test</strong></p>
         <!--Section relating to the text on this page-->
         <div id="infoText" style="border: 2px solid Black;">
+            <script>var terms = JSON.parse{{js_terms | tojson}}</script>
+            <script src="/static/js/glossary.js"></script>
             <h3 id="glossA"><strong>A</strong></h3>
             <p>
                 <strong>Entry 1:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta

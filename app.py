@@ -157,11 +157,29 @@ def student_short():
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
-
 @app.route('/glossary-template')
 @login_required
 def glossaryTemplate():
-    return render_template('layouts/glossary-template.html')
+    class_code = "TEST123"
+    terms = query_db('SELECT term from Glossary WHERE classCode="{}"'.format(class_code))
+    defns = query_db('SELECT definition from Glossary WHERE classCode="{}"'.format(class_code))
+    js_terms = json.dumps(terms)
+    js_defns = json.dumps(defns)
+    #defns = query_db('SELECT definitions from Glossary WHERE classCode="{}"'.format(class_code))
+    #terms = query_db('SELECT term from Glossary where classCode="%c"' % class_code)
+    #definitions = query_db('SELECT definition from Glossary where classCode="%c"' % class_code)
+    #print(definitions)
+    #alpha = ["A", "B", "C", "D"]
+    #print(alpha)
+    # for x in alpha:
+    #     print(alpha[x])
+    #     for y in terms:
+    #         if terms[y][1] == string(alpha[x]):
+    #             print(string(terms[x]) + ": " + string(definitions[x]) + "\n")
+    #         break
+    #     break
+    return render_template('layouts/glossary-template.html', terms=terms, defns=defns, class_code=class_code,
+                           js_terms=js_terms, js_defns=js_defns)
 
 
 @app.route('/about')
