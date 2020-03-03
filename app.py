@@ -101,6 +101,9 @@ class User(db.Model, UserMixin):
     active = True
     name = db.Column(db.String(255))
 
+    def has_role(self, role):
+        return role in self.roles
+
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
@@ -169,13 +172,17 @@ def about():
 def login():
     form = LoginForm(request.form)
     if current_user.is_authenticated:
-        return redirect(home_url + "professor-home")
+        if current_user.has_roles('Professor'):
+            print("thinks that it has the role Professor")
+            return redirect(home_url + "professor-home")
+        elif current_user.has_roles('Student'):
+            print("think that it has the role ")
+            return redirect(home_url + "student-home")
     if form.validate_on_submit():
         email = form.data["email"]
         password = form.data["password"]
         h = hashlib.md5(password.encode())
         passhash = h.hexdigest()
-        print(passhash)
         # check passhash against the database
         user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
         if user_object is None:
@@ -185,7 +192,17 @@ def login():
             user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True,
                         password=passhash)
             login_user(user)
-            return redirect(home_url + "professor-home")
+            print(current_user.email)
+            if current_user.is_authenticated:
+                if current_user.has_roles('Professor'):
+                    print("thinks that it has the role Professor")
+                    return redirect(home_url + "professor-home")
+                elif current_user.has_roles('Student'):
+                    print("think that it has the role ")
+                    return redirect(home_url + "student-home")
+                else:
+                    print("couldnt find any roles associated with this user")
+                    return redirect(home_url)
     return render_template('forms/login.html', form=form)
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])
