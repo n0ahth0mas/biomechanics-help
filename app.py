@@ -165,7 +165,7 @@ def glossaryTemplate():
 def about():
     return render_template('pages/placeholder.about.html')
 
-@app.route('/professor-login', methods=('GET', 'POST'))
+@app.route('/login', methods=('GET', 'POST'))
 def login():
     form = LoginForm(request.form)
     if current_user.is_authenticated:
@@ -179,8 +179,7 @@ def login():
         # check passhash against the database
         user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
         if user_object is None:
-            print("No such class")
-            flash("Something went wrong, please try again")
+            flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
         else:
             user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True,
@@ -188,29 +187,6 @@ def login():
             login_user(user)
             return redirect(home_url + "professor-home")
     return render_template('forms/login.html', form=form)
-
-
-@app.route('/student-login', methods=('GET', 'POST'))
-def studentLogin():
-    form = StudentLoginForm()
-    if current_user.is_authenticated:
-        return redirect(home_url + "student-home")
-    if form.validate_on_submit():
-        email = form.data["email"]
-        password = form.data["password"]
-        h = hashlib.md5(password.encode())
-        passhash = h.hexdigest()
-        user_object = query_db('select * from Users where email="%s" AND password="%s"' % (email, passhash),
-                               one=True)
-        if user_object is None:
-            print('No such class')
-            return render_template('forms/classcode.html', form=form)
-        else:
-            user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True, password=passhash)
-            login_user(user)
-            return redirect(home_url + "student-home")
-    return render_template('forms/classcode.html', form=form)
-
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])
 def new_prof_acc():
