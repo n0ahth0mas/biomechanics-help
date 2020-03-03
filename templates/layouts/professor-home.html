@@ -51,8 +51,6 @@
                     <li {% if request.endpoint==
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
-                    'student' %} class="active" {% endif %}><a href="{{ url_for('student_quiz') }}">Relevant Prof Page 1</a></li>
-                    <li {% if request.endpoint==
                     'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Relevant Prof Page 2</a></li>
                     <li><a href="/logout">Logout</a></li>
                 </ul>
@@ -88,7 +86,7 @@
             Welcome {{name}}! This is your homepage where you may do cool stuff relating
               to you classes and tests for your students!!!<br><br><br>
           </p>
-            <a href="{{ url_for('student_quiz') }}">
+            <a href="{{ url_for('student_home') }}">
                 See what your students see! Take your test!
             </a>
         </div>
