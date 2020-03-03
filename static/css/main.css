@@ -82,11 +82,11 @@ a {
 }
 
 .call-to-action-div{
-    display: block;
+    display: inline-block;
     width: 75%;
     text-align: center;
     position: relative;
-    left: 12%;
+    left: 23%;
     margin-top: 20px;
 }
 

@@ -11,17 +11,17 @@ drop table if exists InfoSlide;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
-        classCode     TEXT check(classCode IS NOT NULL),
-        UNIQUE (classCode),
-        PRIMARY KEY (classCode)
+        classID     TEXT check(classID IS NOT NULL),
+        UNIQUE (classID),
+        PRIMARY KEY (classID)
 );
 
 create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
-        classCode       TEXT,
+        classID       TEXT,
         PRIMARY KEY (chapterID),
-        FOREIGN KEY (classCode) REFERENCES Classes(classCode)
+        FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -41,7 +41,7 @@ create TABLE Questions(
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
         chapterID     INTEGER check(chapterID IS NOT NULL),
-        classCode     TEXT check(classCode IS NOT NULL),
+        classID     TEXT check(classID IS NOT NULL),
         questionType  TEXT check(questionType IS NOT NULL),
         PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
@@ -54,7 +54,7 @@ create TABLE InfoSlide(
         infoSlideText  TEXT check(infoSlideText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
         chapterID     INTEGER check(chapterID IS NOT NULL),
-        classCode       TEXT check(classCode IS NOT NULL),
+        classID       TEXT check(classID IS NOT NULL),
         PRIMARY KEY (infoSlideID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -75,12 +75,12 @@ create TABLE Answers(
 );
 
 create TABLE Glossary(
-        classCode       TEXT,
+        classID       TEXT,
         termID        INTEGER,
         term          TEXT check(term IS NOT NULL),
         definition    TEXT check(definition IS NOT NULL),
-        PRIMARY KEY (classCode, termID),
-        FOREIGN KEY (classCode) REFERENCES Class(classCode)
+        PRIMARY KEY (classID, termID),
+        FOREIGN KEY (classID) REFERENCES Class(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -89,7 +89,7 @@ create TABLE QuestionImages(
         questionID     INTEGER,
         sectionID     INTEGER check(sectionID IS NOT NULL),
         chapterID     INTEGER check(chapterID IS NOT NULL),
-        classCode       TEXT check(classCode IS NOT NULL),
+        classID       TEXT check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
@@ -99,7 +99,7 @@ create TABLE QuestionImages(
 
 create TABLE QuestionInfoSlide(
         infoSlideID    INTEGER,
-        classCode       TEXT check(classCode IS NOT NULL),
+        classID       TEXT check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
@@ -118,13 +118,21 @@ create TABLE Videos(
 
 
 CREATE TABLE Enroll(
+        id      INTEGER,
         email      TEXT,
-        classCode     TEXT,
-        PRIMARY KEY (email,classCode),
+        classID     TEXT,
+        PRIMARY KEY (ID,classID),
         FOREIGN KEY (email) REFERENCES Users (email)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-        FOREIGN KEY (classCode) REFERENCES Classes (classCode)
+        FOREIGN KEY (classID) REFERENCES Classes (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
+);
+
+CREATE TABLE User_roles (
+	id      INTEGER,
+	user_id     TEXT,
+	role_id     INTEGER,
+	PRIMARY KEY(id)
 );
