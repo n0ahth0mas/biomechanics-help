@@ -20,6 +20,37 @@ let firstAttempt = true;
 
 let pastAnswers = [];
 // create our questions
+
+var questions2 = [];
+var answerIdCounter = 0;
+
+function makeQuestions(){
+    for(var i =0; i<q_list.length; i++){
+        var question = new Object();
+        question.qID = q_list[i][0];
+        question.Text = q_list[i][1];
+        question.type = q_list[i][5];
+        question.answers = makeAnswers(q_list[i][0]);
+        questions2.push(question);
+    }
+    console.log(questions2);
+}
+
+function makeAnswers(qID){
+    var answerList = [];
+        for(var i = 0; i<a_list[answerIdCounter].length; i++){
+            var answer = new Object();
+            answer.aID = a_list[answerIdCounter][i][0];
+            answer.qID = qID;
+            answer.correct = a_list[answerIdCounter][i][3];
+            answer.text = a_list[answerIdCounter][i][4];
+            answer.reasoning = a_list[answerIdCounter][i][5];
+            answerList.push(answer);
+        }
+    answerIdCounter++;
+    return answerList;
+}
+
 let questions = [
     {
         question : "What does HTML stand for?",
@@ -65,6 +96,7 @@ let score = 0;
 
 // render a question
 function renderQuestion(){
+    makeQuestions();
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.question +"</p>";
