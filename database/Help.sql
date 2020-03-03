@@ -12,16 +12,14 @@ drop table if exists InfoSlide;
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
         classCode     TEXT check(classCode IS NOT NULL),
-        UNIQUE (classCode),
-        PRIMARY KEY (classCode)
+        PRIMARY KEY (classID)
 );
 
 create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
-        classCode       TEXT,
         PRIMARY KEY (chapterID),
-        FOREIGN KEY (classCode) REFERENCES Classes(classCode)
+        FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -109,12 +107,12 @@ create TABLE Videos(
 
 CREATE TABLE Enroll(
         email      TEXT,
-        classCode     TEXT,
+        classID    TEXT,
         PRIMARY KEY (email,classCode),
         FOREIGN KEY (email) REFERENCES Users (email)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-        FOREIGN KEY (classCode) REFERENCES Classes (classCode)
+        FOREIGN KEY (classID) REFERENCES Classes (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
