@@ -21,7 +21,7 @@ let firstAttempt = true;
 let pastAnswers = [];
 // create our questions
 
-var questions2 = [];
+var questions = [];
 var answerIdCounter = 0;
 
 
@@ -34,9 +34,8 @@ function makeQuestions(){
         question.type = q_list[i][5];
         question.imgSrc = "/static/img/question.png"
         question.answers = makeAnswers(q_list[i][0]);
-        questions2.push(question);
+        questions.push(question);
     }
-    console.log(questions2);
 }
 
 var aIDIndex = 0;
@@ -59,7 +58,8 @@ function makeAnswers(qID){
     return answerList;
 }
 
-let questions = [
+/*
+let questionsOLD = [
     {
         question : "What does HTML stand for?",
         imgSrc : "/static/img/question.png",
@@ -89,6 +89,7 @@ let questions = [
         correct : "C"
     }
 ];
+*/
 
 // create some variables
 
@@ -105,15 +106,14 @@ makeQuestions();
 
 // render a question
 function renderQuestion(){
-    //makeQuestions();
-    let q = questions2[runningQuestion];
+    let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.text +"</p>";
     qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
     choiceA.innerHTML = q.answers[0].text;
     choiceB.innerHTML = q.answers[1].text;
-    //choiceC.innerHTML = q.answers[2].text;
-    //choiceD.innerHTML = q.answers[3].text;
+    choiceC.innerHTML = q.answers[2].text;
+    choiceD.innerHTML = q.answers[3].text;
 }
 
 start.addEventListener("click",startQuiz);
@@ -207,10 +207,10 @@ function answerIsClicked(correct, answer){
         pastAnswers += answer
     }
 
-    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.A + "</p>";
-    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.B + "</p>";
-    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.C + "</p>";
-    else modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.D + "</p>";
+    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[0].reasoning + "</p>";
+    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[1].reasoning + "</p>";
+    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[2].reasoning + "</p>";
+    else modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[3].reasoning + "</p>";
 }
 
 
