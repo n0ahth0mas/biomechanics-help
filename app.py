@@ -153,7 +153,15 @@ def student_quiz(class_id, chapter, section):
 @login_required
 @roles_required('Professor')
 def professor_home():
-    return render_template('layouts/professor-home.html', name=current_user.name)
+    # render our classes
+    classes_list = []
+    print(current_user.classes)
+    for _class in current_user.classes:
+        # we want to use the class code to get a class name from classes
+        _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
+        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[0]))
+        classes_list.append(class_tuple)
+    return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list)
 
 
 @app.route('/student-short')

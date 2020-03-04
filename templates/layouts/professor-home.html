@@ -64,21 +64,28 @@
         {% endif %}
         {% endwith %}
 
-        {% block content %}{% endblock %}
-
-        {% block previd %}{% endblock %}
-
         <div>
-            <h1>Welcome <i>Professor</i></h1>
+            <h1>Welcome <i>{{ name }}</i></h1>
         </div>
 
         <!--Section relating to the text on this page-->
         <div id="infoText">
           <p style="color:black">
-            Welcome {{name}}! This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
+            This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
           </p>
         </div>
-
+        <ul>
+            {% for _class in classes %}
+                <li>
+                    <a href="/student-quiz/{{_class[0]}}/1/1"><h3>{{_class[1]}}</h3></a>
+                    <ul>
+                        {% for student in _class[2] %}
+                            <li>{{ student[1] }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
         <!-- Section relating to image on page-->
         <div id="infoImage">
             <center>
