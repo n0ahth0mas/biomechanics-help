@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
-from flask import Flask, render_template, request, flash, url_for
+from flask import Flask, render_template, request, flash, url_for, json
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -134,9 +134,19 @@ def student_home():
 @app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
 @login_required
 def student_quiz(chapter, section):
+    a_list = []
+    #creating a list of questions for the page
     q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
-    print(q_list)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list)
+    q_list2 = json.dumps(q_list)
+    #finding all the answers of the questions on the page
+    for questions in q_list:
+        answer_id = questions[0]
+        print(answer_id)
+        print("{}".format(answer_id))
+        a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+    a_list2 = json.dumps(a_list)
+    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
+                           a_list=a_list2)
 
 
 @app.route('/professor-home')
@@ -157,11 +167,29 @@ def student_short():
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
-
 @app.route('/glossary-template')
 @login_required
 def glossaryTemplate():
-    return render_template('layouts/glossary-template.html')
+    class_code = "TEST123"
+    terms = query_db('SELECT term from Glossary WHERE classCode="{}"'.format(class_code))
+    defns = query_db('SELECT definition from Glossary WHERE classCode="{}"'.format(class_code))
+    js_terms = json.dumps(terms)
+    js_defns = json.dumps(defns)
+    #defns = query_db('SELECT definitions from Glossary WHERE classCode="{}"'.format(class_code))
+    #terms = query_db('SELECT term from Glossary where classCode="%c"' % class_code)
+    #definitions = query_db('SELECT definition from Glossary where classCode="%c"' % class_code)
+    #print(definitions)
+    #alpha = ["A", "B", "C", "D"]
+    #print(alpha)
+    # for x in alpha:
+    #     print(alpha[x])
+    #     for y in terms:
+    #         if terms[y][1] == string(alpha[x]):
+    #             print(string(terms[x]) + ": " + string(definitions[x]) + "\n")
+    #         break
+    #     break
+    return render_template('layouts/glossary-template.html', terms=terms, defns=defns, class_code=class_code,
+                           js_terms=js_terms, js_defns=js_defns)
 
 
 @app.route('/about')

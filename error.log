@@ -9222,3 +9222,4 @@ werkzeug.routing.BuildError: Could not build url for endpoint 'studentLogin'. Di
 2020-03-03 14:03:29,735 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
 2020-03-04 11:38:59,895 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
 2020-03-04 11:40:56,648 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-04 11:43:54,451 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
