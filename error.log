@@ -9411,3 +9411,6 @@ jinja2.exceptions.TemplateSyntaxError: Unexpected end of template. Jinja was loo
 2020-03-04 14:38:52,827 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]
 2020-03-04 14:39:14,667 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]
 2020-03-04 14:39:34,341 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]
+2020-03-04 14:43:32,499 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]
+2020-03-04 14:46:28,610 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]
+2020-03-04 14:46:45,032 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:331]

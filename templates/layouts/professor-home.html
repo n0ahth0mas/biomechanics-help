@@ -78,9 +78,10 @@
             {% for _class in classes %}
                 <li>
                     <a href="/student-quiz/{{_class[0]}}/1/1"><h3>{{_class[1]}}</h3></a>
+                    <h4>Students enrolled: </h4>
                     <ul>
                         {% for student in _class[2] %}
-                            <li>{{ student[1] }}</li>
+                        <li><a href="mailto:{{student[1]}}">{{ student[1] }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
