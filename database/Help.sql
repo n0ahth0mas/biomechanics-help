@@ -116,3 +116,9 @@ CREATE TABLE Enroll(
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
+
+CREATE TABLE School(
+        schoolID       TEXT,
+        schoolName     TEXT,
+        PRIMARY KEY(schoolID)
+)
