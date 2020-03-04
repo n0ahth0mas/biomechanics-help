@@ -11,15 +11,13 @@ drop table if exists InfoSlide;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
-        classID     TEXT check(classID IS NOT NULL),
-        UNIQUE (classID),
+        classCode     TEXT check(classCode IS NOT NULL),
         PRIMARY KEY (classID)
 );
 
 create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
-        classID       TEXT,
         PRIMARY KEY (chapterID),
         FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
@@ -30,7 +28,7 @@ create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   INTEGER check(sectionName IS NOT NULL),
-        PRIMARY KEY (sectionID),
+        PRIMARY KEY (chapterID,sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -40,8 +38,6 @@ create TABLE Questions(
         questionID    INTEGER,
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        chapterID     INTEGER check(chapterID IS NOT NULL),
-        classID     TEXT check(classID IS NOT NULL),
         questionType  TEXT check(questionType IS NOT NULL),
         PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
@@ -52,9 +48,6 @@ create TABLE Questions(
 create TABLE InfoSlide(
         infoSlideID    INTEGER,
         infoSlideText  TEXT check(infoSlideText IS NOT NULL),
-        sectionID     INTEGER check(sectionID IS NOT NULL),
-        chapterID     INTEGER check(chapterID IS NOT NULL),
-        classID       TEXT check(classID IS NOT NULL),
         PRIMARY KEY (infoSlideID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -64,11 +57,10 @@ create TABLE InfoSlide(
 create TABLE Answers(
         answerID      INTEGER,
         questionID    INTEGER,
-        classID       INTEGER check(classID IS NOT NULL),
         correctness   BOOLEAN check(correctness IS NOT NULL),
         answerText    TEXT check(answerText IS NOT NULL),
         answerReason  TEXT,
-        PRIMARY KEY (answerID, questionID),
+        PRIMARY KEY (answerID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
               ON UPDATE CASCADE
               ON DELETE CASCADE
@@ -79,7 +71,7 @@ create TABLE Glossary(
         termID        INTEGER,
         term          TEXT check(term IS NOT NULL),
         definition    TEXT check(definition IS NOT NULL),
-        PRIMARY KEY (classID, termID),
+        PRIMARY KEY (termID),
         FOREIGN KEY (classID) REFERENCES Class(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -87,9 +79,6 @@ create TABLE Glossary(
 
 create TABLE QuestionImages(
         questionID     INTEGER,
-        sectionID     INTEGER check(sectionID IS NOT NULL),
-        chapterID     INTEGER check(chapterID IS NOT NULL),
-        classID       TEXT check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
@@ -99,7 +88,6 @@ create TABLE QuestionImages(
 
 create TABLE QuestionInfoSlide(
         infoSlideID    INTEGER,
-        classID       TEXT check(classID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
         FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
@@ -118,21 +106,13 @@ create TABLE Videos(
 
 
 CREATE TABLE Enroll(
-        id      INTEGER,
         email      TEXT,
-        classID     TEXT,
-        PRIMARY KEY (ID,classID),
+        classID    TEXT,
+        PRIMARY KEY (email,classCode),
         FOREIGN KEY (email) REFERENCES Users (email)
             ON UPDATE CASCADE
             ON DELETE CASCADE
         FOREIGN KEY (classID) REFERENCES Classes (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
-);
-
-CREATE TABLE User_roles (
-	id      INTEGER,
-	user_id     TEXT,
-	role_id     INTEGER,
-	PRIMARY KEY(id)
 );
