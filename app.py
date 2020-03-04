@@ -171,8 +171,8 @@ def infoSlide():
 @login_required
 def glossaryTemplate():
     class_code = "TEST123"
-    terms = query_db('SELECT term from Glossary WHERE classCode="{}"'.format(class_code))
-    defns = query_db('SELECT definition from Glossary WHERE classCode="{}"'.format(class_code))
+    terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(class_code))
+    defns = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(class_code))
     js_terms = json.dumps(terms)
     js_defns = json.dumps(defns)
     #defns = query_db('SELECT definitions from Glossary WHERE classCode="{}"'.format(class_code))

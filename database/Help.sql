@@ -2,22 +2,25 @@ drop table if exists Classes;
 drop table if exists Chapters;
 drop table if exists Sections;
 drop table if exists Questions;
+drop table if exists InfoSlide;
 drop table if exists Answers;
 drop table if exists Glossary;
-drop table if exists Images;
+drop table if exists QuestionImages;
+drop table if exists InfoSlideImages;
 drop table if exists Videos;
-drop table if exists Admin;
-drop table if exists InfoSlide;
+drop table if exists Enroll;
+drop table if exists School;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
-        classCode     TEXT check(classCode IS NOT NULL),
+        classID     TEXT check(classID IS NOT NULL),
         PRIMARY KEY (classID)
 );
 
 create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
+        classID     TEXT check(classID IS NOT NULL),
         PRIMARY KEY (chapterID),
         FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
@@ -48,6 +51,7 @@ create TABLE Questions(
 create TABLE InfoSlide(
         infoSlideID    INTEGER,
         infoSlideText  TEXT check(infoSlideText IS NOT NULL),
+        sectionID     INTEGER check(sectionID IS NOT NULL),
         PRIMARY KEY (infoSlideID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -86,7 +90,7 @@ create TABLE QuestionImages(
             ON DELETE CASCADE
 );
 
-create TABLE QuestionInfoSlide(
+create TABLE InfoSlideImages(
         infoSlideID    INTEGER,
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
@@ -108,11 +112,43 @@ create TABLE Videos(
 CREATE TABLE Enroll(
         email      TEXT,
         classID    TEXT,
-        PRIMARY KEY (email,classCode),
+        PRIMARY KEY (email,classID),
         FOREIGN KEY (email) REFERENCES Users (email)
             ON UPDATE CASCADE
             ON DELETE CASCADE
         FOREIGN KEY (classID) REFERENCES Classes (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
+);
+
+CREATE TABLE School(
+        schoolID       TEXT,
+        schoolName     TEXT,
+        PRIMARY KEY(schoolID)
+);
+
+CREATE TABLE Users(
+        email           TEXT,
+        password        TEXT,
+        name            TEXT,
+        PRIMARY KEY(email)
+);
+
+CREATE TABLE User_roles(
+        id              INTEGER,
+        user_id         TEXT,
+        role_id         INTEGER,
+        PRIMARY KEY(id),
+        FOREIGN KEY (user_id) REFERENCES Users (email)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+        FOREIGN KEY (role_id) REFERENCES Roles (id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+);
+
+CREATE TABLE Roles(
+        id          TEXT,
+        name        TEXT,
+        PRIMARY KEY(id)
 );
