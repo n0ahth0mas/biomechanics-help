@@ -127,16 +127,16 @@ def student_home():
     for _class in current_user.classes:
         #we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
-        classes_list.append(_class[1])
+        classes_list.append(_class)
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
-@app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
+@app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
-def student_quiz(chapter, section):
+def student_quiz(class_id, chapter, section):
     a_list = []
     #creating a list of questions for the page
-    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
+    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s" AND classID="%s"' % (chapter, section, class_id))
     q_list2 = json.dumps(q_list)
     #finding all the answers of the questions on the page
     for questions in q_list:

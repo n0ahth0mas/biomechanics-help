@@ -9246,3 +9246,31 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 50, in query_db
     cur = get_db().execute(query, args)
 sqlite3.OperationalError: no such column: classCode
+2020-03-04 11:52:58,941 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 11:53:56,572 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 11:54:09,171 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 13:51:50,965 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 14:00:10,799 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 14:01:47,478 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 14:02:39,557 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 14:03:01,496 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
+2020-03-04 14:03:07,718 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 139, in student_quiz
+    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s" AND classID="%d"' % (chapter, section, class_id))
+TypeError: %d format: a number is required, not str
+2020-03-04 14:03:28,806 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:323]
