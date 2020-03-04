@@ -9215,3 +9215,8 @@ Traceback (most recent call last):
   File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\werkzeug\routing.py", line 2020, in build
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.BuildError: Could not build url for endpoint 'studentLogin'. Did you mean 'student_home' instead?
+2020-03-02 20:13:16,986 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 20:15:17,050 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 20:18:17,663 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-02 20:18:51,278 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
+2020-03-03 14:03:29,735 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:295]
