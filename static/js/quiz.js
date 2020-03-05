@@ -21,37 +21,45 @@ let firstAttempt = true;
 let pastAnswers = [];
 // create our questions
 
-var questions2 = [];
+var questions = [];
 var answerIdCounter = 0;
+
+
 
 function makeQuestions(){
     for(var i =0; i<q_list.length; i++){
         var question = new Object();
         question.qID = q_list[i][0];
-        question.Text = q_list[i][1];
+        question.text = q_list[i][1];
         question.type = q_list[i][5];
+        question.imgSrc = "/static/img/question.png"
         question.answers = makeAnswers(q_list[i][0]);
-        questions2.push(question);
+        questions.push(question);
     }
-    console.log(questions2);
 }
+
+var aIDIndex = 0;
+var aCorrectness = 3;
+var aText = 4;
+var aReasoning = 5;
 
 function makeAnswers(qID){
     var answerList = [];
         for(var i = 0; i<a_list[answerIdCounter].length; i++){
             var answer = new Object();
-            answer.aID = a_list[answerIdCounter][i][0];
+            answer.aID = a_list[answerIdCounter][i][aIDIndex];
             answer.qID = qID;
-            answer.correct = a_list[answerIdCounter][i][3];
-            answer.text = a_list[answerIdCounter][i][4];
-            answer.reasoning = a_list[answerIdCounter][i][5];
+            answer.correct = a_list[answerIdCounter][i][aCorrectness];
+            answer.text = a_list[answerIdCounter][i][aText];
+            answer.reasoning = a_list[answerIdCounter][i][aReasoning];
             answerList.push(answer);
         }
     answerIdCounter++;
     return answerList;
 }
 
-let questions = [
+/*
+let questionsOLD = [
     {
         question : "What does HTML stand for?",
         imgSrc : "/static/img/question.png",
@@ -81,6 +89,7 @@ let questions = [
         correct : "C"
     }
 ];
+*/
 
 // create some variables
 
@@ -93,18 +102,18 @@ const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
 
+makeQuestions();
 
 // render a question
 function renderQuestion(){
-    makeQuestions();
     let q = questions[runningQuestion];
 
-    question.innerHTML = "<p>"+ q.question +"</p>";
+    question.innerHTML = "<p>"+ q.text +"</p>";
     qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
-    choiceA.innerHTML = q.choiceA;
-    choiceB.innerHTML = q.choiceB;
-    choiceC.innerHTML = q.choiceC;
-    choiceD.innerHTML = q.choiceD;
+    choiceA.innerHTML = q.answers[0].text;
+    choiceB.innerHTML = q.answers[1].text;
+    choiceC.innerHTML = q.answers[2].text;
+    choiceD.innerHTML = q.answers[3].text;
 }
 
 start.addEventListener("click",startQuiz);
@@ -198,10 +207,10 @@ function answerIsClicked(correct, answer){
         pastAnswers += answer
     }
 
-    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.A + "</p>";
-    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.B + "</p>";
-    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.C + "</p>";
-    else modalBody.innerHTML = "<p>" + questions[runningQuestion].reasoning.D + "</p>";
+    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[0].reasoning + "</p>";
+    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[1].reasoning + "</p>";
+    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[2].reasoning + "</p>";
+    else modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[3].reasoning + "</p>";
 }
 
 
@@ -224,7 +233,6 @@ function changeColor(pastAnswers){
 }
 
 function resetColor(){
-    console.log("Running");
     pastAnswers = "";
 
     choiceA.style.backgroundColor ="#ffffff";

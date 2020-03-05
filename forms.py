@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField
+from wtforms import TextField, PasswordField, StringField, IntegerField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
@@ -60,3 +60,7 @@ class ProfessorRegForm(FlaskForm):
 
 class AddClass(FlaskForm):
     class_code = StringField('Class Code', validators=[DataRequired()])
+
+class CreateClass(FlaskForm):
+    class_name = StringField('Full Name', validators=[DataRequired()])
+    class_id = StringField('Class code (think password)', validators=[DataRequired()])
