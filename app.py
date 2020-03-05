@@ -218,6 +218,9 @@ def infoSlide():
 def glossaryTemplate(classID):
     db_terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
     db_defs = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
+    db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
+    class_name = db_class_name[0]
+
     #terms = ["Physics", "Braden"]
     #defs = ["science of physics", "cool dude"]
     terms = []
@@ -238,7 +241,7 @@ def glossaryTemplate(classID):
         defsAlpha[idx] = defs[terms.index(t)]
         idx+=1
     return render_template('layouts/glossary-template.html', terms=termsAlpha, defns=defsAlpha, classID=classID,
-                            enumerate=enumerate, alpha=alpha, )
+                            enumerate=enumerate, alpha=alpha, class_name=class_name)
 
 
 @app.route('/about')
