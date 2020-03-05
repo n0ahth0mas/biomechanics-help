@@ -74,6 +74,13 @@
             This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
           </p>
         </div>
+        <form method="post" class="form add-course-form">
+            {{ form.csrf_token }}
+            {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
+            {{ form.class_id(class_ = 'form-control', placeholder = form.class_id.label.text, required = true) }}
+            <input type="submit" value="Create Class" class="btn btn-primary btn-lg btn-block">
+        </form>
+
         <ul>
             {% for _class in classes %}
                 <li>

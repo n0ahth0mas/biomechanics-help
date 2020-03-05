@@ -149,10 +149,21 @@ def student_quiz(class_id, chapter, section):
                            a_list=a_list2)
 
 
-@app.route('/professor-home')
+@app.route('/professor-home', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def professor_home():
+    form = CreateClass()
+    if form.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]) == []:
+        one_class = Class()
+        one_class.classID = form.data["class_id"]
+        one_class.className = form.data["class_name"]
+        current_user.classes.append(one_class)
+        db.session.add(one_class)
+        db.session.commit()
+    else:
+        print(query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]))
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
     # render our classes
     classes_list = []
     print(current_user.classes)
@@ -161,7 +172,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[0]))
         classes_list.append(class_tuple)
-    return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list)
+    return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list, form=form)
 
 
 @app.route('/student-short')
