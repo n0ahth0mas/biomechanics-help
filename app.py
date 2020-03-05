@@ -160,7 +160,7 @@ def student_quiz(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         a_list = []
         #creating a list of questions for the page
-        q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s" AND classID="%s"' % (chapter, section, class_id))
+        q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
         q_list2 = json.dumps(q_list)
         #finding all the answers of the questions on the page
         for questions in q_list:
