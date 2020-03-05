@@ -19,6 +19,7 @@ let firstAttempt = true;
 //change answer storing and accessing to make things in a list
 
 let pastAnswers = [];
+
 // create our questions
 
 var questions = [];
@@ -27,6 +28,7 @@ var answerIdCounter = 0;
 
 
 function makeQuestions(){
+console.log(q_list);
     for(var i =0; i<q_list.length; i++){
         var question = new Object();
         question.qID = q_list[i][0];
@@ -36,12 +38,13 @@ function makeQuestions(){
         question.answers = makeAnswers(q_list[i][0]);
         questions.push(question);
     }
+    lastQuestion = questions.length-1
 }
 
 var aIDIndex = 0;
-var aCorrectness = 3;
-var aText = 4;
-var aReasoning = 5;
+var aCorrectness = 2;
+var aText = 3;
+var aReasoning = 4;
 
 function makeAnswers(qID){
     var answerList = [];
@@ -58,42 +61,11 @@ function makeAnswers(qID){
     return answerList;
 }
 
-/*
-let questionsOLD = [
-    {
-        question : "What does HTML stand for?",
-        imgSrc : "/static/img/question.png",
-        choiceA : "Correct",
-        choiceB : "Wrong",
-        choiceC : "Wrong",
-        choiceD : "Wrong",
-        reasoning : {A: 'this is correct', B:'this is incorrect', C:'this is incorrect', D: 'this is incorrect'},
-        correct : "A"
-    },{
-        question : "What does CSS stand for?",
-        imgSrc : "/static/img/question.png",
-        choiceA : "Wrong",
-        choiceB : "Correct",
-        choiceC : "Wrong",
-        choiceD : "Wrong",
-        reasoning : {A: 'this is incorrect', B:'this is correct', C:'this is incorrect', D: 'this is incorrect'},
-        correct : "B"
-    },{
-        question : "What does JS stand for?",
-        imgSrc : "/static/img/question.png",
-        choiceA : "Wrong",
-        choiceB : "Wrong",
-        choiceC : "Correct",
-        choiceD : "Wrong",
-        reasoning : {A: 'this is incorrect', B:'this is incorrect', C:'this is correct', D: 'this is incorrect'},
-        correct : "C"
-    }
-];
-*/
+
 
 // create some variables
 
-const lastQuestion = questions.length - 1;
+var lastQuestion;
 let runningQuestion = 0;
 let count = 0;
 const questionTime = 60; // 15s
@@ -101,6 +73,8 @@ const gaugeWidth = 150; // 150px
 const gaugeUnit = gaugeWidth / questionTime;
 let TIMER;
 let score = 0;
+
+var questionBubbles;
 
 makeQuestions();
 
@@ -110,10 +84,23 @@ function renderQuestion(){
 
     question.innerHTML = "<p>"+ q.text +"</p>";
     qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
-    choiceA.innerHTML = q.answers[0].text;
-    choiceB.innerHTML = q.answers[1].text;
-    choiceC.innerHTML = q.answers[2].text;
-    choiceD.innerHTML = q.answers[3].text;
+
+    if(firstAttempt) makeBubbles(q.answers);
+    //choiceA.innerHTML = q.answers[0].text;
+    //choiceB.innerHTML = q.answers[1].text;
+    //choiceC.innerHTML = q.answers[2].text;
+    //choiceD.innerHTML = q.answers[3].text;
+}
+
+function makeBubbles(answerList){
+    questionBubbles = "";
+    choices.innerHTML = "";
+    for(var i=0; i<answerList.length; i++){
+        var text = answerList[i].text;
+        var choice = "<div class='choice' id= " +i + " onclick=checkAnswer(\""+i+"\")  data-toggle='modal' data-target='#answerModal'>"+ text+"</div>";
+        console.log(choice);
+        choices.innerHTML += choice;
+    }
 }
 
 start.addEventListener("click",startQuiz);
@@ -122,18 +109,21 @@ start.addEventListener("click",startQuiz);
 function startQuiz(){
     scoreDiv.style.display = "none";
     start.style.display = "none";
+    renderProgress();
     renderQuestion();
     quiz.style.display = "block";
-    renderProgress();
     renderCounter();
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 
 // render progress
 function renderProgress(){
-    progress.innerHTML = ""
+    console.log("running");
+    progress.innerHTML = "";
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-        progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+    console.log(qIndex);
+        progress.innerHTML += "<div class='prog' id="+ "button"+qIndex +"></div>";
+        console.log("<div class='prog' id="+ "button "+qIndex +"></div>");
     }
 }
 
@@ -162,22 +152,27 @@ function renderCounter(){
 
 // checkAnswer
 
-function checkAnswer(answer){
+function checkAnswer(answerID){
+    console.log(answerID);
     let currentAnswer = true
-    if( answer == questions[runningQuestion].correct){
+    var answerTruth;
+    if(questions[runningQuestion].answers[answerID].correct.toLowerCase() == "true"){
+        answerTruth = true;
         // answer is correct
         if (firstAttempt) score++;
         // change progress color to green
-        answerIsClicked(currentAnswer, answer);
+        answerIsClicked(currentAnswer, answerTruth, answerID);
         answerIsCorrect();
         firstAttempt = true;
 
     }else{
+        answerTruth = false;
         // answer is wrong
         // change progress color to red
         currentAnswer = false;
         firstAttempt = false;
-        answerIsClicked(currentAnswer, answer);
+        console.log("answerID is" + answerID);
+        answerIsClicked(currentAnswer, answerTruth, answerID);
         changeColor(pastAnswers);
         answerIsWrong();
 
@@ -198,24 +193,25 @@ function checkAnswer(answer){
 }
 
 // provides feedback on clicked answer
-function answerIsClicked(correct, answer){
+function answerIsClicked(correct, answer, i){
     if(correct){
         modalHead.innerHTML = "<p>Correct!<p>";
         pastAnswers = [];
     } else{
         modalHead.innerHTML = "<p>Incorrect<p>";
-        pastAnswers += answer
+        console.log("i " + i);
+        pastAnswers += i
     }
-
-    if(answer == "A") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[0].reasoning + "</p>";
-    else if(answer == "B") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[1].reasoning + "</p>";
-    else if(answer == "C") modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[2].reasoning + "</p>";
-    else modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[3].reasoning + "</p>";
+    modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[i].reasoning + "</p>";
 }
 
 
 function changeColor(pastAnswers){
     for(i=0; i<pastAnswers.length; i++){
+        var id =pastAnswers[i];
+        document.getElementById(id).style.backgroundColor = "#808080"
+        document.getElementById(id).style.pointerEvents = "#none"
+        /*
         if (pastAnswers[i] == "A"){
             choiceA.style.backgroundColor ="#808080"
             choiceA.style.pointerEvents = "none";
@@ -229,34 +225,32 @@ function changeColor(pastAnswers){
             choiceD.style.backgroundColor ="#808080"
             choiceD.style.pointerEvents = "none";
         }
+        */
     }
 }
 
 function resetColor(){
-    pastAnswers = "";
+    pastAnswers = [];
 
-    choiceA.style.backgroundColor ="#ffffff";
-    choiceB.style.backgroundColor ="#ffffff";
-    choiceC.style.backgroundColor ="#ffffff";
-    choiceD.style.backgroundColor ="#ffffff";
-
-    choiceA.style.pointerEvents = "auto";
-    choiceB.style.pointerEvents = "auto";
-    choiceC.style.pointerEvents = "auto";
-    choiceD.style.pointerEvents = "auto";
+    for(i=0; i<questions[runningQuestion].answers.length; i++){
+        document.getElementById(i).style.backgroundColor = "#ffffff"
+        document.getElementById(i).style.pointerEvents = "auto";
+    }
 }
 
 
 // answer is correct
 function answerIsCorrect(){
-    if (firstAttempt) document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
-    else document.getElementById(runningQuestion).style.backgroundColor = "#FFA500";
+    var color;
+    if (firstAttempt) color = "#0f0";
+    else color = "#FFA500";
+    document.getElementById("button" + runningQuestion).style.backgroundColor = color;
     resetColor();
 }
 
 // answer is Wrong
 function answerIsWrong(){
-    document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+    document.getElementById("button" + runningQuestion).style.backgroundColor = "#f00";
 }
 
 
@@ -292,7 +286,38 @@ function restart(){
 
 
 
-
+/*
+let questionsOLD = [
+    {
+        question : "What does HTML stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Correct",
+        choiceB : "Wrong",
+        choiceC : "Wrong",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is correct', B:'this is incorrect', C:'this is incorrect', D: 'this is incorrect'},
+        correct : "A"
+    },{
+        question : "What does CSS stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Wrong",
+        choiceB : "Correct",
+        choiceC : "Wrong",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is correct', C:'this is incorrect', D: 'this is incorrect'},
+        correct : "B"
+    },{
+        question : "What does JS stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Wrong",
+        choiceB : "Wrong",
+        choiceC : "Correct",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is incorrect', C:'this is correct', D: 'this is incorrect'},
+        correct : "C"
+    }
+];
+*/
 
 
 
