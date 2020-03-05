@@ -10,6 +10,9 @@ drop table if exists InfoSlideImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
+drop table if exists Users;
+drop table if exists User_roles;
+drop table if exists Roles;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
