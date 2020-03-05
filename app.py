@@ -110,6 +110,26 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 def home():
     return render_template('pages/landing.html', homepage=True)
 
+@app.route('/edit-class/<class_id>')
+def edit_class(class_id):
+    #we want to get this class from the database
+    #we want to display all of its sections here
+    this_class = query_db('SELECT * from Classes where classID="%s"' % class_id, one=True)
+
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % class_id)
+    section_array = [[]]
+    #initialize sections in our class datastructure
+    #for chapter in chapters:
+        #section_array.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+
+    #questions = [[[]]]
+    #for chapter in section_array:
+    #    for section in chapter:
+    #        questions.append()
+
+
+    return render_template('pages/edit-class.html')
+
 @app.route('/student-home', methods=('GET', 'POST'))
 @login_required
 @roles_required('Student')
