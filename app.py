@@ -197,7 +197,7 @@ def professor_home():
     for _class in current_user.classes:
         # we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
-        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[0]))
+        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list, form=form)
 
@@ -216,10 +216,18 @@ def infoSlide():
 @app.route('/glossary/<classID>')
 @login_required
 def glossaryTemplate(classID):
-    #terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
-    #defns = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
-    terms = ["Physics", "Braden"]
-    defs = ["science of physics", "cool dude"]
+    db_terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
+    db_defs = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
+    #terms = ["Physics", "Braden"]
+    #defs = ["science of physics", "cool dude"]
+    terms = []
+    defs = []
+    for term in db_terms:
+        terms.append(term[0])
+    for _def in db_defs:
+        defs.append(_def[0])
+    print(terms)
+    print(defs)
     alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     termsAlpha = sorted(terms)

@@ -91,7 +91,7 @@
                     <h4>Students enrolled: </h4>
                     <ul>
                         {% for student in _class[2] %}
-                        <li><a href="mailto:{{student[1]}}">{{ student[1] }}</a></li>
+                        <li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
