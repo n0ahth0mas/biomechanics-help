@@ -31,7 +31,7 @@ create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   TEXT check(sectionName IS NOT NULL),
-        PRIMARY KEY (chapterID,sectionID),
+        PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
