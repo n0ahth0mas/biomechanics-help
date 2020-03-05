@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
-from flask import Flask, render_template, request, flash, url_for, json
+from flask import Flask, render_template, request, flash, url_for, json, session
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -15,6 +15,7 @@ from flask_login import current_user, login_user, LoginManager, login_required, 
 from flask_user import roles_required, UserManager, UserMixin
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+from flask import g
 import datetime
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -29,7 +30,6 @@ app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 #login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
-
 print(pathToDB)
 
 
@@ -104,6 +104,9 @@ class User(db.Model, UserMixin):
     def has_role(self, role):
         return role in self.roles
 
+    def get_email(self):
+        return self.email
+
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
@@ -154,19 +157,23 @@ def student_home():
 @app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
 def student_quiz(class_id, chapter, section):
-    a_list = []
-    #creating a list of questions for the page
-    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s" AND classID="%s"' % (chapter, section, class_id))
-    q_list2 = json.dumps(q_list)
-    #finding all the answers of the questions on the page
-    for questions in q_list:
-        answer_id = questions[0]
-        print(answer_id)
-        print("{}".format(answer_id))
-        a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-    a_list2 = json.dumps(a_list)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
-                           a_list=a_list2)
+    if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
+        a_list = []
+        #creating a list of questions for the page
+        q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s" AND classID="%s"' % (chapter, section, class_id))
+        q_list2 = json.dumps(q_list)
+        #finding all the answers of the questions on the page
+        for questions in q_list:
+            answer_id = questions[0]
+            print(answer_id)
+            print("{}".format(answer_id))
+            a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+        a_list2 = json.dumps(a_list)
+        return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
+                               a_list=a_list2)
+    else:
+        flash("Please enroll in a class before navigating to it.")
+        return redirect(home_url)
 
 
 @app.route('/professor-home', methods=('GET', 'POST'))
@@ -258,6 +265,7 @@ def login():
         else:
             user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True,
                         password=passhash)
+            session["email"] = form.data["email"]
             login_user(user)
             print(current_user.email)
             if current_user.is_authenticated:

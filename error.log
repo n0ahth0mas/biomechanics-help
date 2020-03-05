@@ -9853,3 +9853,152 @@ TypeError: edit_class() got an unexpected keyword argument 'class_name'
 2020-03-04 18:18:47,585 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:346]
 2020-03-04 18:24:53,398 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:349]
 2020-03-04 18:47:12,467 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:362]
+2020-03-04 18:49:50,085 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:362]
+2020-03-04 18:51:28,064 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 140, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3354, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-03-04 18:59:06,146 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:365]
+2020-03-04 19:01:03,793 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:365]
+2020-03-04 19:01:40,834 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:366]
+2020-03-04 19:02:22,462 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:368]
+2020-03-04 19:03:46,387 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:371]
+2020-03-04 19:03:52,858 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:371]
+2020-03-04 19:03:56,003 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 160, in student_quiz
+    print(current_user.get_email())
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 108, in get_email
+    return email
+NameError: name 'email' is not defined
+2020-03-04 19:04:33,316 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:370]
+2020-03-04 19:04:35,422 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 160, in student_quiz
+    print(current_user.get_email())
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 108, in get_email
+    return email
+NameError: name 'email' is not defined
+2020-03-04 19:04:52,472 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:370]
+2020-03-04 19:07:48,724 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
+2020-03-04 19:08:07,153 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 163, in student_quiz
+    if current_user.is_authenticated():
+TypeError: 'bool' object is not callable
+2020-03-04 19:08:25,798 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
+2020-03-04 19:09:48,863 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
+2020-03-04 19:10:21,452 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]
+2020-03-04 19:11:12,958 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]
+2020-03-04 19:14:23,379 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
+2020-03-04 19:14:28,487 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 163, in student_quiz
+    if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\werkzeug\local.py", line 378, in <lambda>
+    __getitem__ = lambda x, i: x._get_current_object()[i]
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\sessions.py", line 84, in __getitem__
+    return super(SecureCookieSession, self).__getitem__(key)
+KeyError: 'email'
+2020-03-04 19:14:53,671 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
+2020-03-04 19:16:10,273 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:371]
+2020-03-04 19:18:49,328 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:371]
+2020-03-04 19:20:35,270 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:370]
+2020-03-04 19:21:04,967 ERROR: Exception on /student-home [POST] [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 143, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\env\lib\site-packages\sqlalchemy\orm\query.py", line 3354, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
