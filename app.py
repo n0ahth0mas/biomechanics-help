@@ -170,7 +170,7 @@ def student_quiz(class_id, chapter, section):
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
         a_list2 = json.dumps(a_list)
         return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
-                               a_list=a_list2)
+                               a_list=a_list2, classID=class_id)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
@@ -213,29 +213,24 @@ def student_short():
 def infoSlide():
     return render_template('layouts/infoSlide.html')
 
-@app.route('/glossary-template')
+@app.route('/glossary/<classID>')
 @login_required
-def glossaryTemplate():
-    class_code = "TEST123"
-    terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(class_code))
-    defns = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(class_code))
-    js_terms = json.dumps(terms)
-    js_defns = json.dumps(defns)
-    #defns = query_db('SELECT definitions from Glossary WHERE classCode="{}"'.format(class_code))
-    #terms = query_db('SELECT term from Glossary where classCode="%c"' % class_code)
-    #definitions = query_db('SELECT definition from Glossary where classCode="%c"' % class_code)
-    #print(definitions)
-    #alpha = ["A", "B", "C", "D"]
-    #print(alpha)
-    # for x in alpha:
-    #     print(alpha[x])
-    #     for y in terms:
-    #         if terms[y][1] == string(alpha[x]):
-    #             print(string(terms[x]) + ": " + string(definitions[x]) + "\n")
-    #         break
-    #     break
-    return render_template('layouts/glossary-template.html', terms=terms, defns=defns, class_code=class_code,
-                           js_terms=js_terms, js_defns=js_defns)
+def glossaryTemplate(classID):
+    #terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
+    #defns = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
+    terms = ["Physics", "Braden"]
+    defs = ["science of physics", "cool dude"]
+    alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+             "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    termsAlpha = sorted(terms)
+    defsAlpha = []
+    idx = 0
+    for idx, t in enumerate(termsAlpha):
+        defsAlpha.append("")
+        defsAlpha[idx] = defs[terms.index(t)]
+        idx+=1
+    return render_template('layouts/glossary-template.html', terms=termsAlpha, defns=defsAlpha, classID=classID,
+                            enumerate=enumerate, alpha=alpha, )
 
 
 @app.route('/about')
