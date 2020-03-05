@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
-from flask import Flask, render_template, request, flash, url_for, json
+from flask import Flask, render_template, request, flash, url_for, json, session
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
@@ -15,6 +15,7 @@ from flask_login import current_user, login_user, LoginManager, login_required, 
 from flask_user import roles_required, UserManager, UserMixin
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
+from flask import g
 import datetime
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -29,7 +30,6 @@ app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 #login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
-
 print(pathToDB)
 
 
@@ -104,11 +104,34 @@ class User(db.Model, UserMixin):
     def has_role(self, role):
         return role in self.roles
 
+    def get_email(self):
+        return self.email
+
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
     return render_template('pages/landing.html', homepage=True)
+
+@app.route('/edit-class/<class_id>')
+def edit_class(class_id):
+    #we want to get this class from the database
+    #we want to display all of its sections here
+    this_class = query_db('SELECT * from Classes where classID="%s"' % class_id, one=True)
+
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % class_id)
+    section_array = [[]]
+    #initialize sections in our class datastructure
+    #for chapter in chapters:
+        #section_array.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+
+    #questions = [[[]]]
+    #for chapter in section_array:
+    #    for section in chapter:
+    #        questions.append()
+
+
+    return render_template('pages/edit-class.html')
 
 @app.route('/student-home', methods=('GET', 'POST'))
 @login_required
@@ -127,33 +150,56 @@ def student_home():
     for _class in current_user.classes:
         #we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
-        classes_list.append(_class[1])
+        classes_list.append(_class)
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
 
 
-@app.route('/student-quiz/<chapter>/<section>', methods=['GET'])
+@app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
-def student_quiz(chapter, section):
-    a_list = []
-    #creating a list of questions for the page
-    q_list = query_db('SELECT * from Questions where chapterID="%c" AND sectionID="%s"' % (chapter, section))
-    q_list2 = json.dumps(q_list)
-    #finding all the answers of the questions on the page
-    for questions in q_list:
-        answer_id = questions[0]
-        print(answer_id)
-        print("{}".format(answer_id))
-        a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-    a_list2 = json.dumps(a_list)
-    return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
-                           a_list=a_list2)
+def student_quiz(class_id, chapter, section):
+    if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
+        a_list = []
+        #creating a list of questions for the page
+        q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
+        q_list2 = json.dumps(q_list)
+        #finding all the answers of the questions on the page
+        for questions in q_list:
+            answer_id = questions[0]
+            print(answer_id)
+            print("{}".format(answer_id))
+            a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+        a_list2 = json.dumps(a_list)
+        return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
+                               a_list=a_list2)
+    else:
+        flash("Please enroll in a class before navigating to it.")
+        return redirect(home_url)
 
 
-@app.route('/professor-home')
+@app.route('/professor-home', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def professor_home():
-    return render_template('layouts/professor-home.html', name=current_user.name)
+    form = CreateClass()
+    if form.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]) == []:
+        one_class = Class()
+        one_class.classID = form.data["class_id"]
+        one_class.className = form.data["class_name"]
+        current_user.classes.append(one_class)
+        db.session.add(one_class)
+        db.session.commit()
+    else:
+        print(query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]))
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
+    # render our classes
+    classes_list = []
+    print(current_user.classes)
+    for _class in current_user.classes:
+        # we want to use the class code to get a class name from classes
+        _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
+        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[0]))
+        classes_list.append(class_tuple)
+    return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list, form=form)
 
 
 @app.route('/student-short')
@@ -219,6 +265,7 @@ def login():
         else:
             user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True,
                         password=passhash)
+            session["email"] = form.data["email"]
             login_user(user)
             print(current_user.email)
             if current_user.is_authenticated:

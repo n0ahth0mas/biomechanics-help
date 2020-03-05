@@ -60,6 +60,26 @@ a {
     color: white;
 }
 
+.class-title-link{
+    float: left;
+}
+
+.class-edit-button{
+    float: right;
+    margin-top: 15px;
+}
+
+.class-headers{
+    display: inline-block;
+    width: 25%;
+}
+
+.prof-class-list{
+    margin-top: 50px;
+    padding-left: 0px;
+    margin-bottom: 50px;
+}
+
 .get-started-btn{
     border-radius: 2px;
     float: right;
