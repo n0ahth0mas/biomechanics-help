@@ -76,7 +76,7 @@ create TABLE Glossary(
         term          TEXT check(term IS NOT NULL),
         definition    TEXT check(definition IS NOT NULL),
         PRIMARY KEY (termID),
-        FOREIGN KEY (classID) REFERENCES Class(classID)
+        FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
