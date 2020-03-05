@@ -100,7 +100,7 @@
                     <li {% if request.endpoint==
                     'student' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Student</a></li>
                     <li {% if request.endpoint==
-                    'glossary' %} class="active" {% endif %}><a href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
+                    'glossary' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Glossary</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
