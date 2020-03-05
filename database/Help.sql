@@ -30,8 +30,8 @@ create TABLE Chapters(
 create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
-        sectionName   INTEGER check(sectionName IS NOT NULL),
-        PRIMARY KEY (chapterID,sectionID),
+        sectionName   TEXT check(sectionName IS NOT NULL),
+        PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
