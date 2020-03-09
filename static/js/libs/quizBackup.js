@@ -1,58 +1,39 @@
-/*
-********************************
-Variable Setup
-********************************
-*/
-
-// elements of the HTML file
-
-//popups
-const modalHead = document.getElementById("modal-heading");
-const modalBody = document.getElementById("modal-body");
-
-//Quiz element/environment
+// select all elements
 const start = document.getElementById("start");
 const quiz = document.getElementById("quiz");
+const question = document.getElementById("question");
+const qImg = document.getElementById("qImg");
+const choiceA = document.getElementById("A");
+const choiceB = document.getElementById("B");
+const choiceC = document.getElementById("C");
+const choiceD = document.getElementById("D");
 const counter = document.getElementById("counter");
 const timeGauge = document.getElementById("timeGauge");
 const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
+const modalHead = document.getElementById("modal-heading");
+const modalBody = document.getElementById("modal-body");
 
-//Individual question
-const question = document.getElementById("question");
-const qImg = document.getElementById("qImg");
-var questionBubbles;
+let firstAttempt = true;
 
-//Question and answer management
-var firstAttempt = true;
-var pastAnswers = [];
+//change answer storing and accessing to make things in a list
+
+let pastAnswers = [];
+
+// create our questions
+
 var questions = [];
 var answerIdCounter = 0;
 
-//functionality variables
-var lastQuestion;
-let runningQuestion = 0;
-let count = 0;
-const questionTime = 60; // 15s
-const gaugeWidth = 150; // 150px
-const gaugeUnit = gaugeWidth / questionTime;
-let TIMER;
-let score = 0;
 
-/*
-********************************
-Question Creation
-********************************
-*/
 
-//Question population
 function makeQuestions(){
 console.log(q_list);
     for(var i =0; i<q_list.length; i++){
         var question = new Object();
         question.qID = q_list[i][0];
         question.text = q_list[i][1];
-        question.type = q_list[i][3];
+        question.type = q_list[i][5];
         question.imgSrc = "/static/img/question.png"
         question.answers = makeAnswers(q_list[i][0]);
         questions.push(question);
@@ -60,7 +41,11 @@ console.log(q_list);
     lastQuestion = questions.length-1
 }
 
-//answer population
+var aIDIndex = 0;
+var aCorrectness = 2;
+var aText = 3;
+var aReasoning = 4;
+
 function makeAnswers(qID){
     var answerList = [];
         for(var i = 0; i<a_list[answerIdCounter].length; i++){
@@ -76,24 +61,31 @@ function makeAnswers(qID){
     return answerList;
 }
 
-//make create question list
+
+
+// create some variables
+
+var lastQuestion;
+let runningQuestion = 0;
+let count = 0;
+const questionTime = 60; // 15s
+const gaugeWidth = 150; // 150px
+const gaugeUnit = gaugeWidth / questionTime;
+let TIMER;
+let score = 0;
+
+var questionBubbles;
+
 makeQuestions();
 
-/*
-********************************
-Quiz Content Rendering
-********************************
-*/
-
-//render a question, including variable amt of bubbles
+// render a question
 function renderQuestion(){
     let q = questions[runningQuestion];
 
     question.innerHTML = "<p>"+ q.text +"</p>";
     qImg.innerHTML = "<a href= " + q.imgSrc + " data-fancybox > <img src=" + q.imgSrc + "/> </a>"
 
-    if(firstAttempt && q.type.toLowerCase() == "quiz") makeBubbles(q.answers);
-    else if(firstAttempt && q.type.toLowerCase() == "short") makeInput();
+    if(firstAttempt) makeBubbles(q.answers);
 }
 
 function makeBubbles(answerList){
@@ -107,14 +99,9 @@ function makeBubbles(answerList){
     }
 }
 
-function makeInput(){
-    choices.innerHTML = "";
-    choices.innerHTML += "<input type='text' placeholder='Enter Answer Here' id='shortAns' name='shortAns'>"
-    choices.innerHTML +=  "<button type='button' id='submitBtn' onclick='getInputValue()' data-toggle='modal' data-target='#answerModal'>Submit</button>"
-}
-
-//start quiz
 start.addEventListener("click",startQuiz);
+
+// start quiz
 function startQuiz(){
     scoreDiv.style.display = "none";
     start.style.display = "none";
@@ -136,7 +123,8 @@ function renderProgress(){
     }
 }
 
-// render counter
+// counter render
+
 function renderCounter(){
     if(count <= questionTime){
         counter.innerHTML = count;
@@ -145,8 +133,8 @@ function renderCounter(){
     }else{
         count = 0;
         // change progress color to red
-        progressColor(false);
-        if(questions[runningQuestion].type.toLowerCase() == "quiz") resetColor();
+        answerIsWrong();
+        resetColor();
         if(runningQuestion < lastQuestion){
             runningQuestion++;
             renderQuestion();
@@ -158,60 +146,36 @@ function renderCounter(){
     }
 }
 
-/*
-********************************
-Answer Responses
-********************************
-*/
+// checkAnswer
 
-//get value sent from submit button, if short answer
- function getInputValue(){
-    // Selecting the input element and get its value
-    var inputVal = document.getElementById("shortAns").value;
-
-    checkAnswer(inputVal);
-
-    document.getElementById("shortAns").value = "";
-}
-
-//check answer
-function checkAnswer(answerVal){
-    var answerTruth = false;
-    var changed = false;
-    if(questions[runningQuestion].type.toLowerCase() == "quiz"){
-        answerTruth = (questions[runningQuestion].answers[answerVal].correct.toLowerCase() == "true");
-    } else{
-        for(i=0; i<questions[runningQuestion].answers.length; i++){
-            if(questions[runningQuestion].answers[i].correct.toLowerCase() == "true"){
-                if(answerVal.toString().includes(questions[runningQuestion].answers[i].text)){
-                    answerTruth = true;
-                    answerVal = i;
-                    changed = true;
-                }
-            }
-        }
-        if(!changed) answerVal = "none"
-    }
-    if(answerTruth){
+function checkAnswer(answerID){
+    console.log(answerID);
+    let currentAnswer = true
+    var answerTruth;
+    if(questions[runningQuestion].answers[answerID].correct.toLowerCase() == "true"){
+        answerTruth = true;
         // answer is correct
         if (firstAttempt) score++;
-        answerIsClicked(answerTruth, answerVal);
+        // change progress color to green
+        answerIsClicked(currentAnswer, answerTruth, answerID);
+        answerIsCorrect();
+        firstAttempt = true;
+
     }else{
-        // answer is wrong
+        answerTruth = false;
+        // answer is wron
+        // change progress color to red
         currentAnswer = false;
         firstAttempt = false;
-        answerIsClicked(answerTruth, answerVal);
-        if(questions[runningQuestion].type.toLowerCase() == "quiz") changeColor(pastAnswers);
+        console.log("answerID is" + answerID);
+        answerIsClicked(currentAnswer, answerTruth, answerID);
+        changeColor(pastAnswers);
+        answerIsWrong();
+
     }
-    progressColor(answerTruth);
     count = 0;
-
-
-    if (answerTruth){
-        firstAttempt = true;
-        //if the answer is correct and there are more questions/no more questions
+    if (currentAnswer){
         if(runningQuestion < lastQuestion){
-        //move on to next question
             runningQuestion++;
             renderQuestion();
         }else{
@@ -219,49 +183,48 @@ function checkAnswer(answerVal){
             clearInterval(TIMER);
             scoreRender();
         }
-    } else { //otherwise try again
+    } else {
         renderQuestion();
     }
 }
 
 // provides feedback on clicked answer
-function answerIsClicked(answerTruth, i){
-    if(answerTruth){
+function answerIsClicked(correct, answer, i){
+    if(correct){
         modalHead.innerHTML = "<p>Correct!<p>";
-        //reset the list of previous answers
         pastAnswers = [];
     } else{
         modalHead.innerHTML = "<p>Incorrect<p>";
-        //add this bubble to the list of already answered questions
+        console.log("i " + i);
         pastAnswers += i
     }
-    //provide feedback based on answer
-    if(i === "none") modalBody.innerHTML = "<p> That is incorrect, please try again </p>";
-    else modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[i].reasoning + "</p>";
+    modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[i].reasoning + "</p>";
 }
 
-//grey out incorrect, already clicked answers
+
 function changeColor(pastAnswers){
     for(i=0; i<pastAnswers.length; i++){
         var id =pastAnswers[i];
         document.getElementById(id).style.backgroundColor = "#808080"
         document.getElementById(id).style.pointerEvents = "#none"
+        /*
+        if (pastAnswers[i] == "A"){
+            choiceA.style.backgroundColor ="#808080"
+            choiceA.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "B"){
+            choiceB.style.backgroundColor ="#808080"
+            choiceB.style.pointerEvents = "none";
+        } else if (pastAnswers[i] == "C"){
+            choiceC.style.backgroundColor ="#808080"
+            choiceC.style.pointerEvents = "none";
+        } else {
+            choiceD.style.backgroundColor ="#808080"
+            choiceD.style.pointerEvents = "none";
+        }
+        */
     }
 }
 
-//changes the progress indicator based on whether or not the answer was correct
-function progressColor(answerTruth){
-    var color;
-    //if the answer is correct
-    if(answerTruth){
-        if (firstAttempt) color = "#0f0"; //chg color to green
-        else color = "#FFA500"; //chg color to orange
-        if(questions[runningQuestion].type.toLowerCase() == "quiz") resetColor();
-    } else color = "#f00"; //chg color to red
-    document.getElementById("button" + runningQuestion).style.backgroundColor = color;
-}
-
-//reset all
 function resetColor(){
     pastAnswers = [];
 
@@ -271,11 +234,21 @@ function resetColor(){
     }
 }
 
-/*
-********************************
-Results Screen
-********************************
-*/
+
+// answer is correct
+function answerIsCorrect(){
+    var color;
+    if (firstAttempt) color = "#0f0";
+    else color = "#FFA500";
+    document.getElementById("button" + runningQuestion).style.backgroundColor = color;
+    resetColor();
+}
+
+// answer is Wrong
+function answerIsWrong(){
+    document.getElementById("button" + runningQuestion).style.backgroundColor = "#f00";
+}
+
 
 // score render
 function scoreRender(){
@@ -303,3 +276,54 @@ function restart(){
     count = 0;
     startQuiz();
 }
+
+
+
+
+
+
+/*
+let questionsOLD = [
+    {
+        question : "What does HTML stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Correct",
+        choiceB : "Wrong",
+        choiceC : "Wrong",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is correct', B:'this is incorrect', C:'this is incorrect', D: 'this is incorrect'},
+        correct : "A"
+    },{
+        question : "What does CSS stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Wrong",
+        choiceB : "Correct",
+        choiceC : "Wrong",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is correct', C:'this is incorrect', D: 'this is incorrect'},
+        correct : "B"
+    },{
+        question : "What does JS stand for?",
+        imgSrc : "/static/img/question.png",
+        choiceA : "Wrong",
+        choiceB : "Wrong",
+        choiceC : "Correct",
+        choiceD : "Wrong",
+        reasoning : {A: 'this is incorrect', B:'this is incorrect', C:'this is correct', D: 'this is incorrect'},
+        correct : "C"
+    }
+];
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
