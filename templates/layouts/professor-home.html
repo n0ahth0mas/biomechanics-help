@@ -1,133 +1,52 @@
-<!doctype html>
-<head>
-    <meta charset="utf-8">
-    <title>Professor Home Page</title>
+{% extends 'layouts/base' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<!-- Begin page content -->
+<main id="structure" role="main" class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error fade in">
+        <a class="close" data-dismiss="alert">&times;</a>
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 
-    <!-- meta -->
-    <meta name="description" content="Professor Home Page after logging in">
-    <meta name="author" content="Ricardo Barraza">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <!-- /meta -->
+    <div>
+        <h1>Welcome <i>{{ name }}</i></h1>
+    </div>
 
-    <!-- styles -->
-    <link type="text/css" rel="stylesheet" href="/static/css/font-awesome-4.1.0.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-3.1.1.min.css">
-    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme-3.1.1.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/layout.main.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/main.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/main.responsive.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/css/sidenav.css"/>
+    <!--Section relating to the text on this page-->
+    <div id="infoText">
+      <p style="color:black">
+        This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
+      </p>
+    </div>
+    <form method="post" class="form add-course-form">
+        {{ form.csrf_token }}
+        {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
+        {{ form.class_id(class_ = 'form-control', placeholder = form.class_id.label.text, required = true) }}
+        <input type="submit" value="Create Class" class="btn btn-primary btn-lg btn-block">
+    </form>
 
-    <!-- /styles -->
-
-    <!-- scripts -->
-    <script src=""></script>
-    <!-- /scripts -->
-
-</head>
-<body>
-<!-- Wrap all page content here -->
-<div id="wrap">
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/info-slide"><i>Tutorial Maker</i></a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li {% if request.endpoint==
-                    'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="/logout">Logout</a></li>
+    <ul class="prof-class-list">
+        {% for _class in classes %}
+            <li>
+                <div class="class-headers">
+                    <a class="class-title-link" href="/student-quiz/{{_class[1]}}/1/1"><h3>{{_class[0]}}</h3></a>
+                    <a href="/edit-class/{{_class[0]}}"><button type="button" class="btn btn-primary class-edit-button">Edit Class</button></a>
+                </div>
+                <h4>Students enrolled: </h4>
+                <ul>
+                    {% for student in _class[2] %}
+                    <li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>
+                    {% endfor %}
                 </ul>
-            </div><!--/.nav-collapse-->
-        </div>
-      </div>
-    </div>
-
-    <!-- Begin page content -->
-    <main id="structure" role="main" class="container">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-block alert-error fade in">
-            <a class="close" data-dismiss="alert">&times;</a>
-            {{ message }}
-        </div>
+            </li>
         {% endfor %}
-        {% endif %}
-        {% endwith %}
-
-        <div>
-            <h1>Welcome <i>{{ name }}</i></h1>
-        </div>
-
-        <!--Section relating to the text on this page-->
-        <div id="infoText">
-          <p style="color:black">
-            This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
-          </p>
-        </div>
-        <form method="post" class="form add-course-form">
-            {{ form.csrf_token }}
-            {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
-            {{ form.class_id(class_ = 'form-control', placeholder = form.class_id.label.text, required = true) }}
-            <input type="submit" value="Create Class" class="btn btn-primary btn-lg btn-block">
-        </form>
-
-        <ul class="prof-class-list">
-            {% for _class in classes %}
-                <li>
-                    <div class="class-headers">
-                        <a class="class-title-link" href="/student-quiz/{{_class[1]}}/1/1"><h3>{{_class[0]}}</h3></a>
-                        <a href="/edit-class/{{_class[0]}}"><button type="button" class="btn btn-primary class-edit-button">Edit Class</button></a>
-                    </div>
-                    <h4>Students enrolled: </h4>
-                    <ul>
-                        {% for student in _class[2] %}
-                        <li><a href="mailto:{{student[1]}}">{{ student[1] }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-        <!-- Section relating to image on page-->
-    </main>
-
-</div>
-
-<div id="footer">
-    <div class="container">
-        {% block footer %}{% endblock %}
-    </div>
-    <p style="color:darkgreen; text-align:center;">
-        This Project was brought to you by the Help! in Biomechanics Sqwad.
-    </p>
-</div>
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-    window.jQuery || document.write('<script type="text/javascript" src="/static/js/libs/jquery-1.11.1.min.js"><\/script>')
-
-</script>
-<script type="text/javascript" src="/static/js/libs/bootstrap-3.1.1.min.js" defer></script>
-<script type="text/javascript" src="/static/js/plugins.js" defer></script>
-<script type="text/javascript" src="/static/js/script.js" defer></script>
-<!-- Google Analytics - Change UA-XXXXX-X to be your site's ID -->
-<script>
-  window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-  Modernizr.load({
-    load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-  });
-
-
-</script>
-
-</body>
-</html>
+    </ul>
+    <!-- Section relating to image on page-->
+</main>
+{% endblock %}

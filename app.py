@@ -17,6 +17,8 @@ from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from flask import g
 import datetime
+
+
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
@@ -137,6 +139,7 @@ def edit_class(class_id):
 @login_required
 @roles_required('Student')
 def student_home():
+    print(request.endpoint)
     #add a class form
     form = AddClass()
     if form.validate_on_submit():
@@ -188,17 +191,18 @@ def professor_home():
         current_user.classes.append(one_class)
         db.session.add(one_class)
         db.session.commit()
-    else:
-        print(query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]))
+    elif request.method == 'POST':
+        print("thinks this is a post method!")
         flash("We're sorry but a class already exists with that code, please enter another unique code")
     # render our classes
     classes_list = []
-    print(current_user.classes)
     for _class in current_user.classes:
         # we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
-        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[0]))
+        print(_class[0])
+        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
+    print(classes_list)
     return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list, form=form)
 
 
@@ -245,13 +249,6 @@ def about():
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     form = LoginForm(request.form)
-    if current_user.is_authenticated:
-        if current_user.has_roles('Professor'):
-            print("thinks that it has the role Professor")
-            return redirect(home_url + "professor-home")
-        elif current_user.has_roles('Student'):
-            print("think that it has the role ")
-            return redirect(home_url + "student-home")
     if form.validate_on_submit():
         email = form.data["email"]
         password = form.data["password"]

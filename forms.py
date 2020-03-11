@@ -62,5 +62,5 @@ class AddClass(FlaskForm):
     class_code = StringField('Class Code', validators=[DataRequired()])
 
 class CreateClass(FlaskForm):
-    class_name = StringField('Full Name', validators=[DataRequired()])
+    class_name = StringField('Class Name', validators=[DataRequired()])
     class_id = StringField('Class code (think password)', validators=[DataRequired()])
