@@ -219,6 +219,7 @@ def infoSlide():
 @app.route('/glossary/<classID>')
 @login_required
 def glossaryTemplate(classID):
+    print(request.endpoint)
     db_terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
     db_defs = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
@@ -253,6 +254,12 @@ def about():
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
+    if current_user.is_authenticated:
+        if Role.query.filter_by(name='Professor').one() in current_user.roles:
+            return redirect(home_url + "professor-home")
+        elif Role.query.filter_by(name='Student').one() in current_user.roles:
+            print("think that it has the role ")
+            return redirect(home_url + "student-home")
     form = LoginForm(request.form)
     if form.validate_on_submit():
         email = form.data["email"]
@@ -270,18 +277,6 @@ def login():
             session["email"] = form.data["email"]
             login_user(user)
             print(current_user.email)
-            if current_user.is_authenticated:
-                if query_db('SELECT * from User_roles WHERE user_id="%s" AND role_id="%s"' % (email, 35),
-                                       one=True):
-                    print("thinks that it has the role Professor")
-                    return redirect(home_url + "professor-home")
-                elif query_db('SELECT * from User_roles WHERE user_id="%s" AND role_id="%s"' % (email, 36),
-                                       one=True):
-                    print("think that it has the role ")
-                    return redirect(home_url + "student-home")
-                else:
-                    print("couldnt find any roles associated with this user")
-                    return redirect(home_url)
     return render_template('forms/login.html', form=form)
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])

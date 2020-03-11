@@ -8,12 +8,10 @@
 /*****************************************************************************
  * Main elements
  ****************************************************************************/
-.nav-active{
-    display: block;
-}
 
-.nav-inactive{
-    display: none !important;
+.student-home-content{
+    margin-left: 20%;
+    margin-top: 100px;
 }
 
 html {

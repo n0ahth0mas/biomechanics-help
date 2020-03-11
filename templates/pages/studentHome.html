@@ -1,7 +1,7 @@
 {% extends 'layouts/base' %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-<div class="page-header">
+<div class="page-header student-home-content">
     <h1>Welcome {{name}} to the student homepage!</h1>
     <ul>
         {% for _class in classes %}
@@ -13,6 +13,5 @@
         {{ form.class_code(class_ = 'form-control', placeholder = form.class_code.label.text, required = true) }}
         <input type="submit" value="Add Class" class="btn btn-primary btn-lg btn-block">
     </form>
-    <h3><a href="/logout">Logout</a></h3>
 </div>
 {% endblock %}
