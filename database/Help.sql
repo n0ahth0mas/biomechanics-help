@@ -10,6 +10,9 @@ drop table if exists InfoSlideImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
+drop table if exists Users;
+drop table if exists User_roles;
+drop table if exists Roles;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),
@@ -30,8 +33,8 @@ create TABLE Chapters(
 create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
-        sectionName   INTEGER check(sectionName IS NOT NULL),
-        PRIMARY KEY (chapterID,sectionID),
+        sectionName   TEXT check(sectionName IS NOT NULL),
+        PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -76,7 +79,7 @@ create TABLE Glossary(
         term          TEXT check(term IS NOT NULL),
         definition    TEXT check(definition IS NOT NULL),
         PRIMARY KEY (termID),
-        FOREIGN KEY (classID) REFERENCES Class(classID)
+        FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );

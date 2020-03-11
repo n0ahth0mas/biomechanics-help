@@ -13,9 +13,60 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+    <!-- Begin page content -->
+    <main id="structure" role="main" class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-block alert-error fade in">
+            <a class="close" data-dismiss="alert">&times;</a>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
-    <div>
-        <h1>Welcome <i>{{ name }}</i></h1>
+        <div>
+            <h1>Welcome <i>{{ name }}</i></h1>
+        </div>
+
+        <!--Section relating to the text on this page-->
+        <div id="infoText">
+          <p style="color:black">
+            This is your homepage where you can create classes, as well as view, publish and edit already created classes.<br><br><br>
+          </p>
+        </div>
+        <form method="post" class="form add-course-form">
+            {{ form.csrf_token }}
+            {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
+            {{ form.class_id(class_ = 'form-control', placeholder = form.class_id.label.text, required = true) }}
+            <input type="submit" value="Create Class" class="btn btn-primary btn-lg btn-block">
+        </form>
+
+        <ul class="prof-class-list">
+            {% for _class in classes %}
+                <li>
+                    <div class="class-headers">
+                        <a class="class-title-link" href="/student-quiz/{{_class[1]}}/1/1"><h3>{{_class[0]}}</h3></a>
+                        <a href="/edit-class/{{_class[0]}}"><button type="button" class="btn btn-primary class-edit-button">Edit Class</button></a>
+                    </div>
+                    <h4>Students enrolled: </h4>
+                    <ul>
+                        {% for student in _class[2] %}
+                        <li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        <!-- Section relating to image on page-->
+    </main>
+
+</div>
+
+<div id="footer">
+    <div class="container">
+        {% block footer %}{% endblock %}
     </div>
 
     <!--Section relating to the text on this page-->

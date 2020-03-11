@@ -9405,3 +9405,4 @@ jinja2.exceptions.TemplateSyntaxError: expected token ',', got 'chapter'
 2020-03-11 12:58:08,212 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
 2020-03-11 12:58:47,259 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
 2020-03-11 13:01:02,341 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
+2020-03-11 13:07:40,591 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]

@@ -5,7 +5,7 @@
     <h1>Welcome {{name}} to the student homepage!</h1>
     <ul>
         {% for _class in classes %}
-            <li><a href="/student-quiz/{{_class[0]}}/1/1"><h3>{{_class[1]}}</h3></a></li>
+            <li><a href="/student-quiz/{{_class[1]}}/1/1"><h3>{{_class[0]}}</h3></a></li>
         {% endfor %}
     </ul>
     <form method="post" class="form add-course-form">

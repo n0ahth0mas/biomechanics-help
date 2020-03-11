@@ -1,7 +1,7 @@
 <!doctype html>
 <head>
     <meta charset="utf-8">
-    <title>Glossary Template</title>
+    <title>Glossary {{class_name}}</title>
 
     <!-- meta -->
     <meta name="description" content="Template file for glossary pages">
@@ -35,29 +35,29 @@
     <a href="#glossA">A</a> <!--Link to A page in Glossary-->
     <a href="#glossB">B</a> <!--Link to B page in Glossary-->
     <a href="#glossC">C</a> <!--Link to C page in Glossary-->
-    <a href="#glossC">D</a> <!--Link to D page in Glossary-->
-    <a href="#glossB">E</a> <!--Link to E page in Glossary-->
-    <a href="#glossA">F</a> <!--Link to F page in Glossary-->
-    <a href="#about">G</a> <!--Link to G page in Glossary-->
-    <a href="#about">H</a> <!--Link to H page in Glossary-->
-    <a href="#about">I</a> <!--Link to I page in Glossary-->
-    <a href="#about">J</a> <!--Link to J page in Glossary-->
-    <a href="#about">K</a> <!--Link to K page in Glossary-->
-    <a href="#about">L</a> <!--Link to L page in Glossary-->
-    <a href="#about">M</a> <!--Link to M page in Glossary-->
-    <a href="#about">N</a> <!--Link to N page in Glossary-->
-    <a href="#about">O</a> <!--Link to O page in Glossary-->
-    <a href="#about">P</a> <!--Link to P page in Glossary-->
-    <a href="#about">Q</a> <!--Link to Q page in Glossary-->
-    <a href="#about">R</a> <!--Link to R page in Glossary-->
-    <a href="#about">S</a> <!--Link to S page in Glossary-->
-    <a href="#glossA">T</a> <!--Link to T page in Glossary-->
-    <a href="#about">U</a> <!--Link to U page in Glossary-->
-    <a href="#about">V</a> <!--Link to V page in Glossary-->
-    <a href="#about">W</a> <!--Link to W page in Glossary-->
-    <a href="#about">X</a> <!--Link to X page in Glossary-->
-    <a href="#about">Y</a> <!--Link to Y page in Glossary-->
-    <a href="#glossA">Z</a> <!--Link to Z page in Glossary-->
+    <a href="#glossD">D</a> <!--Link to D page in Glossary-->
+    <a href="#glossE">E</a> <!--Link to E page in Glossary-->
+    <a href="#glossF">F</a> <!--Link to F page in Glossary-->
+    <a href="#glossG">G</a> <!--Link to G page in Glossary-->
+    <a href="#glossH">H</a> <!--Link to H page in Glossary-->
+    <a href="#glossI">I</a> <!--Link to I page in Glossary-->
+    <a href="#glossJ">J</a> <!--Link to J page in Glossary-->
+    <a href="#glossK">K</a> <!--Link to K page in Glossary-->
+    <a href="#glossL">L</a> <!--Link to L page in Glossary-->
+    <a href="#glossM">M</a> <!--Link to M page in Glossary-->
+    <a href="#glossN">N</a> <!--Link to N page in Glossary-->
+    <a href="#glossO">O</a> <!--Link to O page in Glossary-->
+    <a href="#glossP">P</a> <!--Link to P page in Glossary-->
+    <a href="#glossQ">Q</a> <!--Link to Q page in Glossary-->
+    <a href="#glossR">R</a> <!--Link to R page in Glossary-->
+    <a href="#glossS">S</a> <!--Link to S page in Glossary-->
+    <a href="#glossT">T</a> <!--Link to T page in Glossary-->
+    <a href="#glossU">U</a> <!--Link to U page in Glossary-->
+    <a href="#glossV">V</a> <!--Link to V page in Glossary-->
+    <a href="#glossW">W</a> <!--Link to W page in Glossary-->
+    <a href="#glossX">X</a> <!--Link to X page in Glossary-->
+    <a href="#glossY">Y</a> <!--Link to Y page in Glossary-->
+    <a href="#glossZ">Z</a> <!--Link to Z page in Glossary-->
 </div>
 
 <!-- Wrap all page content here -->
@@ -71,7 +71,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/glossary-template">Glossary Template</a>
+                <a class="navbar-brand" href="/glossary-template">Glossary {{class_name}}</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -79,9 +79,6 @@
                     'home' %} class="active" {% endif %}><a href="{{ url_for('home') }}">Home</a></li>
                     <li {% if request.endpoint==
                     'student' %} class="active" {% endif %}><a href="{{ url_for('student_home') }}">Student</a></li>
-                    <li {% if request.endpoint==
-                    'glossary' %} class="active" {% endif %}><a
-                        href="{{ url_for('glossaryTemplate') }}">Glossary</a></li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="{{ url_for('new_prof_acc') }}">Signup</a></li>
@@ -92,78 +89,29 @@
     </div>
 
     <!-- Begin page content -->
-   <!-- <script>var terms = JSON.parse{{js_terms | tojson}}</script>-->
     <script src="/static/js/glossary.js"></script>
     <main id="structure" role="main" class="container">
         <div>
-            <h1>Glossary</h1>
+            <h1>Glossary {{class_name}}</h1>
         </div>
-        <p><strong>Test:</strong>{{terms}}<strong> End Test</strong></p>
         <!--Section relating to the text on this page-->
         <div id="infoText" style="border: 2px solid Black;">
-            <h3 id="glossA"><strong>A</strong></h3>
-            <p>
-                <strong>Entry 1:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-                copypasta
-                copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-                copypasta copypasta
-                copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            <p id="entry1Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-            </p>
-        <hr>
-        <p>
-            <strong>Entry 2:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-          <p id="entry2Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-            </p>
-        <hr>
-        <p>
-            <strong>Entry 3:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-          <p id="entry3Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-        </p>
-        <hr>
-            <h3 id="glossB"><strong>B</strong></h3>
-        <p>
-            <strong>Entry 4:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-          <p id="entry4Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-        </p>
-        <hr>
-        <p>
-            <strong>Entry 5:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-          <p id="entry5Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-        </p>
-        <hr>
-        <p>
-            <strong>Entry 6:</strong> copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-            copypasta copypasta
-            copypasta copypasta copypasta copypasta copypasta copypasta copypasta copypasta
-          <p id="entry6Image"title="Image if needed for entry">
-                <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
-            </p>
-        </p>
-        <h3 id="glossC"><strong>C</strong></h3>
+            {% set idx = 0 %}
+            {% for _alpha in alpha %}
+            <h3 id="gloss{{_alpha}}">{{_alpha}}</h3>
+                {% for idx, _term in enumerate(terms) %}
+                    {% if _term[0] == _alpha %}
+                        <p>
+                            <strong>{{_term}}</strong>: {{defns[idx]}}
+                        <p id="entry1Image"title="Image if needed for entry">
+                            <img src="/static/img/nature.jpg" alt="Slide Image" width="100" height="100">
+                        </p>
+                        </p>
+                        <hr>
+                        {% set idx = (idx+1) %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
 </div>
 <br><br><br>
 
