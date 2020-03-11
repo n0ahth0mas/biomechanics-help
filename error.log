@@ -9842,3 +9842,4 @@ Traceback (most recent call last):
 werkzeug.routing.BuildError: Could not build url for endpoint 'student_quiz' with values ['chapter', 'classID', 'section']. Did you forget to specify values ['class_id']?
 2020-03-11 13:41:26,056 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:366]
 2020-03-11 13:41:54,036 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
+2020-03-11 13:42:38,197 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
