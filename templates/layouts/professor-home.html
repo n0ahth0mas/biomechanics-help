@@ -41,7 +41,7 @@
                 <h4>Students enrolled: </h4>
                 <ul>
                     {% for student in _class[2] %}
-                    <li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>
+                    {% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>{% endif %}
                     {% endfor %}
                 </ul>
             </li>
