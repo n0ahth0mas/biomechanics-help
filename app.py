@@ -160,11 +160,14 @@ def student_home():
 @app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
 def student_quiz(class_id, chapter, section):
+    print("called student quiz")
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         a_list = []
+        print(a_list)
         #creating a list of questions for the page
         q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
         q_list2 = json.dumps(q_list)
+        print(q_list2)
         #finding all the answers of the questions on the page
         for questions in q_list:
             answer_id = questions[0]
@@ -172,6 +175,7 @@ def student_quiz(class_id, chapter, section):
             print("{}".format(answer_id))
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
         a_list2 = json.dumps(a_list)
+        print(a_list2)
         return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
                                a_list=a_list2, classID=class_id)
     else:
@@ -294,6 +298,7 @@ def new_prof_acc():
             db.session.add(user)
             db.session.commit()
             user = User.query.filter_by(email=form.email.data).first()
+            session["email"] = form.data["email"]
             login_user(user)
             return redirect(home_url + "professor-home")
     return render_template('forms/NewProfAccount.html', form=form)
@@ -321,6 +326,7 @@ def new_student_account():
             db.session.commit()
             #log in the user
             user_details = User.query.filter_by(email=form.email.data).first()
+            session["email"] = form.data["email"]
             login_user(user_details)
             return redirect(home_url + "student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
