@@ -9843,3 +9843,5 @@ werkzeug.routing.BuildError: Could not build url for endpoint 'student_quiz' wit
 2020-03-11 13:41:26,056 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:366]
 2020-03-11 13:41:54,036 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
 2020-03-11 13:42:38,197 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
+2020-03-11 13:44:14,435 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
+2020-03-11 22:37:53,362 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:367]
