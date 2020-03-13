@@ -10031,3 +10031,6 @@ KeyError: 'email'
 2020-03-13 13:36:25,584 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:371]
 2020-03-13 13:38:22,488 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:372]
 2020-03-13 13:40:08,672 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]
+2020-03-13 14:19:57,581 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]
+2020-03-13 14:21:03,481 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]
+2020-03-13 14:21:38,133 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:373]

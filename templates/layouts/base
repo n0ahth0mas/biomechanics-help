@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student Home Page</title>
+    <title>{% block title %}{% endblock %}</title>
 
      <!-- meta -->
     <meta name="description" content="Student Home Page after logging in">
@@ -20,7 +20,11 @@
     <link type="text/css" rel="stylesheet" href="/static/css/main.quickfix.css"/>
     <link type="text/css" rel="stylesheet" href="/static/css/sidenav.css"/>
     <!-- /styles -->
-    <script src="/static/js/glossary.js"></script>
+    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <!--<script src="/static/js/glossary.js"></script> -->
+    <script src="/static/js/libs/modernizr-2.8.2.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/js/libs/respond-1.4.2.min.js"></script><![endif]-->
      <!-- scripts -->
     <script src=""></script>
     <!-- /scripts -->
