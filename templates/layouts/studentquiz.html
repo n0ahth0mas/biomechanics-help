@@ -1,0 +1,35 @@
+{% extends 'layouts/base' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<main id="structure" role="main" class="container">
+<link type="text/css" rel="stylesheet" href="/static/css/quiz.css" />
+
+
+<div class="page-header">
+  <h1>Chapter {{chapter}}: Section {{section}}</h1>
+</div>
+
+  <div>
+      <h3>Start Quiz! (<span id="quizLength">{{q_list|length}}</span> Questions Long!)</h3>
+    <div id="scoreCounter">0</div>
+    <div>
+        {% for question in q_list %}
+            {% set outer_loop = loop %}
+            <div class="question_div {% if outer_loop.index-1 > 0 %}inactive_question{% endif %}">
+                <h4>{{question[1]}}</h4>
+                {% if question[3] == "short" %}
+                    <input type="text" placeholder="Enter short answer here">
+                    <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
+                {% else %}
+                    {% for answer in a_list[outer_loop.index-1] %}
+                        <button onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}')">{{answer[3]}}</button>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div style="display:none">YourScore: <div id="quiz-final-score"></div><button onclick="location.reload()">Redo Quiz?</button></div>
+  </div>
+</main>
+{% endblock %}

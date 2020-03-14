@@ -166,18 +166,18 @@ def student_quiz(class_id, chapter, section):
         print(a_list)
         #creating a list of questions for the page
         q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
-        q_list2 = json.dumps(q_list)
-        print(q_list2)
+        #q_list2 = json.dumps(q_list)
+        print(q_list)
         #finding all the answers of the questions on the page
         for questions in q_list:
             answer_id = questions[0]
             print(answer_id)
             print("{}".format(answer_id))
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-        a_list2 = json.dumps(a_list)
-        print(a_list2)
-        return render_template('pages/placeholder.student.quiz.html', chapter=chapter, section=section, q_list=q_list2,
-                               a_list=a_list2, classID=class_id)
+        #a_list2 = json.dumps(a_list)
+        print(a_list)
+        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
+                               a_list=a_list, classID=class_id)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)

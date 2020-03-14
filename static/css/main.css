@@ -14,6 +14,14 @@
     margin-top: 100px;
 }
 
+.question_div{
+    width: 50%;
+}
+
+.inactive_question{
+    display: none;
+}
+
 html {
   overflow-y: scroll;
 }
