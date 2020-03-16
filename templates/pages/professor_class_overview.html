@@ -1,0 +1,26 @@
+{% extends 'layouts/base' %}
+{% block title %}Class Overview{% endblock %}
+{% block content %}
+<main id="structure" role="main" class="container">
+    <h1>{{class_name}} Overview</h1>
+    {% for chapter in chapters %}
+        {% set outer_loop = loop %}
+        <h2>Chapter {{chapter[1]}}</h2>
+        {% for section in sections[outer_loop.index-1] %}
+            {% set second_loop = loop %}
+            <a href="/student-quiz/{{classID}}/{{chapter[0]}}/{{section[0]}}"><h3>Section: {{section[2]}}</h3></a>
+            {% for question in questions[second_loop.index-1] %}
+                {% set third_loop = loop %}
+                {% if question[2] == section[0] %}
+                    <h4>Question {{question[1]}} ({{question[3]}})</h4>
+                    {% for answer in answers[third_loop.index-1] %}
+                        {% if answer[1] == question[0] %}
+                            <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}}</h5>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</main>
+{% endblock %}

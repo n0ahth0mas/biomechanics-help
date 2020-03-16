@@ -54,10 +54,10 @@
             </div>
             <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav">
-                   {% if request.endpoint== 'edit_class' %}<li><a href="{{ url_for('professor_home') }}">Professor Home</a></li>{% endif %}
+                   {% if request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' %}<li><a href="{{ url_for('professor_home') }}">Professor Home</a></li>{% endif %}
                    {% if request.endpoint== 'student_quiz' %}<li><a href="{{ url_for('glossaryTemplate', classID=classID) }}">Glossary</a></li>{% endif %}
                    {% if request.endpoint== 'student_quiz' %}<li><a href="{{ url_for('student_home') }}">Student Home</a></li>{% endif %}
-                   {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'student_quiz' or request.endpoint== 'edit_class'%}<li><a href="{{ url_for('logout') }}">Logout</a></li>{% endif %}
+                   {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'student_quiz' or request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home'%}<li><a href="{{ url_for('logout') }}">Logout</a></li>{% endif %}
                    {% if request.endpoint=='glossaryTemplate' %}<li><a href="{{ url_for('student_quiz', class_id=classID, chapter=1, section=1) }}">Back To Quiz</a></li>{% endif %}
                </ul>
             </div><!--/.nav-collapse -->

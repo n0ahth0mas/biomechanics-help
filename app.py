@@ -340,6 +340,31 @@ def new_student_account():
             return redirect(home_url + "student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
 
+@app.route('/professor-class-overview/<classID>')
+@login_required
+@roles_required('Professor')
+def professor_class_home(classID):
+    print("called professor class home")
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    print(chapters)
+    sections_arrays = []
+    for chapter in chapters:
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+
+    questions = []
+    for sectionarray in sections_arrays:
+        for section in sectionarray:
+            questions.append(query_db('SELECT * from Questions where sectionID="%s"' % section[0]))
+    print(sections_arrays)
+    print(questions)
+    answers = []
+    for question_array in questions:
+        for question in question_array:
+            answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
+    print(answers)
+    class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    print(class_name)
+    return render_template('pages/professor_class_overview.html', chapters=chapters, sections=sections_arrays, questions=questions, class_name=class_name, answers=answers, classID=classID)
 
 @app.route('/forgot')
 def forgot():
