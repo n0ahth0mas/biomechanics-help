@@ -169,15 +169,24 @@ def student_quiz(class_id, chapter, section):
         #q_list2 = json.dumps(q_list)
         print(q_list)
         #finding all the answers of the questions on the page
+        q_image_list = []
         for questions in q_list:
             answer_id = questions[0]
+            try:
+                this_image = query_db('SELECT * from QuestionImages where questionID="%s"' % questions[0])[0][1]
+                q_image_list.append(this_image)
+            except IndexError:
+                print("An index error occured")
+
             print(answer_id)
             print("{}".format(answer_id))
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
         #a_list2 = json.dumps(a_list)
-        print(a_list)
-        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
-                               a_list=a_list, classID=class_id)
+
+        #q_image_list = query_db('SELECT * from QuestionImages')
+        print(q_image_list)
+        #print(a_list)
+        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list, a_list=a_list, classID=class_id, q_images=q_image_list)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
