@@ -1,0 +1,15 @@
+{% extends 'layouts/base' %}
+{% block title %}Class Overview{% endblock %}
+{% block content %}
+<main id="structure" role="main" class="container">
+    <h1>{{class_name}} Overview</h1>
+    {% for chapter in chapters %}
+        {% set outer_loop = loop %}
+        <h2>Chapter {{chapter[1]}}</h2>
+        {% for section in sections[outer_loop.index-1] %}
+            {% set second_loop = loop %}
+            <a href="/student-quiz/{{classID}}/{{chapter[0]}}/{{section[0]}}"><h3>Section: {{section[2]}}</h3></a>
+        {% endfor %}
+    {% endfor %}
+</main>
+{% endblock %}

@@ -366,6 +366,27 @@ def professor_class_home(classID):
     print(class_name)
     return render_template('pages/professor_class_overview.html', chapters=chapters, sections=sections_arrays, questions=questions, class_name=class_name, answers=answers, classID=classID)
 
+@app.route('/student-class-overview/<classID>')
+@login_required
+@roles_required('Student')
+def student_class_home(classID):
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    sections_arrays = []
+    for chapter in chapters:
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+
+    #questions = []
+    #for sectionarray in sections_arrays:
+    #    for section in sectionarray:
+    #        questions.append(query_db('SELECT * from Questions where sectionID="%s"' % section[0]))
+    #answers = []
+    #for question_array in questions:
+    #    for question in question_array:
+    #        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
+    class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays, class_name=class_name, classID=classID)
+
+
 @app.route('/forgot')
 def forgot():
     form = ForgotForm(request.form)
