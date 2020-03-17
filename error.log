@@ -11265,3 +11265,200 @@ Traceback (most recent call last):
   File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 52, in query_db
     cur = get_db().execute(query, args)
 sqlite3.OperationalError: no such table: Users
+2020-03-17 13:01:23,413 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 13:01:29,613 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 13:03:00,342 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 13:03:13,070 ERROR: Exception on /login [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 283, in login
+    user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 52, in query_db
+    cur = get_db().execute(query, args)
+sqlite3.OperationalError: no such table: Users
+2020-03-17 13:03:25,781 ERROR: Exception on /login [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 283, in login
+    user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 52, in query_db
+    cur = get_db().execute(query, args)
+sqlite3.OperationalError: no such table: Users
+2020-03-17 13:03:49,599 ERROR: Exception on /new-student-account [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 321, in new_student_account
+    user_object = query_db('select * from Users where email= ? ', [form.data["email"]], one=True)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 52, in query_db
+    cur = get_db().execute(query, args)
+sqlite3.OperationalError: no such table: Users
+2020-03-17 13:08:21,261 ERROR: Exception on /new-student-account [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 321, in new_student_account
+    user_object = query_db('select * from Users where email= ? ', [form.data["email"]], one=True)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 52, in query_db
+    cur = get_db().execute(query, args)
+sqlite3.OperationalError: no such table: Users
+2020-03-17 13:21:28,654 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 13:21:45,033 ERROR: Exception on /new-student-account [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 332, in new_student_account
+    role = Role.query.filter_by(name='Student').one()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\sqlalchemy\orm\query.py", line 3354, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-03-17 13:22:20,198 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 13:23:00,922 ERROR: Exception on /new-student-account [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 332, in new_student_account
+    role = Role.query.filter_by(name='Student').one()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\sqlalchemy\orm\query.py", line 3354, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-03-17 13:29:10,097 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:428]
+2020-03-17 14:27:41,560 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:438]
+2020-03-17 14:28:32,406 ERROR: Exception on /info-slide [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+TypeError: infoSlide() missing 1 required positional argument: 'sectionID'
+2020-03-17 14:31:37,579 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:31:41,035 ERROR: Exception on /info-slide [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+TypeError: infoSlide() missing 1 required positional argument: 'sectionID'
+2020-03-17 14:32:57,441 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:32:59,973 ERROR: Exception on /info-slide [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+TypeError: infoSlide() missing 1 required positional argument: 'sectionID'
+2020-03-17 14:33:03,584 ERROR: Exception on /info-slide [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+TypeError: infoSlide() missing 1 required positional argument: 'sectionID'
+2020-03-17 14:34:17,062 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:35:10,916 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:36:22,365 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:36:51,794 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:39:01,357 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
+2020-03-17 14:39:28,667 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]

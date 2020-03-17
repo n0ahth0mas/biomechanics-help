@@ -224,10 +224,24 @@ def student_short():
     return render_template('pages/placeholder.student.short.html')
 
 
-@app.route('/info-slide')
+@app.route('/info-slide/<sectionID>')
 @login_required
-def infoSlide():
-    return render_template('layouts/infoSlide.html')
+def infoSlide(sectionID):
+    #slide_text = query_db('SELECT * from InfoSlide WHERE sectionID = "{}"').format(sectionID)
+    #slide_images = query_db('SELECT * from InfoSlideImages WHERE sectionID = "{}"').format(sectionID)
+    slide_content = []
+    slide_text = [("123", "Hello World!", "456"), ("125", "Goodnight", "888")]
+    #slide_images = [("123", "Pretty Picture", "456")]
+
+    #For every object queried, if they have the same sectionID, add it to a list of tuples
+    #that contains all information for the text and images that go on the same slide
+    #does not account for duplicatates in multiple images going to one text and vis versa
+    for x in slide_text:
+        for y in slide_images:
+            if x[0] == y[0]:
+                slide_content.append((x,y))
+
+    return render_template('layouts/infoSlide.html', slide_content=slide_content, sectionID=sectionID)
 
 @app.route('/glossary/<classID>')
 @login_required
@@ -238,8 +252,6 @@ def glossaryTemplate(classID):
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
     class_name = db_class_name[0]
 
-    #terms = ["Physics", "Braden"]
-    #defs = ["science of physics", "cool dude"]
     terms = []
     defs = []
     for term in db_terms:
