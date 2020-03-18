@@ -2,11 +2,11 @@ drop table if exists Classes;
 drop table if exists Chapters;
 drop table if exists Sections;
 drop table if exists Questions;
-drop table if exists InfoSlide;
+drop table if exists SectionBlock;
 drop table if exists Answers;
 drop table if exists Glossary;
 drop table if exists QuestionImages;
-drop table if exists InfoSlideImages;
+drop table if exists SectionBlockImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
@@ -51,11 +51,11 @@ create TABLE Questions(
             ON DELETE CASCADE
 );
 
-create TABLE InfoSlide(
-        infoSlideID    INTEGER,
-        sectionText  TEXT ,
+create TABLE SectionBlock(
+        sectionBlockID    INTEGER,
+        sectionText  TEXT,
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        PRIMARY KEY (infoSlideID),
+        PRIMARY KEY (SectionBlockID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -97,7 +97,7 @@ create TABLE SectionImages(
         sectionID    INTEGER check(sectionID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
-        FOREIGN KEY (sectionID) REFERENCES InfoSlide (sectionID)
+        FOREIGN KEY (sectionID) REFERENCES SectionBlock (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
