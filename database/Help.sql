@@ -93,17 +93,17 @@ create TABLE QuestionImages(
             ON DELETE CASCADE
 );
 
-create TABLE InfoSlideImages(
-        infoSlideID    INTEGER,
+create TABLE SectionImages(
+        sectionID    INTEGER check(sectionID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (imageFile),
-        FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
+        FOREIGN KEY (sectionID) REFERENCES InfoSlide (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
 
 create TABLE Videos(
-        sectionID      INTEGER check(sectionID),
+        sectionID      INTEGER check(sectionID IS NOT NULL),
         videoFile      TEXT check(videoFile IS NOT NULL),
         PRIMARY KEY (videoFile),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
