@@ -53,7 +53,7 @@ create TABLE Questions(
 
 create TABLE InfoSlide(
         infoSlideID    INTEGER,
-        infoSlideText  TEXT check(infoSlideText IS NOT NULL),
+        sectionText  TEXT ,
         sectionID     INTEGER check(sectionID IS NOT NULL),
         PRIMARY KEY (infoSlideID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
