@@ -34,9 +34,11 @@ class ForgotForm(FlaskForm):
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
 
+
 class StudentLoginForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
+
 
 class StudentRegForm(FlaskForm):
     fullName = StringField('Full name', validators=[DataRequired()])
@@ -48,6 +50,7 @@ class StudentRegForm(FlaskForm):
          EqualTo('password', message='Passwords must match')]
     )
 
+
 class ProfessorRegForm(FlaskForm):
     fullName = StringField('Full name', validators=[DataRequired()])
     email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
@@ -58,12 +61,23 @@ class ProfessorRegForm(FlaskForm):
          EqualTo('password', message='Passwords must match')]
     )
 
+
 class AddClass(FlaskForm):
     class_code = StringField('Class Code', validators=[DataRequired()])
+
 
 class CreateClass(FlaskForm):
     class_name = StringField('Class Name', validators=[DataRequired()])
     class_id = StringField('Class code (think password)', validators=[DataRequired()])
 
+
 class CreateChapter(FlaskForm):
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
+
+
+class CreateSection(FlaskForm):
+    sectionName = StringField('Section Name', validators=[DataRequired()])
+
+
+class CreateSectionBlock(FlaskForm):
+    sectionText = StringField('Section Text', validators=[DataRequired()])

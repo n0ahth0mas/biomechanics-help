@@ -82,6 +82,15 @@ class Chapter(db.Model):
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
 
 
+
+class Section(db.Model):
+    __tablename__ = 'Sections'
+    sectionID = db.Column(db.Integer(), primary_key=True)
+    chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
+    sectionName = db.Column(db.String())
+
+
+
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
@@ -131,18 +140,17 @@ def home():
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
 def edit_class(classID):
     form = CreateChapter()
     if form.validate_on_submit():
-        print("got here")
         one_chapter = Chapter()
         one_chapter.chapterName = form.data["chapterName"]
         one_chapter.classID = classID
         db.session.add(one_chapter)
         db.session.commit()
-        print("here")
     elif request.method == 'POST':
-        print("thinks this is a post method!")
         flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
@@ -153,6 +161,41 @@ def edit_class(classID):
 
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
                            className=className, form=form)
+
+@app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def edit_chapter(classID,chapterID):
+    form = CreateSection()
+    if form.validate_on_submit():
+        one_section = Section()
+        one_section.chapterID = chapterID
+        one_section.sectionName = form.data["sectionName"]
+        db.session.add(one_section)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
+    sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
+    return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID, chapterName=chapterName, form=form)
+
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def edit_section(classID,chapterID,sectionID):
+    form = CreateSectionBlock()
+    if form.validate_on_submit():
+        one_section_block = SectionBlock()
+        one_section_block.sectionName = form.data["sectionText"]
+        one_section_block.sectionID = sectionID
+        db.session.add(one_section_block)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
+    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, form=form)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))

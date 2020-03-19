@@ -6,7 +6,7 @@ drop table if exists SectionBlock;
 drop table if exists Answers;
 drop table if exists Glossary;
 drop table if exists QuestionImages;
-drop table if exists SectionBlockImages;
+drop table if exists SectionImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
@@ -55,7 +55,7 @@ create TABLE SectionBlock(
         sectionBlockID    INTEGER,
         sectionText  TEXT,
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        PRIMARY KEY (SectionBlockID),
+        PRIMARY KEY (sectionBlockID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -87,7 +87,7 @@ create TABLE Glossary(
 create TABLE QuestionImages(
         questionID     INTEGER,
         imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (imageFile),
+        PRIMARY KEY (questionID,imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -96,8 +96,8 @@ create TABLE QuestionImages(
 create TABLE SectionImages(
         sectionID    INTEGER check(sectionID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (imageFile),
-        FOREIGN KEY (sectionID) REFERENCES SectionBlock (sectionID)
+        PRIMARY KEY (sectionID,imageFile),
+        FOREIGN KEY (sectionID) REFERENCES Section (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
@@ -105,7 +105,7 @@ create TABLE SectionImages(
 create TABLE Videos(
         sectionID      INTEGER check(sectionID IS NOT NULL),
         videoFile      TEXT check(videoFile IS NOT NULL),
-        PRIMARY KEY (videoFile),
+        PRIMARY KEY (sectionID,videoFile),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
