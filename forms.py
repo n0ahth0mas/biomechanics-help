@@ -64,3 +64,6 @@ class AddClass(FlaskForm):
 class CreateClass(FlaskForm):
     class_name = StringField('Class Name', validators=[DataRequired()])
     class_id = StringField('Class code (think password)', validators=[DataRequired()])
+
+class CreateChapter(FlaskForm):
+    chapterName = StringField('Chapter Name', validators=[DataRequired()])

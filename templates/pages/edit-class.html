@@ -1,7 +1,18 @@
 {% extends 'layouts/base' %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}EditClass{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <h1>Hi There!</h1>
+    <h1>Edit {{className}}</h1>
+    <form method="post" class="form add-chapter-form">
+        {{ form.csrf_token }}
+        {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
+        <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
+    </form>
+
+    {% for chapter in chapters %}
+        <div class="chapter-headers">
+            <a class="chapter-title-link" href="/edit-class/{{classID}}/{{chapter[0]}}"><h3>{{chapter[1]}}</h3></a>
+        </div>
+    {% endfor %}
 </main>
 {% endblock %}

@@ -73,6 +73,12 @@ class Class(db.Model):
     classID = db.Column(db.Integer(), primary_key=True)
     className = db.Column(db.String(), unique=True)
 
+class Chapter(db.Model):
+    __tablename__ = 'Chapters'
+    chapterID = db.Column(db.Integer(), primary_key=True)
+    chapterName = db.Column(db.String())
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
@@ -115,25 +121,28 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/edit-class/<class_id>')
-def edit_class(class_id):
-    #we want to get this class from the database
-    #we want to display all of its sections here
-    this_class = query_db('SELECT * from Classes where classID="%s"' % class_id, one=True)
+@app.route('/edit-class/<classID>', methods = ('GET','POST'))
+def edit_class(classID):
+    form = CreateChapter()
+    if form.validate_on_submit():
+        print("got here")
+        one_chapter = Chapter()
+        one_chapter.chapterName = form.data["chapterName"]
+        one_chapter.classID = classID
+        db.session.add(one_chapter)
+        db.session.commit()
+        print("here")
+    elif request.method == 'POST':
+        print("thinks this is a post method!")
+        flash("Error")
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    print(chapters)
+    sections_arrays = []
+    for chapter in chapters:
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % class_id)
-    section_array = [[]]
-    #initialize sections in our class datastructure
-    #for chapter in chapters:
-        #section_array.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
-
-    #questions = [[[]]]
-    #for chapter in section_array:
-    #    for section in chapter:
-    #        questions.append()
-
-
-    return render_template('pages/edit-class.html')
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
 
 @app.route('/student-home', methods=('GET', 'POST'))
 @login_required
