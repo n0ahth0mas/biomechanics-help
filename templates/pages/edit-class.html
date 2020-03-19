@@ -2,7 +2,7 @@
 {% block title %}EditClass{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <h1>Edit {{className}}</h1>
+    <h1>Edit Class: {{className}}</h1>
     <form method="post" class="form add-chapter-form">
         {{ form.csrf_token }}
         {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
