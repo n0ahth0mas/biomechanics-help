@@ -18,24 +18,23 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import g
 import datetime
 
-
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
 app.secret_key = 'xxxxyyyyyzzzzz'
-#app.config.from_object('config')
+# app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
 app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
-#login = LoginManager()
-#login.init_app(app)
+# login = LoginManager()
+# login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 print(pathToDB)
 
-
 home_url = "http://127.0.0.1:5000/"
+
 
 def get_sql_alc_db():
     with app.app_context():
@@ -47,6 +46,7 @@ def get_db():
     if db is None:
         db = g._database = sqlite3.connect(pathToDB)
     return db
+
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -68,10 +68,12 @@ def shutdown_session(exception=None):
 login = LoginManager()
 login.init_app(app)
 
+
 class Class(db.Model):
     __tablename__ = "Classes"
     classID = db.Column(db.Integer(), primary_key=True)
     className = db.Column(db.String(), unique=True)
+
 
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
@@ -79,16 +81,19 @@ class Chapter(db.Model):
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
 
+
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     id = db.Column(db.Integer(), primary_key=True)
     email = db.Column(db.String(), db.ForeignKey('Users.email'))
     classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'))
 
+
 class Role(db.Model):
     __tablename__ = 'Roles'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
+
 
 # Define the UserRoles association table
 class UserRoles(db.Model):
@@ -96,6 +101,7 @@ class UserRoles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
     role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'Users'
@@ -115,13 +121,16 @@ class User(db.Model, UserMixin):
     def get_email(self):
         return self.email
 
+
 user_manager = UserManager(app, get_sql_alc_db(), User)
+
 
 @app.route('/')
 def home():
     return render_template('pages/landing.html', homepage=True)
 
-@app.route('/edit-class/<classID>', methods = ('GET','POST'))
+
+@app.route('/edit-class/<classID>', methods=('GET', 'POST'))
 def edit_class(classID):
     form = CreateChapter()
     if form.validate_on_submit():
@@ -142,28 +151,70 @@ def edit_class(classID):
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
-    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
+                           className=className, form=form)
+
 
 @app.route('/student-home', methods=('GET', 'POST'))
 @login_required
 @roles_required('Student')
 def student_home():
     print(request.endpoint)
-    #add a class form
+    # add a class form
     form = AddClass()
     if form.validate_on_submit():
         one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
         current_user.classes.append(one_class)
         db.session.commit()
 
-    #render our classes
+    # render our classes
     classes_list = []
     print(current_user.classes)
     for _class in current_user.classes:
-        #we want to use the class code to get a class name from classes
+        # we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         classes_list.append(_class)
     return render_template('pages/studentHome.html', name=current_user.name, form=form, classes=classes_list)
+
+
+@app.route('/section/<class_id>/<chapter>/<section>', methods=['GET'])
+@login_required
+def section_page(class_id, chapter, section):
+    if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
+        # get info data
+        info_data = "testing"
+
+        # get info image
+        info_image = "/static/img/40.png"
+
+        # get video file
+        video = "/static/video/samplevid.mp4"
+        # get quiz data
+        a_list = []
+
+        # creating a list of questions for the page
+        q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
+
+        # finding all the answers of the questions on the page
+        q_image_list = []
+
+        for questions in q_list:
+            answer_id = questions[0]
+            try:
+                this_image = query_db('SELECT * from QuestionImages where questionID="%s"' % questions[0])[0][1]
+                q_image_list.append(this_image)
+            except IndexError:
+                print("An index error occured")
+            a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+
+        # q_image_list = query_db('SELECT * from QuestionImages')
+
+        return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
+                               a_list=a_list, classID=class_id, q_images=q_image_list, info_data=info_data,
+                               info_image=info_image, video=video)
+    else:
+        flash("Please enroll in a class before navigating to it.")
+        return redirect(home_url)
 
 
 @app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
@@ -173,11 +224,11 @@ def student_quiz(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         a_list = []
         print(a_list)
-        #creating a list of questions for the page
+        # creating a list of questions for the page
         q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
-        #q_list2 = json.dumps(q_list)
+        # q_list2 = json.dumps(q_list)
         print(q_list)
-        #finding all the answers of the questions on the page
+        # finding all the answers of the questions on the page
         q_image_list = []
         for questions in q_list:
             answer_id = questions[0]
@@ -190,12 +241,13 @@ def student_quiz(class_id, chapter, section):
             print(answer_id)
             print("{}".format(answer_id))
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-        #a_list2 = json.dumps(a_list)
+        # a_list2 = json.dumps(a_list)
 
-        #q_image_list = query_db('SELECT * from QuestionImages')
+        # q_image_list = query_db('SELECT * from QuestionImages')
         print(q_image_list)
-        #print(a_list)
-        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list, a_list=a_list, classID=class_id, q_images=q_image_list)
+        # print(a_list)
+        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
+                               a_list=a_list, classID=class_id, q_images=q_image_list)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
@@ -236,21 +288,22 @@ def student_short():
 @app.route('/info-slide/<sectionID>')
 @login_required
 def infoSlide(sectionID):
-    #slide_text = query_db('SELECT * from InfoSlide WHERE sectionID = "{}"').format(sectionID)
-    #slide_images = query_db('SELECT * from InfoSlideImages WHERE sectionID = "{}"').format(sectionID)
+    # slide_text = query_db('SELECT * from InfoSlide WHERE sectionID = "{}"').format(sectionID)
+    # slide_images = query_db('SELECT * from InfoSlideImages WHERE sectionID = "{}"').format(sectionID)
     slide_content = []
     slide_text = [("123", "Hello World!", "456"), ("125", "Goodnight", "888")]
-    #slide_images = [("123", "Pretty Picture", "456")]
+    # slide_images = [("123", "Pretty Picture", "456")]
 
-    #For every object queried, if they have the same sectionID, add it to a list of tuples
-    #that contains all information for the text and images that go on the same slide
-    #does not account for duplicatates in multiple images going to one text and vis versa
+    # For every object queried, if they have the same sectionID, add it to a list of tuples
+    # that contains all information for the text and images that go on the same slide
+    # does not account for duplicatates in multiple images going to one text and vis versa
     for x in slide_text:
         for y in slide_images:
             if x[0] == y[0]:
-                slide_content.append((x,y))
+                slide_content.append((x, y))
 
     return render_template('layouts/infoSlide.html', slide_content=slide_content, sectionID=sectionID)
+
 
 @app.route('/glossary/<classID>')
 @login_required
@@ -277,14 +330,15 @@ def glossaryTemplate(classID):
     for idx, t in enumerate(termsAlpha):
         defsAlpha.append("")
         defsAlpha[idx] = defs[terms.index(t)]
-        idx+=1
+        idx += 1
     return render_template('layouts/glossary-template.html', terms=termsAlpha, defns=defsAlpha, classID=classID,
-                            enumerate=enumerate, alpha=alpha, class_name=class_name)
+                           enumerate=enumerate, alpha=alpha, class_name=class_name)
 
 
 @app.route('/about')
 def about():
     return render_template('pages/placeholder.about.html')
+
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
@@ -313,6 +367,7 @@ def login():
             print(current_user.email)
     return render_template('forms/login.html', form=form)
 
+
 @app.route('/new-professor-account', methods=['GET', 'POST'])
 def new_prof_acc():
     form = ProfessorRegForm()
@@ -322,7 +377,8 @@ def new_prof_acc():
             password = form.data["password"]
             h = hashlib.md5(password.encode())
             passhash = h.hexdigest()
-            user = User(id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True, password=passhash)
+            user = User(id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
+                        password=passhash)
             role = Role.query.filter_by(name='Professor').one()
             user.roles.append(role)
             db.session.add(user)
@@ -348,18 +404,19 @@ def new_student_account():
             user = User(
                 id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
                 password=passhash)
-            #prof_role = Role(name='Student')
-            #user.roles = [prof_role]
+            # prof_role = Role(name='Student')
+            # user.roles = [prof_role]
             role = Role.query.filter_by(name='Student').one()
             user.roles.append(role)
             db.session.add(user)
             db.session.commit()
-            #log in the user
+            # log in the user
             user_details = User.query.filter_by(email=form.email.data).first()
             session["email"] = form.data["email"]
             login_user(user_details)
             return redirect(home_url + "student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
+
 
 @app.route('/professor-class-overview/<classID>')
 @login_required
@@ -385,7 +442,9 @@ def professor_class_home(classID):
     print(answers)
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     print(class_name)
-    return render_template('pages/professor_class_overview.html', chapters=chapters, sections=sections_arrays, questions=questions, class_name=class_name, answers=answers, classID=classID)
+    return render_template('pages/professor_class_overview.html', chapters=chapters, sections=sections_arrays,
+                           questions=questions, class_name=class_name, answers=answers, classID=classID)
+
 
 @app.route('/student-class-overview/<classID>')
 @login_required
@@ -396,16 +455,17 @@ def student_class_home(classID):
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
-    #questions = []
-    #for sectionarray in sections_arrays:
+    # questions = []
+    # for sectionarray in sections_arrays:
     #    for section in sectionarray:
     #        questions.append(query_db('SELECT * from Questions where sectionID="%s"' % section[0]))
-    #answers = []
-    #for question_array in questions:
+    # answers = []
+    # for question_array in questions:
     #    for question in question_array:
     #        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays, class_name=class_name, classID=classID)
+    return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
+                           class_name=class_name, classID=classID)
 
 
 @app.route('/forgot')
@@ -413,11 +473,13 @@ def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
 
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(home_url)
+
 
 # Error handlers.
 

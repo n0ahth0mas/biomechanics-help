@@ -1,14 +1,27 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
- <div class="hero-image">
-     <img src="{{url_for('static', filename='img/nature.jpg')}}" class="hero-img">
-  <div class="hero-text">
-    <h1>Welcome</h1>
-    <h3>To Puget Sound Textbook Review</h3>
+<link type="text/css" rel="stylesheet" href="/static/css/rotateText.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/home.css" />
+
+<!--
+    <div class="frame">
+      <div class="center">
+        <div class="carousel">
+                <div class="pre">HELP! in </div>
+                <div class="change_outer">
+                    <div class="change_inner">
+                        <div class="element">BioMechanics</div>
+                        <div class="element">Physics</div>
+                        <div class="element">Biology</div>
+                        <div class="element">Communication</div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+    -->
       <div class="call-to-action-div">
           <a href="/login" ><button class="btn bg-success learn-more-btn">Login</button></a>
       </div>
-  </div>
-</div>
 {% endblock %}

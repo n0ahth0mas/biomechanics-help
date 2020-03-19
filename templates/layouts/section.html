@@ -1,0 +1,29 @@
+{% extends 'layouts/base' %}
+{% block title %}Section{% endblock %}
+
+{% block content %}
+<body>
+<p> test</p>
+<p> test</p>
+<p> test</p>
+<p> test</p>
+<p> test</p>
+<p> test</p>
+
+{{info_data}}
+
+<p></p>
+{{info_image}}
+
+
+<p></p>
+<video width="320" height="240" controls>
+  <source src={{video}} type="video/mp4">
+</video>
+{{video}}
+
+<p></p>
+{{q_list}}
+{{a_list}}
+</body>
+{% endblock %}
