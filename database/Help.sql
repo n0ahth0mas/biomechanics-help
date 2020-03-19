@@ -6,7 +6,7 @@ drop table if exists SectionBlock;
 drop table if exists Answers;
 drop table if exists Glossary;
 drop table if exists QuestionImages;
-drop table if exists SectionBlockImages;
+drop table if exists SectionImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
