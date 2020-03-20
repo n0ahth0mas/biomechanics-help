@@ -90,6 +90,11 @@ class Section(db.Model):
     sectionName = db.Column(db.String())
 
 
+class SectionBlock(db.Model):
+    __tablename__ = 'SectionBlock'
+    sectionBlockID = db.Column(db.Integer(), primary_key=True)
+    sectionText = db.Column(db.String())
+    sectionID = db.Column(db.Integer(),db.ForeignKey('Sections.sectionID'))
 
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
@@ -193,6 +198,15 @@ def edit_section(classID,chapterID,sectionID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
+    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, form=form)
+
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/<sectionBlockID', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def edit_section_block(classID,chapterID,sectionID,sectionBlockID):
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, form=form)
