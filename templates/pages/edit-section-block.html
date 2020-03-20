@@ -2,7 +2,7 @@
 {% block title %}EditChapter{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <h1>Edit Section: {{sectionName}}</h1>
+    <h1>Edit Section Block: {{sectionBlockID}}</h1>
     <form method="post" class="form add-chapter-form">
         {{ form.csrf_token }}
         {{ form.sectionText(class_ = 'form-control', placeholder = form.sectionText.label.text, required = true) }}
