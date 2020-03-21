@@ -72,7 +72,7 @@ login.init_app(app)
 class Class(db.Model):
     __tablename__ = "Classes"
     classID = db.Column(db.Integer(), primary_key=True)
-    className = db.Column(db.String(), unique=True)
+    className = db.Column(db.String())
 
 
 class Chapter(db.Model):
@@ -82,7 +82,6 @@ class Chapter(db.Model):
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
 
 
-
 class Section(db.Model):
     __tablename__ = 'Sections'
     sectionID = db.Column(db.Integer(), primary_key=True)
@@ -90,11 +89,47 @@ class Section(db.Model):
     sectionName = db.Column(db.String())
 
 
+class SectionImages(db.Model):
+    __tablename__ = 'SectionImages'
+    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
+    imageFile = db.Column(db.String(), primary_key=True)
+
+    class Meta:
+        unique_together = (("sectionID", "imageFile"),)
+
+
 class SectionBlock(db.Model):
     __tablename__ = 'SectionBlock'
     sectionBlockID = db.Column(db.Integer(), primary_key=True)
     sectionText = db.Column(db.String())
-    sectionID = db.Column(db.Integer(),db.ForeignKey('Sections.sectionID'))
+    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+
+
+class Question(db.Model):
+    __tablename__ = 'Questions'
+    questionID = db.Column(db.Integer(), primary_key=True)
+    questionText = db.Column(db.String())
+    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    questionType = db.Column(db.String())
+
+
+class Answer(db.Model):
+    __tablename__ = 'Answers'
+    answerID = db.Column(db.Integer(), primary_key=True)
+    questionID = db.Column(db.Integer(), db.ForeignKey('Questions.questionID'))
+    correctness = db.Column(db.String())
+    answerText = db.Column(db.String())
+    answerReason = db.Column(db.String())
+
+
+class Video(db.Model):
+    __tablename__ = 'Videos'
+    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
+    videoFile = db.Column(db.String(), primary_key=True)
+
+    class Meta:
+        unique_together = (("sectionID", "videoFile"),)
+
 
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
@@ -189,27 +224,80 @@ def edit_chapter(classID,chapterID):
 @login_required
 @roles_required('Professor')
 def edit_section(classID,chapterID,sectionID):
-    form = CreateSectionBlock()
-    if form.validate_on_submit():
+    form_s = CreateSectionBlock()
+    if form_s.validate_on_submit():
         one_section_block = SectionBlock()
-        one_section_block.sectionName = form.data["sectionText"]
+        one_section_block.sectionText = form_s.data["sectionText"]
         one_section_block.sectionID = sectionID
         db.session.add(one_section_block)
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_i = CreateImage()
+    if form_i.validate_on_submit():
+        one_image = SectionImages()
+        one_image.sectionID = sectionID
+        one_image.imageFile = form_i.data["imageFile"]
+        db.session.add(one_image)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    form_q = CreateQuestion()
+    if form_q.validate_on_submit():
+        one_question = Question()
+        one_question.questionText = form_q.data["questionText"]
+        one_question.sectionID = sectionID
+        one_question.questionType = form_q.data["questionType"]
+        db.session.add(one_question)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    form_v = CreateVideo()
+    if form_v.validate_on_submit():
+        one_video = Video()
+        one_video.sectionID = sectionID
+        one_video.videoFile = form_i.data["videoFile"]
+        db.session.add(one_video)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, form=form)
+    sectionImages = query_db('SELECT imageFile from SectionImages where sectionID="%s"' % sectionID)
+    questions = query_db('SELECT * from Questions where sectionID="%s"' % sectionID)
+    videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+    answers = []
+    for question in questions:
+        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
+    print(answers)
+    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, sectionImages=sectionImages, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
 
 
-@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/<sectionBlockID', methods=('GET', 'POST'))
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def edit_section_block(classID,chapterID,sectionID,sectionBlockID):
-    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+    sectionText = query_db('SELECT sectionText from Sections where sectionID="%s"' % sectionBlockID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, form=form)
+    return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def edit_question(classID,chapterID,sectionID,questionID):
+    form_a = CreateAnswer()
+    if form_a.validate_on_submit():
+        one_answer = Answer()
+        one_answer.questionID = questionID
+        one_answer.correctness = form_a.data["correctness"]
+        one_answer.answerText = form_a.data["answerText"]
+        one_answer.answerReason = form_a.data["answerReason"]
+        db.session.add(one_answer)
+        db.session.commit()
+    answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
+    questions = query_db('SELECT * from Questions where questionID="%s"' % questionID)
+
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))

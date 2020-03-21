@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
@@ -23,6 +23,7 @@ class RegisterForm(FlaskForm):
         [DataRequired(),
          EqualTo('password', message='Passwords must match')]
     )
+
 
 class LoginForm(FlaskForm):
     email = EmailField('Email', [DataRequired()])
@@ -81,3 +82,22 @@ class CreateSection(FlaskForm):
 
 class CreateSectionBlock(FlaskForm):
     sectionText = StringField('Section Text', validators=[DataRequired()])
+
+
+class CreateQuestion(FlaskForm):
+    questionText = StringField('Question Text', validators=[DataRequired()])
+    questionType = StringField('Question Type', validators=[DataRequired()])
+
+
+class CreateImage(FlaskForm):
+    imageFile = FileField('Image File', validators=[DataRequired()])
+
+
+class CreateVideo(FlaskForm):
+    videoFile = FileField('Video File', validators=[DataRequired()])
+
+
+class CreateAnswer(FlaskForm):
+    correctness = BooleanField('Correctness', validators=[DataRequired()])
+    answerText = StringField('Answer Text', validators=[DataRequired()])
+    answerReason = StringField('Answer Reason', validators=[DataRequired()])
