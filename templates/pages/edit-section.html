@@ -34,10 +34,10 @@
         <div class="question-headers">
             <a class="question-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}"><h3>Question: {{question[1]}} (Click on link to add answers)</h3></a>
         </div>
-        {% for answer in answers %}
-            <h5>AnswerID: {{answer[0][1]}} Question: {{question[0]}}</h5>
-            {% if answer[0][1] == question[0] %}
-                <h5>Answer: {{answer[0][3]}} Correctness: {{answer[0][2]}} Reason: {{answer[0][4]}}</h5>
+        {% set third_loop = loop %}
+        {% for answer in answers[third_loop.index-1] %}
+            {% if answer[1] == question[0] %}
+                <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}}</h5>
             {% endif %}
         {% endfor %}
     {% endfor %}
