@@ -2,14 +2,18 @@
 {% block title %}Section{% endblock %}
 
 {% block content %}
-<link type="text/css" rel="stylesheet" href="/static/css/section.css" />
+
+<link href="/static/css/section.css" rel="stylesheet" type="text/css"/>
+<script src="/static/js/section.js"></script>
 <main>
-<!-- Information Block -->
-        <div id="infoText" style="border: 2px solid Black;">
-            <p>
-                {{slide_content}}
-            </p>
-          <pre>
+    <div class="grid-container">
+        <div class="gridbody">
+            <!-- Information Block -->
+            <div id="infoText" style="border: 2px solid Black;">
+                <p>
+                    {{slide_content}}
+                </p>
+                <pre>
             <p style="background-color:powderblue;">
               Insert information that makes up info slides here!!!
             </p>
@@ -19,72 +23,58 @@
                 Playing around with
                                     the words and stuff
           </pre>
-        </div>
-<!-- Image/File Block -->
-        <div id="infoImage">
-            <p title="Image Relevant Information">
-                <img alt="Slide Image" height="400" src="/static/img/fireElmo.jpg" width="562">
-            </p>
-        </div>
-<!-- Video Block -->
-<video controls height="600" width="100%">
-  <source src={{video}} type="video/mp4">
-</video>
-
-<!-- Quiz Block -->
-  <div>
-      <h3>Start Quiz! (<span id="quizLength">{{q_list|length}}</span> Questions Long!)</h3>
-    <div id="scoreCounter">0</div>
-    <div>
-        {% for question in q_list %}
-            {% set outer_loop = loop %}
-            <div class="question_div {% if outer_loop.index-1 > 0 %}inactive_question{% endif %}">
-                <img src="{{q_images[outer_loop.index-1]}}">
-                <h4>{{question[1]}}</h4>
-                {% if question[3] == "short" %}
-                    <input placeholder="Enter short answer here" type="text">
-                    <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
-                {% else %}
-                    {% for answer in a_list[outer_loop.index-1] %}
-                        <button onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}')">{{answer[3]}}</button>
-                    {% endfor %}
-                {% endif %}
             </div>
-        {% endfor %}
+            <!-- Image/File Block -->
+            <div id="infoImage">
+                <p title="Image Relevant Information">
+                    <img alt="Slide Image" height="400" src="/static/img/fireElmo.jpg" width="562">
+                </p>
+            </div>
+            <!-- Video Block -->
+            <video controls height="600px" width="100%">
+                <source src={{video}} type="video/mp4">
+            </video>
+
+            <!-- Quiz Block -->
+            <div>
+                <div class="quiz">
+                    <h3 class="header" id="header"> Section Review!
+                        <br>(<span id="quizLength"> This review is {{q_list|length}}</span> questions long!)
+                        <br>
+                        <button class="startBtn" onclick="startQuiz()">Start Quiz</button>
+                    </h3>
+
+
+                    <div id="questions" class="questions">
+                        <div id="scoreCounter">0</div>
+                        {% for question in q_list %}
+                        {% set outer_loop = loop %}
+                        <div class="question_div">
+                            <img src="{{q_images[outer_loop.index-1]}}">
+                            <h4>{{question[1]}}</h4>
+                            {% if question[3] == "short" %}
+                            <input placeholder="Enter short answer here" type="text">
+                            <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
+                            {% else %}
+                            {% for answer in a_list[outer_loop.index-1] %}
+                            <button onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}')">
+                                {{answer[3]}}
+                            </button>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div style="display:none">YourScore:
+                        <div id="quiz-final-score"></div>
+                        <button onclick="location.reload()">Redo Quiz?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="display:none">YourScore: <div id="quiz-final-score"></div><button onclick="location.reload()">Redo Quiz?</button></div>
-  </div>
 </main>
 
 {% endblock %}
 
-
-
-
-<!--
-{% if q_list != null %}
-<p> testing qlist null</p>
-{% endif %}
-<body>
-<p> test</p>
-<p> test</p>
-<p> test</p>
-<p> test</p>
-<p> test</p>
-<p> test</p>
-
-{{info_data}}
-
-<p></p>
-{{info_image}}
-
-
-<p></p>
-
-{{video}}
-
-<p></p>
-{{q_list}}
-{{a_list}}
-</body>
--->
