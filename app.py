@@ -285,8 +285,9 @@ def login():
             flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
         else:
-            user = User(id=form.data["email"], email=form.data["email"], name=user_object[2], active=True,
-                        password=passhash)
+            user = User.query.filter_by(id=form.email.data).one()
+            print(user)
+            print(user.roles)
             session["email"] = form.data["email"]
             login_user(user)
             print(current_user.email)

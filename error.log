@@ -11218,3 +11218,6 @@ IndexError: list index out of range
 2020-03-17 07:56:24,770 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
 2020-03-17 08:00:05,813 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
 2020-03-17 08:00:47,625 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 19:32:56,560 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:429]
+2020-03-17 19:35:05,234 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 20:05:00,918 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:429]
