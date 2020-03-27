@@ -1,13 +1,14 @@
 
 /* QUIZ */
-function submitMultipleChoiceAnswer(button, truthValue, reason){
+function submitMultipleChoiceAnswer(button, truthValue, reason, buttonID){
     if(truthValue === 'True'){
         document.getElementById("scoreCounter").innerHTML = String(Number(String(document.getElementById("scoreCounter").innerHTML)) + 1);
         alert("correct!");
     }else{
+        document.getElementById(buttonID).className = "disabled";
         alert(reason);
     }
-    nextQuestion(button.parentElement);
+    //nextQuestion(button.parentElement);
 }
 
 function submitShortAnswer(input, answer){

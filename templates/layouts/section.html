@@ -6,7 +6,7 @@
 <link href="/static/css/section.css" rel="stylesheet" type="text/css"/>
 <script src="/static/js/section.js"></script>
 <main>
-    <div class="grid-container">
+    <div class="page-container">
         <div class="gridbody">
             <!-- Information Block -->
             <div id="infoText" style="border: 2px solid Black;">
@@ -27,7 +27,7 @@
             <!-- Image/File Block -->
             <div id="infoImage">
                 <p title="Image Relevant Information">
-                    <img alt="Slide Image" height="400" src="/static/img/fireElmo.jpg" width="562">
+                    <img alt="Slide Image" src="/static/img/fireElmo.jpg" width="100%">
                 </p>
             </div>
             <!-- Video Block -->
@@ -38,30 +38,35 @@
             <!-- Quiz Block -->
             <div>
                 <div class="quiz">
-                    <h3 class="header" id="header"> Section Review!
-                        <br>(<span id="quizLength"> This review is {{q_list|length}}</span> questions long!)
+                    <h3 class="header" id="header">Section Review!
+                        <br>
+                        (<span id="quizLength">This review is {{q_list|length}}</span> questions long!)
                         <br>
                         <button class="startBtn" onclick="startQuiz()">Start Quiz</button>
                     </h3>
 
 
-                    <div id="questions" class="questions">
+                    <div class="questions" id="questions">
                         <div id="scoreCounter">0</div>
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
-                        <div class="question_div">
-                            <img src="{{q_images[outer_loop.index-1]}}">
-                            <h4>{{question[1]}}</h4>
-                            {% if question[3] == "short" %}
-                            <input placeholder="Enter short answer here" type="text">
-                            <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
-                            {% else %}
-                            {% for answer in a_list[outer_loop.index-1] %}
-                            <button onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}')">
-                                {{answer[3]}}
-                            </button>
-                            {% endfor %}
-                            {% endif %}
+                        <div class="question_div {% if outer_loop.index-1 > 0 %}inactive_question{% endif %}">
+                            <a class="q_img_container" data-fancybox href="{{q_images[outer_loop.index-1]}}"><img class="q_img"src="{{q_images[outer_loop.index-1]}}"></a>
+                            <div class="q_header">
+                                <h4>{{question[1]}}</h4>
+                            </div>
+                            <div class="q_qs">
+                                {% if question[3] == "short" %}
+                                <input placeholder="Enter short answer here" type="text">
+                                <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
+                                {% else %}
+                                {% for answer in a_list[outer_loop.index-1] %}
+                                <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
+                                    {{answer[3]}}
+                                </button>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
@@ -77,4 +82,10 @@
 </main>
 
 {% endblock %}
+
+<!--
+    display: grid;
+    grid-template-columns:[one]20% [two]70% [three]10%;
+    grid-template-rows: [top]minmax(50%, auto) [top]minmax(50%, auto);
+-->
 
