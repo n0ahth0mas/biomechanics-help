@@ -24,10 +24,11 @@ const qImg = document.getElementById("qImg");
 var questionBubbles;
 
 //Question and answer management
-var firstAttempt = true;
+var tries = 0;
 var pastAnswers = [];
 var questions = [];
 var answerIdCounter = 0;
+var correctShort = "";
 
 //functionality variables
 var lastQuestion;
@@ -49,7 +50,7 @@ Question Creation
 function makeQuestions(){
 console.log(q_list);
     for(var i =0; i<q_list.length; i++){
-        var question = new Object();
+        let question = new Object();
         question.qID = q_list[i][0];
         question.text = q_list[i][1];
         question.type = q_list[i][3];
@@ -62,9 +63,9 @@ console.log(q_list);
 
 //answer population
 function makeAnswers(qID){
-    var answerList = [];
+    let answerList = [];
         for(var i = 0; i<a_list[answerIdCounter].length; i++){
-            var answer = new Object();
+            let answer = new Object();
             answer.aID = a_list[answerIdCounter][i][0];
             answer.qID = qID;
             answer.correct = a_list[answerIdCounter][i][2];
@@ -96,17 +97,18 @@ function renderQuestion(){
     else if(firstAttempt && q.type.toLowerCase() == "short") makeInput();
 }
 
+//create bubbles for the quiz type question
 function makeBubbles(answerList){
     questionBubbles = "";
     choices.innerHTML = "";
     for(var i=0; i<answerList.length; i++){
-        var text = answerList[i].text;
-        var choice = "<div class='choice' id= " +i + " onclick=checkAnswer(\""+i+"\")  data-toggle='modal' data-target='#answerModal'>"+ text+"</div>";
-        console.log(choice);
+        let text = answerList[i].text;
+        let choice = "<div class='choice' id= " +i + " onclick=checkAnswer(\""+i+"\")  data-toggle='modal' data-target='#answerModal'>"+ text+"</div>";
         choices.innerHTML += choice;
     }
 }
 
+//create the input block for the short answer response
 function makeInput(){
     choices.innerHTML = "";
     choices.innerHTML += "<input type='text' placeholder='Enter Answer Here' id='shortAns' name='shortAns'>"
@@ -132,7 +134,6 @@ function renderProgress(){
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
     console.log(qIndex);
         progress.innerHTML += "<div class='prog' id="+ "button"+qIndex +"></div>";
-        console.log("<div class='prog' id="+ "button "+qIndex +"></div>");
     }
 }
 
@@ -167,7 +168,7 @@ Answer Responses
 //get value sent from submit button, if short answer
  function getInputValue(){
     // Selecting the input element and get its value
-    var inputVal = document.getElementById("shortAns").value;
+    let inputVal = document.getElementById("shortAns").value;
 
     checkAnswer(inputVal);
 
@@ -176,14 +177,17 @@ Answer Responses
 
 //check answer
 function checkAnswer(answerVal){
-    var answerTruth = false;
-    var changed = false;
+    let answerTruth = false;
+    let changed = false;
+    let tries = 0;
     if(questions[runningQuestion].type.toLowerCase() == "quiz"){
         answerTruth = (questions[runningQuestion].answers[answerVal].correct.toLowerCase() == "true");
     } else{
+        if (tries >=3) choices.innerHTML +=  "<button type='button' id='skipBtn' onclick='nextQuestion()' data-toggle='modal' data-target='#answerModal'>Skip</button>"
         for(i=0; i<questions[runningQuestion].answers.length; i++){
             if(questions[runningQuestion].answers[i].correct.toLowerCase() == "true"){
-                if(answerVal.toString().includes(questions[runningQuestion].answers[i].text)){
+                correctShort = questions[runningQuestion].answers[i].text;
+                if(answerVal.toString().includes(correctShort)){
                     answerTruth = true;
                     answerVal = i;
                     changed = true;
@@ -194,21 +198,21 @@ function checkAnswer(answerVal){
     }
     if(answerTruth){
         // answer is correct
-        if (firstAttempt) score++;
+        if (tries == 0) score++;
         answerIsClicked(answerTruth, answerVal);
     }else{
         // answer is wrong
         currentAnswer = false;
-        firstAttempt = false;
+        tries++;
         answerIsClicked(answerTruth, answerVal);
         if(questions[runningQuestion].type.toLowerCase() == "quiz") changeColor(pastAnswers);
     }
     progressColor(answerTruth);
     count = 0;
 
-
+    //if the answer is correct. . .
     if (answerTruth){
-        firstAttempt = true;
+        tries = 0;
         //if the answer is correct and there are more questions/no more questions
         if(runningQuestion < lastQuestion){
         //move on to next question
@@ -236,14 +240,19 @@ function answerIsClicked(answerTruth, i){
         pastAnswers += i
     }
     //provide feedback based on answer
-    if(i === "none") modalBody.innerHTML = "<p> That is incorrect, please try again </p>";
+    if(i === "none" && answerTruth) modalBody.innerHTML = "<p> Nice job! </p>";
+    else if(i === "none") modalBody.innerHTML = "<p> That is incorrect, please try again </p>";
+    else if(i === "skipped"){
+        modalBody.innerHTML = "<p> The correct answer was " + correctShort + ". Try again next time!</p>";
+        pastAnswers = [];
+    }
     else modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[i].reasoning + "</p>";
 }
 
 //grey out incorrect, already clicked answers
 function changeColor(pastAnswers){
     for(i=0; i<pastAnswers.length; i++){
-        var id =pastAnswers[i];
+        let id =pastAnswers[i];
         document.getElementById(id).style.backgroundColor = "#808080"
         document.getElementById(id).style.pointerEvents = "#none"
     }
@@ -254,7 +263,7 @@ function progressColor(answerTruth){
     var color;
     //if the answer is correct
     if(answerTruth){
-        if (firstAttempt) color = "#0f0"; //chg color to green
+        if (tries ==0) color = "#0f0"; //chg color to green
         else color = "#FFA500"; //chg color to orange
         if(questions[runningQuestion].type.toLowerCase() == "quiz") resetColor();
     } else color = "#f00"; //chg color to red

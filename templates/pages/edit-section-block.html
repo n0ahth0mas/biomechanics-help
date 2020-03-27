@@ -1,0 +1,18 @@
+{% extends 'layouts/base' %}
+{% block title %}EditChapter{% endblock %}
+{% block content %}
+<main id="structure" role="main" class="container">
+    <h1>Edit Section Block: {{sectionBlockID}}</h1>
+    <form method="post" class="form add-chapter-form">
+        {{ form.csrf_token }}
+        {{ form.sectionText(class_ = 'form-control', placeholder = form.sectionText.label.text, required = true) }}
+        <input type="submit" value="Create Page" class="btn btn-primary btn-lg btn-block">
+    </form>
+
+    {% for sectionBlock in sectionBlocks %}
+        <div class="section-headers">
+            <a class="section-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}/text/{{sectionBlock[0]}}"><h3>Page {{sectionBlock[0]}}</h3></a>
+        </div>
+    {% endfor %}
+</main>
+{% endblock %}

@@ -2,11 +2,11 @@ drop table if exists Classes;
 drop table if exists Chapters;
 drop table if exists Sections;
 drop table if exists Questions;
-drop table if exists InfoSlide;
+drop table if exists SectionBlock;
 drop table if exists Answers;
 drop table if exists Glossary;
 drop table if exists QuestionImages;
-drop table if exists InfoSlideImages;
+drop table if exists SectionImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
@@ -51,11 +51,11 @@ create TABLE Questions(
             ON DELETE CASCADE
 );
 
-create TABLE InfoSlide(
-        infoSlideID    INTEGER,
-        infoSlideText  TEXT check(infoSlideText IS NOT NULL),
+create TABLE SectionBlock(
+        sectionBlockID    INTEGER,
+        sectionText  TEXT,
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        PRIMARY KEY (infoSlideID),
+        PRIMARY KEY (sectionBlockID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
@@ -87,25 +87,25 @@ create TABLE Glossary(
 create TABLE QuestionImages(
         questionID     INTEGER,
         imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (imageFile),
+        PRIMARY KEY (questionID,imageFile),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
 
-create TABLE InfoSlideImages(
-        infoSlideID    INTEGER,
+create TABLE SectionImages(
+        sectionID    INTEGER check(sectionID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (imageFile),
-        FOREIGN KEY (infoSlideID) REFERENCES InfoSlide (infoSlideID)
+        PRIMARY KEY (sectionID,imageFile),
+        FOREIGN KEY (sectionID) REFERENCES Section (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
 
 create TABLE Videos(
-        sectionID      INTEGER check(sectionID),
+        sectionID      INTEGER check(sectionID IS NOT NULL),
         videoFile      TEXT check(videoFile IS NOT NULL),
-        PRIMARY KEY (videoFile),
+        PRIMARY KEY (sectionID,videoFile),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
             ON DELETE CASCADE

@@ -1,0 +1,54 @@
+{% extends 'layouts/base' %}
+{% block title %}Edit Section{% endblock %}
+{% block content %}
+<main id="structure" role="main" class="container">
+    <h1>Edit Section: {{sectionName}}</h1>
+    <h1>Text</h1>
+    <form method="post" class="form add-section-block-form">
+        {{ form_s.csrf_token }}
+        {{ form_s.sectionText(class_ = 'form-control', placeholder = form_s.sectionText.label.text, required = true) }}
+        <input type="submit" value="Add Text" class="btn btn-primary btn-lg btn-block">
+    </form>
+    {% for sectionBlock in sectionBlocks %}
+        <div class="section-headers">
+            <a class="section-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}/text/{{sectionBlock[0]}}"><h3>Text: {{sectionBlock[0]}}</h3></a>
+        </div>
+    {% endfor %}
+    <h1>Images</h1>
+    <form method="post" class="form add-image-form">
+        {{ form_i.csrf_token }}
+        {{ form_i.imageFile(class_ = 'form-control', placeholder = form_i.imageFile.label.text, required = true) }}
+        <input type="submit" value="Choose File" class="btn btn-primary btn-lg btn-block">
+    </form>
+    {% for sectionImage in sectionImages %}
+        <h3>Image File: {{sectionImage[0]}}</h3>
+    {% endfor %}
+    <h1>Question</h1>
+    <form method="post" class="form add-question-form">
+        {{ form_q.csrf_token }}
+        {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
+        {{ form_q.questionType(class_ = 'form-control', placeholder = form_q.questionType.label.text, required = true) }}
+        <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
+    </form>
+    {% for question in questions %}
+        <div class="question-headers">
+            <a class="question-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}"><h3>Question: {{question[1]}} (Click on link to add answers)</h3></a>
+        </div>
+        {% set third_loop = loop %}
+        {% for answer in answers[third_loop.index-1] %}
+            {% if answer[1] == question[0] %}
+                <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}}</h5>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <h1>Videos</h1>
+    <form method="post" class="form add-video-form">
+        {{ form_v.csrf_token }}
+        {{ form_v.videoFile(class_ = 'form-control', placeholder = form_v.videoFile.label.text, required = true) }}
+        <input type="submit" value="Choose Video" class="btn btn-primary btn-lg btn-block">
+    </form>
+    {% for video in videos %}
+        <h3>Video File: {{video[0]}}</h3>
+    {% endfor %}
+</main>
+{% endblock %}
