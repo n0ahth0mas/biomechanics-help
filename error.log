@@ -11420,6 +11420,19 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
+<<<<<<< HEAD
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 386, in student_class_home
+    class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+IndexError: list index out of range
+2020-03-17 07:56:24,770 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 08:00:05,813 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 08:00:47,625 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 19:32:56,560 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:429]
+2020-03-17 19:35:05,234 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:428]
+2020-03-17 20:05:00,918 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:429]
+=======
 TypeError: infoSlide() missing 1 required positional argument: 'sectionID'
 2020-03-17 14:32:57,441 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:439]
 2020-03-17 14:32:59,973 ERROR: Exception on /info-slide [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
@@ -13267,3 +13280,5 @@ sqlite3.OperationalError: no such column: sectionID
 2020-03-20 23:00:28,684 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:656]
 2020-03-20 23:01:09,586 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:656]
 2020-03-20 23:01:42,729 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:656]
+>>>>>>> 58ae31db826af14f9e6585a1976aa2dbad026503
+2020-03-27 14:41:39,466 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:657]
