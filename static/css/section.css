@@ -39,7 +39,7 @@ h3.header{
     width:100%;
     display: grid;
     grid-template-columns:[one]20% [two]70% [three]10%;
-    grid-template-rows: [top]50% [bottom]50%;
+    grid-template-rows: [top]2fr [bottom]1fr;
 }
 .q_img_container{
     display: flex;
@@ -58,6 +58,7 @@ h3.header{
 .q_header{
     display: flex;
     align-items: center;
+    text-align: center
     justify-content: center;
     grid-column-start: two;
     grid-row-start: top;
@@ -79,6 +80,13 @@ h3.header{
     border-radius: 8px;
     margin: .5%;
     font-size: 20px;
+    transition-duration: .4s;
+    border: 2px solid #D1D1D1;
+}
+
+.mult_choice:hover{
+    background-color: #D1D1D1;
+    transform: scale(1.1, 1.1);
 }
 
 .disabled {
@@ -86,5 +94,38 @@ h3.header{
     margin: .5%;
     font-size: 20px;
     opacity: 0.6;
-    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.timer_box {
+    align-items: center;
+    display: flex;
+    grid-column-start: one;
+    grid-row-start: bottom;
+    grid-column-end: one;
+    grid-row-end: bottom;
+    width: 100%;
+    height: 100%;
+}
+
+.timer_time {
+    font-size: 3em;
+    padding: 7px;
+    position: absolute;
+    margin-top: -30px
+}
+.timer_bar{
+    width: 200px;
+    height: 20px;
+    border-radius: 10px;
+    border: 2px solid grey;
+    position: absolute;
+}
+
+.timer_gauge{
+    height: 20px;
+    border-radius: 10px;
+    background-color: green;
+    border: 2px;
+    position: absolute;
 }

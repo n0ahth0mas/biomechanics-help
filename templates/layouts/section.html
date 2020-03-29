@@ -4,7 +4,7 @@
 {% block content %}
 
 <link href="/static/css/section.css" rel="stylesheet" type="text/css"/>
-<script src="/static/js/section.js"></script>
+
 <main>
     <div class="page-container">
         <div class="gridbody">
@@ -51,6 +51,11 @@
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
                         <div class="question_div {% if outer_loop.index-1 > 0 %}inactive_question{% endif %}">
+                            <div class="timer_box">
+                                <div class="timer_time" id="timer_time">0</div>
+                                <div class="timer_bar" id="timer_bar"></div>
+                                <div class="timer_gauge" id="timer_gauge"></div>
+                            </div>
                             <a class="q_img_container" data-fancybox href="{{q_images[outer_loop.index-1]}}"><img class="q_img"src="{{q_images[outer_loop.index-1]}}"></a>
                             <div class="q_header">
                                 <h4>{{question[1]}}</h4>
@@ -80,7 +85,7 @@
         </div>
     </div>
 </main>
-
+<script src="/static/js/section.js"></script>
 {% endblock %}
 
 <!--
