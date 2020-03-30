@@ -25,6 +25,11 @@
 html {
   overflow-y: scroll;
 }
+
+html, body {
+  font-family: 'PT Sans', sans-serif !important;
+}
+
 a {
   cursor: pointer;
 }
@@ -80,7 +85,7 @@ a {
 
 .learn-more-btn{
     border-radius: 2px;
-    border: 2px !important;
+    border: 2px solid #33cc33 !important;
     float: left;
     background-color: #33cc33 !important;
     padding: 15px 50px;
@@ -123,8 +128,8 @@ a {
 }
 
 .learn-more-btn:hover{
-    color: #007bff !important;
-    border: 2px solid #007bff !important;
+    color: #33cc33 !important;
+    border: 2px solid #33cc33 !important;
     background-color: white !important;
 }
 
