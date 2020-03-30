@@ -351,11 +351,21 @@ def student_home():
 @login_required
 def section_page(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
-        # get info data
-        info_data = "testing"
+        # Section Text
+        text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s"' % section)
+        section_text = []
 
-        # get info image
-        info_image = "/static/img/40.png"
+        for x in text_info:
+            section_text.append((x[0], x[1]))
+
+        # Section Images
+        #Problem with sectionImages in db, need to change info to section when ready
+        #images_info = query_db('SELECT * from sectionImages WHERE sectionID = "%s' % section)
+        section_images = []
+
+        #for y in images_info:
+            #section_images.append(x[1])
+
 
         # get video file
         video = "/static/video/samplevid.mp4"
@@ -380,8 +390,8 @@ def section_page(class_id, chapter, section):
         # q_image_list = query_db('SELECT * from QuestionImages')
 
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
-                               a_list=a_list, classID=class_id, q_images=q_image_list, info_data=info_data,
-                               info_image=info_image, video=video)
+                               a_list=a_list, classID=class_id, q_images=q_image_list,
+                               section_images=section_images, video=video, section_text=section_text)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
