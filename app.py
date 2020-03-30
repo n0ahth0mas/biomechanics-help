@@ -281,6 +281,7 @@ def edit_section_block(classID,chapterID,sectionID,sectionBlockID):
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
 
+
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
@@ -312,6 +313,16 @@ def delete_answer(classID,chapterID,sectionID,questionID,answerID):
     db.session.delete(answer_to_delete)
     db.session.commit()
     return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+
+
+#@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/delete/<questionID>>', methods=('GET', 'POST'))
+#@login_required
+#@roles_required('Professor')
+#def delete_question(classID,chapterID,sectionID,questionID):
+#    question_to_delete = Answer.query.filter_by(answerID=answerID).first()
+#    db.session.delete(question_to_delete)
+#    db.session.commit()
+#    return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))

@@ -44,7 +44,7 @@
 <main id="structure" role="main" class="container">
     <h1>{{questions}}</h1>
     {% for answer in answers %}
-        <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}} <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}/delete/{{answer[0]}}">Delete</a></h5>
+        <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}}  <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}/delete/{{answer[0]}}"><button type="button"  onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></h5>
     {% endfor %}
     <!-- Trigger/Open The Modal -->
     <button id="myBtn">Add Answer</button>
