@@ -58,7 +58,7 @@ h3.header{
 .q_header{
     display: flex;
     align-items: center;
-    text-align: center
+    text-align: center;
     justify-content: center;
     grid-column-start: two;
     grid-row-start: top;
