@@ -98,6 +98,6 @@ class CreateVideo(FlaskForm):
 
 
 class CreateAnswer(FlaskForm):
-    correctness = BooleanField('Correctness', validators=[DataRequired()])
+    correctness = BooleanField()
     answerText = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
