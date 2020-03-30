@@ -309,7 +309,7 @@ def edit_question(classID,chapterID,sectionID,questionID):
 @login_required
 @roles_required('Professor')
 def delete_answer(classID,chapterID,sectionID,questionID,answerID):
-    sql = query_db('SELECT * from Answers where answerID="%s"' % answerID)
+    sql = query_db('select * FROM Answers WHERE answerID = "%s"' % answerID)
     db.session.delete(sql)
     db.session.commit()
     return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
