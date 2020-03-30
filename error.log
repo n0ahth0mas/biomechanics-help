@@ -14138,3 +14138,4 @@ sqlite3.OperationalError: no such table: SectionBlock
 2020-03-30 11:28:22,096 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:676]
 2020-03-30 11:37:49,870 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:676]
 2020-03-30 11:40:50,942 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:676]
+2020-03-30 11:41:32,059 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:676]
