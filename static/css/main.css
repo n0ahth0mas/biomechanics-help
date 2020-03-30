@@ -65,12 +65,25 @@ a {
     left: 40%;
 }
 
+
+.box{
+    display: block;
+}
+
+.word{
+    margin-left: 15px;
+}
+
+#landing-title{
+    float: left;
+}
+
 .learn-more-btn{
     border-radius: 2px;
     border: 2px !important;
     float: left;
-    background-color: #007bff !important;
-    padding: 15px 20px 15px 20px;
+    background-color: #33cc33 !important;
+    padding: 15px 50px;
     color: white;
 }
 
@@ -117,11 +130,9 @@ a {
 
 .call-to-action-div{
     display: inline-block;
-    width: 75%;
     text-align: center;
     position: relative;
     left: 23%;
-    margin-top: 20px;
 }
 
 #content{
