@@ -538,7 +538,9 @@ def new_prof_acc():
     form = ProfessorRegForm()
     if form.validate_on_submit():
         user_object = query_db('select * from Users where email= ?', [form.data["email"]], one=True)
-        if user_object is None:
+        #this lets us verify that the professor is actually working at a particular school before they make an account
+        school_code = query_db('select * from School where schoolID= ?', [form.data["schoolProfCode"]], one=True)
+        if user_object is None and school_code is not None:
             password = form.data["password"]
             h = hashlib.md5(password.encode())
             passhash = h.hexdigest()
