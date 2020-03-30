@@ -5,11 +5,11 @@ const finalScore = document.getElementById("quiz-final-score");
 //timer Setup
 let TIMER;
 const questionTime = 60; // 15s
-const timeGauge = document.getElementById("timer_gauge");
 let gaugeWidth = 200;
-const gaugeUnit = gaugeWidth / questionTime;
 const counter = document.getElementById("timer_time");
 var count = 1;
+
+var currentQuestion=0;
 
 /* QUIZ */
 function submitMultipleChoiceAnswer(button, truthValue, reason, buttonID){
@@ -48,12 +48,21 @@ function startQuiz(){
     document.getElementById("questions").style.display = "flex"
     document.getElementById("header").style.display = "none"
     TIMER = setInterval(renderCounter, 1000)
+
+    //basically my idea starts here, so you would theoretically be able to access the question data in a list and get the first question
+    renderQuestion(0)
 }
+
+//and then this would make the html elements visible based on the question id, and every time a person went on to a new question it would be re-rendered
+function renderQuestion(questionID){
+}
+
 
 function renderCounter(){
     if(count<questionTime){
-        counter.innerHTML = count;
-        timeGauge.style.width = count * gaugeUnit + "px";
+        counter.innerHTML = questionTime - count;
         count++;
+    } else{
+        nextQuestion()
     }
 }

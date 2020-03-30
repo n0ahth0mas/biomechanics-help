@@ -47,33 +47,56 @@
 
 
                     <div class="questions" id="questions">
-                        <div id="scoreCounter">0</div>
-                        {% for question in q_list %}
-                        {% set outer_loop = loop %}
-                        <div class="question_div {% if outer_loop.index-1 > 0 %}inactive_question{% endif %}">
-                            <div class="timer_box">
-                                <div class="timer_time" id="timer_time">0</div>
-                                <div class="timer_bar" id="timer_bar"></div>
-                                <div class="timer_gauge" id="timer_gauge"></div>
+                        <!-- question grid skeleton -->
+                        <div class="question_div">
+
+                            <!-- question progress -->
+                            <div class="prog_bub">
+                                {% for question in q_list %}
+                                <div class="progress" id="progress{{ question[0] }}"></div>
+                                {% endfor %}
                             </div>
-                            <a class="q_img_container" data-fancybox href="{{q_images[outer_loop.index-1]}}"><img class="q_img"src="{{q_images[outer_loop.index-1]}}"></a>
-                            <div class="q_header">
+
+                            <!-- timer-->
+                            <div class="timer_box">
+                                <div class="timer_time" id="timer_time">60</div>
+                            </div>
+
+                            <!-- for loop question content -->
+                            {% for question in q_list %}
+                            {% set outer_loop = loop %}
+                            <!-- image -->
+                            <a class="q_img_container" id="q_img_container{{ question[0] }}" data-fancybox href="{{q_images[outer_loop.index-1]}}"><img
+                                    class="q_img" src="{{q_images[outer_loop.index-1]}}"></a>
+
+                            <!-- question text -->
+                            <div class="q_header" id="q_header{{ question[0] }}">
                                 <h4>{{question[1]}}</h4>
                             </div>
-                            <div class="q_qs">
+
+                            <!-- question input/answers -->
+                            <div class="q_qs" id="q_qs{{ question[0] }}">
+
+                                <!-- short answer -->
                                 {% if question[3] == "short" %}
                                 <input placeholder="Enter short answer here" type="text">
-                                <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
+                                <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit
+                                </button>
+
+                                <!-- multiple choice -->
                                 {% else %}
                                 {% for answer in a_list[outer_loop.index-1] %}
-                                <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
+                                <button class="mult_choice" id="Button{{ answer[0] }}"
+                                        onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
                                     {{answer[3]}}
                                 </button>
+
                                 {% endfor %}
                                 {% endif %}
                             </div>
+
+                            {% endfor %}
                         </div>
-                        {% endfor %}
                     </div>
 
                     <div style="display:none">YourScore:
