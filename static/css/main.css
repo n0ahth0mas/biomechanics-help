@@ -8,6 +8,9 @@
 /*****************************************************************************
  * Main elements
  ****************************************************************************/
+html, body {
+  font-family: 'PT Sans', sans-serif !important;
+}
 
 .student-home-content{
     margin-left: 20%;
@@ -24,10 +27,6 @@
 
 html {
   overflow-y: scroll;
-}
-
-html, body {
-  font-family: 'PT Sans', sans-serif !important;
 }
 
 a {

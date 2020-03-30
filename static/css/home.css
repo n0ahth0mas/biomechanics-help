@@ -5,10 +5,6 @@ body {
 	        animation: gradient 15s ease infinite;
 }
 
-html, body{
-    font-family: 'PT Sans', sans-serif !important;
-}
-
 
 @-webkit-keyframes gradient {
 	0% {
