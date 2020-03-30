@@ -53,6 +53,7 @@ class StudentRegForm(FlaskForm):
 
 
 class ProfessorRegForm(FlaskForm):
+    schoolProfCode = StringField('Your Schools Professor Code', validators=[DataRequired()])
     fullName = StringField('Full name', validators=[DataRequired()])
     email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
     password = PasswordField('Password', validators=[DataRequired()])
