@@ -13282,4 +13282,773 @@ sqlite3.OperationalError: no such column: sectionID
 2020-03-20 23:01:42,729 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:656]
 >>>>>>> 58ae31db826af14f9e6585a1976aa2dbad026503
 2020-03-27 14:41:39,466 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:657]
+<<<<<<< HEAD
 2020-03-27 14:44:36,703 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:662]
+=======
+2020-03-29 15:05:54,153 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:662]
+2020-03-29 15:11:23,928 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:662]
+2020-03-29 15:13:39,717 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:663]
+2020-03-29 15:13:57,774 ERROR: Exception on /edit-class/Infinity100/1/1/question/1 [POST] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 290, in edit_question
+    print(here)
+NameError: name 'here' is not defined
+2020-03-29 15:17:32,438 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:663]
+2020-03-29 15:20:48,303 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:666]
+2020-03-29 15:21:17,639 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:666]
+2020-03-29 15:23:33,675 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:667]
+2020-03-29 15:25:30,528 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:667]
+2020-03-29 16:17:35,098 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:680]
+2020-03-29 16:19:32,659 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:680]
+2020-03-29 16:23:17,001 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:680]
+2020-03-29 17:13:30,243 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:13:39,493 ERROR: Exception on /edit-class/Infinity100/1/1/question/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 305, in edit_question
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 66, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 14, in block "content"
+    <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}} <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}/delete/{{answer[0]}}" onclick="return confirm('Are you sure?')">Delete</a></h5>
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: 'question' is undefined
+2020-03-29 17:16:28,941 ERROR: Exception on /edit-class/Infinity100/1/1/question/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 305, in edit_question
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 66, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 14, in block "content"
+    <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}} <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}/delete/{{answer[0]}}" onclick="return confirm('Are you sure?')">Delete</a></h5>
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: 'question' is undefined
+2020-03-29 17:17:56,378 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:18:05,919 ERROR: Exception on /edit-class/Infinity100/1/1/question/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 305, in edit_question
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 66, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 14, in block "content"
+    <h5>Answer: {{answer[3]}} Correctness: {{answer[2]}} Reason: {{answer[4]}} <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}/delete/{{answer[0]}}" onclick="return confirm('Are you sure?')">Delete</a></h5>
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: 'question' is undefined
+2020-03-29 17:19:26,247 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:22:02,295 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:23:54,194 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:25:49,037 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:26:54,548 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:27:04,448 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    mycursor = db.cursor()
+AttributeError: 'SQLAlchemy' object has no attribute 'cursor'
+2020-03-29 17:31:33,685 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 17:31:46,208 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'str' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 312, in delete_answer
+    db.session.delete(answerID)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.str' is not mapped
+2020-03-29 17:33:39,618 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 17:33:50,735 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.delete(answer)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2020-03-29 17:37:26,596 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:678]
+2020-03-29 17:37:38,450 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    cur = db.cursor()
+AttributeError: 'SQLAlchemy' object has no attribute 'cursor'
+2020-03-29 17:41:39,679 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:679]
+2020-03-29 17:42:06,124 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 314, in delete_answer
+    cur = db.cursor()
+AttributeError: 'SQLAlchemy' object has no attribute 'cursor'
+2020-03-29 17:44:40,357 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 17:44:51,322 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.remove(sql)
+TypeError: remove() takes 1 positional argument but 2 were given
+2020-03-29 18:03:59,918 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:04:09,183 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.delete(sql)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2020-03-29 18:08:58,922 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:09:10,083 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.commit()
+AttributeError: 'SQLAlchemy' object has no attribute 'commit'
+2020-03-29 18:09:26,410 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:09:35,069 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 314, in delete_answer
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
+NameError: name 'questions' is not defined
+2020-03-29 18:10:59,139 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:11:13,086 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 314, in delete_answer
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 66, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 7, in block "content"
+    {{ form_a.csrf_token }}
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form_a' is undefined
+2020-03-29 18:12:29,108 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:12:37,777 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+TypeError: delete_answer() missing 1 required positional argument: 'form_a'
+2020-03-29 18:13:15,046 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:13:26,317 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 314, in delete_answer
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID, form_a=form_a)
+NameError: name 'form_a' is not defined
+2020-03-29 18:13:37,669 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:13:51,010 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 314, in delete_answer
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 66, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-question.html", line 7, in block "content"
+    {{ form_a.csrf_token }}
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 471, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form_a' is undefined
+2020-03-29 18:14:24,294 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:15:50,553 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:16:55,018 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:17:27,600 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:20:27,297 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:20:40,114 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.delete(sql)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2020-03-29 18:21:49,785 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:21:54,415 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.remove(sql)
+TypeError: remove() takes 1 positional argument but 2 were given
+2020-03-29 18:22:05,635 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.remove(sql)
+TypeError: remove() takes 1 positional argument but 2 were given
+2020-03-29 18:22:22,876 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:22:36,255 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.remove(answerID)
+TypeError: remove() takes 1 positional argument but 2 were given
+2020-03-29 18:23:09,260 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:23:17,766 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.delete(sql)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2020-03-29 18:26:35,076 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:26:44,545 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 312, in delete_answer
+    Answers.query.filter(Answers.answerID == answerID).delete()
+NameError: name 'Answers' is not defined
+2020-03-29 18:26:59,844 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:27:11,593 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 312, in delete_answer
+    db.query.filter(Answers.answerID == answerID).delete()
+AttributeError: 'SQLAlchemy' object has no attribute 'query'
+2020-03-29 18:28:04,677 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:676]
+2020-03-29 18:28:15,119 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 312, in delete_answer
+    db.session.query.filter(Answers.answerID == answerID).delete()
+AttributeError: 'function' object has no attribute 'filter'
+2020-03-29 18:30:43,404 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:30:55,902 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 312, in delete_answer
+    sql = db.session.query(Answers).filter_by(answerID == answerID)
+NameError: name 'Answers' is not defined
+2020-03-29 18:31:56,035 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:677]
+2020-03-29 18:32:04,529 ERROR: Exception on /edit-class/Infinity100/1/1/question/1/delete/2 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1999, in delete
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 313, in delete_answer
+    db.session.delete(sql)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2001, in delete
+    raise exc.UnmappedInstanceError(instance)
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+>>>>>>> bbf975515cc6b957701a1cd538e3c2a3a51150f8
+2020-03-29 21:52:53,213 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:677]
+2020-03-29 22:06:36,743 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:677]

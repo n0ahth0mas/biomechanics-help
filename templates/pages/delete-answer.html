@@ -1,0 +1,10 @@
+{% extends 'layouts/base' %}
+{% block title %}Deleted Answer{% endblock %}
+{% block content %}
+<main id="structure" role="main" class="container">
+    <h1>Answer has been deleted from the database</h1>
+    <form action="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}">
+    <input type="submit" value="Go Back" />
+</form>
+</main>
+{% endblock %}

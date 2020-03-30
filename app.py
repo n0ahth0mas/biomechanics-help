@@ -289,7 +289,12 @@ def edit_question(classID,chapterID,sectionID,questionID):
     if form_a.validate_on_submit():
         one_answer = Answer()
         one_answer.questionID = questionID
-        one_answer.correctness = form_a.data["correctness"]
+        if form_a.data["correctness"] == 1:
+            one_answer.correctness = True
+            print(one_answer.correctness)
+        else:
+            print("in this")
+            one_answer.correctness = False
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
         db.session.add(one_answer)
@@ -297,7 +302,17 @@ def edit_question(classID,chapterID,sectionID,questionID):
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
     questions = query_db('SELECT * from Questions where questionID="%s"' % questionID)
 
-    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a)
+    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a, questionID=questionID)
+
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_answer(classID,chapterID,sectionID,questionID,answerID):
+    answer_to_delete = Answer.query.filter_by(answerID=answerID)
+    db.session.delete(answer_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))
