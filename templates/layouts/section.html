@@ -8,27 +8,30 @@
 <main>
     <div class="page-container">
         <div class="gridbody">
+            <h1>Chapter {{chapter}} Section {{section}}</h1>
             <!-- Information Block -->
-            <div id="infoText" style="border: 2px solid Black;">
+            <div id="sectionText" style="border: 2px solid Black;">
                 <p>
-                    {{slide_content}}
+                    {% for _text in section_text %}
+                        <p id = "_text[0]" style="border: 2px solid Black;">
+                            <strong>Section Block {{_text[0]}}:</strong><br>
+                            {{_text[1]}}
+                        </p>
+                    {% endfor %}
                 </p>
-                <pre>
-            <p style="background-color:powderblue;">
-              Insert information that makes up info slides here!!!
-            </p>
-            <hr>
-            <p style="text-align:center;"> More text we like in the center now</p>
-            <hr>
-                Playing around with
-                                    the words and stuff
-          </pre>
             </div>
+
             <!-- Image/File Block -->
+            <!--Does nothing at the moment, waiting for db fixes-->
             <div id="infoImage">
-                <p title="Image Relevant Information">
-                    <img alt="Slide Image" src="/static/img/fireElmo.jpg" width="100%">
+                <p>
+                    {% for _image in section_images %}
+                        <p title="Potential New Column in db for Image Name???">
+                            <img alt="Slide Image" src="_image[1]" width="100%">
+                        </p>
+                    {% endfor %}
                 </p>
+
             </div>
             <!-- Video Block -->
             <video controls height="600px" width="100%">
