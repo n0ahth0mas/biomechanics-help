@@ -300,8 +300,7 @@ def edit_question(classID,chapterID,sectionID,questionID):
         db.session.add(one_answer)
         db.session.commit()
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
-    questions = query_db('SELECT * from Questions where questionID="%s"' % questionID)
-
+    questions = query_db('SELECT questionText from Questions where questionID="%s"' % questionID)[0][0]
     return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a, questionID=questionID)
 
 
@@ -309,7 +308,7 @@ def edit_question(classID,chapterID,sectionID,questionID):
 @login_required
 @roles_required('Professor')
 def delete_answer(classID,chapterID,sectionID,questionID,answerID):
-    answer_to_delete = Answer.query.filter_by(answerID=answerID)
+    answer_to_delete = Answer.query.filter_by(answerID=answerID).first()
     db.session.delete(answer_to_delete)
     db.session.commit()
     return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
