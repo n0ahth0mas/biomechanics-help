@@ -14814,3 +14814,201 @@ sqlite3.OperationalError: unrecognized token: ""1"
 2020-03-30 15:39:03,876 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:688]
 2020-03-30 15:39:35,641 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:688]
 2020-03-30 18:35:14,232 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:38:24,479 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:46:29,294 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:46:52,946 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:47:59,383 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:53:04,698 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:54:33,202 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:55:29,878 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:56:29,845 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:58:13,996 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 02:59:22,542 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:00:01,150 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:00:19,811 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:01:17,807 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:04:02,189 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:04:39,939 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:05:39,461 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:05:46,922 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:06:21,529 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:06:43,278 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:06:49,816 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:07:20,133 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:08:58,742 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:09:50,410 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:10:34,233 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:11:01,708 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:12:23,311 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:12:46,163 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:13:14,050 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:13:36,619 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:13:52,286 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:14:29,135 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:15:00,847 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:15:15,356 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:15:29,780 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:15:58,078 ERROR: Exception on /professor-home [POST] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Enroll.email, Enroll.classID
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 477, in professor_home
+    db.session.commit()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
+    self.transaction.commit()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 503, in commit
+    self._prepare_impl()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 482, in _prepare_impl
+    self.session.flush()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2479, in flush
+    self._flush(objects)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2617, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 2577, in _flush
+    flush_context.execute()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
+    rec.execute(self)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 540, in execute
+    self.dependency_processor.process_saves(uow, states)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/dependency.py", line 1176, in process_saves
+    self._run_crud(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/orm/dependency.py", line 1239, in _run_crud
+    connection.execute(statement, secondary_insert)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Enroll.email, Enroll.classID
+[SQL: INSERT INTO "Enroll" (email, "classID") VALUES (?, ?)]
+[parameters: ('ricardobarraza52@gmail.com', "that's what she said")]
+(Background on this error at: http://sqlalche.me/e/gkpj)
+2020-03-31 03:28:54,890 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:32:44,995 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:32:50,295 ERROR: Exception on /edit-class/Infinity100 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 202, in edit_class
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-class.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 67, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-class.html", line 49, in block "content"
+    <a class="question-title-link" href="/edit-class/{{classID}}/{{chapter[0]}}"><h5>- {{_chapter[1]}} <a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger btn-xs chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></h5></a>
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 452, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: '_chapter' is undefined
+2020-03-31 03:33:40,525 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:35:52,001 ERROR: Exception on /edit-class/Infinity100 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 202, in edit_class
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-class.html", line 49, in template
+    <a class="question-title-link" href="/edit-class/{{classID}}/{{chapter[0]}}"><h5>- {{chapter[1]}<a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger btn-xs chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></h5></a>
+jinja2.exceptions.TemplateSyntaxError: unexpected '}'
+2020-03-31 03:37:03,005 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:37:37,182 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:38:18,194 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:39:11,204 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:40:54,824 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
+2020-03-31 03:41:53,881 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]
