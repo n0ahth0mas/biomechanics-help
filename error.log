@@ -14813,3 +14813,4 @@ sqlite3.OperationalError: unrecognized token: ""1"
 2020-03-30 15:38:27,554 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:688]
 2020-03-30 15:39:03,876 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:688]
 2020-03-30 15:39:35,641 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:688]
+2020-03-30 18:35:14,232 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:729]

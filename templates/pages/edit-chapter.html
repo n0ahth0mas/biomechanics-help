@@ -46,7 +46,7 @@
     <h3>Here is a list of sections in this chapter</h3>
     {% for section in sections %}
         <div class="section-headers">
-            <a class="section-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}"><h5>- {{section[2]}}</h5></a>
+            <a class="question-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}"><h5>- {{section[2]}}<a href="/edit-class/{{classID}}/{{chapterID}}/delete/{{section[0]}}"><button type="button"  onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></h5></a>
         </div>
     {% endfor %}
 

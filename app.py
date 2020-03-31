@@ -199,8 +199,7 @@ def edit_class(classID):
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
-    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
-                           className=className, form=form)
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
 @login_required
@@ -310,19 +309,50 @@ def edit_question(classID,chapterID,sectionID,questionID):
 @roles_required('Professor')
 def delete_answer(classID,chapterID,sectionID,questionID,answerID):
     answer_to_delete = Answer.query.filter_by(answerID=answerID).first()
+    print(answer_to_delete)
     db.session.delete(answer_to_delete)
     db.session.commit()
     return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
 
 
-#@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/delete/<questionID>>', methods=('GET', 'POST'))
-#@login_required
-#@roles_required('Professor')
-#def delete_question(classID,chapterID,sectionID,questionID):
-#    question_to_delete = Answer.query.filter_by(answerID=answerID).first()
-#    db.session.delete(question_to_delete)
-#    db.session.commit()
-#    return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/delete/<questionID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_question(classID,chapterID,sectionID,questionID):
+    question_to_delete = Question.query.filter_by(questionID=questionID).first()
+    db.session.delete(question_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+
+
+@app.route('/delete/<classID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_class(classID):
+    class_to_delete = Class.query.filter_by(classID=classID).first()
+    db.session.delete(class_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-class.html')
+
+
+@app.route('/edit-class/<classID>/delete/<chapterID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_chapter(classID,chapterID):
+    chapter_to_delete = Chapter.query.filter_by(chapterID=chapterID).first()
+    db.session.delete(chapter_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-chapter.html', classID=classID, chapterID=chapterID)
+
+
+@app.route('/edit-class/<classID>/<chapterID>/delete/<sectionID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_section(classID,chapterID,sectionID):
+    section_to_delete = Section.query.filter_by(sectionID=sectionID).first()
+    db.session.delete(section_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-section.html', classID=classID, chapterID=chapterID, sectionID=sectionID)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))
