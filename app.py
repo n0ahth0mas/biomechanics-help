@@ -418,7 +418,7 @@ def section_page(class_id, chapter, section):
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
 
         # q_image_list = query_db('SELECT * from QuestionImages')
-
+        print(a_list)
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, q_images=q_image_list,
                                section_images=section_images, video=video, section_text=section_text)

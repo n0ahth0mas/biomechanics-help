@@ -24,7 +24,6 @@ function submitMultipleChoiceAnswer(button, truthValue, reason, buttonID){
 }
 
 function submitShortAnswer(input, answer){
-
     if(String(answer).includes(String(input.previousElementSibling.value))){
         scoreCounter.innerHTML = String(Number(String(document.getElementById("scoreCounter").innerHTML)) + 1);
         alert("correct!");
