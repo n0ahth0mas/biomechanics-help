@@ -5,7 +5,6 @@ drop table if exists Questions;
 drop table if exists SectionBlock;
 drop table if exists Answers;
 drop table if exists Glossary;
-drop table if exists QuestionImages;
 drop table if exists SectionImages;
 drop table if exists Videos;
 drop table if exists Enroll;
@@ -24,6 +23,7 @@ create TABLE Chapters(
         chapterID     INTEGER,
         chapterName   TEXT check(chapterName IS NOT NULL),
         classID     TEXT check(classID IS NOT NULL),
+        orderNo      INTEGER ,
         PRIMARY KEY (chapterID),
         FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
@@ -34,6 +34,7 @@ create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   TEXT check(sectionName IS NOT NULL),
+        orderNo         INTEGER
         PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
@@ -45,6 +46,8 @@ create TABLE Questions(
         questionText  TEXT check(questionText IS NOT NULL),
         sectionID     INTEGER check(sectionID IS NOT NULL),
         questionType  TEXT check(questionType IS NOT NULL),
+        orderNo       INTEGER,
+        imageFile     TEXT,
         PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -55,6 +58,7 @@ create TABLE SectionBlock(
         sectionBlockID    INTEGER,
         sectionText  TEXT,
         sectionID     INTEGER check(sectionID IS NOT NULL),
+        orderNo         INTEGER
         PRIMARY KEY (sectionBlockID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
@@ -84,18 +88,11 @@ create TABLE Glossary(
             ON DELETE CASCADE
 );
 
-create TABLE QuestionImages(
-        questionID     INTEGER,
-        imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (questionID,imageFile),
-        FOREIGN KEY (questionID) REFERENCES Questions (questionID)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
-);
-
 create TABLE SectionBlockImages(
         sectionBlockID    INTEGER check(sectionBlockID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
+        xposition       TEXT check(xposition IS NOT NULL),
+        yposition       TEXT check(yposition IS NOT NULL),
         PRIMARY KEY (sectionBlockID,imageFile),
         FOREIGN KEY (sectionBlockID) REFERENCES SectionBlock (sectionBlockID)
             ON UPDATE CASCADE
