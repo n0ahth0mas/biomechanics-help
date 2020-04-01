@@ -43,12 +43,6 @@
 </style>
 <main id="structure" role="main" class="container">
     <h1>Edit Class: {{className}}</h1>
-    <h3>Here is a list of chapters in this class</h3>
-    {% for chapter in chapters %}
-        <div class="chapter-headers">
-            <a class="question-title-link" href="/edit-class/{{classID}}/{{chapter[0]}}"><h5>- {{chapter[1]}}<nbsp><nbsp><nbsp><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger btn-xs chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></h5></a>
-        </div>
-    {% endfor %}
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary">Add Chapter</button>
 
@@ -66,7 +60,20 @@
         </form>
     </div>
     </div>
-    You can access the glossary here
+    <h3>Here is a list of chapters in this class</h3>
+
+        <table id="chapter-headers">
+            <tr class="header">
+                <th style="width:90%;">Chapter</th>
+            </tr>
+            {% for chapter in chapters %}
+            <tr>
+                <td><a class="question-title-link" href="/edit-class/{{classID}}/{{chapter[0]}}">{{chapter[1]}}</a></td>
+                <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger btn-xs chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    <h3>To access the glossary, click here.</h3>
     <button id="myBtn2" class="btn btn-primary" onclick="window.location.href = '/edit-class/{{classID}}/glossary';">Edit Glossary</button>
 
 <script>

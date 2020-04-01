@@ -64,10 +64,18 @@
 
     <h3>Here is a list of terms with definitions in the Glossary</h3>
     {% for term in terms %}
-        <div class="entry-headers">
-            <h5><b>{{term[2]}}</b><button type="button" class="btn btn-danger btn-xs section-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a><br>{{term[3]}}<a href="/edit-class/{{classID}}/glossary/delete/{{term[1]}}"></h5>
-
-        </div>
+        <table id="entry-headers">
+            <tr class="header">
+                <th style="width:20%;">Term</th>
+                <th style="width:70%;">Definition</th>
+            </tr>
+            <tr>
+                <td><h5>{{term[2]}}</h5></td>
+                <td><h5>{{term[3]}}</h5></td>
+                <td><button type="button" class="btn btn-danger btn-xs section-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a><br><a href="/edit-class/{{classID}}/glossary/delete/{{term[1]}}"></a></h5></td>
+                <td><button type="button" class="btn btn-primary btn-xs section-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Update</button></a><br><a href="/edit-class/{{classID}}/glossary/delete/{{term[1]}}"></a></h5></td>
+            </tr>
+        </table>
     {% endfor %}
 
 

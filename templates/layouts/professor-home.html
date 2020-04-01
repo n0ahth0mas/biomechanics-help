@@ -71,6 +71,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <form method="post" class="form add-course-form">
+            <h2>Add Class</h2>
             {{ form.csrf_token }}
             {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
             {{ form.class_id(class_ = 'form-control', placeholder = form.class_id.label.text, required = true) }}
@@ -79,12 +80,17 @@
     </div>
 </div>
     <h4>Here is a list of classes created<br></h4>
-        {% for _class in classes %}
-                <div class="class-headers">
-                    <a class="class-title-link" href="/professor-class-overview/{{_class[1]}}"><h4>{{_class[0]}}</h4></a><br>
-                    <a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn-primary btn-xs class-edit-button">Edit Class</button></a><br>
-                    <a href="/delete/{{_class[1]}}"><button type="button" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs class-delete-button">Delete Class</button></a>
-                </div>
+                <table id="class-headers">
+                    <tr class="header">
+                        <th style="width:80%;">Class Name</th>
+                    </tr>
+                    {% for _class in classes %}
+                    <tr>
+                        <td><a class="class-title-link" href="/professor-class-overview/{{_class[1]}}"><h4>{{_class[0]}}</h4></a></td>
+                        <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn-primary btn-xs class-edit-button">Edit Class</button></a></td>
+                        <td><a href="/delete/{{_class[1]}}"><button type="button" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs class-delete-button">Delete Class</button></a></td>
+                    </tr>
+                </table>
                 <h4>Students enrolled: </h4>
                 <ul>
                     {% for student in _class[2] %}
