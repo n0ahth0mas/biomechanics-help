@@ -29,8 +29,8 @@
         {% for section in sections %}
         <tr>
             <td>{{section[2]}}</td>
-            <td><a href="/edit-class/{{classID}}/{{chapterID}}/delete/{{section[0]}}"><button type="button" class="btn btn-danger btn-xs section-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a><br></h5></td>
-            <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}"><button type="button" class="btn btn-primary btn-xs section-delete-button" >Edit</button></a><br></a></h5></td>
+            <td><a href="/edit-class/{{classID}}/{{chapterID}}/delete/{{section[0]}}"><button type="button" class="btn btn-danger  section-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a><br></h5></td>
+            <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{section[1]}}"><button type="button" class="btn btn-primary  section-delete-button" >Edit</button></a><br></a></h5></td>
         </tr>
         {% endfor %}
     </table>

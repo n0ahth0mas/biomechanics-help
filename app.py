@@ -78,7 +78,7 @@ class Chapter(db.Model):
     __tablename__ = 'Chapters'
     chapterID = db.Column(db.Integer(), primary_key=True)
     chapterName = db.Column(db.String())
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID', ondelete='CASCADE'))
 
 
 class Section(db.Model):
@@ -530,7 +530,7 @@ def professor_home():
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     print(classes_list)
-    return render_template('layouts/professor-home.html', name=current_user.name, classes=classes_list, form=form)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form)
 
 
 @app.route('/student-short')

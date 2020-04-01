@@ -31,8 +31,8 @@
             {% for chapter in chapters %}
             <tr>
                 <td>{{chapter[1]}}</td>
-                <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger btn-xs chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></td>
-                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn-primary btn-xs chapter-delete-button" >Edit</button></a></td>
+                <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger  chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></td>
+                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn-primary  chapter-delete-button" >Edit</button></a></td>
             </tr>
             {% endfor %}
         </table>
