@@ -1,6 +1,4 @@
-{% extends 'layouts/section.html' %}
-{% block quiz %}
-
+{% macro quiz() %}
 <main id="structure" role="main" class="container">
 <link type="text/css" rel="stylesheet" href="/static/css/quiz.css" />
 
@@ -20,7 +18,7 @@
                 <h4>{{question[1]}}</h4>
                 {% if question[3] == "short" %}
                     <input type="text" placeholder="Enter short answer here">
-                    <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit</button>
+                    <button onclick="submitShortAnswer(this, '{{a_list[outer_loop.index-1][0][3]}}')">Submit</button>
                 {% else %}
                     {% for answer in a_list[outer_loop.index-1] %}
                         <button onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}')">{{answer[3]}}</button>
@@ -32,4 +30,4 @@
     <div style="display:none">YourScore: <div id="quiz-final-score"></div><button onclick="location.reload()">Redo Quiz?</button></div>
   </div>
 </main>
-{% endblock %}
+{% endmacro %}

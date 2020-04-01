@@ -151,6 +151,7 @@ a {
     padding-left: 20% !important;
     padding-right: 5% !important;
     width: 100% !important;
+    margin-bottom: 35%;
 }
 
 .student-login-form{
@@ -158,6 +159,7 @@ a {
     left: 32%;
     position: relative;
     margin-top: 250px;
+    margin-bottom: 30%;
 }
 
 .student-login-submit{
