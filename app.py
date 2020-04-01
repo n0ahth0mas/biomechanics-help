@@ -73,12 +73,14 @@ class Class(db.Model):
     __tablename__ = "Classes"
     classID = db.Column(db.Integer(), primary_key=True)
     className = db.Column(db.String())
+    chapters = db.relationship("Chapter", cascade="all, delete-orphan")
+    enrolled = db.relationship("UserClasses", cascade="all, delete-orphan")
 
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
     chapterID = db.Column(db.Integer(), primary_key=True)
     chapterName = db.Column(db.String())
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID', ondelete='CASCADE'))
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
 
 
 class Section(db.Model):
@@ -140,9 +142,11 @@ class Video(db.Model):
 
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
-    id = db.Column(db.Integer(), primary_key=True)
-    email = db.Column(db.String(), db.ForeignKey('Users.email'))
-    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'))
+    email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
+    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'), primary_key=True)
+
+    class Meta:
+        unique_together = (("email", "classID"),)
 
 
 class Role(db.Model):
