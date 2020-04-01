@@ -2,9 +2,8 @@
 {% block title %}Deleted Section{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <h1>Section has been deleted from the database</h1>
-    <form action="/edit-class/{{classID}}/{{chapterID}}">
-    <input type="submit" value="Go Back" />
-</form>
+    <head>
+        <meta http-equiv='refresh' content='0;/edit-class/{{classID}}/{{chapterID}}'>
+    </head>
 </main>
 {% endblock %}
