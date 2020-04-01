@@ -34,7 +34,7 @@ create TABLE Sections(
         sectionID     INTEGER,
         chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   TEXT check(sectionName IS NOT NULL),
-        orderNo         INTEGER
+        orderNo         INTEGER,
         PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
@@ -58,7 +58,7 @@ create TABLE SectionBlock(
         sectionBlockID    INTEGER,
         sectionText  TEXT,
         sectionID     INTEGER check(sectionID IS NOT NULL),
-        orderNo         INTEGER
+        orderNo         INTEGER,
         PRIMARY KEY (sectionBlockID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE
