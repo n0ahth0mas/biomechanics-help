@@ -93,11 +93,11 @@ create TABLE QuestionImages(
             ON DELETE CASCADE
 );
 
-create TABLE SectionImages(
-        sectionID    INTEGER check(sectionID IS NOT NULL),
+create TABLE SectionBlockImages(
+        sectionBlockID    INTEGER check(sectionBlockID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
-        PRIMARY KEY (sectionID,imageFile),
-        FOREIGN KEY (sectionID) REFERENCES Section (sectionID)
+        PRIMARY KEY (sectionBlockID,imageFile),
+        FOREIGN KEY (sectionBlockID) REFERENCES SectionBlock (sectionBlockID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
 );
