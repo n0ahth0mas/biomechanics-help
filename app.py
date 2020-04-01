@@ -75,12 +75,15 @@ class Class(db.Model):
     className = db.Column(db.String())
     chapters = db.relationship("Chapter", cascade="all, delete-orphan")
     enrolled = db.relationship("UserClasses", cascade="all, delete-orphan")
+    glossary = db.relationship("Glossary", cascade="all, delete-orphan")
+
 
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
     chapterID = db.Column(db.Integer(), primary_key=True)
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+    sections = db.relationship("Section", cascade="all, delete-orphan")
 
 
 class Section(db.Model):
@@ -88,6 +91,9 @@ class Section(db.Model):
     sectionID = db.Column(db.Integer(), primary_key=True)
     chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
     sectionName = db.Column(db.String())
+    sectionBlocks = db.relationship("SectionBlock", cascade="all, delete-orphan")
+    questions = db.relationship("Question", cascade="all, delete-orphan")
+    videos = db.relationship("Video", cascade="all, delete-orphan")
 
 
 class Glossary(db.Model):
@@ -98,9 +104,9 @@ class Glossary(db.Model):
     definition = db.Column(db.String())
 
 
-class SectionImages(db.Model):
-    __tablename__ = 'SectionImages'
-    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
+class SectionBlockImages(db.Model):
+    __tablename__ = 'SectionBlockImages'
+    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
     imageFile = db.Column(db.String(), primary_key=True)
 
     class Meta:
@@ -120,6 +126,7 @@ class Question(db.Model):
     questionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
     questionType = db.Column(db.String())
+    answers = db.relationship("Answer", cascade="all, delete-orphan")
 
 
 class Answer(db.Model):
