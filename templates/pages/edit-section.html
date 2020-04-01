@@ -54,15 +54,6 @@
             <a class="section-title-link" href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}"><h3>Text: {{sectionBlock[0]}}</h3></a>
         </div>
     {% endfor %}
-    <h1>Images</h1>
-    <form method="post" class="form add-image-form">
-        {{ form_i.csrf_token }}
-        {{ form_i.imageFile(class_ = 'form-control', placeholder = form_i.imageFile.label.text, required = true) }}
-        <input type="submit" value="Choose File" class="btn btn-primary btn-lg btn-block">
-    </form>
-    {% for sectionImage in sectionImages %}
-        <h3>Image File: {{sectionImage[0]}}</h3>
-    {% endfor %}
     <h1>Question</h1>
     <form method="post" class="form add-question-form">
         {{ form_q.csrf_token }}

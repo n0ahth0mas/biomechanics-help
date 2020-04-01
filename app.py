@@ -307,14 +307,13 @@ def edit_section(classID,chapterID,sectionID):
         flash("Error")
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-    sectionImages = query_db('SELECT imageFile from SectionImages where sectionID="%s"' % sectionID)
     questions = query_db('SELECT * from Questions where sectionID="%s"' % sectionID)
     videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
     answers = []
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     print(answers)
-    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, sectionImages=sectionImages, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
+    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
