@@ -1,9 +1,9 @@
 {% extends 'layouts/base' %}
-{% block title %}Deleted Class{% endblock %}
+{% block title %}Deleted Term{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <h1>Class has been deleted from the database</h1>
-    <form action="/professor-home">
+    <h1>Term has been deleted from the database</h1>
+    <form action="/edit-class/{{classID}}/glossary">
     <input type="submit" value="Go Back" />
 </form>
 </main>

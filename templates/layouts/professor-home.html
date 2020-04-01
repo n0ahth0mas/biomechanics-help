@@ -64,7 +64,7 @@
         This is your homepage where you can create classes, as well as view, publish and edit already created classes.
       </p>
     </div>
-    <button id="myBtn">Add Class</button>
+    <button id="myBtn" class="btn btn-primary">Add Class</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
     <!-- Modal content -->
@@ -78,7 +78,7 @@
     </form>
     </div>
 </div>
-    <h4>Here are a list of classes created<br></h4>
+    <h4>Here is a list of classes created<br></h4>
         {% for _class in classes %}
                 <div class="class-headers">
                     <a class="class-title-link" href="/professor-class-overview/{{_class[1]}}"><h4>{{_class[0]}}</h4></a><br>

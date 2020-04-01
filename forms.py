@@ -102,3 +102,8 @@ class CreateAnswer(FlaskForm):
     correctness = BooleanField()
     answerText = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
+
+
+class CreateTerm(FlaskForm):
+    term = StringField('Term', validators=[DataRequired()])
+    definition = StringField("Definition", validators=[DataRequired()])

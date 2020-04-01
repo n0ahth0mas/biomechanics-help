@@ -74,7 +74,6 @@ class Class(db.Model):
     classID = db.Column(db.Integer(), primary_key=True)
     className = db.Column(db.String())
 
-
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
     chapterID = db.Column(db.Integer(), primary_key=True)
@@ -87,6 +86,14 @@ class Section(db.Model):
     sectionID = db.Column(db.Integer(), primary_key=True)
     chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
     sectionName = db.Column(db.String())
+
+
+class Glossary(db.Model):
+    __tablename__ = 'Glossary'
+    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'))
+    termID = db.Column(db.Integer(), primary_key=True)
+    term = db.Column(db.String())
+    definition = db.Column(db.String())
 
 
 class SectionImages(db.Model):
@@ -201,10 +208,37 @@ def edit_class(classID):
 
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
 
+
+@app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def edit_glossary(classID):
+    form = CreateTerm()
+    if form.validate_on_submit():
+        one_entry = Glossary()
+        one_entry.classID = classID
+        one_entry.term = form.data["term"]
+        one_entry.definition = form.data["definition"]
+        db.session.add(one_entry)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    print(chapters)
+    sections_arrays = []
+    for chapter in chapters:
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+
+    terms = query_db('SELECT * from Glossary where classID="%s"' % classID)
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className)
+
+
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def edit_chapter(classID,chapterID):
+def edit_chapter(classID, chapterID):
     form = CreateSection()
     if form.validate_on_submit():
         one_section = Section()
@@ -353,6 +387,16 @@ def delete_section(classID,chapterID,sectionID):
     db.session.delete(section_to_delete)
     db.session.commit()
     return render_template('pages/delete-section.html', classID=classID, chapterID=chapterID, sectionID=sectionID)
+
+
+@app.route('/edit-class/<classID>/glossary/delete/<termID>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_term(classID,termID):
+    term_to_delete = Glossary.query.filter_by(termID=termID).first()
+    db.session.delete(term_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-term.html', classID=classID, termID=termID)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))
