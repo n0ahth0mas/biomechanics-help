@@ -110,7 +110,7 @@ class SectionBlockImages(db.Model):
     imageFile = db.Column(db.String(), primary_key=True)
 
     class Meta:
-        unique_together = (("sectionID", "imageFile"),)
+        unique_together = (("sectionBlockID", "imageFile"),)
 
 
 class SectionBlock(db.Model):

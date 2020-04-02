@@ -15366,3 +15366,6 @@ jinja2.exceptions.TemplateSyntaxError: expected token '(', got 'end of statement
 2020-04-01 15:29:27,673 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
 2020-04-01 15:31:16,391 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
 2020-04-01 15:35:23,641 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
+2020-04-01 21:42:35,158 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:789]
+2020-04-01 21:42:43,831 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:789]
+2020-04-01 21:45:20,235 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:789]
