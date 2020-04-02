@@ -106,6 +106,15 @@ class Glossary(db.Model):
     definition = db.Column(db.String())
 
 
+class GlossaryImages(db.Model):
+    __tablename__ = 'GlossaryImages'
+    termID = db.Column(db.Integer(), db.ForeignKey('Glossary.termID'), primary_key=True)
+    imageFile = db.Column(db.String(), primary_key=True)
+
+    class Meta:
+        unique_together = (("termID", "imageFile"),)
+
+
 class SectionBlockImages(db.Model):
     __tablename__ = 'SectionBlockImages'
     sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
