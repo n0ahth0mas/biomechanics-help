@@ -15559,3 +15559,243 @@ Traceback (most recent call last):
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
 IndexError: list index out of range
 2020-04-02 08:36:42,219 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:38:42,878 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:41:39,897 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 527, in student_quiz
+    return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: layouts/studentquiz.html
+2020-04-02 08:42:16,320 ERROR: Exception on /student-quiz/12345/1/1 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 527, in student_quiz
+    return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 60, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: layouts/studentquiz.html
+2020-04-02 08:44:09,915 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:45:08,162 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:45:50,553 ERROR: Exception on /delete/12345 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: Chapters.orderNo
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 391, in delete_class
+    db.session.delete(class_to_delete)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2003, in delete
+    self._delete_impl(state, instance, head=True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2029, in _delete_impl
+    cascade_states = list(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\mapper.py", line 3048, in cascade_iterator
+    queue = deque(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1807, in cascade_iterator
+    tuples = self._value_as_iterable(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1781, in _value_as_iterable
+    x = impl.get(state, dict_, passive=passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\attributes.py", line 710, in get
+    value = self.callable_(state, passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 746, in _load_for_state
+    return self._emit_lazyload(
+  File "<string>", line 1, in <lambda>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 887, in _emit_lazyload
+    q(session)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 541, in all
+    return list(self)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 444, in __iter__
+    return q._execute_and_instances(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\query.py", line 3414, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: Chapters.orderNo
+[SQL: SELECT "Chapters"."chapterID" AS "Chapters_chapterID", "Chapters"."chapterName" AS "Chapters_chapterName", "Chapters"."classID" AS "Chapters_classID", "Chapters"."orderNo" AS "Chapters_orderNo" 
+FROM "Chapters" 
+WHERE ? = "Chapters"."classID"]
+[parameters: ('12345',)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-04-02 08:47:23,613 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:47:27,926 ERROR: Exception on / [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 202, in home
+    return render_template('pages/landing.html', homepage=True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 136, in render_template
+    ctx.app.update_template_context(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 838, in update_template_context
+    context.update(func())
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 379, in _user_context_processor
+    return dict(current_user=_get_user())
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_manager.py", line 130, in load_user_by_user_token
+    user = self.db_manager.UserClass.get_user_by_token(user_token)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_mixin.py", line 52, in get_user_by_token
+    user_password = '' if user_manager.USER_ENABLE_AUTH0 else user.password[-8:]
+AttributeError: 'NoneType' object has no attribute 'password'
+2020-04-02 08:47:40,062 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:47:46,237 ERROR: Exception on / [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 202, in home
+    return render_template('pages/landing.html', homepage=True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 136, in render_template
+    ctx.app.update_template_context(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 838, in update_template_context
+    context.update(func())
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 379, in _user_context_processor
+    return dict(current_user=_get_user())
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_manager.py", line 130, in load_user_by_user_token
+    user = self.db_manager.UserClass.get_user_by_token(user_token)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_mixin.py", line 52, in get_user_by_token
+    user_password = '' if user_manager.USER_ENABLE_AUTH0 else user.password[-8:]
+AttributeError: 'NoneType' object has no attribute 'password'
+2020-04-02 08:50:16,077 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:50:43,719 ERROR: Exception on /user/sign-in [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_manager.py", line 416, in login_stub
+    return self.login_view()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\user_manager__views.py", line 379, in login_view
+    if request.method == 'POST' and login_form.validate():
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\forms.py", line 190, in validate
+    user = user_manager.db_manager.find_user_by_username(self.username.data)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\db_manager.py", line 138, in find_user_by_username
+    return self.db_adapter.ifind_first_object(self.UserClass, username=username)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\db_adapters\sql_db_adapter.py", line 133, in ifind_first_object
+    raise KeyError("BaseAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
+KeyError: "BaseAlchemyAdapter.find_first_object(): Class '<class '__main__.User'>' has no field 'username'."
+2020-04-02 08:53:00,342 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
+2020-04-02 08:56:50,576 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:798]
+2020-04-02 09:00:31,943 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]

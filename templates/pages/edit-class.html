@@ -16,6 +16,7 @@
         <form method="post" class="form">
             <h2>Add Chapter</h2>
             {{ form.csrf_token }}
+            {{ form.orderNo(class_ = 'form-control', placeholder = form.orderNo.label.text, required = true) }}
             {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
             <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
         </form>
