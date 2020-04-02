@@ -17137,3 +17137,5 @@ Traceback (most recent call last):
   File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 89, in _get_source_fast
     raise TemplateNotFound(template)
 jinja2.exceptions.TemplateNotFound: layouts/studentquiz.html
+2020-04-02 14:42:08,528 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:818]
+2020-04-02 14:43:02,031 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:819]
