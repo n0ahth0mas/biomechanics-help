@@ -88,6 +88,15 @@ create TABLE Glossary(
             ON DELETE CASCADE
 );
 
+create TABLE GlossaryImages(
+        termID    INTEGER check(termID IS NOT NULL),
+        imageFile      TEXT check(imageFile IS NOT NULL),
+        PRIMARY KEY (termID,imageFile),
+        FOREIGN KEY (termID) REFERENCES Glossary (termID)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+);
+
 create TABLE SectionBlockImages(
         sectionBlockID    INTEGER check(sectionBlockID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
