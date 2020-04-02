@@ -89,7 +89,7 @@ create TABLE Glossary(
 );
 
 create TABLE GlossaryImages(
-        termID    INTEGER check(sectionBlockID IS NOT NULL),
+        termID    INTEGER check(termBlockID IS NOT NULL),
         imageFile      TEXT check(imageFile IS NOT NULL),
         PRIMARY KEY (termID,imageFile),
         FOREIGN KEY (termID) REFERENCES Glossary (termID)
