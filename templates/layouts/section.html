@@ -21,11 +21,9 @@
                         {% for _image in section_images%}
                             {% if _image[0] == _text[0] %}
                                 <br>
-                                    {% set img = _image[1] %}
                                     <div id="{{_text[0]}} Image">
-                                        <p title="Potential New Column in db for Image Name???" style="text-align: {{_image[2]}}">
-                                            <img alt="Section Block {{_text[0]}} Image" src="{{ img }}" width="100%">
-                                            {{ img }}
+                                        <p title="{{_image[1]}}" style="text-align: {{_image[2]}}">
+                                            <img alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}" width="98%">
                                         </p>
                                     </div>
                             {% endif %}
