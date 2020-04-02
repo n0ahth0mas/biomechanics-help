@@ -2,7 +2,7 @@
 {% block title %}Edit Class{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a>
     <h1>Edit Class: {{className}}</h1>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary">Add Chapter</button>
@@ -32,8 +32,8 @@
             {% for chapter in chapters %}
             <tr>
                 <td>{{chapter[1]}}</td>
-                <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn-danger  chapter-delete-button" onclick="return confirm('Are you sure you want to delete this item?');" >Delete</button></a></td>
-                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn-primary  chapter-delete-button" >Open</button></a></td>
+                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Open</button></a></td>
+                <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>
             </tr>
             {% endfor %}
         </table>

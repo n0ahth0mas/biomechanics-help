@@ -259,9 +259,10 @@ def edit_chapter(classID, chapterID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
-    return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID, chapterName=chapterName, form=form)
+    return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID, chapterName=chapterName, className=className, form=form)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
@@ -305,15 +306,17 @@ def edit_section(classID,chapterID,sectionID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     questions = query_db('SELECT * from Questions where sectionID="%s"' % sectionID)
     videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     answers = []
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     print(answers)
-    return render_template('pages/edit-section.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -345,7 +348,10 @@ def edit_question(classID,chapterID,sectionID,questionID):
         db.session.commit()
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
     questions = query_db('SELECT questionText from Questions where questionID="%s"' % questionID)[0][0]
-    return render_template('pages/edit-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a, questionID=questionID)
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
+    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID, chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a, questionID=questionID, sectionName=sectionName)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>', methods=('GET', 'POST'))
