@@ -54,7 +54,7 @@
         <tr>
             <td><a class="class-title-link" href="/professor-class-overview/{{_class[1]}}">{{_class[0]}}</a></td>
             <td>{% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>{% endif %}</td>
-            <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn1">Open</button></a></td>
+            <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn1">Make Edits/Additions</button></a></td>
             <td><a href="/delete/{{_class[1]}}"><button type="button" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn2"><i class="fa fa-trash"></i></button></a></td>
         </tr>
         {% endfor %}

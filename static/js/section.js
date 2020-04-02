@@ -15,6 +15,7 @@ var questionIndex = 0;
 var tries = 0;
 var firstTry = 0;
 
+var buttonIDs = [];
 //RENDERING
 
 function startQuiz(){
@@ -31,6 +32,9 @@ function restart(){
     document.getElementById("header").style.display = "none"
     for(i=0; i<questionIndex; i++){
         document.getElementById("progress" + i).style.background = "#FFFFFF";
+    }
+    for(i=0; i<buttonIDs.length; i++){
+        document.getElementById(buttonIDs[i]).className = "mult_choice";
     }
     firstTry=0;
     tries=0;
@@ -74,36 +78,40 @@ function renderCounter(){
         counter.innerHTML = questionTime - count;
         count++;
     } else{
-        nextQuestion()
+        nextQuestion();
     }
 }
 
 /* QUIZ */
-function submitMultipleChoiceAnswer(truthValue, reason, buttonID){
+function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
     var correct = (truthValue.toLowerCase() === 'true');
     progress(correct);
     if(correct){
         alert("correct!");
-        renderQuestion()
         nextQuestion();
     }else{
         document.getElementById(buttonID).className = "disabled";
+        buttonIDs.push(buttonID);
         tries++;
         alert(reason);
     }
 }
 
-function submitShortAnswer(answer){
-    console.log(answer);
-    /**
-    if((document.getElementById(shortInput).value).includes(answer[3])){
-        //scoreCounter.innerHTML = String(Number(String(document.getElementById("scoreCounter").innerHTML)) + 1);
+function submitShortAnswer(answer, submitButton, reason){
+    var correct = (submitButton.parentElement.children[0].value).includes(answer)
+    progress(correct);
+    if(correct){
+        if(tries == 1) firstTry++;
         alert(reason);
         nextQuestion();
-    }else{
-        alert("Oops! Let's try that one again.");
+    }else if( tries>=2){
+        alert("Hmm, seem's like you're stuck here. The answer is " + answer+". Here's why: " + reason);
+        nextQuestion();
+    } else{
+        alert("Oops! Let's try that one again.")
+        tries++;
     }
-    **/
+    submitButton.parentElement.children[0].value=""
 }
 
 function nextQuestion(){
@@ -114,7 +122,7 @@ function nextQuestion(){
     }else{
         document.getElementById("questions").style.display = "none"
         document.getElementById("header").style.display = "flex"
-        document.getElementById("header").innerHTML = "<h3>You got "+firstTry+" right on the first try, scoring "+ (questionIndex +1)/firstTry*100 +"%</h3>"
+        document.getElementById("header").innerHTML = "<h3>You got "+firstTry+" right on the first try, scoring "+ firstTry/(questionIndex+1)*100 +"%</h3>"
         document.getElementById("header").innerHTML +="<button class='mult_choice' onclick='restart()'>Try Again</button>"
     }
 }
