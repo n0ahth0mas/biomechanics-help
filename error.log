@@ -15558,3 +15558,1484 @@ Traceback (most recent call last):
   File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 310, in edit_section
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
 IndexError: list index out of range
+2020-04-02 08:58:17,736 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 08:58:52,899 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 456, in section_page
+    print("This is the blockID value" + blockID)
+TypeError: can only concatenate str (not "int") to str
+2020-04-02 08:59:55,793 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:798]
+2020-04-02 08:59:57,492 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 462, in section_page
+    images_info = query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = ' + blockID % section)
+TypeError: unsupported operand type(s) for %: 'int' and 'str'
+2020-04-02 09:01:46,434 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:798]
+2020-04-02 09:01:49,694 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 462, in section_page
+    images_info = query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = ' + string(blockID) % section)
+NameError: name 'string' is not defined
+2020-04-02 09:02:33,760 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:798]
+2020-04-02 09:02:35,891 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 462, in section_page
+    images_info = query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = ' + str(blockID) % section)
+TypeError: not all arguments converted during string formatting
+2020-04-02 09:05:53,215 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:07:11,223 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:07:38,414 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:08:15,868 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:09:12,578 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:09:14,520 ERROR: Exception on /section/TEST/1/_image[1] [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 455, in section_page
+    blockID = text_info[0][2]
+IndexError: list index out of range
+2020-04-02 09:09:49,540 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:09:51,058 ERROR: Exception on /section/TEST/1/_image[0] [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 455, in section_page
+    blockID = text_info[0][2]
+IndexError: list index out of range
+2020-04-02 09:11:36,023 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:11:42,333 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 492, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+NameError: name 'section_images' is not defined
+2020-04-02 09:12:42,633 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:796]
+2020-04-02 09:12:45,063 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 491, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+NameError: name 'section_images' is not defined
+2020-04-02 09:13:19,851 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:13:44,375 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:18:49,216 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:26:59,717 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:797]
+2020-04-02 09:30:05,918 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:803]
+2020-04-02 09:30:08,919 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 466, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockID)))
+NameError: name 'blockID' is not defined
+2020-04-02 09:30:53,144 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:803]
+2020-04-02 09:30:54,045 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 466, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[_ID])))
+IndexError: list index out of range
+2020-04-02 09:31:57,954 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:803]
+2020-04-02 09:31:58,882 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 466, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[j])))
+IndexError: list index out of range
+2020-04-02 09:32:48,737 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:805]
+2020-04-02 09:33:35,633 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:805]
+2020-04-02 09:34:49,407 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:805]
+2020-04-02 09:34:51,294 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 474, in section_page
+    section_images.append((y[0], y[1]))
+IndexError: list index out of range
+2020-04-02 09:35:32,885 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:805]
+2020-04-02 09:35:37,937 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 474, in section_page
+    section_images.append(images_info[y[0]])
+TypeError: list indices must be integers or slices, not tuple
+2020-04-02 09:37:10,175 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 09:37:12,176 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append((index[0], index[1]))
+TypeError: 'int' object is not subscriptable
+2020-04-02 09:38:36,620 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 09:38:37,036 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append((images_info[index[0]], images_info[index[1]]))
+TypeError: 'int' object is not subscriptable
+2020-04-02 09:38:38,756 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append((images_info[index[0]], images_info[index[1]]))
+TypeError: 'int' object is not subscriptable
+2020-04-02 09:38:55,575 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:807]
+2020-04-02 09:38:56,272 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append((images_info[index[0]], images_info[index[1]]))
+TypeError: 'int' object is not subscriptable
+2020-04-02 09:39:40,852 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 09:40:54,424 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 09:40:56,075 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append(images_info[y][0], images_info[y][1])
+TypeError: list indices must be integers or slices, not list
+2020-04-02 09:41:23,706 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:807]
+2020-04-02 09:41:25,232 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    section_images.append(images_info[y][0], images_info[y][1])
+TypeError: list indices must be integers or slices, not list
+2020-04-02 09:41:56,745 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:807]
+2020-04-02 09:42:00,121 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    section_images.append(images_info[y][0][0], images_info[y][0][1])
+TypeError: list indices must be integers or slices, not list
+2020-04-02 09:42:35,558 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:808]
+2020-04-02 09:42:37,218 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 477, in section_page
+    section_images.append(images_info[y][0][0], images_info[y][0][1])
+TypeError: list indices must be integers or slices, not list
+2020-04-02 09:43:03,203 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:809]
+2020-04-02 09:43:05,737 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 478, in section_page
+    section_images.append(images_info[y][0][0], images_info[y][0][1])
+TypeError: list indices must be integers or slices, not list
+2020-04-02 09:43:28,344 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:809]
+2020-04-02 09:43:31,097 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 478, in section_page
+    section_images.append(y[0][0], y[0][1])
+TypeError: append() takes exactly one argument (2 given)
+2020-04-02 09:43:47,586 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:809]
+2020-04-02 09:44:35,530 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:44:35,720 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 467, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[j])))
+IndexError: list index out of range
+2020-04-02 09:44:44,627 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:45:06,553 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:45:08,528 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 473, in section_page
+    section_images.append((y[0][0], y[0][1]))
+IndexError: list index out of range
+2020-04-02 09:45:10,444 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 473, in section_page
+    section_images.append((y[0][0], y[0][1]))
+IndexError: list index out of range
+2020-04-02 09:45:17,264 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:47:15,653 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:50:18,713 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:50:25,883 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 499, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\section.html", line 21, in template
+    {% if _image[0] == {{_text[0]}}
+jinja2.exceptions.TemplateSyntaxError: expected token ':', got '}'
+2020-04-02 09:51:00,869 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:53:16,881 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:54:23,117 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:804]
+2020-04-02 09:55:23,816 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 09:56:37,339 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:809]
+2020-04-02 09:57:37,642 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:810]
+2020-04-02 09:58:07,528 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:811]
+2020-04-02 09:58:40,105 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:811]
+2020-04-02 09:58:42,579 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 467, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+IndexError: list index out of range
+2020-04-02 10:12:50,775 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:811]
+2020-04-02 10:12:51,572 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 459, in section_page
+    print("Block IDs" + blockIDs)
+TypeError: can only concatenate str (not "list") to str
+2020-04-02 10:13:04,285 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 459, in section_page
+    print("Block IDs" + blockIDs)
+TypeError: can only concatenate str (not "list") to str
+2020-04-02 10:13:20,873 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:13:21,479 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 468, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+IndexError: list index out of range
+2020-04-02 10:14:51,412 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:14:54,043 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 467, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+IndexError: list index out of range
+2020-04-02 10:16:17,282 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:16:19,848 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 469, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+IndexError: list index out of range
+2020-04-02 10:16:59,226 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:816]
+2020-04-02 10:17:00,719 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 470, in section_page
+    images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+IndexError: list index out of range
+2020-04-02 10:17:23,229 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:816]
+2020-04-02 10:17:25,460 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 482, in section_page
+    print(y[0])
+IndexError: list index out of range
+2020-04-02 10:18:11,502 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:817]
+2020-04-02 10:18:54,199 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:821]
+2020-04-02 10:18:59,017 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 485, in section_page
+    print(y[0])
+IndexError: list index out of range
+2020-04-02 10:19:40,520 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:823]
+2020-04-02 10:19:43,274 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 486, in section_page
+    print(y[0])
+IndexError: list index out of range
+2020-04-02 10:21:07,579 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:823]
+2020-04-02 10:21:10,580 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 486, in section_page
+    print(y[0])
+IndexError: list index out of range
+2020-04-02 10:22:24,261 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:22:26,733 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 478, in section_page
+    section_images.append((y[idx][0], y[idx][1]))
+IndexError: list index out of range
+2020-04-02 10:23:12,952 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:23:29,979 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:23:31,168 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 471, in section_page
+    print(blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:23:50,925 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:23:51,637 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 471, in section_page
+    print(blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:26:45,040 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:26:47,561 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 471, in section_page
+    print(blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:28:23,541 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:28:27,045 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 469, in section_page
+    print(blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:30:23,059 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:30:24,496 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 469, in section_page
+    print("blockID[idx]",blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:31:30,616 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:31:33,127 ERROR: Exception on /section/TEST/1/_image[1] [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 469, in section_page
+    print("blockID[idx]",blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:31:51,069 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:31:53,128 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 469, in section_page
+    print("blockID[idx]",blockIDs[idx])
+IndexError: list index out of range
+2020-04-02 10:32:35,573 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:32:37,484 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 478, in section_page
+    section_images.append((y[idx][0], y[idx][1]))
+IndexError: list index out of range
+2020-04-02 10:33:03,193 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:33:05,220 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 478, in section_page
+    section_images.append((y[idx][0], y[idx][1]))
+IndexError: list index out of range
+2020-04-02 10:33:21,473 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:809]
+2020-04-02 10:33:21,842 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    section_images.append((y[idx][0], y[idx][1]))
+IndexError: list index out of range
+2020-04-02 10:34:38,743 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:34:51,935 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    print("y[idx][0]",y[idx][0])
+IndexError: list index out of range
+2020-04-02 10:35:05,479 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:35:09,006 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    print("y[idx][0]",y[idx][0])
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:35:22,741 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:812]
+2020-04-02 10:35:25,285 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    print("y[idx][0]",y[idx][0])
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:35:54,744 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:35:56,834 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    if y[idx != null]:
+NameError: name 'null' is not defined
+2020-04-02 10:36:52,466 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:38:25,122 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:38:26,932 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 475, in section_page
+    if y[idx] is not None:
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:38:53,687 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:38:55,914 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    print("y[idx][0]", y[idx][0])
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:39:14,097 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:39:16,431 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 477, in section_page
+    if y[idx] is not None:
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:40:01,467 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:40:04,215 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 476, in section_page
+    print("y[idx]", y[idx])
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:40:30,047 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:40:31,853 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 477, in section_page
+    if y[idx] is not None:
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:41:25,215 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:41:29,669 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 477, in section_page
+    if y[idx] is not None:
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:41:52,938 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:41:56,188 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 477, in section_page
+    if y[idx] is not None:
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:42:26,063 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:815]
+2020-04-02 10:42:27,968 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 479, in section_page
+    print("y[idx][0]", y[idx][0])
+TypeError: 'int' object is not subscriptable
+2020-04-02 10:43:38,225 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:43:40,245 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 479, in section_page
+    print((images_info[y][0], images_info[y][1]))
+IndexError: list index out of range
+2020-04-02 10:44:37,842 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:44:39,762 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 480, in section_page
+    section_images.append((images_info[y][0], images_info[y][1]))
+IndexError: list index out of range
+2020-04-02 10:44:48,840 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:45:14,688 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:46:00,999 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:46:55,881 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:47:29,097 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:47:29,776 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 479, in section_page
+    section_images.append((images_info[y][0], images_info[y][1]))
+IndexError: list index out of range
+2020-04-02 10:48:05,417 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:48:07,207 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 480, in section_page
+    section_images.append((images_info[y][0], images_info[y][1]))
+IndexError: list index out of range
+2020-04-02 10:49:20,423 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:49:48,101 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:814]
+2020-04-02 10:50:17,586 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:50:51,138 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:51:23,437 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:51:37,826 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:51:51,120 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:52:16,673 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:52:47,554 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:54:01,289 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:54:39,276 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:55:56,189 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:56:22,334 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:56:40,134 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:56:59,479 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 10:58:44,809 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:00:43,224 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:00:56,407 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:00:57,572 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 508, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\section.html", line 25, in template
+    {% set img = {{_image[1]}} %}
+jinja2.exceptions.TemplateSyntaxError: expected token ':', got '}'
+2020-04-02 11:01:35,975 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:06:33,429 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:06:34,710 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 508, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\section.html", line 28, in template
+    <img alt="Section Block {{_text[10}} Image" src="{{_image[1]}}" width="100%">
+jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ']'
+2020-04-02 11:06:49,652 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:06:51,001 ERROR: Exception on /section/TEST/1/1 [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 508, in section_page
+    section_images=section_images, video=video, section_text=section_text)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\section.html", line 28, in template
+    <img alt="Section Block {{_text[0}} Image" src="{{_image[1]}}" width="100%">
+jinja2.exceptions.TemplateSyntaxError: unexpected '}', expected ']'
+2020-04-02 11:07:09,811 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:08:06,238 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:813]
+2020-04-02 11:09:50,977 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 11:10:24,841 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]
+2020-04-02 11:11:09,954 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:806]

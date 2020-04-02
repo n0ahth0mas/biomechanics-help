@@ -10,32 +10,32 @@
         <div class="gridbody">
 
             <h1>Chapter {{chapter}} Section {{section}}</h1>
-            <!-- Information Block -->
+            <!-- Information and Image Blocks -->
             <div id="sectionText" style="border: 2px solid Black;">
                 <p>
                     {% for _text in section_text %}
-                <p id="_text[0]" style="border: 2px solid Black;">
-                    <strong>Section Block {{_text[0]}}:</strong><br>
-                    {{_text[1]}}
-                    {{ q_list }}
-                    {{ a_list }}
-                </p>
-                {% endfor %}
+
+                    <p id="{{_text[0]}}">
+                        <strong>Section Block {{_text[0]}}:</strong><br>
+                        {{_text[1]}}
+                        {% for _image in section_images%}
+                            {% if _image[0] == _text[0] %}
+                                <br>
+                                    {% set img = _image[1] %}
+                                    <div id="{{_text[0]}} Image">
+                                        <p title="Potential New Column in db for Image Name???" style="text-align: {{_image[2]}}">
+                                            <img alt="Section Block {{_text[0]}} Image" src="{{ img }}" width="100%">
+                                            {{ img }}
+                                        </p>
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+                        <hr>
+                    </p>
+                    {% endfor %}
                 </p>
             </div>
 
-            <!-- Image/File Block -->
-            <!--Does nothing at the moment, waiting for db fixes-->
-            <div id="infoImage">
-                <p>
-                    {% for _image in section_images %}
-                <p title="Potential New Column in db for Image Name???">
-                    <img alt="Slide Image" src="_image[1]" width="100%">
-                </p>
-                {% endfor %}
-                </p>
-
-            </div>
             <!-- Video Block -->
             <video controls height="600px" width="100%">
                 <source src={{video}} type="video/mp4">

@@ -452,17 +452,26 @@ def section_page(class_id, chapter, section):
         # Section Text
         text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s"' % section)
         section_text = []
+        blockIDs = []
+
+        for i in text_info:
+            blockIDs.append(i[0])
 
         for x in text_info:
             section_text.append((x[0], x[1]))
 
         # Section Images
-        #Problem with sectionImages in db, need to change info to section when ready
-        #images_info = query_db('SELECT * from sectionImages WHERE sectionID = "%s' % section)
+        images_info = []
+        idx = 0
+        for j in range(len(blockIDs)):
+            images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+            idx += 1
+
         section_images = []
 
-        #for y in images_info:
-            #section_images.append(x[1])
+        for y in range(len(blockIDs)):
+            if images_info[y] != []:
+                section_images.append((images_info[y][0][0], images_info[y][0][1],images_info[y][0][2]))
 
 
         # get video file
