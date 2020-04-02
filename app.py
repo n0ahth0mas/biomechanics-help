@@ -496,9 +496,12 @@ def section_page(class_id, chapter, section):
 
         # q_image_list = query_db('SELECT * from QuestionImages')
         print(a_list)
+        section_name = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
+        print(section_name)
+        section_name = section_name[2]
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, q_images=q_image_list,
-                               section_images=section_images, video=video, section_text=section_text)
+                               section_images=section_images, video=video, section_text=section_text, section_name=section_name)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
