@@ -15558,3 +15558,4 @@ Traceback (most recent call last):
   File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 310, in edit_section
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
 IndexError: list index out of range
+2020-04-02 08:36:42,219 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:797]
