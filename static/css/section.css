@@ -17,6 +17,14 @@ main{
 
 h3.header{
     text-align: center;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+after{
+    display: none;
+    text-align: center;
     padding-top: 100px;
     padding-bottom: 100px;
 }
@@ -42,14 +50,13 @@ h3.header{
     grid-template-rows: [top]2fr [bottom]1fr;
 }
 .q_img_container{
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     grid-column-start: one;
     grid-row-start: top;
     grid-column-end: one;
     grid-row-end: top;
-    display: none;
 }
 .q_img{
    max-height:100%;
@@ -88,6 +95,13 @@ h3.header{
 .mult_choice:hover{
     background-color: #D1D1D1;
     transform: scale(1.1, 1.1);
+}
+
+.input{
+    width:80%;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid #D1D1D1;
 }
 
 .disabled {

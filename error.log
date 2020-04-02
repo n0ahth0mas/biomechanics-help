@@ -15362,3 +15362,7 @@ jinja2.exceptions.TemplateSyntaxError: expected token '(', got 'end of statement
 2020-03-31 13:31:26,109 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:729]
 2020-03-31 13:39:46,148 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:729]
 2020-03-31 13:40:24,740 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:729]
+2020-04-01 15:28:29,118 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
+2020-04-01 15:29:27,673 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
+2020-04-01 15:31:16,391 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]
+2020-04-01 15:35:23,641 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:783]

@@ -1,5 +1,4 @@
 {% extends 'layouts/base' %}
-{% from "layouts/macros.html" import quiz with context %}
 {% block title %}Section{% endblock %}
 
 {% block content %}
@@ -15,11 +14,13 @@
             <div id="sectionText" style="border: 2px solid Black;">
                 <p>
                     {% for _text in section_text %}
-                        <p id = "_text[0]" style="border: 2px solid Black;">
-                            <strong>Section Block {{_text[0]}}:</strong><br>
-                            {{_text[1]}}
-                        </p>
-                    {% endfor %}
+                <p id="_text[0]" style="border: 2px solid Black;">
+                    <strong>Section Block {{_text[0]}}:</strong><br>
+                    {{_text[1]}}
+                    {{ q_list }}
+                    {{ a_list }}
+                </p>
+                {% endfor %}
                 </p>
             </div>
 
@@ -28,10 +29,10 @@
             <div id="infoImage">
                 <p>
                     {% for _image in section_images %}
-                        <p title="Potential New Column in db for Image Name???">
-                            <img alt="Slide Image" src="_image[1]" width="100%">
-                        </p>
-                    {% endfor %}
+                <p title="Potential New Column in db for Image Name???">
+                    <img alt="Slide Image" src="_image[1]" width="100%">
+                </p>
+                {% endfor %}
                 </p>
 
             </div>
@@ -42,8 +43,7 @@
 
             <!-- Quiz Block -->
             <div>
-                {{ quiz() }}
-                <!--
+
                 <div class="quiz">
                     <h3 class="header" id="header">Section Review!
                         <br>
@@ -54,64 +54,72 @@
 
 
                     <div class="questions" id="questions">
-                        <!-- question grid skeleton
+                        <!-- question grid skeleton -->
                         <div class="question_div">
 
-                            <!-- question progress -
-                            <div class="prog_bub">
+                            <!-- question progress -->
+                            <div class="prog_bub" id="prog_bub">
                                 {% for question in q_list %}
-                                <div class="progress" id="progress{{ question[0] }}"></div>
+                                {% set prog_loop = loop %}
+                                <div class="progress" id="progress{{ prog_loop.index-1 }}"></div>
                                 {% endfor %}
                             </div>
 
-                            <!-- timer--
+                            <!-- timer-->
                             <div class="timer_box">
                                 <div class="timer_time" id="timer_time">60</div>
                             </div>
 
-                            <!-- for loop question content --
+                            <!-- for loop question content -->
                             {% for question in q_list %}
                             {% set outer_loop = loop %}
-                            <!-- image --
-                            <a class="q_img_container" id="q_img_container{{ question[0] }}" data-fancybox href="{{q_images[outer_loop.index-1]}}"><img
-                                    class="q_img" src="{{q_images[outer_loop.index-1]}}"></a>
+                            <!-- image -->
 
-                            <!-- question text --
-                            <div class="q_header" id="q_header{{ question[0] }}">
+                            {% if q_images[outer_loop.index-1] is  defined %}
+                                {% set img = q_images[outer_loop.index-1] %}
+                            {% else %}
+                                {% set img = "/static/img/question.png" %}
+                            {% endif %}
+
+                            <a class="q_img_container" id="q_img_container{{ outer_loop.index-1 }}" data-fancybox
+                               href="{{ img }}"><img
+                                    class="q_img" src="{{ img }}"></a>
+
+                            <!-- question text -->
+                            <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
                                 <h4>{{question[1]}}</h4>
                             </div>
 
-                            <!-- question input/answers --
-                            <div class="q_qs" id="q_qs{{ question[0] }}">
+                            <!-- question input/answers -->
+                            <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}">
 
-                                <!-- short answer --
+                                <!-- short answer -->
                                 {% if question[3] == "short" %}
-                                <input placeholder="Enter short answer here" type="text">
-                                <button onclick="submitShortAnswer(this, {{a_list[outer_loop.index-1]}})">Submit
-                                </button>
+                                {% set answers = a_list[outer_loop.index-1] %}
+                                <input placeholder="Enter short answer here {{ answers }}" type="text" class="input" id="input">
 
-                                <!-- multiple choice --
+                                <button onclick="submitShortAnswer({{ answers[1] }})" class="mult_choice">Submit </button>
+
+                                <!-- multiple choice -->
                                 {% else %}
                                 {% for answer in a_list[outer_loop.index-1] %}
                                 <button class="mult_choice" id="Button{{ answer[0] }}"
-                                        onclick="submitMultipleChoiceAnswer(this, '{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
+                                        onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
                                     {{answer[3]}}
                                 </button>
 
                                 {% endfor %}
                                 {% endif %}
                             </div>
-
                             {% endfor %}
                         </div>
                     </div>
-
-                    <div style="display:none">YourScore:
-                        <div id="quiz-final-score"></div>
+<!--
+                    <div class="after" id="after">
                         <button onclick="location.reload()">Redo Quiz?</button>
                     </div>
+                    -->
                 </div>
-                -->
             </div>
         </div>
     </div>
