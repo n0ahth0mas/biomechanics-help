@@ -84,7 +84,11 @@ function renderCounter(){
 
 /* QUIZ */
 function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
-    var correct = (truthValue.toLowerCase() === 'true');
+    if(truthValue == 1){
+        correct = true;
+    }else{
+        correct = false;
+    }
     progress(correct);
     if(correct){
         alert("correct!");

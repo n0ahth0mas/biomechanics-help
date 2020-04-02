@@ -162,6 +162,10 @@ a {
     margin-bottom: 30%;
 }
 
+.class-student-list{
+    padding-left: 0px;
+}
+
 .student-login-submit{
     margin-top: 20px;
 }
