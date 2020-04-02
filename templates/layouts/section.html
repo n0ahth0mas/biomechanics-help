@@ -103,7 +103,7 @@
                                 {% else %}
                                 {% for answer in a_list[outer_loop.index-1] %}
                                 <button class="mult_choice" id="Button{{ answer[0] }}"
-                                        onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}')">
+                                        onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)">
                                     {{answer[3]}}
                                 </button>
 
