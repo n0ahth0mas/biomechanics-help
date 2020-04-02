@@ -93,17 +93,17 @@ function submitMultipleChoiceAnswer(truthValue, reason, buttonID){
     }
 }
 
-function submitShortAnswer(answer){
-    console.log(answer);
-    /**
-    if((document.getElementById(shortInput).value).includes(answer[3])){
+function submitShortAnswer(answer, submitButton, reason){
+    console.log(answer, submitButton.parentElement.children[0].value);
+
+    if((submitButton.parentElement.children[0].value).includes(answer)){
         //scoreCounter.innerHTML = String(Number(String(document.getElementById("scoreCounter").innerHTML)) + 1);
         alert(reason);
         nextQuestion();
     }else{
         alert("Oops! Let's try that one again.");
     }
-    **/
+
 }
 
 function nextQuestion(){

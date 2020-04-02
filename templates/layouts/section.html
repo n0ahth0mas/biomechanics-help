@@ -95,10 +95,9 @@
 
                                 <!-- short answer -->
                                 {% if question[3] == "short" %}
-                                {% set answers = a_list[outer_loop.index-1] %}
-                                <input placeholder="Enter short answer here {{ answers }}" type="text" class="input" id="input">
+                                <input placeholder="Enter short answer here" type="text" class="input" id="input">
 
-                                <button onclick="submitShortAnswer({{ answers[1] }})" class="mult_choice">Submit </button>
+                                <button onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')" class="mult_choice">Submit </button>
 
                                 <!-- multiple choice -->
                                 {% else %}
