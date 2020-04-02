@@ -83,6 +83,7 @@ class Chapter(db.Model):
     chapterID = db.Column(db.Integer(), primary_key=True)
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+    orderNo = db.Column(db.Integer())
     sections = db.relationship("Section", cascade="all, delete-orphan")
 
 
@@ -91,6 +92,7 @@ class Section(db.Model):
     sectionID = db.Column(db.Integer(), primary_key=True)
     chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
     sectionName = db.Column(db.String())
+    orderNo = db.Column(db.Integer())
     sectionBlocks = db.relationship("SectionBlock", cascade="all, delete-orphan")
     questions = db.relationship("Question", cascade="all, delete-orphan")
     videos = db.relationship("Video", cascade="all, delete-orphan")
@@ -108,6 +110,7 @@ class SectionBlockImages(db.Model):
     __tablename__ = 'SectionBlockImages'
     sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
     imageFile = db.Column(db.String(), primary_key=True)
+    orderNo = db.Column(db.Integer())
 
     class Meta:
         unique_together = (("sectionBlockID", "imageFile"),)
@@ -115,6 +118,7 @@ class SectionBlockImages(db.Model):
 
 class SectionBlock(db.Model):
     __tablename__ = 'SectionBlock'
+    orderNo = db.Column(db.Integer())
     sectionBlockID = db.Column(db.Integer(), primary_key=True)
     sectionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
@@ -126,6 +130,7 @@ class Question(db.Model):
     questionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
     questionType = db.Column(db.String())
+    orderNo = db.Column(db.Integer())
     answers = db.relationship("Answer", cascade="all, delete-orphan")
 
 
@@ -254,6 +259,7 @@ def edit_chapter(classID, chapterID):
     if form.validate_on_submit():
         one_section = Section()
         one_section.chapterID = chapterID
+        one_section.orderNo = form.data["orderNo"]
         one_section.sectionName = form.data["sectionName"]
         db.session.add(one_section)
         db.session.commit()
@@ -272,18 +278,10 @@ def edit_section(classID,chapterID,sectionID):
     form_s = CreateSectionBlock()
     if form_s.validate_on_submit():
         one_section_block = SectionBlock()
+        one_section_block.orderNo = form_s.data["orderNo"]
         one_section_block.sectionText = form_s.data["sectionText"]
         one_section_block.sectionID = sectionID
         db.session.add(one_section_block)
-        db.session.commit()
-    elif request.method == 'POST':
-        flash("Error")
-    form_i = CreateImage()
-    if form_i.validate_on_submit():
-        one_image = SectionImages()
-        one_image.sectionID = sectionID
-        one_image.imageFile = form_i.data["imageFile"]
-        db.session.add(one_image)
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
@@ -291,6 +289,7 @@ def edit_section(classID,chapterID,sectionID):
     if form_q.validate_on_submit():
         one_question = Question()
         one_question.questionText = form_q.data["questionText"]
+        one_question.orderNo = form_q.data["orderNo"]
         one_question.sectionID = sectionID
         one_question.questionType = form_q.data["questionType"]
         db.session.add(one_question)
@@ -316,7 +315,7 @@ def edit_section(classID,chapterID,sectionID):
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     print(answers)
-    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_i=form_i, form_v=form_v)
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -373,6 +372,15 @@ def delete_question(classID,chapterID,sectionID,questionID):
     db.session.delete(question_to_delete)
     db.session.commit()
     return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_section_block(classID,chapterID,sectionID,sectionBlockID):
+    section_block_to_delete = SectionBlock.query.filter_by(sectionBlockID=sectionBlockID).first()
+    db.session.delete(section_block_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-section-block.html', classID=classID, chapterID=chapterID, sectionID=sectionID, sectionBlockID=sectionBlockID)
 
 
 @app.route('/delete/<classID>', methods=('GET', 'POST'))

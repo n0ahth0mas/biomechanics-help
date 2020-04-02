@@ -74,18 +74,22 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
+    orderNo = StringField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
 class CreateSection(FlaskForm):
+    orderNo = StringField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
 
 class CreateSectionBlock(FlaskForm):
+    orderNo = StringField('Text Number', validators=[DataRequired()])
     sectionText = StringField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
+    orderNo = StringField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = StringField('Question Type', validators=[DataRequired()])
 
