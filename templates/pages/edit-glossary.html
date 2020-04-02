@@ -2,7 +2,7 @@
 {% block title %}Edit Glossary{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a>
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">{{className}}</a>
     <h1>Edit Glossary: {{className}}</h1>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary">Add Term</button>
@@ -13,7 +13,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <form method="post" class="form add-term-form">
+        <form method="post" class="form">
             <h2>Add Term</h2>
             {{ form.csrf_token }}
             {{ form.term(class_ = 'form-control', placeholder = form.term.label.text, required = true) }}

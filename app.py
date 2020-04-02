@@ -301,7 +301,7 @@ def edit_section(classID,chapterID,sectionID):
     if form_v.validate_on_submit():
         one_video = Video()
         one_video.sectionID = sectionID
-        one_video.videoFile = form_i.data["videoFile"]
+        one_video.videoFile = form_v.data["videoFile"]
         db.session.add(one_video)
         db.session.commit()
     elif request.method == 'POST':

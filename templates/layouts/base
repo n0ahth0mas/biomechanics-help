@@ -24,7 +24,7 @@
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 #myTable th, #myTable td {

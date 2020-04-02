@@ -3,6 +3,7 @@
 {% block content %}
 <!-- Begin page content -->
 <main id="structure" role="main" class="container">
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
@@ -31,7 +32,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <form method="post" class="form add-course-form">
+        <form method="post" class="form">
             <h2>Add Class</h2>
             {{ form.csrf_token }}
             {{ form.class_name(class_ = 'form-control', placeholder = form.class_name.label.text, required = true) }}
