@@ -38,13 +38,13 @@ app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 print(pathToDB)
-sender = "qualdevlabs@gmail.com"
+sender = "pugetsoundhelp@gmail.com"
 
 home_url = "http://127.0.0.1:5000/"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
-smtpObj.login(sender, "843134Jr!")
+smtpObj.login(sender, "Mouse12345!")
 def get_sql_alc_db():
     with app.app_context():
         return SQLAlchemy(app)
