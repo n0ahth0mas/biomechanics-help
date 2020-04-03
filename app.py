@@ -1,6 +1,10 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 from flask import Flask, render_template, request, flash, url_for, json, session
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
@@ -17,6 +21,8 @@ from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from flask import g
 import datetime
+from time import time
+import jwt
 
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -32,10 +38,13 @@ app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 print(pathToDB)
+sender = "qualdevlabs@gmail.com"
 
 home_url = "http://127.0.0.1:5000/"
 
-
+smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
+smtpObj.starttls()
+smtpObj.login(sender, "843134Jr!")
 def get_sql_alc_db():
     with app.app_context():
         return SQLAlchemy(app)
@@ -54,6 +63,17 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+def get_user_token(email):
+    #we want to use our database to get an id for this user from their email, we then use this id to generate a token that is unique to that user.
+    return jwt.encode({'reset_password': email, 'exp': time() + 600}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
+def verify_reset_password_token(token):
+    try:
+        id = jwt.decode(token, app.config['SECRET_KEY'],
+                        algorithms=['HS256'])['reset_password']
+    except:
+        return -1
+    return id
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -515,6 +535,53 @@ def section_page(class_id, chapter, section):
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
 
+@app.route('/forgot', methods=('GET', 'POST'))
+def forgot():
+    form = ForgotForm(request.form)
+    if form.validate_on_submit():
+        email = str(form.data['email'])
+        user_object = query_db('SELECT * from Users WHERE email="%s"' % email, one=True)
+        if user_object is None:
+            flash("Unable to find user with those details, please try again")
+            return render_template('forms/login.html', form=form)
+        else:
+            token = get_user_token(email)
+            print("here")
+            html_body = render_template('email/reset_password.html', token=token)
+            print("there")
+            html = MIMEText(html_body, 'html')
+
+            msg = MIMEMultipart()
+            msg["From"] = sender
+            msg["To"] = email
+            msg["Subject"] = "Reset Password"
+            msg.attach(html)
+            smtpObj.sendmail(sender, msg["To"], msg.as_string())
+            successurl = home_url + "forgot-success"
+            return redirect(successurl)
+    return render_template('forms/forgotPassword.html', form=form)
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    user = verify_reset_password_token(token)
+    if user == -1:
+        return redirect(home_url)
+    else:
+        form = ResetPasswordForm(request.form)
+        if form.validate_on_submit():
+            password = form.data['password']
+            h = hashlib.md5(password.encode())
+            hashvalue = h.hexdigest()
+            user_object = User.query.filter_by(email=user).first()
+            user_object.password = hashvalue
+            db.session.add(user_object)
+            db.session.commit()
+            return redirect(home_url)
+        return render_template('forms/reset_password.html', form=form)
+
+@app.route('/forgot-success')
+def forgotSuccess():
+    return render_template('forms/forgotSuccess.html')
 
 @app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
@@ -773,13 +840,6 @@ def student_class_home(classID):
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
                            class_name=class_name, classID=classID)
-
-
-@app.route('/forgot')
-def forgot():
-    form = ForgotForm(request.form)
-    return render_template('forms/forgot.html', form=form)
-
 
 @app.route("/logout")
 @login_required

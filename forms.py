@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
@@ -111,3 +111,14 @@ class CreateAnswer(FlaskForm):
 class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
     definition = StringField("Definition", validators=[DataRequired()])
+
+class ForgotForm(FlaskForm):
+    email = StringField(
+        'Email', validators=[DataRequired(), Length(min=6, max=40)]
+    )
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Request Password Reset')
