@@ -238,6 +238,7 @@ def edit_class(classID):
     form = CreateChapter()
     if form.validate_on_submit():
         one_chapter = Chapter()
+        one_chapter.orderNo = form.data["orderNo"]
         one_chapter.chapterName = form.data["chapterName"]
         one_chapter.classID = classID
         db.session.add(one_chapter)
