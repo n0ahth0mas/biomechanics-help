@@ -517,11 +517,6 @@ def section_page(class_id, chapter, section):
 
         for questions in q_list:
             answer_id = questions[0]
-            try:
-                this_image = query_db('SELECT * from QuestionImages where questionID="%s"' % questions[0])[0][1]
-                q_image_list.append(this_image)
-            except IndexError:
-                print("An index error occured")
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
 
         # q_image_list = query_db('SELECT * from QuestionImages')
@@ -530,7 +525,7 @@ def section_page(class_id, chapter, section):
         print(section_name)
         section_name = section_name[2]
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
-                               a_list=a_list, classID=class_id, q_images=q_image_list,
+                               a_list=a_list, classID=class_id,
                                section_images=section_images, video=video, section_text=section_text, section_name=section_name)
     else:
         flash("Please enroll in a class before navigating to it.")
