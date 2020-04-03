@@ -29,7 +29,24 @@ body {
 		background-position: 0% 50%;
 	}
 }
+.title{
+    width:50%;
+    float: left;
+    text-align: right;
+}
 
+.login{
+    top:50%;
+    position:relative;
+    justify-content:center;
+    display: flex;
+}
+
+.call-to-action-div{
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
 body
 {
     margin: 0;
@@ -39,10 +56,9 @@ body
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 3em;
+    font-size: 4em;
     color: #fff;
-    margin-left: 50px;
-    width: calc(100% - 50px);
+    width: 100%;
     text-shadow: 0 2px 2px rgba(0,0,0,.5);
 }
 
