@@ -40,7 +40,7 @@ db = SQLAlchemy(app)
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
 
-home_url = "http://149.165.157.94/"
+home_url = "149.165.157.94"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
