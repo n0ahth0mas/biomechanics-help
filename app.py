@@ -40,7 +40,7 @@ db = SQLAlchemy(app)
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
 
-home_url = "http://149.165.157.94/"
+home_url = "http://127.0.0.1:5000/"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
@@ -63,9 +63,11 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+
 def get_user_token(email):
     #we want to use our database to get an id for this user from their email, we then use this id to generate a token that is unique to that user.
     return jwt.encode({'reset_password': email, 'exp': time() + 600}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
 
 def verify_reset_password_token(token):
     try:
