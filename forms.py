@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
@@ -74,24 +74,25 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
-    orderNo = StringField('Chapter Number', validators=[DataRequired()])
+    orderNo = StringField('Chapter Number')
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
 class CreateSection(FlaskForm):
-    orderNo = StringField('Section Number', validators=[DataRequired()])
+    orderNo = StringField('Section Number')
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
 
 class CreateSectionBlock(FlaskForm):
-    orderNo = StringField('Text Number', validators=[DataRequired()])
+    orderNo = StringField('Text Number')
     sectionText = StringField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
-    orderNo = StringField('Question Number', validators=[DataRequired()])
+    orderNo = StringField('Question Number')
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = StringField('Question Type', validators=[DataRequired()])
+    imageFile = FileField('Image')
 
 
 class CreateImage(FlaskForm):
@@ -112,13 +113,24 @@ class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
     definition = StringField("Definition", validators=[DataRequired()])
 
+
 class ForgotForm(FlaskForm):
     email = StringField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
+
+
+class CreateSectionImages(FlaskForm):
+    xposition_choices = [('',''), ('right', 'right'), ('left', 'left')]
+    yposition_choices = [('',''), ('above', 'above'), ('below', 'below')]
+    sectionBlockID = StringField('Section Block ID', validators=[DataRequired()])
+    imageFile = FileField('Image File', validators=[DataRequired()])
+    xposition = SelectField('X Position', validators=[DataRequired()], choices=xposition_choices)
+    yposition = SelectField('Y position', validators=[DataRequired()], choices=yposition_choices)
