@@ -880,7 +880,7 @@ if not app.debug:
 # Default port:
 if __name__ == '__main__':
     app.secret_key = 'xxxxyyyyyzzzzz'
-    app.run(host="149.165.157.94", port=5000)
+    app.run(host="149.165.157.94")
 
 # Or specify port manually:
 '''
