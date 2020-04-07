@@ -141,7 +141,8 @@ class SectionBlockImages(db.Model):
     __tablename__ = 'SectionBlockImages'
     sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
     imageFile = db.Column(db.String(), primary_key=True)
-    orderNo = db.Column(db.Integer())
+    xposition = db.Column(db.String())
+    yposition = db.Column(db.String())
 
     class Meta:
         unique_together = (("sectionBlockID", "imageFile"),)
@@ -337,6 +338,17 @@ def edit_section(classID,chapterID,sectionID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_si = CreateSectionBlockImages()
+    if form_si.validate_on_submit():
+        one_image = SectionBlockImages()
+        one_image.sectionBlockID = form_si.data["sectionBlockID"]
+        one_image.imageFile = form_si.data["imageFile"]
+        one_image.xposition = form_si.data["xposition"]
+        one_image.yposition = form_si.data["yposition"]
+        db.session.add(one_image)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
@@ -346,8 +358,12 @@ def edit_section(classID,chapterID,sectionID):
     answers = []
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
-    print(answers)
-    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v)
+    image_files = []
+    for sectionBlock in sectionBlocks:
+        images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
+        for image in images:
+            image_files.append(image)
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v, form_si=form_si, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
