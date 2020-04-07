@@ -121,6 +121,7 @@ create TABLE Videos(
 CREATE TABLE Enroll(
         email      TEXT,
         classID    TEXT,
+        lastSectionID INTEGER,
         PRIMARY KEY (email,classID),
         FOREIGN KEY (email) REFERENCES Users (email)
             ON UPDATE CASCADE
@@ -128,6 +129,9 @@ CREATE TABLE Enroll(
         FOREIGN KEY (classID) REFERENCES Classes (classID)
             ON UPDATE CASCADE
             ON DELETE CASCADE
+        FOREIGN KEY (lastSectionID) REFERENCES Sections (sectionID)
+            ON UPDATE CASCADE
+            ON DELETE NO ACTION
 );
 
 CREATE TABLE School(
