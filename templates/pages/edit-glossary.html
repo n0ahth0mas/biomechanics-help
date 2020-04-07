@@ -2,10 +2,10 @@
 {% block title %}Edit Glossary{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
-    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">Glossary</a>
-    <h1>Edit Glossary: {{className}}</h1>
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary}">Glossary</a>
+    <h1>Edit Section: {{sectionName}}</h1>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary">Add Term</button>
+    <button id="myBtn" class="btn btn-primary myBtn">Add Term</button>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -14,22 +14,20 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <form method="post" class="form">
-            <h2>Add Term</h2>
+            <h2>Add Text</h2>
             {{ form.csrf_token }}
             {{ form.term(class_ = 'form-control', placeholder = form.term.label.text, required = true) }}
             {{ form.definition(class_ = 'form-control', placeholder = form.definition.label.text, required = true) }}
-        <input type="submit" value="Create Term" class="btn btn-primary btn-lg btn-block">
+            <input type="submit" value="Add Text" class="btn btn-primary btn-lg btn-block">
     </form>
     </div>
     </div>
-
-    <h3>Here is a list of terms with definitions in the Glossary</h3>
-
-        <table id="myTable">
+    <h3>Here is a list of terms in the Glossary</h3>
+    <table id="myTable">
             <tr class="header">
-                <th style="width:25%;">Term</th>
-                <th style="width:50%;">Definition</th>
-                <th style="width:15%;"></th>
+                <th style="width:20%;">Term</th>
+                <th style="width:50%;">Defintion</th>
+                <th style="width:20;">Images</th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
             </tr>
@@ -42,7 +40,7 @@
                     {% if image_file[0] == term[1] %}<li>{{ image_file[1] }}</li>{% endif %}
                 {% endfor %}
                 </ul></td>
-                <td>
+                <td><!-- Trigger/Open The Modal -->
                 <button id="myBtn" class="btn myBtn">Add Image</button>
 
                 <div id="myModal" class="modal">
@@ -83,15 +81,6 @@ btn[0].onclick = function() {
 btn[1].onclick = function() {
     modal[1].style.display = "block";
 }
-btn[2].onclick = function() {
-    modal[2].style.display = "block";
-}
-btn[3].onclick = function() {
-    modal[3].style.display = "block";
-}
-btn[4].onclick = function() {
-    modal[4].style.display = "block";
-}
 // When the user clicks on <span> (x), close the modal
 span[0].onclick = function() {
     modal[0].style.display = "none";
@@ -99,15 +88,6 @@ span[0].onclick = function() {
 
 span[1].onclick = function() {
     modal[1].style.display = "none";
-}
-span[2].onclick = function() {
-    modal[2].style.display = "none";
-}
-span[3].onclick = function() {
-    modal[3].style.display = "none";
-}
-span[4].onclick = function() {
-    modal[4].style.display = "none";
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

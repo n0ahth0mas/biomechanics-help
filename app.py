@@ -274,7 +274,7 @@ def edit_glossary(classID):
         flash("Error")
     form_i = CreateGlossaryImage()
     if form_i.validate_on_submit():
-        one_image = Glossary()
+        one_image = GlossaryImages()
         one_image.termID = form_i.data["termID"]
         one_image.imageFile = form_i.data["imageFile"]
         db.session.add(one_image)
