@@ -11,7 +11,7 @@
 
             <h1>Chapter {{chapter}} Section {{section}}</h1>
             <!-- Information and Image Blocks -->
-            <div id="sectionText" style="border: 2px solid Black;">
+            <div class = "section" id="sectionText">
                 <p>
                     {% for _text in section_text %}
 
@@ -23,7 +23,7 @@
                                 <br>
                                     <div id="{{_text[0]}} Image">
                                         <p title="{{_image[1]}}" style="text-align: {{_image[2]}}">
-                                            <img alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}" width="98%">
+                                            <img alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
                                         </p>
                                     </div>
                             {% endif %}
@@ -73,12 +73,7 @@
                             {% set outer_loop = loop %}
                             <!-- image -->
 
-                            {% if q_images[outer_loop.index-1] is  defined %}
-                                {% set img = q_images[outer_loop.index-1] %}
-                            {% else %}
-                                {% set img = "/static/img/question.png" %}
-                            {% endif %}
-
+                            {% set img = question[5] %}
                             <a class="q_img_container" id="q_img_container{{ outer_loop.index-1 }}" data-fancybox
                                href="{{ img }}"><img
                                     class="q_img" src="{{ img }}"></a>

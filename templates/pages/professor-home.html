@@ -54,7 +54,7 @@
             <td><a class="class-title-link" href="/professor-class-overview/{{_class[1]}}">{{_class[0]}}</a></td>
             <td><ul class="class-student-list">
             {% for student in _class[2] %}
-            {% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>{% endif %}
+                {% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a></li>{% endif %}
             {% endfor %}
             </ul></td>
             <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn1">Make Edits/Additions</button></a></td>

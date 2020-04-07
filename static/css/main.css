@@ -132,14 +132,6 @@ a {
     background-color: white !important;
 }
 
-.call-to-action-div{
-    display: inline-block;
-    text-align: center;
-    position: relative;
-    left: 23%;
-    top: 5px;
-}
-
 #content{
     width: 100% !important;
     padding: 0px !important;
