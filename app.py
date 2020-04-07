@@ -190,6 +190,7 @@ class UserClasses(db.Model):
     __tablename__ = "Enroll"
     email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
     classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'), primary_key=True)
+    lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
 
     class Meta:
         unique_together = (("email", "classID"),)
