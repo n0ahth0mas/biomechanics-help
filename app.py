@@ -126,6 +126,7 @@ class Glossary(db.Model):
     termID = db.Column(db.Integer(), primary_key=True)
     term = db.Column(db.String())
     definition = db.Column(db.String())
+    images = db.relationship("GlossaryImages", cascade="all, delete-orphan")
 
 
 class GlossaryImages(db.Model):
@@ -137,23 +138,24 @@ class GlossaryImages(db.Model):
         unique_together = (("termID", "imageFile"),)
 
 
-class SectionBlockImages(db.Model):
-    __tablename__ = 'SectionBlockImages'
-    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
-    imageFile = db.Column(db.String(), primary_key=True)
-    xposition = db.Column(db.String())
-    yposition = db.Column(db.String())
-
-    class Meta:
-        unique_together = (("sectionBlockID", "imageFile"),)
-
-
 class SectionBlock(db.Model):
     __tablename__ = 'SectionBlock'
     orderNo = db.Column(db.Integer())
     sectionBlockID = db.Column(db.Integer(), primary_key=True)
     sectionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    images = db.relationship("SectionBlockImages", cascade="all, delete-orphan")
+
+
+class SectionBlockImages(db.Model):
+    __tablename__ = 'SectionBlockImages'
+    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionBlock.sectionBlockID'), primary_key=True)
+    imageFile = db.Column(db.String(), primary_key=True)
+    xposition = db.Column(db.String())
+    yposition = db.Column(db.String())
+
+    class Meta:
+        unique_together = (("sectionBlockID", "imageFile"),)
 
 
 class Question(db.Model):
