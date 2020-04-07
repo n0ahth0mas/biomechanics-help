@@ -547,11 +547,8 @@ def forgot():
             return render_template('forms/login.html', form=form)
         else:
             token = get_user_token(email)
-            print("here")
             html_body = render_template('email/reset_password.html', token=token)
-            print("there")
             html = MIMEText(html_body, 'html')
-
             msg = MIMEMultipart()
             msg["From"] = sender
             msg["To"] = email
