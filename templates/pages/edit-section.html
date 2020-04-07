@@ -34,7 +34,7 @@
             {% for sectionBlock in sectionBlocks %}
             <tr>
                 <td>{{sectionBlock[3]}}</td>
-                <td>{{sectionBlock[1]}}</td><li>
+                <td>{{sectionBlock[1]}}</td>
                 <td><ul class="class-student-list">
                 {% for image_file in image_files %}
                     {% if image_file[0] == sectionBlock[0] %}<li>{{ image_file[1] }}</li>{% endif %}
@@ -52,8 +52,8 @@
                         {{ form_si.csrf_token }}
                         {{ form_si.sectionBlockID(class_ = 'form-control', placeholder = form_si.sectionBlockID.label.text) }}
                         {{ form_si.imageFile(class_ = 'form-control', placeholder = form_si.imageFile.label.text) }}
-                        {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text, required = true) }}
-                        {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text, required = true) }}
+                        {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text) }}
+                        {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text) }}
                         <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
                     </form>
                     </div>
@@ -152,9 +152,6 @@ btn[2].onclick = function() {
 btn[3].onclick = function() {
     modal[3].style.display = "block";
 }
-btn[4].onclick = function() {
-    modal[4].style.display = "block";
-}
 // When the user clicks on <span> (x), close the modal
 span[0].onclick = function() {
     modal[0].style.display = "none";
@@ -168,9 +165,6 @@ span[2].onclick = function() {
 }
 span[3].onclick = function() {
     modal[3].style.display = "none";
-}
-span[4].onclick = function() {
-    modal[4].style.display = "none";
 }
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

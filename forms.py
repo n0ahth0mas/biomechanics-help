@@ -127,10 +127,15 @@ class ResetPasswordForm(FlaskForm):
     submit = SubmitField('Request Password Reset')
 
 
-class CreateSectionImages(FlaskForm):
+class CreateSectionBlockImages(FlaskForm):
     xposition_choices = [('',''), ('right', 'right'), ('left', 'left')]
     yposition_choices = [('',''), ('above', 'above'), ('below', 'below')]
     sectionBlockID = StringField('Section Block ID', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
     xposition = SelectField('X Position', validators=[DataRequired()], choices=xposition_choices)
     yposition = SelectField('Y position', validators=[DataRequired()], choices=yposition_choices)
+
+
+class CreateGlossaryImage(FlaskForm):
+    termID = StringField('Term ID', validators=[DataRequired()])
+    imageFile = FileField('Image File', validators=[DataRequired()])

@@ -126,6 +126,7 @@ class Glossary(db.Model):
     termID = db.Column(db.Integer(), primary_key=True)
     term = db.Column(db.String())
     definition = db.Column(db.String())
+    images = db.relationship("GlossaryImages", cascade="all, delete-orphan")
 
 
 class GlossaryImages(db.Model):
@@ -137,22 +138,24 @@ class GlossaryImages(db.Model):
         unique_together = (("termID", "imageFile"),)
 
 
-class SectionBlockImages(db.Model):
-    __tablename__ = 'SectionBlockImages'
-    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionsBlock.sectionBlockID'), primary_key=True)
-    imageFile = db.Column(db.String(), primary_key=True)
-    orderNo = db.Column(db.Integer())
-
-    class Meta:
-        unique_together = (("sectionBlockID", "imageFile"),)
-
-
 class SectionBlock(db.Model):
     __tablename__ = 'SectionBlock'
     orderNo = db.Column(db.Integer())
     sectionBlockID = db.Column(db.Integer(), primary_key=True)
     sectionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    images = db.relationship("SectionBlockImages", cascade="all, delete-orphan")
+
+
+class SectionBlockImages(db.Model):
+    __tablename__ = 'SectionBlockImages'
+    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionBlock.sectionBlockID'), primary_key=True)
+    imageFile = db.Column(db.String(), primary_key=True)
+    xposition = db.Column(db.String())
+    yposition = db.Column(db.String())
+
+    class Meta:
+        unique_together = (("sectionBlockID", "imageFile"),)
 
 
 class Question(db.Model):
@@ -271,16 +274,25 @@ def edit_glossary(classID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_i = CreateGlossaryImage()
+    if form_i.validate_on_submit():
+        one_image = GlossaryImages()
+        one_image.termID = form_i.data["termID"]
+        one_image.imageFile = form_i.data["imageFile"]
+        db.session.add(one_image)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
-    print(chapters)
-    sections_arrays = []
-    for chapter in chapters:
-        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
     terms = query_db('SELECT * from Glossary where classID="%s"' % classID)
-    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className)
+    image_files = []
+    for term in terms:
+        images = query_db('SELECT * from GlossaryImages where termID="%s"' % term[1])
+        for image in images:
+            image_files.append(image)
+    print(image_files)
+    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className, form_i=form_i, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
@@ -337,6 +349,17 @@ def edit_section(classID,chapterID,sectionID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_si = CreateSectionBlockImages()
+    if form_si.validate_on_submit():
+        one_image = SectionBlockImages()
+        one_image.sectionBlockID = form_si.data["sectionBlockID"]
+        one_image.imageFile = form_si.data["imageFile"]
+        one_image.xposition = form_si.data["xposition"]
+        one_image.yposition = form_si.data["yposition"]
+        db.session.add(one_image)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
@@ -346,8 +369,12 @@ def edit_section(classID,chapterID,sectionID):
     answers = []
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
-    print(answers)
-    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v)
+    image_files = []
+    for sectionBlock in sectionBlocks:
+        images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
+        for image in images:
+            image_files.append(image)
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v, form_si=form_si, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -672,31 +699,43 @@ def infoSlide(sectionID):
 @app.route('/glossary/<classID>')
 @login_required
 def glossaryTemplate(classID):
-    print(request.endpoint)
-    db_terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
-    db_defs = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
+    db_gloss = query_db('SELECT * from Glossary WHERE classID="{}"'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
-    class_name = db_class_name[0]
 
+    class_name = db_class_name[0]
+    ids = []
     terms = []
     defs = []
-    for term in db_terms:
-        terms.append(term[0])
-    for _def in db_defs:
-        defs.append(_def[0])
-    print(terms)
-    print(defs)
+    images = []
+
+    for x in db_gloss:
+        ids.append(x[1])
+        terms.append((x[2]))
+        defs.append(x[3])
+
+    for y in range(len(ids)):
+        temp = query_db('SELECT * from GlossaryImages WHERE termID = "%s"' % str(ids[y]))
+        if temp != []:
+            images.append(temp)
+
     alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     termsAlpha = sorted(terms)
     defsAlpha = []
-    idx = 0
+    idsAlpha = []
+
     for idx, t in enumerate(termsAlpha):
         defsAlpha.append("")
         defsAlpha[idx] = defs[terms.index(t)]
+        idsAlpha.append("")
+        idsAlpha[idx] = ids[terms.index(t)]
         idx += 1
-    return render_template('layouts/glossary-template.html', terms=termsAlpha, defns=defsAlpha, classID=classID,
-                           enumerate=enumerate, alpha=alpha, class_name=class_name)
+
+    gloss = []
+    for i in range(len(terms)):
+        gloss.append((idsAlpha[i], termsAlpha[i], defsAlpha[i]))
+    return render_template('layouts/glossary-template.html', classID=classID, gloss=gloss,
+                           enumerate=enumerate, alpha=alpha, class_name=class_name, images=images)
 
 
 @app.route('/about')
