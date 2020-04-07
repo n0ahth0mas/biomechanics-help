@@ -699,31 +699,43 @@ def infoSlide(sectionID):
 @app.route('/glossary/<classID>')
 @login_required
 def glossaryTemplate(classID):
-    print(request.endpoint)
-    db_terms = query_db('SELECT term from Glossary WHERE classID="{}"'.format(classID))
-    db_defs = query_db('SELECT definition from Glossary WHERE classID="{}"'.format(classID))
+    db_gloss = query_db('SELECT * from Glossary WHERE classID="{}"'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
-    class_name = db_class_name[0]
 
+    class_name = db_class_name[0]
+    ids = []
     terms = []
     defs = []
-    for term in db_terms:
-        terms.append(term[0])
-    for _def in db_defs:
-        defs.append(_def[0])
-    print(terms)
-    print(defs)
+    images = []
+
+    for x in db_gloss:
+        ids.append(x[1])
+        terms.append((x[2]))
+        defs.append(x[3])
+
+    for y in range(len(ids)):
+        temp = query_db('SELECT * from GlossaryImages WHERE termID = "%s"' % str(ids[y]))
+        if temp != []:
+            images.append(temp)
+
     alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     termsAlpha = sorted(terms)
     defsAlpha = []
-    idx = 0
+    idsAlpha = []
+
     for idx, t in enumerate(termsAlpha):
         defsAlpha.append("")
         defsAlpha[idx] = defs[terms.index(t)]
+        idsAlpha.append("")
+        idsAlpha[idx] = ids[terms.index(t)]
         idx += 1
-    return render_template('layouts/glossary-template.html', terms=termsAlpha, defns=defsAlpha, classID=classID,
-                           enumerate=enumerate, alpha=alpha, class_name=class_name)
+
+    gloss = []
+    for i in range(len(terms)):
+        gloss.append((idsAlpha[i], termsAlpha[i], defsAlpha[i]))
+    return render_template('layouts/glossary-template.html', classID=classID, gloss=gloss,
+                           enumerate=enumerate, alpha=alpha, class_name=class_name, images=images)
 
 
 @app.route('/about')
