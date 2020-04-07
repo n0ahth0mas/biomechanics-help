@@ -272,16 +272,25 @@ def edit_glossary(classID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_i = CreateGlossaryImage()
+    if form_i.validate_on_submit():
+        one_image = Glossary()
+        one_image.termID = form_i.data["termID"]
+        one_image.imageFile = form_i.data["imageFile"]
+        db.session.add(one_image)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
-    print(chapters)
-    sections_arrays = []
-    for chapter in chapters:
-        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
     terms = query_db('SELECT * from Glossary where classID="%s"' % classID)
-    className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className)
+    image_files = []
+    for term in terms:
+        images = query_db('SELECT * from GlossaryImages where termID="%s"' % term[1])
+        for image in images:
+            image_files.append(image)
+    print(image_files)
+    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className, form_i=form_i, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))

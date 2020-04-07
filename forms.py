@@ -134,3 +134,8 @@ class CreateSectionBlockImages(FlaskForm):
     imageFile = FileField('Image File', validators=[DataRequired()])
     xposition = SelectField('X Position', validators=[DataRequired()], choices=xposition_choices)
     yposition = SelectField('Y position', validators=[DataRequired()], choices=yposition_choices)
+
+
+class CreateGlossaryImage(FlaskForm):
+    termID = StringField('Term ID', validators=[DataRequired()])
+    imageFile = FileField('Image File', validators=[DataRequired()])

@@ -34,7 +34,7 @@
             {% for sectionBlock in sectionBlocks %}
             <tr>
                 <td>{{sectionBlock[3]}}</td>
-                <td>{{sectionBlock[1]}}</td><li>
+                <td>{{sectionBlock[1]}}</td>
                 <td><ul class="class-student-list">
                 {% for image_file in image_files %}
                     {% if image_file[0] == sectionBlock[0] %}<li>{{ image_file[1] }}</li>{% endif %}
@@ -52,8 +52,8 @@
                         {{ form_si.csrf_token }}
                         {{ form_si.sectionBlockID(class_ = 'form-control', placeholder = form_si.sectionBlockID.label.text) }}
                         {{ form_si.imageFile(class_ = 'form-control', placeholder = form_si.imageFile.label.text) }}
-                        {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text, required = true) }}
-                        {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text, required = true) }}
+                        {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text) }}
+                        {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text) }}
                         <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
                     </form>
                     </div>
