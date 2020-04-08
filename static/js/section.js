@@ -130,3 +130,7 @@ function nextQuestion(){
         document.getElementById("header").innerHTML +="<button class='mult_choice' onclick='restart()'>Try Again</button>"
     }
 }
+
+function previous(classID, chapter, section){
+
+}
