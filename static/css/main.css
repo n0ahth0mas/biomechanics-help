@@ -162,6 +162,10 @@ a {
     padding-left: 0px;
 }
 
+.restart-btn{
+    width: 29.5%;
+}
+
 .student-login-submit{
     margin-top: 20px;
 }
