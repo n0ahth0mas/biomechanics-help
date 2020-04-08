@@ -116,10 +116,18 @@
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_before}}">
                 <button class="btn btn-primary previous">Previous Page</button>
             </a>
+            {% else %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
             {% endif %}
             {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button class="btn btn-primary next">Next Page</button>
+            </a>
+            {% else %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary next">Back to Class Overview</button>
             </a>
             {% endif %}
         </div>
