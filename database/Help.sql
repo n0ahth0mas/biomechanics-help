@@ -71,6 +71,9 @@ create TABLE Answers(
         correctness   BOOLEAN check(correctness IS NOT NULL),
         answerText    TEXT check(answerText IS NOT NULL),
         answerReason  TEXT,
+        imageFile     TEXT,
+        xposition       TEXT,
+        yposition       TEXT
         PRIMARY KEY (answerID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
               ON UPDATE CASCADE

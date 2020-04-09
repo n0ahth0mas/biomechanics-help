@@ -27,6 +27,7 @@ import jwt
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
+from sqlalchemy import and_, text
 
 app = Flask(__name__)
 app.secret_key = 'xxxxyyyyyzzzzz'
@@ -228,6 +229,12 @@ class User(db.Model, UserMixin):
 
     def has_role(self, role):
         return role in self.roles
+
+    def has_role_name(self, name):
+        for role in self.roles:
+            if role.name == name:
+                return True
+        return False
 
     def get_email(self):
         return self.email
@@ -613,11 +620,8 @@ def forgot():
             return render_template('forms/login.html', form=form)
         else:
             token = get_user_token(email)
-            print("here")
             html_body = render_template('email/reset_password.html', token=token)
-            print("there")
             html = MIMEText(html_body, 'html')
-
             msg = MIMEMultipart()
             msg["From"] = sender
             msg["To"] = email
@@ -920,8 +924,19 @@ def student_class_home(classID):
     #    for question in question_array:
     #        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    last_section_ID = query_db("SELECT * from Enroll where email='%s' AND classID='%s'" % (current_user.id, classID), one=True)[2]
+    if last_section_ID is None:
+        #this means that we have yet to start this class
+        #we want to default to the first section in the first chapter of this class
+        first_chapter_ID = query_db("SELECT * from Chapters where classID='%s' AND orderNo='%s'" % (classID, 1), one=True)[0]
+        first_section_ID = query_db("SELECT * from Sections where chapterID='%s' AND orderNo='%s'" % (first_chapter_ID, 1), one=True)[0]
+        last_section_ID = first_section_ID
+        last_chapter_ID = first_chapter_ID
+    else:
+        last_chapter_ID = query_db("SELECT * from Sections where sectionID='%s'" % last_section_ID, one=True)[1]
+    print(last_chapter_ID)
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
-                           class_name=class_name, classID=classID)
+                           class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID, last_section_ID=last_section_ID)
 
 
 @app.route("/logout")
