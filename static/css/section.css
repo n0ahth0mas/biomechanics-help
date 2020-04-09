@@ -168,6 +168,11 @@ after{
     float: right;
 }
 
+.next-hidden{
+    display: none;
+    float: right;
+}
+
 .page_vid{
     display: flex;
     margin-left: auto;
