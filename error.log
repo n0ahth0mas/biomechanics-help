@@ -2073,3 +2073,4 @@ sqlite3.OperationalError: near "Slide": syntax error
 2020-04-07 12:18:37,568 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:915]
 2020-04-07 12:18:48,273 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:915]
 2020-04-07 12:19:14,762 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:915]
+2020-04-07 14:18:53,905 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:915]
