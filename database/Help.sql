@@ -80,6 +80,17 @@ create TABLE Answers(
               ON DELETE CASCADE
 );
 
+create TABLE DragBoxes(
+        dragBoxID       INTEGER,
+        questionID        INTEGER,
+        correctness     BOOLEAN check(correctness IS NOT NULL),
+        imageFile       TEXT,
+        PRIMARY KEY (dragBoxID),
+        FOREIGN KEY (questionID) REFERENCES Questions (questionID)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
+);
+
 create TABLE Glossary(
         classID       TEXT,
         termID        INTEGER,
