@@ -124,13 +124,10 @@ function nextQuestion(){
         removePrevious();
         renderQuestion();
     }else{
-        document.getElementById("questions").style.display = "none"
-        document.getElementById("header").style.display = "flex"
-        document.getElementById("header").innerHTML = "<h3>You got "+firstTry+" right on the first try, scoring "+ firstTry/(questionIndex+1)*100 +"%</h3>"
-        document.getElementById("header").innerHTML +="<button class='mult_choice' onclick='restart()'>Try Again</button>"
+        document.getElementById("questions").style.display = "none";
+        document.getElementById("header").style.display = "flex";
+        document.getElementById("header").innerHTML = "<h3>You got "+firstTry+" right on the first try, scoring "+ firstTry/(questionIndex+1)*100 +"%</h3>";
+        document.getElementById("header").innerHTML +="<button class='mult_choice' onclick='restart()'>Try Again</button>";
+        document.getElementById("next").style.display = "flex";
     }
-}
-
-function previous(classID, chapter, section){
-
 }

@@ -238,7 +238,7 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
-    return render_template('pages/landing.html', homepage=True)
+    return render_template('pages/landing.html', noNav=True)
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
@@ -819,7 +819,7 @@ def login():
             elif Role.query.filter_by(name='Student').one() in current_user.roles:
                 print("think that it has the role ")
                 return redirect(home_url + "student-home")
-    return render_template('forms/login.html', form=form)
+    return render_template('forms/login.html', form=form, noNav=True)
 
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])

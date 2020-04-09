@@ -113,11 +113,11 @@
         <div class="page_nav">
         {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
-                <button class="btn btn-primary next-hidden">Next Page</button>
+                <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
             {% else %}
             <a href="/student-class-overview/{{ classID }}">
-                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
             </a>
         {% endif %}
         {% else %}
@@ -140,6 +140,7 @@
             <button class="btn btn-primary previous">Back to Class Overview</button>
         </a>
         {% endif %}
+        <p> This is {{ current_user.role }}</p>
         </div>
     </div>
 </main>
