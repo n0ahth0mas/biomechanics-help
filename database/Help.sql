@@ -83,6 +83,8 @@ create TABLE Answers(
 create TABLE DragBoxes(
         dragBoxID       INTEGER,
         questionID        INTEGER,
+        xposition       TEXT,
+        yposition       TEXT,
         correctness     BOOLEAN check(correctness IS NOT NULL),
         imageFile       TEXT,
         PRIMARY KEY (dragBoxID),
