@@ -352,7 +352,7 @@ def edit_section(classID, chapterID, sectionID):
         one_question.orderNo = form_q.data["orderNo"]
         one_question.sectionID = sectionID
         one_question.questionType = form_q.data["questionType"]
-        if form_q.data["imageFile"] == []:
+        if not form_q.data["imageFile"]:
             one_question.imageFile = "question.png"
         else:
             one_question.imageFile = form_q.data["imageFile"]
