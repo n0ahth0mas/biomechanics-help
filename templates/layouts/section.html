@@ -76,9 +76,14 @@
                         <!-- image -->
 
                         {% set img = question[5] %}
-                        <a class="q_img_container" data-fancybox href="{{ img }}"
-                           id="q_img_container{{ outer_loop.index-1 }}"><img
-                                class="q_img" src="{{ img }}"></a>
+                        <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
+                            <img class="q_img" src="{{ img }}">
+                            {% if question[3] == "dragndrop" %}
+                                <map>
+
+                                </map>
+                            {% endif %}
+                        </a>
 
                         <!-- question text -->
                         <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
@@ -95,7 +100,7 @@
                             <button class="mult_choice" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
 
                             <!-- multiple choice -->
-                            {% else %}
+                            {% elif question[3] == "multiple" %}
                             {% for answer in a_list[outer_loop.index-1] %}
                             <button class="mult_choice" id="Button{{ answer[0] }}"
                                     onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)">
@@ -103,6 +108,9 @@
                             </button>
 
                             {% endfor %}
+                            {% elif question[3] == "dragndrop" %}
+                            {% for answer in a_list[outer_loop.index-1] %}
+                            {$ endfor %}
                             {% endif %}
                         </div>
                         {% endfor %}
