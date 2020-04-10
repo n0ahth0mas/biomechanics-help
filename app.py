@@ -170,6 +170,7 @@ class Question(db.Model):
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
     questionType = db.Column(db.String())
     orderNo = db.Column(db.Integer())
+    imageFile = db.Column(db.String())
     answers = db.relationship("Answer", cascade="all, delete-orphan")
 
 
@@ -245,7 +246,7 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
-    return render_template('pages/landing.html', homepage=True)
+    return render_template('pages/landing.html', noNav=True)
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
@@ -351,6 +352,10 @@ def edit_section(classID, chapterID, sectionID):
         one_question.orderNo = form_q.data["orderNo"]
         one_question.sectionID = sectionID
         one_question.questionType = form_q.data["questionType"]
+        if not form_q.data["imageFile"]:
+            one_question.imageFile = "question.png"
+        else:
+            one_question.imageFile = form_q.data["imageFile"]
         db.session.add(one_question)
         db.session.commit()
     elif request.method == 'POST':
@@ -823,7 +828,7 @@ def login():
             elif Role.query.filter_by(name='Student').one() in current_user.roles:
                 print("think that it has the role ")
                 return redirect(home_url + "student-home")
-    return render_template('forms/login.html', form=form)
+    return render_template('forms/login.html', form=form, noNav=True)
 
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])

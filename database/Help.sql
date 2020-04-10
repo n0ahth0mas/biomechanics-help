@@ -4,6 +4,7 @@ drop table if exists Sections;
 drop table if exists Questions;
 drop table if exists SectionBlock;
 drop table if exists Answers;
+drop table if exists DropBoxes;
 drop table if exists Glossary;
 drop table if exists SectionImages;
 drop table if exists Videos;
@@ -73,11 +74,24 @@ create TABLE Answers(
         answerReason  TEXT,
         imageFile     TEXT,
         xposition       TEXT,
-        yposition       TEXT
+        yposition       TEXT,
         PRIMARY KEY (answerID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
               ON UPDATE CASCADE
               ON DELETE CASCADE
+);
+
+create TABLE DragBoxes(
+        dragBoxID       INTEGER,
+        questionID        INTEGER,
+        xposition       TEXT,
+        yposition       TEXT,
+        correctness     BOOLEAN check(correctness IS NOT NULL),
+        imageFile       TEXT,
+        PRIMARY KEY (dragBoxID),
+        FOREIGN KEY (questionID) REFERENCES Questions (questionID)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
 );
 
 create TABLE Glossary(

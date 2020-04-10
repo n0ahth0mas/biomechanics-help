@@ -5,6 +5,14 @@ body {
 	        animation: gradient 15s ease infinite;
 }
 
+.bg{
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 4em;
+    color: #fff;
+    text-shadow: 0 2px 2px rgba(0,0,0,.5);
+    line-height:35px;
+}
 
 @-webkit-keyframes gradient {
 	0% {

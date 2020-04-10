@@ -1,6 +1,7 @@
 {% extends 'layouts/base' %}
 {% block title %}Login{% endblock %}
 {% block content %}
+<body>
   <form method="post" class="form student-login-form">
     {{ form.csrf_token }}
     <h3 class="form-heading">Login or Create an Account<a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
@@ -13,4 +14,6 @@
     {{ form.password(class_ = 'form-control last-input', placeholder = form.password.label.text, required = true) }}
     <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
 </form>
+</body>
+<link type="text/css" rel="stylesheet" href="/static/css/home.css"/>
 {% endblock %}
