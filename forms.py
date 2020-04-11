@@ -89,9 +89,10 @@ class CreateSectionBlock(FlaskForm):
 
 
 class CreateQuestion(FlaskForm):
+    question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
     orderNo = StringField('Question Number')
     questionText = StringField('Question Text', validators=[DataRequired()])
-    questionType = StringField('Question Type', validators=[DataRequired()])
+    questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile = FileField('Image')
 
 

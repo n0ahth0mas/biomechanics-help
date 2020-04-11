@@ -306,6 +306,7 @@ def edit_glossary(classID):
         for image in images:
             image_files.append(image)
     print(image_files)
+    print(terms)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
                            form_i=form_i, image_files=image_files)
 
