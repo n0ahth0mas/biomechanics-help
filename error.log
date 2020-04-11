@@ -987,3 +987,59 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 578, in section_page
     section_name = section_data[2]
 TypeError: 'NoneType' object is not subscriptable
+2020-04-11 05:56:12,818 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:06:26,266 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:07:24,478 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:09:03,774 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:13:04,413 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:13:09,069 ERROR: Exception on /edit-class/Infinity100/1/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 398, in edit_section
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 930, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 883, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 857, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/loaders.py", line 129, in load
+    code = environment.compile(source, name, filename)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 638, in compile
+    self.handle_exception(source=source_hint)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-section.html", line 53, in template
+    {{ form_si.sectionBlockID = sectionBlock[0]}}
+jinja2.exceptions.TemplateSyntaxError: expected token 'end of print statement', got '='
+2020-04-11 06:18:22,961 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:982]
+2020-04-11 06:21:19,624 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:29:56,085 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:31:04,590 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:32:34,323 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:33:27,090 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:39:09,320 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:39:38,156 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:40:40,204 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:40:58,599 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:42:46,722 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]
+2020-04-11 06:44:06,948 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:983]

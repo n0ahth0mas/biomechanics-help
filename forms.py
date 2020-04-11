@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField
 from wtforms import validators
@@ -131,12 +131,12 @@ class ResetPasswordForm(FlaskForm):
 class CreateSectionBlockImages(FlaskForm):
     xposition_choices = [('',''), ('right', 'right'), ('left', 'left')]
     yposition_choices = [('',''), ('above', 'above'), ('below', 'below')]
-    sectionBlockID = StringField('Section Block ID', validators=[DataRequired()])
+    sectionBlockID = HiddenField('Section Block ID', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
-    xposition = SelectField('X Position', validators=[DataRequired()], choices=xposition_choices)
-    yposition = SelectField('Y position', validators=[DataRequired()], choices=yposition_choices)
+    xposition = SelectField('X Position', choices=xposition_choices)
+    yposition = SelectField('Y position', choices=yposition_choices)
 
 
 class CreateGlossaryImage(FlaskForm):
-    termID = StringField('Term ID', validators=[DataRequired()])
+    termID = HiddenField('Term ID', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])

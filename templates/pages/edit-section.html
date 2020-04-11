@@ -50,7 +50,7 @@
                     <form method="post" class="form">
                     <h2>Add Image</h2>
                         {{ form_si.csrf_token }}
-                        {{ form_si.sectionBlockID(class_ = 'form-control', placeholder = form_si.sectionBlockID.label.text) }}
+                        {{ form_si.sectionBlockID(class_ = 'form-control', value = sectionBlock[0]) }}
                         {{ form_si.imageFile(class_ = 'form-control', placeholder = form_si.imageFile.label.text) }}
                         {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text) }}
                         {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text) }}

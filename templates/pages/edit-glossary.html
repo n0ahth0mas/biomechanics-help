@@ -50,7 +50,7 @@
                     <form method="post" class="form">
                     <h2>Add Image</h2>
                         {{ form_i.csrf_token }}
-                        {{ form_i.termID(class_ = 'form-control', placeholder = form_i.termID.label.text) }}
+                        {{ form_i.termID(class_ = 'form-control', value = term[1]) }}
                         {{ form_i.imageFile(class_ = 'form-control', placeholder = form_i.imageFile.label.text) }}
                         <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
                     </form>
@@ -82,9 +82,17 @@ span[0].onclick = function() {
     modal[0].style.display = "none";
 }
 
+btn[1].onclick = function() {
+        modal[1].style.display = "block";
+}
+span[1].onclick = function() {
+    modal[1].style.display = "none";
+}
+
+
 // When the user clicks the button, open the modal
 var i;
-for (i=1;i<modal.length;i++){
+for (i=2;i<modal.length;i++){
     btn[i].onclick = function() {
         modal[i].style.display = "block";
         document.getElementById("hey").innerHTML=i;

@@ -372,6 +372,7 @@ def edit_section(classID, chapterID, sectionID):
         flash("Error")
     form_si = CreateSectionBlockImages()
     if form_si.validate_on_submit():
+        print("yay")
         one_image = SectionBlockImages()
         one_image.sectionBlockID = form_si.data["sectionBlockID"]
         one_image.imageFile = form_si.data["imageFile"]
