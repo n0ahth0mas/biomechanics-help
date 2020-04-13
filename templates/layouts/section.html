@@ -34,27 +34,30 @@
             </div>
 
         <!-- Video Block -->
-        <div class="videos">
-        {% for video in video_files %}
-        {% set vid_loop = loop %}
-        <video controls class="page_vid" id="video{{vid_loop.index}}">
-            <!-- hard coded for now - remember to change -->
-            <source src="/static/video/samplevid.mp4" type="video/mp4">
-        </video>
-        {% endfor %}
-
-        <!-- navigation -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-
-        <!-- progress -->
-        <div style="text-align:center">
-            {% for dot in video_files %}
-            {% set dot_loop = loop %}
-            <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
+        <div class="vid_wrapper">
+            <div class="videos">
+            {% for video in video_files %}
+            {% set vid_loop = loop %}
+            <video controls class="page_vid" id="video{{vid_loop.index}}">
+                <!-- hard coded for now - remember to change -->
+                <source src="/static/video/samplevid.mp4" type="video/mp4">
+            </video>
             {% endfor %}
+
+            {% if video_files != [] %}
+            <!-- navigation -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            {% endif %}
         </div>
+            <!-- progress -->
+            <div style="text-align:center">
+                {% for dot in video_files %}
+                {% set dot_loop = loop %}
+                <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
+                {% endfor %}
+            </div>
 
 
 
