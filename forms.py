@@ -140,3 +140,8 @@ class CreateSectionBlockImages(FlaskForm):
 class CreateGlossaryImage(FlaskForm):
     termID = HiddenField('Term ID', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
+
+
+class EditClass(FlaskForm):
+    class_name = StringField('Class Name', validators=[DataRequired()])
+    class_id = HiddenField('Class code (think password)', validators=[DataRequired()])

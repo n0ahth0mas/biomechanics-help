@@ -265,7 +265,6 @@ def edit_class(classID):
         flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
-    print(chapters)
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
@@ -305,8 +304,6 @@ def edit_glossary(classID):
         images = query_db('SELECT * from GlossaryImages where termID="%s"' % term[1])
         for image in images:
             image_files.append(image)
-    print(image_files)
-    print(terms)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
                            form_i=form_i, image_files=image_files)
 
@@ -372,7 +369,6 @@ def edit_section(classID, chapterID, sectionID):
         flash("Error")
     form_si = CreateSectionBlockImages()
     if form_si.validate_on_submit():
-        print("yay")
         one_image = SectionBlockImages()
         one_image.sectionBlockID = form_si.data["sectionBlockID"]
         one_image.imageFile = form_si.data["imageFile"]
@@ -422,9 +418,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.questionID = questionID
         if form_a.data["correctness"] == 1:
             one_answer.correctness = True
-            print(one_answer.correctness)
         else:
-            print("in this")
             one_answer.correctness = False
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
@@ -714,8 +708,15 @@ def professor_home():
         db.session.add(one_class)
         db.session.commit()
     elif request.method == 'POST':
-        print("thinks this is a post method!")
         flash("We're sorry but a class already exists with that code, please enter another unique code")
+    form_edit = EditClass()
+    if form_edit.validate_on_submit():
+        classID = form.data["class_id"]
+        one_class = Class.query.filter_by(classID=classID).first()
+        one_class.className = form_edit.data["class_name"]
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     # render our classes
     classes_list = []
     for _class in current_user.classes:
@@ -723,8 +724,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    print(classes_list)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form, form_edit=form_edit)
 
 
 @app.route('/student-short')
