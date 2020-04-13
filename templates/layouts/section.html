@@ -9,7 +9,6 @@
     <div class="page-container">
         <div class="gridbody">
             <h1>{{chapter_name}}: {{section_name}}</h1>
-            <p> {{ section }}</p>
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
@@ -34,75 +33,54 @@
                 </p>
             </div>
 
-            <!-- Video Block -->
-            <video controls height="600px" width="100%">
-                <source src={{video}} type="video/mp4">
-            </video>
+        <!-- Video Block -->
+        <div class="videos">
+        {% for video in video_files %}
+        {% set vid_loop = loop %}
+        <video controls class="page_vid" id="video{{vid_loop.index}}">
+            <!-- hard coded for now - remember to change -->
+            <source src="/static/video/samplevid.mp4" type="video/mp4">
+        </video>
+        {% endfor %}
+
+        <!-- navigation -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- progress -->
+        <div style="text-align:center">
+            {% for dot in video_files %}
+            {% set dot_loop = loop %}
+            <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
+            {% endfor %}
+        </div>
+
+
+
 
             <!-- Quiz Block -->
-            <div>
+        {% if q_list!=[] %}
+        <div>
 
-                <div class="quiz">
-                    <h3 class="header" id="header">Section Review!
-                        <br>
-                        (<span id="quizLength">This review is {{q_list|length}}</span> questions long!)
-                        <br>
-                        <button class="startBtn" onclick="startQuiz()">Start Quiz</button>
-                    </h3>
+            <div class="quiz">
+                <h3 class="header" id="header">Section Review!
+                    <br>
+                    (<span id="quizLength">This review is {{q_list|length}}</span> questions long!)
+                    <br>
+                    <button class="startBtn" onclick="startQuiz()">Start Quiz</button>
+                </h3>
 
 
-                    <div class="questions" id="questions">
-                        <!-- question grid skeleton -->
-                        <div class="question_div">
+                <div class="questions" id="questions">
+                    <!-- question grid skeleton -->
+                    <div class="question_div">
 
-                            <!-- question progress -->
-                            <div class="prog_bub" id="prog_bub">
-                                {% for question in q_list %}
-                                {% set prog_loop = loop %}
-                                <div class="progress" id="progress{{ prog_loop.index-1 }}"></div>
-                                {% endfor %}
-                            </div>
-
-                            <!-- timer-->
-                            <div class="timer_box">
-                                <div class="timer_time" id="timer_time">60</div>
-                            </div>
-
-                            <!-- for loop question content -->
+                        <!-- question progress -->
+                        <div class="prog_bub" id="prog_bub">
                             {% for question in q_list %}
-                            {% set outer_loop = loop %}
-                            <!-- image -->
-
-                            {% set img = question[5] %}
-                            <a class="q_img_container" id="q_img_container{{ outer_loop.index-1 }}" data-fancybox
-                               href="{{ img }}"><img
-                                    class="q_img" src="{{ img }}"></a>
-
-                            <!-- question text -->
-                            <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
-                                <h4>{{question[1]}}</h4>
-                            </div>
-
-                            <!-- question input/answers -->
-                            <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}">
-
-                                <!-- short answer -->
-                                {% if question[3] == "short" %}
-                                <input placeholder="Enter short answer here" type="text" class="input" id="input">
-
-                                <button onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')" class="mult_choice">Submit </button>
-
-                                <!-- multiple choice -->
-                                {% else %}
-                                {% for answer in a_list[outer_loop.index-1] %}
-                                <button class="mult_choice" id="Button{{ answer[0] }}"
-                                        onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)">
-                                    {{answer[3]}}
-                                </button>
-
-                                {% endfor %}
-                                {% endif %}
-                            </div>
+                            {% set prog_loop = loop %}
+                            <div class="progress" id="progress{{ prog_loop.index-1 }}"></div>
                             {% endfor %}
                         </div>
 
@@ -148,11 +126,6 @@
                         </div>
                         {% endfor %}
                     </div>
-<!--
-                    <div class="after" id="after">
-                        <button onclick="location.reload()">Redo Quiz?</button>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
@@ -228,9 +201,3 @@
 </main>
 <script src="/static/js/section.js"></script>
 {% endblock %}
-
-<!--
-    display: grid;
-    grid-template-columns:[one]20% [two]70% [three]10%;
-    grid-template-rows: [top]minmax(50%, auto) [top]minmax(50%, auto);
--->

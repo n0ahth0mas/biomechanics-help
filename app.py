@@ -612,7 +612,9 @@ def section_page(class_id, chapter, section):
                 section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2]))
 
         # get video file
-        video = "/static/video/samplevid.mp4"
+        video_files = query_db('SELECT * from Videos WHERE sectionID = "%s"' % section)
+        print(video_files)
+        # video = "/static/video/samplevid.mp4"
         # get quiz data
         a_list = []
 
@@ -652,7 +654,7 @@ def section_page(class_id, chapter, section):
 
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
-                               section_images=section_images, video=video, section_text=section_text,
+                               section_images=section_images, video_files=video_files, section_text=section_text,
                                section_name=section_name, section_id_before=section_id_before, section_id_after = section_id_after)
     else:
         flash("Please enroll in a class before navigating to it.")
