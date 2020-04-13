@@ -20,9 +20,9 @@
                         {% for _image in section_images%}
                             {% if _image[0] == _text[0] %}
                                 <br>
-                                    <div id="{{_text[0]}} Image">
+                                    <div class="img_container" id="{{_text[0]}} Image">
                                         <p title="{{_image[1]}}" style="text-align: {{_image[2]}}">
-                                            <img alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                                            <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
                                         </p>
                                     </div>
                             {% endif %}
