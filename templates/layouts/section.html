@@ -8,7 +8,6 @@
 <main>
     <div class="page-container">
         <div class="gridbody">
-
             <h1>{{chapter_name}}: {{section_name}}</h1>
             <p> {{ section }}</p>
             <!-- Information and Image Blocks -->
@@ -75,7 +74,8 @@
                         {% set outer_loop = loop %}
                         <!-- image -->
 
-                        {% set img = question[5] %}
+                        <!-- {% set img = question[5] %} -->
+                         {% set img = "../static/img/question.png" %}
                         <a class="q_img_container" data-fancybox href="{{ img }}"
                            id="q_img_container{{ outer_loop.index-1 }}"><img
                                 class="q_img" src="{{ img }}"></a>
@@ -97,8 +97,7 @@
                             <!-- multiple choice -->
                             {% else %}
                             {% for answer in a_list[outer_loop.index-1] %}
-                            <button class="mult_choice" id="Button{{ answer[0] }}"
-                                    onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)">
+                            <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
                                 {{answer[3]}}
                             </button>
 
@@ -111,36 +110,72 @@
             </div>
         </div>
         <div class="page_nav">
+        <!-- If there is a quiz element -->
+
+        <!-- If there is a section after this one -->
         {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
             {% else %}
+            {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
                 <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
             </a>
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
+
+          <!-- if there isn't a quiz -->
         {% else %}
+            <!-- If there is a section after this one -->
             {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button class="btn btn-primary next">Next Page</button>
             </a>
+
+            <!-- If there isn't a section after this one -->
             {% else %}
+
+            <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
-                <button class="btn btn-primary next">Back to Class Overview</button>
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
             </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
         {% endif %}
+
+       <!-- if there exists a section before -->
         {% if section_id_before != [] %}
         <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_before}}">
             <button class="btn btn-primary previous">Previous Page</button>
         </a>
+
+        <!-- if there isn't a section before -->
         {% else %}
-        <a href="/student-class-overview/{{ classID }}">
-            <button class="btn btn-primary previous">Back to Class Overview</button>
-        </a>
+             <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
-        <p> This is {{ current_user.role }}</p>
         </div>
     </div>
 </main>

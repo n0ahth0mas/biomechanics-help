@@ -585,8 +585,9 @@ def section_page(class_id, chapter, section):
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
 
         # q_image_list = query_db('SELECT * from QuestionImages')
-        print(section)
+        print("section " + section)
         section_data = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
+        print("Section data below")
         print(section_data)
         section_name = section_data[2]
         section_order = section_data[3]
