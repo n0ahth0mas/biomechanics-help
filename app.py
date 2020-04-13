@@ -839,8 +839,16 @@ def glossaryTemplate(classID):
     gloss = []
     for i in range(len(terms)):
         gloss.append((idsAlpha[i], termsAlpha[i], defsAlpha[i]))
+
+    presentAlpha = []
+    for _letter in alpha:
+        for _term in termsAlpha:
+            if _term[0] == _letter:
+                presentAlpha.append(_letter)
+                break
+
     return render_template('layouts/glossary-template.html', classID=classID, gloss=gloss,
-                           enumerate=enumerate, alpha=alpha, class_name=class_name, images=images)
+                           enumerate=enumerate, alpha=presentAlpha, class_name=class_name, images=images)
 
 
 @app.route('/about')
@@ -994,6 +1002,11 @@ def student_class_home(classID):
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
                            class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID, last_section_ID=last_section_ID)
 
+
+@app.route("/about-the-developers")
+@login_required
+def developers():
+    return render_template('/layouts/about-the-devs.html')
 
 @app.route("/logout")
 @login_required
