@@ -8,8 +8,8 @@
 <main>
     <div class="page-container">
         <div class="gridbody">
-
-            <h1>Chapter {{chapter}} Section {{section}}</h1>
+            <h1>{{chapter_name}}: {{section_name}}</h1>
+            <p> {{ section }}</p>
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
@@ -105,6 +105,48 @@
                             </div>
                             {% endfor %}
                         </div>
+
+                        <!-- timer-->
+                        <div class="timer_box">
+                            <div class="timer_time" id="timer_time">60</div>
+                        </div>
+
+                        <!-- for loop question content -->
+                        {% for question in q_list %}
+                        {% set outer_loop = loop %}
+                        <!-- image -->
+
+                        <!-- {% set img = question[5] %} -->
+                         {% set img = "../static/img/question.png" %}
+                        <a class="q_img_container" data-fancybox href="{{ img }}"
+                           id="q_img_container{{ outer_loop.index-1 }}"><img
+                                class="q_img" src="{{ img }}"></a>
+
+                        <!-- question text -->
+                        <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
+                            <h4>{{question[1]}}</h4>
+                        </div>
+
+                        <!-- question input/answers -->
+                        <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}">
+
+                            <!-- short answer -->
+                            {% if question[3] == "short" %}
+                            <input class="input" id="input" placeholder="Enter short answer here" type="text">
+
+                            <button class="mult_choice" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
+
+                            <!-- multiple choice -->
+                            {% else %}
+                            {% for answer in a_list[outer_loop.index-1] %}
+                            <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
+                                {{answer[3]}}
+                            </button>
+
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
                     </div>
 <!--
                     <div class="after" id="after">
@@ -113,6 +155,74 @@
                     -->
                 </div>
             </div>
+        </div>
+        <div class="page_nav">
+        <!-- If there is a quiz element -->
+
+        <!-- If there is a section after this one -->
+        {% if section_id_after != [] %}
+            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
+                <button id="next" class="btn btn-primary next-hidden">Next Page</button>
+            </a>
+            {% else %}
+            {% if current_user.has_role_name('Student') %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
+        {% endif %}
+
+          <!-- if there isn't a quiz -->
+        {% else %}
+            <!-- If there is a section after this one -->
+            {% if section_id_after != [] %}
+            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
+                <button class="btn btn-primary next">Next Page</button>
+            </a>
+
+            <!-- If there isn't a section after this one -->
+            {% else %}
+
+            <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
+        {% endif %}
+        {% endif %}
+
+       <!-- if there exists a section before -->
+        {% if section_id_before != [] %}
+        <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_before}}">
+            <button class="btn btn-primary previous">Previous Page</button>
+        </a>
+
+        <!-- if there isn't a section before -->
+        {% else %}
+             <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+            {% endif %}
+        {% endif %}
         </div>
     </div>
 </main>
@@ -124,4 +234,3 @@
     grid-template-columns:[one]20% [two]70% [three]10%;
     grid-template-rows: [top]minmax(50%, auto) [top]minmax(50%, auto);
 -->
-
