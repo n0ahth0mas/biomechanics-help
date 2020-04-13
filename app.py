@@ -340,12 +340,12 @@ def edit_chapter(classID, chapterID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
-    form_edit = EditChapter()
+    form_edit = EditSection()
     if form_edit.validate_on_submit():
         sectionID = form_edit.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
         one_section.orderNo = form_edit.data["orderNo"]
-        one_section.chapterName = form_edit.data["chapterName"]
+        one_section.sectionName = form_edit.data["sectionName"]
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")

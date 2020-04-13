@@ -152,7 +152,14 @@ class EditChapter(FlaskForm):
     orderNo = StringField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
+
 class EditTerm(FlaskForm):
     termID = HiddenField(validators=[DataRequired()])
     term = StringField('Term', validators=[DataRequired()])
     definition = StringField("Definition", validators=[DataRequired()])
+
+
+class EditSection(FlaskForm):
+    sectionID = HiddenField(validators=[DataRequired()])
+    orderNo = IntegerField('Section Number')
+    sectionName = StringField('Section Name', validators=[DataRequired()])
