@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .btn {
-  background-color: white;
+  background-color: Transparent;
   border: none;
   color: gray;
   padding: 12px 16px;
@@ -19,6 +19,7 @@
 .btn2:hover {
   background-color: Maroon;
 }
+
 
 #myTable {
   border-collapse: collapse;

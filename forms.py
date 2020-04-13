@@ -74,23 +74,23 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
-    orderNo = StringField('Chapter Number')
+    orderNo = IntegerField('Chapter Number',validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
 class CreateSection(FlaskForm):
-    orderNo = StringField('Section Number')
+    orderNo = IntegerField('Section Number')
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
 
 class CreateSectionBlock(FlaskForm):
-    orderNo = StringField('Text Number')
+    orderNo = IntegerField('Text Number', validators=[DataRequired()])
     sectionText = StringField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
     question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
-    orderNo = StringField('Question Number')
+    orderNo = IntegerField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile = FileField('Image')
@@ -140,3 +140,26 @@ class CreateSectionBlockImages(FlaskForm):
 class CreateGlossaryImage(FlaskForm):
     termID = HiddenField('Term ID', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
+
+
+class EditClass(FlaskForm):
+    class_name = StringField('Class Name', validators=[DataRequired()])
+    class_id = HiddenField('Class code (think password)', validators=[DataRequired()])
+
+
+class EditChapter(FlaskForm):
+    chapterID = HiddenField(validators=[DataRequired()])
+    orderNo = StringField('Chapter Number', validators=[DataRequired()])
+    chapterName = StringField('Chapter Name', validators=[DataRequired()])
+
+
+class EditTerm(FlaskForm):
+    termID = HiddenField(validators=[DataRequired()])
+    term = StringField('Term', validators=[DataRequired()])
+    definition = StringField("Definition", validators=[DataRequired()])
+
+
+class EditSection(FlaskForm):
+    sectionID = HiddenField(validators=[DataRequired()])
+    orderNo = IntegerField('Section Number', validators=[DataRequired()])
+    sectionName = StringField('Section Name', validators=[DataRequired()])

@@ -37,7 +37,7 @@
                 <td>{{sectionBlock[1]}}</td>
                 <td><ul class="class-student-list">
                 {% for image_file in image_files %}
-                    {% if image_file[0] == sectionBlock[0] %}<li>{{ image_file[1] }}</li>{% endif %}
+                    {% if image_file[0] == sectionBlock[0] %}<li>{{ image_file[1] }}<a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}/delete/{{image_file[1]}}"><button type="button" class="btn" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a><br></li>{% endif %}
                 {% endfor %}
                 </ul></td>
                 <td><!-- Trigger/Open The Modal -->
@@ -51,7 +51,7 @@
                     <h2>Add Image</h2>
                         {{ form_si.csrf_token }}
                         {{ form_si.sectionBlockID(class_ = 'form-control', value = sectionBlock[0]) }}
-                        {{ form_si.imageFile(class_ = 'form-control', placeholder = form_si.imageFile.label.text) }}
+                        {{ form_si.imageFile(placeholder = form_si.imageFile.label.text) }}
                         {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text) }}
                         {{ form_si.yposition(class_ = 'form-control', placeholder = form_si.yposition.label.text) }}
                         <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
@@ -77,8 +77,11 @@
             {{ form_q.csrf_token }}
             {{ form_q.orderNo(class_ = 'form-control', placeholder = form_q.orderNo.label.text) }}
             {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
-            {{ form_q.questionType(class_ = 'form-control', placeholder = form_q.questionType.label.text, required = true) }}
-            {{ form_q.imageFile(class_ = 'form-control', placeholder = form_q.imageFile.label.text) }}
+            Question Type:<br>
+            {{ form_q.questionType(placeholder = form_q.questionType.label.text, required = true) }}<br><br>
+            Image File: (If no image is uploaded, there will be a default image uploaded)
+            {{ form_q.imageFile(placeholder = form_q.imageFile.label.text) }}
+            <br>
         <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
     </form>
     </div>
@@ -105,22 +108,12 @@
              {% endfor %}
         </table><br><br>
 
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary myBtn">Add Video</button>
-
-    <div id="myModal" class="modal">
-
-        <div class="modal-content">
-        <span class="close">&times;</span>
         <form method="post" class="form">
-            <h2>Add Video</h2>
+            <h3>Add Video</h3>
             {{ form_v.csrf_token }}
-            {{ form_v.videoFile(class_ = 'form-control', placeholder = form_v.videoFile.label.text, required = true) }}
-            <input type="submit" value="Choose Video" class="btn btn-primary btn-lg btn-block">
+            {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}<br>
+            <input type="submit" value="Add Video" class="btn btn-primary">
         </form>
-    </div>
-    </div>
-
     <h3>Here are all the videos associated with this section</h3>
     Need to add way to play videos here
     {% for video in videos %}
@@ -138,6 +131,16 @@ var btn = document.getElementsByClassName("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close");
 
+<!--This is the for loop I feel like should work-->
+<!--for(var i=0;i<modal.length;i++){
+    btn[1].onclick = function() {
+        modal[1].style.display = "block";
+    }
+    span[0].onclick = function() {
+        modal[0].style.display = "none";
+    }
+}-->
+
 // When the user clicks the button, open the modal
 btn[0].onclick = function() {
     modal[0].style.display = "block";
@@ -152,6 +155,8 @@ btn[2].onclick = function() {
 btn[3].onclick = function() {
     modal[3].style.display = "block";
 }
+
+
 // When the user clicks on <span> (x), close the modal
 span[0].onclick = function() {
     modal[0].style.display = "none";
