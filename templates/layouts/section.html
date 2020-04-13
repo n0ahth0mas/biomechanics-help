@@ -9,7 +9,6 @@
     <div class="page-container">
         <div class="gridbody">
             <h1>{{chapter_name}}: {{section_name}}</h1>
-            <p> {{ section }}</p>
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
@@ -35,9 +34,34 @@
         </div>
 
         <!-- Video Block -->
-        <video controls class="page_vid">
-            <source src={{video}} type="video/mp4">
+        <div class="videos">
+        {% for video in video_files %}
+        {% set vid_loop = loop %}
+        <video controls class="page_vid" id="video{{vid_loop.index}}">
+            <!-- hard coded for now - remember to change -->
+            <source src="/static/video/samplevid.mp4" type="video/mp4">
         </video>
+        {% endfor %}
+
+        <div style="text-align:center">
+            {% for dot in video_files %}
+            {% set dot_loop = loop %}
+            <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
+            {% endfor %}
+        </div>
+
+        <!-- navigation -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+
+        <!-- progress
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        -->
 
         <!-- Quiz Block -->
         {% if q_list!=[] %}
