@@ -27,6 +27,7 @@ import jwt
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
+from sqlalchemy import and_, text
 
 app = Flask(__name__)
 app.secret_key = 'xxxxyyyyyzzzzz'
@@ -45,6 +46,8 @@ home_url = "http://127.0.0.1:5000/"
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
 smtpObj.login(sender, "Mouse12345!")
+
+
 def get_sql_alc_db():
     with app.app_context():
         return SQLAlchemy(app)
@@ -65,8 +68,9 @@ def query_db(query, args=(), one=False):
 
 
 def get_user_token(email):
-    #we want to use our database to get an id for this user from their email, we then use this id to generate a token that is unique to that user.
-    return jwt.encode({'reset_password': email, 'exp': time() + 600}, app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+    # we want to use our database to get an id for this user from their email, we then use this id to generate a token that is unique to that user.
+    return jwt.encode({'reset_password': email, 'exp': time() + 600}, app.config['SECRET_KEY'],
+                      algorithm='HS256').decode('utf-8')
 
 
 def verify_reset_password_token(token):
@@ -76,6 +80,7 @@ def verify_reset_password_token(token):
     except:
         return -1
     return id
+
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -165,6 +170,7 @@ class Question(db.Model):
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
     questionType = db.Column(db.String())
     orderNo = db.Column(db.Integer())
+    imageFile = db.Column(db.String())
     answers = db.relationship("Answer", cascade="all, delete-orphan")
 
 
@@ -190,6 +196,7 @@ class UserClasses(db.Model):
     __tablename__ = "Enroll"
     email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
     classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'), primary_key=True)
+    lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
 
     class Meta:
         unique_together = (("email", "classID"),)
@@ -224,6 +231,12 @@ class User(db.Model, UserMixin):
     def has_role(self, role):
         return role in self.roles
 
+    def has_role_name(self, name):
+        for role in self.roles:
+            if role.name == name:
+                return True
+        return False
+
     def get_email(self):
         return self.email
 
@@ -233,7 +246,7 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
-    return render_template('pages/landing.html', homepage=True)
+    return render_template('pages/landing.html', noNav=True)
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
@@ -257,7 +270,8 @@ def edit_class(classID):
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
-    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID, className=className, form=form)
+    return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
+                           className=className, form=form)
 
 
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
@@ -292,7 +306,8 @@ def edit_glossary(classID):
         for image in images:
             image_files.append(image)
     print(image_files)
-    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className, form_i=form_i, image_files=image_files)
+    return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
+                           form_i=form_i, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
@@ -312,13 +327,14 @@ def edit_chapter(classID, chapterID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
-    return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID, chapterName=chapterName, className=className, form=form)
+    return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID,
+                           chapterName=chapterName, className=className, form=form)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def edit_section(classID,chapterID,sectionID):
+def edit_section(classID, chapterID, sectionID):
     form_s = CreateSectionBlock()
     if form_s.validate_on_submit():
         one_section_block = SectionBlock()
@@ -336,6 +352,10 @@ def edit_section(classID,chapterID,sectionID):
         one_question.orderNo = form_q.data["orderNo"]
         one_question.sectionID = sectionID
         one_question.questionType = form_q.data["questionType"]
+        if not form_q.data["imageFile"]:
+            one_question.imageFile = "question.png"
+        else:
+            one_question.imageFile = form_q.data["imageFile"]
         db.session.add(one_question)
         db.session.commit()
     elif request.method == 'POST':
@@ -374,22 +394,26 @@ def edit_section(classID,chapterID,sectionID):
         images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
         for image in images:
             image_files.append(image)
-    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID, chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_v=form_v, form_si=form_si, image_files=image_files)
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
+                           chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
+                           questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
+                           form_v=form_v, form_si=form_si, image_files=image_files)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def edit_section_block(classID,chapterID,sectionID,sectionBlockID):
+def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     sectionText = query_db('SELECT sectionText from Sections where sectionID="%s"' % sectionBlockID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-    return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
+    return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
+                           chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def edit_question(classID,chapterID,sectionID,questionID):
+def edit_question(classID, chapterID, sectionID, questionID):
     form_a = CreateAnswer()
     if form_a.validate_on_submit():
         one_answer = Answer()
@@ -409,37 +433,44 @@ def edit_question(classID,chapterID,sectionID,questionID):
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID, chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers, form_a=form_a, questionID=questionID, sectionName=sectionName)
+    return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
+                           chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
+                           form_a=form_a, questionID=questionID, sectionName=sectionName)
 
 
-@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>', methods=('GET', 'POST'))
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
+           methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_answer(classID,chapterID,sectionID,questionID,answerID):
+def delete_answer(classID, chapterID, sectionID, questionID, answerID):
     answer_to_delete = Answer.query.filter_by(answerID=answerID).first()
     print(answer_to_delete)
     db.session.delete(answer_to_delete)
     db.session.commit()
-    return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+    return render_template('pages/delete-answer.html', classID=classID, chapterID=chapterID, sectionID=sectionID,
+                           questionID=questionID)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/delete/<questionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_question(classID,chapterID,sectionID,questionID):
+def delete_question(classID, chapterID, sectionID, questionID):
     question_to_delete = Question.query.filter_by(questionID=questionID).first()
     db.session.delete(question_to_delete)
     db.session.commit()
-    return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID, questionID=questionID)
+    return render_template('pages/delete-question.html', classID=classID, chapterID=chapterID, sectionID=sectionID,
+                           questionID=questionID)
+
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_section_block(classID,chapterID,sectionID,sectionBlockID):
+def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
     section_block_to_delete = SectionBlock.query.filter_by(sectionBlockID=sectionBlockID).first()
     db.session.delete(section_block_to_delete)
     db.session.commit()
-    return render_template('pages/delete-section-block.html', classID=classID, chapterID=chapterID, sectionID=sectionID, sectionBlockID=sectionBlockID)
+    return render_template('pages/delete-section-block.html', classID=classID, chapterID=chapterID, sectionID=sectionID,
+                           sectionBlockID=sectionBlockID)
 
 
 @app.route('/delete/<classID>', methods=('GET', 'POST'))
@@ -455,7 +486,7 @@ def delete_class(classID):
 @app.route('/edit-class/<classID>/delete/<chapterID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_chapter(classID,chapterID):
+def delete_chapter(classID, chapterID):
     chapter_to_delete = Chapter.query.filter_by(chapterID=chapterID).first()
     db.session.delete(chapter_to_delete)
     db.session.commit()
@@ -465,7 +496,7 @@ def delete_chapter(classID,chapterID):
 @app.route('/edit-class/<classID>/<chapterID>/delete/<sectionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_section(classID,chapterID,sectionID):
+def delete_section(classID, chapterID, sectionID):
     section_to_delete = Section.query.filter_by(sectionID=sectionID).first()
     db.session.delete(section_to_delete)
     db.session.commit()
@@ -475,7 +506,7 @@ def delete_section(classID,chapterID,sectionID):
 @app.route('/edit-class/<classID>/glossary/delete/<termID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_term(classID,termID):
+def delete_term(classID, termID):
     term_to_delete = Glossary.query.filter_by(termID=termID).first()
     db.session.delete(term_to_delete)
     db.session.commit()
@@ -513,6 +544,9 @@ def section_page(class_id, chapter, section):
         section_text = []
         blockIDs = []
 
+        chapter_data = query_db('SELECT * from Chapters where chapterID ="%c"' % chapter, one=True)
+        chapter_name = chapter_data[1]
+
         for i in text_info:
             blockIDs.append(i[0])
 
@@ -523,15 +557,15 @@ def section_page(class_id, chapter, section):
         images_info = []
         idx = 0
         for j in range(len(blockIDs)):
-            images_info.append(query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
+            images_info.append(
+                query_db('SELECT * from sectionBlockImages WHERE sectionBlockID = "%s"' % str(blockIDs[idx])))
             idx += 1
 
         section_images = []
 
         for y in range(len(blockIDs)):
-            if images_info[y] != []:
-                section_images.append((images_info[y][0][0], images_info[y][0][1],images_info[y][0][2]))
-
+            if images_info[y]:
+                section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2]))
 
         # get video file
         video = "/static/video/samplevid.mp4"
@@ -549,16 +583,36 @@ def section_page(class_id, chapter, section):
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
 
         # q_image_list = query_db('SELECT * from QuestionImages')
-        print(a_list)
-        section_name = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
-        print(section_name)
-        section_name = section_name[2]
+        print(section)
+        section_data = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
+        print(section_data)
+        section_name = section_data[2]
+        section_order = section_data[3]
+
+        section_before = query_db(
+            'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order - 1), one=True)
+        if section_before:
+            section_id_before = section_before[0]
+        else:
+            section_id_before = []
+
+        section_after = query_db(
+            'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order + 1), one=True)
+        if section_after:
+            print("yes")
+            section_id_after = section_after[0]
+        else:
+            print("no")
+            section_id_after = []
+
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
-                               a_list=a_list, classID=class_id,
-                               section_images=section_images, video=video, section_text=section_text, section_name=section_name)
+                               a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
+                               section_images=section_images, video=video, section_text=section_text,
+                               section_name=section_name, section_id_before=section_id_before, section_id_after = section_id_after)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
+
 
 @app.route('/forgot', methods=('GET', 'POST'))
 def forgot():
@@ -571,11 +625,8 @@ def forgot():
             return render_template('forms/login.html', form=form)
         else:
             token = get_user_token(email)
-            print("here")
             html_body = render_template('email/reset_password.html', token=token)
-            print("there")
             html = MIMEText(html_body, 'html')
-
             msg = MIMEMultipart()
             msg["From"] = sender
             msg["To"] = email
@@ -585,6 +636,7 @@ def forgot():
             successurl = home_url + "forgot-success"
             return redirect(successurl)
     return render_template('forms/forgotPassword.html', form=form)
+
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
@@ -604,9 +656,11 @@ def reset_password(token):
             return redirect(home_url)
         return render_template('forms/reset_password.html', form=form)
 
+
 @app.route('/forgot-success')
 def forgotSuccess():
     return render_template('forms/forgotSuccess.html')
+
 
 @app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
 @login_required
@@ -774,7 +828,7 @@ def login():
             elif Role.query.filter_by(name='Student').one() in current_user.roles:
                 print("think that it has the role ")
                 return redirect(home_url + "student-home")
-    return render_template('forms/login.html', form=form)
+    return render_template('forms/login.html', form=form, noNav=True)
 
 
 @app.route('/new-professor-account', methods=['GET', 'POST'])
@@ -782,7 +836,7 @@ def new_prof_acc():
     form = ProfessorRegForm()
     if form.validate_on_submit():
         user_object = query_db('select * from Users where email= ?', [form.data["email"]], one=True)
-        #this lets us verify that the professor is actually working at a particular school before they make an account
+        # this lets us verify that the professor is actually working at a particular school before they make an account
         school_code = query_db('select * from School where schoolID= ?', [form.data["schoolProfCode"]], one=True)
         if user_object is None and school_code is not None:
             password = form.data["password"]
@@ -875,8 +929,20 @@ def student_class_home(classID):
     #    for question in question_array:
     #        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    last_section_ID = query_db("SELECT * from Enroll where email='%s' AND classID='%s'" % (current_user.id, classID), one=True)[2]
+    if last_section_ID is None:
+        #this means that we have yet to start this class
+        #we want to default to the first section in the first chapter of this class
+        first_chapter_ID = query_db("SELECT * from Chapters where classID='%s' AND orderNo='%s'" % (classID, 1), one=True)[0]
+        first_section_ID = query_db("SELECT * from Sections where chapterID='%s' AND orderNo='%s'" % (first_chapter_ID, 1), one=True)[0]
+        last_section_ID = first_section_ID
+        last_chapter_ID = first_chapter_ID
+    else:
+        last_chapter_ID = query_db("SELECT * from Sections where sectionID='%s'" % last_section_ID, one=True)[1]
+    print(last_chapter_ID)
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
-                           class_name=class_name, classID=classID)
+                           class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID, last_section_ID=last_section_ID)
+
 
 @app.route("/logout")
 @login_required
