@@ -74,7 +74,7 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
-    orderNo = IntegerField('Chapter Number')
+    orderNo = IntegerField('Chapter Number',validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
@@ -84,13 +84,13 @@ class CreateSection(FlaskForm):
 
 
 class CreateSectionBlock(FlaskForm):
-    orderNo = IntegerField('Text Number')
+    orderNo = IntegerField('Text Number', validators=[DataRequired()])
     sectionText = StringField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
     question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
-    orderNo = IntegerField('Question Number')
+    orderNo = IntegerField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile = FileField('Image')
@@ -161,5 +161,5 @@ class EditTerm(FlaskForm):
 
 class EditSection(FlaskForm):
     sectionID = HiddenField(validators=[DataRequired()])
-    orderNo = IntegerField('Section Number')
+    orderNo = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])

@@ -77,7 +77,8 @@
             {{ form_q.csrf_token }}
             {{ form_q.orderNo(class_ = 'form-control', placeholder = form_q.orderNo.label.text) }}
             {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
-            {{ form_q.questionType(class_ = 'form-control', placeholder = form_q.questionType.label.text, required = true) }}
+            Question Type:<br>
+            {{ form_q.questionType(placeholder = form_q.questionType.label.text, required = true) }}<br><br>
             Image File: (If no image is uploaded, there will be a default image uploaded)
             {{ form_q.imageFile(placeholder = form_q.imageFile.label.text) }}
             <br>
@@ -108,12 +109,11 @@
         </table><br><br>
 
         <form method="post" class="form">
-            <h2>Add Video</h2>
+            <h3>Add Video</h3>
             {{ form_v.csrf_token }}
             {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}<br>
             <input type="submit" value="Add Video" class="btn btn-primary">
         </form>
-
     <h3>Here are all the videos associated with this section</h3>
     Need to add way to play videos here
     {% for video in videos %}
