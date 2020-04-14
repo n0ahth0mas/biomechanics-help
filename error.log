@@ -1396,3 +1396,4 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 608, in section_page
     this_user_class = UserClasses.query.filter(email=current_user.id, classID=class_id).first()
 TypeError: filter() got an unexpected keyword argument 'email'
+2020-04-14 16:35:34,642 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:985]
