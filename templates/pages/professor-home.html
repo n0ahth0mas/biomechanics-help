@@ -4,17 +4,6 @@
 <!-- Begin page content -->
 <main id="structure" role="main" class="container">
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-block alert-error fade in">
-        <a class="close" data-dismiss="alert">&times;</a>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-
     <div>
         <h1>Welcome <i>{{ name }}</i></h1>
     </div>
