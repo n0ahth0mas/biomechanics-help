@@ -8,39 +8,61 @@
 <main>
     <div class="page-container">
         <div class="gridbody">
-
             <h1>{{chapter_name}}: {{section_name}}</h1>
-            <p> {{ section }}</p>
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
                     {% for _text in section_text %}
 
-                <p id="{{_text[0]}}">
-                    <strong>Section Block {{_text[0]}}:</strong><br>
-                    {{_text[1]}}
-                    {% for _image in section_images%}
-                    {% if _image[0] == _text[0] %}
-                    <br>
-                    <div id="{{_text[0]}} Image">
-                <p style="text-align: {{_image[2]}}" title="{{_image[1]}}">
-                    <img alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                    <p id="{{_text[0]}}">
+                        <strong>Section Block {{_text[0]}}:</strong><br>
+                        {{_text[1]}}
+                        {% for _image in section_images%}
+                            {% if _image[0] == _text[0] %}
+                                <br>
+                                    <div class="img_container" id="{{_text[0]}} Image">
+                                        <p title="{{_image[1]}}" style="text-align: {{_image[2]}}">
+                                            <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                                        </p>
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </p>
+                    {% endfor %}
                 </p>
             </div>
-            {% endif %}
-            {% endfor %}
-            <hr>
-            </p>
-            {% endfor %}
-            </p>
-        </div>
 
         <!-- Video Block -->
-        <video controls class="page_vid">
-            <source src={{video}} type="video/mp4">
-        </video>
+        <div class="vid_wrapper">
+            <div class="videos">
+            {% for video in video_files %}
+            {% set vid_loop = loop %}
+            <video controls class="page_vid" id="video{{vid_loop.index}}">
+                <!-- hard coded for now - remember to change -->
+                <source src="/static/video/samplevid.mp4" type="video/mp4">
+            </video>
+            {% endfor %}
 
-        <!-- Quiz Block -->
+            {% if video_files != [] %}
+            <!-- navigation -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+            {% endif %}
+        </div>
+            <!-- progress -->
+            <div style="text-align:center">
+                {% for dot in video_files %}
+                {% set dot_loop = loop %}
+                <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
+                {% endfor %}
+            </div>
+
+
+
+
+            <!-- Quiz Block -->
         {% if q_list!=[] %}
         <div>
 
@@ -75,6 +97,7 @@
                         {% set outer_loop = loop %}
                         <!-- image -->
 
+<<<<<<< HEAD
                         {% set img = question[5] %}
                         <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                             {% if question[3] == "dragndrop" %}
@@ -91,6 +114,13 @@
                                 <img class="q_img" src="{{ img }}">
                             {% endif %}
                         </a>
+=======
+                        <!-- {% set img = question[5] %} -->
+                         {% set img = "../static/img/question.png" %}
+                        <a class="q_img_container" data-fancybox href="{{ img }}"
+                           id="q_img_container{{ outer_loop.index-1 }}"><img
+                                class="q_img" src="{{ img }}"></a>
+>>>>>>> 5f09d3906163eeb3fd91c623127ecd4ad3663f30
 
                         <!-- question text -->
                         <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
@@ -109,8 +139,7 @@
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
                             {% for answer in a_list[outer_loop.index-1] %}
-                            <button class="mult_choice" id="Button{{ answer[0] }}"
-                                    onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)">
+                            <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
                                 {{answer[3]}}
                             </button>
 
@@ -128,39 +157,74 @@
             </div>
         </div>
         <div class="page_nav">
+        <!-- If there is a quiz element -->
+
+        <!-- If there is a section after this one -->
         {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
             {% else %}
+            {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
                 <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
             </a>
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
+
+          <!-- if there isn't a quiz -->
         {% else %}
+            <!-- If there is a section after this one -->
             {% if section_id_after != [] %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button class="btn btn-primary next">Next Page</button>
             </a>
+
+            <!-- If there isn't a section after this one -->
             {% else %}
+
+            <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
-                <button class="btn btn-primary next">Back to Class Overview</button>
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
             </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
         {% endif %}
+
+       <!-- if there exists a section before -->
         {% if section_id_before != [] %}
         <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_before}}">
             <button class="btn btn-primary previous">Previous Page</button>
         </a>
+
+        <!-- if there isn't a section before -->
         {% else %}
-        <a href="/student-class-overview/{{ classID }}">
-            <button class="btn btn-primary previous">Back to Class Overview</button>
-        </a>
+             <!-- If the user is a student -->
+            {% if current_user.has_role_name('Student') %}
+            <a href="/student-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+
+            <!-- If the user is a prof -->
+            {% else %}
+            <a href="/professor-class-overview/{{ classID }}">
+                <button class="btn btn-primary previous">Back to Class Overview</button>
+            </a>
+            {% endif %}
         {% endif %}
-        <p> This is {{ current_user.role }}</p>
         </div>
     </div>
 </main>
 <script src="/static/js/section.js"></script>
 {% endblock %}
-

@@ -32,13 +32,13 @@
 </div>
 
     <!-- Begin page content -->
-
+    <link href="/static/css/glossary.css" rel="stylesheet" type="text/css"/>
     <main id="structure" role="main" class="container">
         <div>
             <h1>Glossary {{class_name}}</h1>
         </div>
         <!--Section relating to the text on this page-->
-        <div id="infoText" style="border: 2px solid Black;">
+        <div id="infoText">
             {% set idx = 0 %}
             {% for _alpha in alpha %}
             <h3 id="gloss{{_alpha}}">{{_alpha}}</h3>
@@ -48,8 +48,8 @@
                             <strong>{{_term[1]}}</strong>: {{_term[2]}}
                             {% for _image in images %}
                                 {% if _image[0][0] == _term[0] %}
-                                    <p id="{{_term[1]}} Image"title="{{_term[1]}} Image">
-                                        <img alt="Picture Unavailable" src="{{ _image[0][1] }}" width = 100 height = 100>
+                                    <p class="img_container" id="{{_term[1]}} Image"title="{{_term[1]}} Image">
+                                        <img class="img" alt="Picture Unavailable" src="{{ _image[0][1] }}">
                                     </p>
                                 {% endif %}
                             {% endfor %}

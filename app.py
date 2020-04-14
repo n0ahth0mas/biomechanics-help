@@ -263,15 +263,23 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_edit = EditChapter()
+    if form_edit.validate_on_submit():
+        chapterID = form_edit.data["chapterID"]
+        one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
+        one_chapter.orderNo = form_edit.data["orderNo"]
+        one_chapter.chapterName = form_edit.data["chapterName"]
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
-    print(chapters)
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
-                           className=className, form=form)
+                           className=className, form=form, form_edit=form_edit)
 
 
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
@@ -285,6 +293,15 @@ def edit_glossary(classID):
         one_entry.term = form.data["term"]
         one_entry.definition = form.data["definition"]
         db.session.add(one_entry)
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
+    form_edit = EditTerm()
+    if form_edit.validate_on_submit():
+        termID = form_edit.data["termID"]
+        edit_term = Glossary.query.filter_by(termID=termID).first()
+        edit_term.term = form_edit.data["term"]
+        edit_term.definition = form_edit.data["definition"]
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
@@ -305,7 +322,6 @@ def edit_glossary(classID):
         images = query_db('SELECT * from GlossaryImages where termID="%s"' % term[1])
         for image in images:
             image_files.append(image)
-    print(image_files)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
                            form_i=form_i, image_files=image_files)
 
@@ -324,11 +340,20 @@ def edit_chapter(classID, chapterID):
         db.session.commit()
     elif request.method == 'POST':
         flash("Error")
+    form_edit = EditSection()
+    if form_edit.validate_on_submit():
+        sectionID = form_edit.data["sectionID"]
+        one_section = Section.query.filter_by(sectionID=sectionID).first()
+        one_section.orderNo = form_edit.data["orderNo"]
+        one_section.sectionName = form_edit.data["sectionName"]
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
     return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID,
-                           chapterName=chapterName, className=className, form=form)
+                           chapterName=chapterName, className=className, form=form, form_edit=form_edit)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
@@ -420,9 +445,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.questionID = questionID
         if form_a.data["correctness"] == 1:
             one_answer.correctness = True
-            print(one_answer.correctness)
         else:
-            print("in this")
             one_answer.correctness = False
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
@@ -473,6 +496,17 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
                            sectionBlockID=sectionBlockID)
 
 
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/<imageFile>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
+    section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(imageFile=imageFile).first()
+    db.session.delete(section_block_image_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID, sectionID=sectionID,
+                           sectionBlockID=sectionBlockID, imageFile=imageFile)
+
+
 @app.route('/delete/<classID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
@@ -511,6 +545,16 @@ def delete_term(classID, termID):
     db.session.delete(term_to_delete)
     db.session.commit()
     return render_template('pages/delete-term.html', classID=classID, termID=termID)
+
+
+@app.route('/edit-class/<classID>/glossary/delete/image/<termID>/<imageFile>', methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_term_image(classID, termID,imageFile):
+    image_to_delete = GlossaryImages.query.filter_by(termID=termID).filter_by(imageFile=imageFile).first()
+    db.session.delete(image_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-term-image.html', classID=classID, termID=termID)
 
 
 @app.route('/student-home', methods=('GET', 'POST'))
@@ -568,7 +612,9 @@ def section_page(class_id, chapter, section):
                 section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2]))
 
         # get video file
-        video = "/static/video/samplevid.mp4"
+        video_files = query_db('SELECT * from Videos WHERE sectionID = "%s"' % section)
+        print(video_files)
+        # video = "/static/video/samplevid.mp4"
         # get quiz data
         a_list = []
 
@@ -583,8 +629,9 @@ def section_page(class_id, chapter, section):
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
 
         # q_image_list = query_db('SELECT * from QuestionImages')
-        print(section)
+        print("section " + section)
         section_data = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
+        print("Section data below")
         print(section_data)
         section_name = section_data[2]
         section_order = section_data[3]
@@ -608,10 +655,9 @@ def section_page(class_id, chapter, section):
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
-        print("this user class last section id: " + str(this_user_class.lastSectionID))
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
-                               section_images=section_images, video=video, section_text=section_text,
+                               section_images=section_images, video_files=video_files, section_text=section_text,
                                section_name=section_name, section_id_before=section_id_before, section_id_after = section_id_after)
     else:
         flash("Please enroll in a class before navigating to it.")
@@ -715,8 +761,15 @@ def professor_home():
         db.session.add(one_class)
         db.session.commit()
     elif request.method == 'POST':
-        print("thinks this is a post method!")
         flash("We're sorry but a class already exists with that code, please enter another unique code")
+    form_edit = EditClass()
+    if form_edit.validate_on_submit():
+        classID = form_edit.data["class_id"]
+        one_class = Class.query.filter_by(classID=classID).first()
+        one_class.className = form_edit.data["class_name"]
+        db.session.commit()
+    elif request.method == 'POST':
+        flash("Error")
     # render our classes
     classes_list = []
     for _class in current_user.classes:
@@ -724,34 +777,13 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    print(classes_list)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form, form_edit=form_edit)
 
 
 @app.route('/student-short')
 @login_required
 def student_short():
     return render_template('pages/placeholder.student.short.html')
-
-
-@app.route('/info-slide/<sectionID>')
-@login_required
-def infoSlide(sectionID):
-    # slide_text = query_db('SELECT * from InfoSlide WHERE sectionID = "{}"').format(sectionID)
-    # slide_images = query_db('SELECT * from InfoSlideImages WHERE sectionID = "{}"').format(sectionID)
-    slide_content = []
-    slide_text = [("123", "Hello World!", "456"), ("125", "Goodnight", "888")]
-    # slide_images = [("123", "Pretty Picture", "456")]
-
-    # For every object queried, if they have the same sectionID, add it to a list of tuples
-    # that contains all information for the text and images that go on the same slide
-    # does not account for duplicatates in multiple images going to one text and vis versa
-    for x in slide_text:
-        for y in slide_images:
-            if x[0] == y[0]:
-                slide_content.append((x, y))
-
-    return render_template('layouts/infoSlide.html', slide_content=slide_content, sectionID=sectionID)
 
 
 @app.route('/glossary/<classID>')
@@ -792,8 +824,16 @@ def glossaryTemplate(classID):
     gloss = []
     for i in range(len(terms)):
         gloss.append((idsAlpha[i], termsAlpha[i], defsAlpha[i]))
+
+    presentAlpha = []
+    for _letter in alpha:
+        for _term in termsAlpha:
+            if _term[0] == _letter:
+                presentAlpha.append(_letter)
+                break
+
     return render_template('layouts/glossary-template.html', classID=classID, gloss=gloss,
-                           enumerate=enumerate, alpha=alpha, class_name=class_name, images=images)
+                           enumerate=enumerate, alpha=presentAlpha, class_name=class_name, images=images)
 
 
 @app.route('/about')
@@ -947,6 +987,11 @@ def student_class_home(classID):
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
                            class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID, last_section_ID=last_section_ID)
 
+
+@app.route("/about-the-developers")
+@login_required
+def developers():
+    return render_template('/layouts/about-the-devs.html')
 
 @app.route("/logout")
 @login_required

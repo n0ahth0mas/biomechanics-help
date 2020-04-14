@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .btn {
-  background-color: white;
+  background-color: Transparent;
   border: none;
   color: gray;
   padding: 12px 16px;
@@ -19,6 +19,7 @@
 .btn2:hover {
   background-color: Maroon;
 }
+
 
 #myTable {
   border-collapse: collapse;
@@ -136,8 +137,12 @@
                    {% if request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' or request.endpoint== 'edit_chapter' or request.endpoint== 'edit_section' or request.endpoint== 'edit_section_block' or request.endpoint== 'edit_question' or request.endpoint== 'delete_answer' or request.endpoint== 'delete_question' or request.endpoint== 'delete_section_block' or request.endpoint== 'delete_class' or request.endpoint== 'delete_chapter'  or request.endpoint== 'delete_section'  or request.endpoint== 'delete_term' %}<li><a href="{{ url_for('professor_home') }}">Professor Dashboard</a></li>{% endif %}
                    {% if request.endpoint== 'section_page' %}<li><a href="{{ url_for('glossaryTemplate', classID=classID) }}">Glossary</a></li>{% endif %}
                    {% if request.endpoint== 'section_page' or request.endpoint== 'student_class_home' %}<li><a href="{{ url_for('student_home') }}">Student Dashboard</a></li>{% endif %}
-                   {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'section_page' or request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' or request.endpoint== 'student_class_home' or request.endpoint== 'edit_chapter' or request.endpoint== 'edit_section' or request.endpoint== 'edit_section_block' or request.endpoint== 'edit_question' or request.endpoint== 'delete_answer' or request.endpoint== 'delete_question' or request.endpoint== 'delete_section_block' or request.endpoint== 'delete_class' or request.endpoint== 'delete_chapter'  or request.endpoint== 'delete_section'  or request.endpoint== 'delete_term'%}<li><a href="{{ url_for('logout') }}">Logout</a></li>{% endif %}
+                   {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'section_page' or request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' or request.endpoint== 'student_class_home' or request.endpoint== 'edit_chapter' or request.endpoint== 'edit_section' or request.endpoint== 'edit_section_block' or request.endpoint== 'edit_question' or request.endpoint== 'delete_answer' or request.endpoint== 'delete_question' or request.endpoint== 'delete_section_block' or request.endpoint== 'delete_class' or request.endpoint== 'delete_chapter'  or request.endpoint== 'delete_section'  or request.endpoint== 'delete_term' or request.endpoint== 'developers'%}<li><a href="{{ url_for('developers') }}">About</a></li>{% endif %}
                    {% if request.endpoint=='glossaryTemplate' %}<li><a href="{{ url_for('section_page', class_id=classID, chapter=1, section=1) }}">Back To Quiz</a></li>{% endif %}
+                   {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'section_page' or request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' or request.endpoint== 'student_class_home' or request.endpoint== 'edit_chapter' or request.endpoint== 'edit_section' or request.endpoint== 'edit_section_block' or request.endpoint== 'edit_question' or request.endpoint== 'delete_answer' or request.endpoint== 'delete_question' or request.endpoint== 'delete_section_block' or request.endpoint== 'delete_class' or request.endpoint== 'delete_chapter'  or request.endpoint== 'delete_section'  or request.endpoint== 'delete_term' or request.endpoint== 'developers'%}<li><a href="{{ url_for('logout') }}">Logout</a></li>{% endif %}
+
+                   <!--similar lines but if signed in as prof vs signed in as student getting different dashboards for the about page-->
+
                </ul>
             </div><!--/.nav-collapse -->
         </div>

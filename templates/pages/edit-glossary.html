@@ -3,8 +3,8 @@
 {% block content %}
 <main id="structure" role="main" class="container">
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">Glossary</a>
-    <h1>Edit Section: {{sectionName}}</h1>
     <!-- Trigger/Open The Modal -->
+    <h3>Here is a list of terms in the Glossary</h3>
     <button id="myBtn" class="btn btn-primary myBtn">Add Term</button>
 
     <!-- The Modal -->
@@ -22,13 +22,13 @@
     </form>
     </div>
     </div>
-    <h3>Here is a list of terms in the Glossary</h3>
+    <br><br>
     <table id="myTable">
             <tr class="header">
                 <th style="width:20%;">Term</th>
                 <th style="width:50%;">Defintion</th>
                 <th style="width:20;">Images</th>
-                <th style="width:5%;"></th>
+                <th style="width:5%;">Add Images</th>
                 <th style="width:5%;"></th>
             </tr>
             {% for term in terms %}
@@ -37,31 +37,21 @@
                 <td>{{term[3]}}</td>
                 <td><ul class="class-student-list">
                 {% for image_file in image_files %}
-                    {% if image_file[0] == term[1] %}<li>{{ image_file[1] }}</li>{% endif %}
+                    {% if image_file[0] == term[1] %}<li>{{ image_file[1] }}<a href="/edit-class/{{classID}}/glossary/delete/image/{{term[1]}}/{{image_file[1]}}"><button type="button" class="btn" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a><br></li>{% endif %}
                 {% endfor %}
                 </ul></td>
-                <td><!-- Trigger/Open The Modal -->
-                <button id="myBtn" class="btn myBtn">Add Image</button>
-
-                <div id="myModal" class="modal">
-
-                    <div class="modal-content">
-                    <span class="close">&times;</span>
+                <td>
                     <form method="post" class="form">
-                    <h2>Add Image</h2>
                         {{ form_i.csrf_token }}
-                        {{ form_i.termID(class_ = 'form-control', placeholder = form_i.termID.label.text) }}
-                        {{ form_i.imageFile(class_ = 'form-control', placeholder = form_i.imageFile.label.text) }}
-                        <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
+                        {{ form_i.termID(value = term[1]) }}
+                        {{ form_i.imageFile(placeholder = form_i.imageFile.label.text) }}
+                        <input type="submit" value="Submit" class="btn">
                     </form>
-                    </div>
-                </div>
                 </td>
                 <td><a href="/edit-class/{{classID}}/glossary/delete/{{term[1]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
             </tr>
              {% endfor %}
         </table>
-
 <script>
 // Get the modal
 var modal = document.getElementsByClassName('modal');
@@ -73,22 +63,34 @@ var btn = document.getElementsByClassName("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close");
 
-// When the user clicks the button, open the modal
 btn[0].onclick = function() {
-    modal[0].style.display = "block";
+        modal[0].style.display = "block";
 }
-
-btn[1].onclick = function() {
-    modal[1].style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
 span[0].onclick = function() {
     modal[0].style.display = "none";
 }
 
+btn[1].onclick = function() {
+        modal[1].style.display = "block";
+}
 span[1].onclick = function() {
     modal[1].style.display = "none";
 }
+
+
+// When the user clicks the button, open the modal
+var i;
+for (i=2;i<modal.length;i++){
+    btn[i].onclick = function() {
+        modal[i].style.display = "block";
+        document.getElementById("hey").innerHTML=i;
+    }
+    span[i].onclick = function() {
+        modal[i].style.display = "none";
+    }
+}
+
+
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
