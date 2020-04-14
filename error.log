@@ -3034,3 +3034,41 @@ TypeError: 'NoneType' object is not subscriptable
 2020-04-13 16:34:42,096 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
 2020-04-13 16:37:25,099 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
 2020-04-13 16:40:41,311 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:43:07,260 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:43:26,523 ERROR: Exception on /user/sign-in [POST] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_user\user_manager.py", line 416, in login_stub
+    return self.login_view()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_user\user_manager__views.py", line 379, in login_view
+    if request.method == 'POST' and login_form.validate():
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_user\forms.py", line 190, in validate
+    user = user_manager.db_manager.find_user_by_username(self.username.data)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_user\db_manager.py", line 138, in find_user_by_username
+    return self.db_adapter.ifind_first_object(self.UserClass, username=username)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask_user\db_adapters\sql_db_adapter.py", line 133, in ifind_first_object
+    raise KeyError("BaseAlchemyAdapter.find_first_object(): Class '%s' has no field '%s'." % (ObjectClass, field_name))
+KeyError: "BaseAlchemyAdapter.find_first_object(): Class '<class '__main__.User'>' has no field 'username'."
+2020-04-14 12:45:31,910 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:45:43,255 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:48:20,336 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:49:47,765 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:51:32,837 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:53:11,301 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:54:56,060 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:55:18,089 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:55:56,339 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 12:58:29,113 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 13:00:00,100 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
+2020-04-14 13:01:24,538 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1047]
