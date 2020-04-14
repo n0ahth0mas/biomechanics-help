@@ -77,11 +77,18 @@
 
                         {% set img = question[5] %}
                         <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
-                            <img class="q_img" src="{{ img }}">
                             {% if question[3] == "dragndrop" %}
-                                <map>
-
-                                </map>
+                                <div class="drag-n-drop-container">
+                                    {% for answer in a_list[outer_loop.index-1] %}
+                                    {% set dropbox_loop = loop %}
+                                        {% if answer[2] == 'True' %}
+                                            <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)" style="left: {{answer[6]}}px; bottom: {{answer[7]}}px;"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <img class="q_img" src="{{ img }}">
+                                </div>
+                            {% else %}
+                                <img class="q_img" src="{{ img }}">
                             {% endif %}
                         </a>
 
@@ -110,7 +117,9 @@
                             {% endfor %}
                             {% elif question[3] == "dragndrop" %}
                             {% for answer in a_list[outer_loop.index-1] %}
-                            {$ endfor %}
+                            {% set inner_loop = loop %}
+                            <img id="drag_element{{inner_loop.index}}" src="{{answer[5]}}" draggable="true" ondragstart="drag(event)">
+                            {% endfor %}
                             {% endif %}
                         </div>
                         {% endfor %}

@@ -605,6 +605,10 @@ def section_page(class_id, chapter, section):
             print("no")
             section_id_after = []
 
+        this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
+        this_user_class.lastSectionID = section
+        db.session.commit()
+        print("this user class last section id: " + str(this_user_class.lastSectionID))
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video=video, section_text=section_text,

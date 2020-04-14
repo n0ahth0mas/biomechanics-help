@@ -1141,3 +1141,258 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 584, in section_page
     section_name = section_data[2]
 TypeError: 'NoneType' object is not subscriptable
+2020-04-09 21:26:07,617 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 21:28:17,143 ERROR: Exception on /section/12345678/2/None [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 589, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-09 21:40:17,009 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 21:40:39,645 ERROR: Exception on /section/12345678/2/None [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 589, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-09 21:46:28,957 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 21:48:36,540 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 22:04:17,374 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 22:07:30,760 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 22:10:07,109 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 22:10:18,926 ERROR: Exception on /section/12345678/2/2 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 608, in section_page
+    return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 1, in <module>
+    {% extends 'layouts/base' %}
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 14, in root
+    <!-- Information and Image Blocks -->
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\base", line 46, in root
+    position: fixed; /* Stay in place */
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 148, in block_content
+    <button class="btn btn-primary previous">Previous Page</button>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'innter_loop' is undefined
+2020-04-09 22:10:48,572 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-09 22:12:58,852 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 14:49:11,401 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 14:57:46,780 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 18:38:40,676 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 20:45:04,710 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:06:11,634 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:21:52,090 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:24:24,023 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:30:58,566 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:36:42,993 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 21:39:16,708 ERROR: Exception on /section/12345/1/1 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 608, in section_page
+    return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 1, in <module>
+    {% extends 'layouts/base' %}
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 14, in root
+    <!-- Information and Image Blocks -->
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\base", line 46, in root
+    position: fixed; /* Stay in place */
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 137, in block_content
+    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 411, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: list object has no element 0
+2020-04-13 21:47:47,024 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-13 22:43:05,697 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-14 10:53:48,572 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-14 12:11:35,845 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-14 14:41:54,415 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:981]
+2020-04-14 16:06:49,176 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:984]
+2020-04-14 16:08:29,311 ERROR: Exception on /section/12345/1/1 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 611, in section_page
+    return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 1, in <module>
+    {% extends 'layouts/base' %}
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 14, in root
+    <!-- Information and Image Blocks -->
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\base", line 46, in root
+    position: fixed; /* Stay in place */
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 137, in block_content
+    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 411, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: list object has no element 0
+2020-04-14 16:08:40,417 ERROR: Exception on /section/12345/1/1 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 611, in section_page
+    return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 137, in render_template
+    return _render(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 1, in <module>
+    {% extends 'layouts/base' %}
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 14, in root
+    <!-- Information and Image Blocks -->
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\base", line 46, in root
+    position: fixed; /* Stay in place */
+  File "C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\templates\layouts\section.html", line 137, in block_content
+    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\jinja2\environment.py", line 411, in getitem
+    return obj[argument]
+jinja2.exceptions.UndefinedError: list object has no element 0
+2020-04-14 16:15:43,033 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:985]
+2020-04-14 16:20:56,427 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:985]
+2020-04-14 16:32:54,049 ERROR: Exception on /section/12345678/2/2 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 608, in section_page
+    this_user_class = UserClasses.query.filter(email=current_user.id, classID=class_id).first()
+TypeError: filter() got an unexpected keyword argument 'email'
