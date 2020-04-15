@@ -929,11 +929,11 @@ def new_student_account():
 @roles_required('Professor')
 def professor_class_home(classID):
     print("called professor class home")
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
     print(chapters)
     sections_arrays = []
     for chapter in chapters:
-        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s" ORDER by "orderNo" ' % chapter[0]))
 
     questions = []
     for sectionarray in sections_arrays:
@@ -956,11 +956,10 @@ def professor_class_home(classID):
 @login_required
 @roles_required('Student')
 def student_class_home(classID):
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
     sections_arrays = []
     for chapter in chapters:
-        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
-
+        sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s" ORDER by "orderNo"' % chapter[0]))
     # questions = []
     # for sectionarray in sections_arrays:
     #    for section in sectionarray:
