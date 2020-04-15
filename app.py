@@ -273,7 +273,6 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         pass
-
     if form.validate_on_submit():
         print("no")
         one_chapter = Chapter()
@@ -411,15 +410,13 @@ def edit_section(classID, chapterID, sectionID):
     if form_si.validate_on_submit():
         one_image = SectionBlockImages()
         orderNo = form_si.data["orderNo"]
-        list = query_db('SELECT orderNo from SectionBlock where sectionID="%s"' % sectionID)
-        length = len(list)
+        list =[]
+        list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
         counter = 1
         for i in list:
-            if i != orderNo:
-                print(counter)
-                print(length)
+            print(i)
+            if i[0] != orderNo:
                 if length == counter:
-                    print("got here")
                     flash("Text Number does not exists")
             else:
                 one_image.sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
@@ -428,6 +425,7 @@ def edit_section(classID, chapterID, sectionID):
                 one_image.yposition = form_si.data["yposition"]
                 db.session.add(one_image)
                 db.session.commit()
+                break
             counter=counter+1
 
     elif request.method == 'POST':
