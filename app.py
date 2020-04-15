@@ -619,9 +619,12 @@ def section_page(class_id, chapter, section):
         section_text = []
         blockIDs = []
 
+        print("classid")
+        print(type(class_id))
+
         chapter_data = query_db('SELECT * from Chapters where chapterID ="%c"' % chapter, one=True)
         chapter_name = chapter_data[1]
-
+        chapter_order = chapter_data[3]
         for i in text_info:
             blockIDs.append(i[0])
 
@@ -676,12 +679,17 @@ def section_page(class_id, chapter, section):
 
         section_after = query_db(
             'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order + 1), one=True)
+        next_ch_sect = []
+        chapter_after = []
+        section_id_after = []
         if section_after:
-            print("yes")
             section_id_after = section_after[0]
         else:
-            print("no")
-            section_id_after = []
+            chapter_after = query_db('SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1), one=True)
+            if chapter_after:
+                chapter_id_after = chapter_after[0]
+                next_ch_sect = query_db('SELECT * from Sections WHERE chapterID = "%s" AND orderNo = 1' % chapter_id_after, one = True)
+
 
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
@@ -689,7 +697,8 @@ def section_page(class_id, chapter, section):
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
-                               section_name=section_name, section_id_before=section_id_before, section_id_after = section_id_after)
+                               section_name=section_name, section_id_before=section_id_before, next_ch_sect = next_ch_sect,
+                               chapter_after=chapter_after, section_id_after=section_id_after)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)

@@ -160,17 +160,29 @@
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
+
+        <!-- if there isn't a section after -->
             {% else %}
-            {% if current_user.has_role_name('Student') %}
-            <a href="/student-class-overview/{{ classID }}">
-                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            <!-- If there is a section after this one -->
+
+            <!-- next chapter -->
+            {% if chapter_after != [] and next_ch_sect != [] %}
+            <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
+                <button id="next" class="btn btn-primary next-hidden">Next Chapter</button>
             </a>
             {% else %}
-            <a href="/professor-class-overview/{{ classID }}">
-                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
-            </a>
+                {% if current_user.has_role_name('Student') %}
+                <a href="/student-class-overview/{{ classID }}">
+                    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+                </a>
+                {% else %}
+                <a href="/professor-class-overview/{{ classID }}">
+                    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+                </a>
+                {% endif %}
             {% endif %}
         {% endif %}
+
 
           <!-- if there isn't a quiz -->
         {% else %}
@@ -183,16 +195,25 @@
             <!-- If there isn't a section after this one -->
             {% else %}
 
+            <!-- next chapter -->
+            {% if chapter_after != [] and next_ch_sect != [] %}
+            <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
+                <button class="btn btn-primary next">Next Chapter</button>
+            </a>
+            <br>
+            {% endif %}
+
+            <!-- return to overview -->
             <!-- If the user is a student -->
             {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
-                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+                <button class="btn btn-primary next">Back to Class Overview</button>
             </a>
 
             <!-- If the user is a prof -->
             {% else %}
             <a href="/professor-class-overview/{{ classID }}">
-                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+                <button class="btn btn-primary next">Back to Class Overview</button>
             </a>
             {% endif %}
         {% endif %}
