@@ -987,3 +987,4 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 578, in section_page
     section_name = section_data[2]
 TypeError: 'NoneType' object is not subscriptable
+2020-04-15 12:10:34,856 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1030]

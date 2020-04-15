@@ -96,9 +96,11 @@
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
                         <!-- image -->
-
-<<<<<<< HEAD
-                        {% set img = question[5] %}
+                        {% if question[5] == None %}
+                            {% set img = "../static/img/question.png" %}
+                        {% else %}
+                            {% set img = question[5] %}
+                        {% endif %}
                         <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                             {% if question[3] == "dragndrop" %}
                                 <div class="drag-n-drop-container">
@@ -114,13 +116,6 @@
                                 <img class="q_img" src="{{ img }}">
                             {% endif %}
                         </a>
-=======
-                        <!-- {% set img = question[5] %} -->
-                         {% set img = "../static/img/question.png" %}
-                        <a class="q_img_container" data-fancybox href="{{ img }}"
-                           id="q_img_container{{ outer_loop.index-1 }}"><img
-                                class="q_img" src="{{ img }}"></a>
->>>>>>> 5f09d3906163eeb3fd91c623127ecd4ad3663f30
 
                         <!-- question text -->
                         <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
