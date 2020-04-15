@@ -74,7 +74,7 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
-    orderNo = IntegerField('Chapter Number', validators=[DataRequired()])
+    orderNo2 = IntegerField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
@@ -148,8 +148,8 @@ class EditClass(FlaskForm):
 
 
 class EditChapter(FlaskForm):
-    chapterID = HiddenField(validators=[DataRequired()])
-    orderNo = StringField('Chapter Number', validators=[DataRequired()])
+    chapterID = HiddenField()
+    orderNo1 = StringField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 

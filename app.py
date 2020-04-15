@@ -264,20 +264,25 @@ def home():
 def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
-    if formEdit.validate_on_submit():
+
+    print(formEdit.orderNo1.data)
+    print(form.orderNo2.data)
+    print("Edit form validated?" + str(formEdit.validate_on_submit()))
+    print("Create form validated?" + str(form.validate_on_submit()))
+    if formEdit.orderNo1.data is not None and formEdit.validate():
         print("yes")
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
-        one_chapter.orderNo = formEdit.data["orderNo"]
+        one_chapter.orderNo = formEdit.data["orderNo1"]
         one_chapter.chapterName = formEdit.data["chapterName"]
         db.session.commit()
     elif request.method == 'POST':
         pass
 
-    if form.validate_on_submit():
+    if form.orderNo2.data is not None and form.validate():
         print("no")
         one_chapter = Chapter()
-        one_chapter.orderNo = form.data["orderNo"]
+        one_chapter.orderNo = form.data["orderNo2"]
         one_chapter.chapterName = form.data["chapterName"]
         one_chapter.classID = classID
         db.session.add(one_chapter)
@@ -779,17 +784,17 @@ def student_quiz(class_id, chapter, section):
 @login_required
 @roles_required('Professor')
 def professor_home():
-    form = CreateClass()
-    if form.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]) == []:
+    form_create = CreateClass()
+    form_edit = EditClass()
+    if form_create.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
-        one_class.classID = form.data["class_id"]
-        one_class.className = form.data["class_name"]
+        one_class.classID = form_create.data["class_id"]
+        one_class.className = form_create.data["class_name"]
         current_user.classes.append(one_class)
         db.session.add(one_class)
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    form_edit = EditClass()
     if form_edit.validate_on_submit():
         classID = form_edit.data["class_id"]
         one_class = Class.query.filter_by(classID=classID).first()
@@ -804,7 +809,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form, form_edit=form_edit)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, form_edit=form_edit)
 
 
 @app.route('/student-short')
