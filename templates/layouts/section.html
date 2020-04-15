@@ -96,12 +96,26 @@
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
                         <!-- image -->
-
-                        <!-- {% set img = question[5] %} -->
-                         {% set img = "../static/img/question.png" %}
-                        <a class="q_img_container" data-fancybox href="{{ img }}"
-                           id="q_img_container{{ outer_loop.index-1 }}"><img
-                                class="q_img" src="{{ img }}"></a>
+                        {% if question[5] == None %}
+                            {% set img = "../static/img/question.png" %}
+                        {% else %}
+                            {% set img = question[5] %}
+                        {% endif %}
+                        <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
+                            {% if question[3] == "dragndrop" %}
+                                <div class="drag-n-drop-container">
+                                    {% for answer in a_list[outer_loop.index-1] %}
+                                    {% set dropbox_loop = loop %}
+                                        {% if answer[2] == 'True' %}
+                                            <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)" style="left: {{answer[6]}}px; bottom: {{answer[7]}}px;"></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <img class="q_img" src="{{ img }}">
+                                </div>
+                            {% else %}
+                                <img class="q_img" src="{{ img }}">
+                            {% endif %}
+                        </a>
 
                         <!-- question text -->
                         <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
@@ -118,12 +132,17 @@
                             <button class="mult_choice" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
 
                             <!-- multiple choice -->
-                            {% else %}
+                            {% elif question[3] == "multiple" %}
                             {% for answer in a_list[outer_loop.index-1] %}
                             <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
                                 {{answer[3]}}
                             </button>
 
+                            {% endfor %}
+                            {% elif question[3] == "dragndrop" %}
+                            {% for answer in a_list[outer_loop.index-1] %}
+                            {% set inner_loop = loop %}
+                            <img id="drag_element{{inner_loop.index}}" src="{{answer[5]}}" draggable="true" ondragstart="drag(event)">
                             {% endfor %}
                             {% endif %}
                         </div>

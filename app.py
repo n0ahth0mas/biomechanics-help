@@ -23,6 +23,12 @@ from flask import g
 import datetime
 from time import time
 import jwt
+import sys
+
+
+
+
+
 
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -243,6 +249,9 @@ class User(db.Model, UserMixin):
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
+#Function that defines a pop up
+
+
 
 @app.route('/')
 def home():
@@ -253,33 +262,42 @@ def home():
 @login_required
 @roles_required('Professor')
 def edit_class(classID):
+    formEdit = EditChapter()
     form = CreateChapter()
-    if form.validate_on_submit():
+
+    print(formEdit.orderNo1.data)
+    print(form.orderNo2.data)
+    print("Edit form validated?" + str(formEdit.validate_on_submit()))
+    print("Create form validated?" + str(form.validate_on_submit()))
+    if formEdit.orderNo1.data is not None and formEdit.validate():
+        print("yes")
+        chapterID = formEdit.data["chapterID"]
+        one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
+        one_chapter.orderNo = formEdit.data["orderNo1"]
+        one_chapter.chapterName = formEdit.data["chapterName"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
+
+    if form.orderNo2.data is not None and form.validate():
+        print("no")
         one_chapter = Chapter()
-        one_chapter.orderNo = form.data["orderNo"]
+        one_chapter.orderNo = form.data["orderNo2"]
         one_chapter.chapterName = form.data["chapterName"]
         one_chapter.classID = classID
         db.session.add(one_chapter)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
-    form_edit = EditChapter()
-    if form_edit.validate_on_submit():
-        chapterID = form_edit.data["chapterID"]
-        one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
-        one_chapter.orderNo = form_edit.data["orderNo"]
-        one_chapter.chapterName = form_edit.data["chapterName"]
-        db.session.commit()
-    elif request.method == 'POST':
-        flash("Error")
+        pass
+
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    chapters = query_db('SELECT * from Chapters where classID="%s"' % classID)
+    chapters = query_db('SELECT * from Chapters where classID="%s" ORDER BY orderNo' % classID)
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
-                           className=className, form=form, form_edit=form_edit)
+                           className=className, form=form, formEdit=formEdit)
 
 
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
@@ -295,7 +313,7 @@ def edit_glossary(classID):
         db.session.add(one_entry)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_edit = EditTerm()
     if form_edit.validate_on_submit():
         termID = form_edit.data["termID"]
@@ -304,7 +322,7 @@ def edit_glossary(classID):
         edit_term.definition = form_edit.data["definition"]
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_i = CreateGlossaryImage()
     if form_i.validate_on_submit():
         one_image = GlossaryImages()
@@ -313,7 +331,7 @@ def edit_glossary(classID):
         db.session.add(one_image)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
 
     terms = query_db('SELECT * from Glossary where classID="%s"' % classID)
@@ -339,7 +357,7 @@ def edit_chapter(classID, chapterID):
         db.session.add(one_section)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_edit = EditSection()
     if form_edit.validate_on_submit():
         sectionID = form_edit.data["sectionID"]
@@ -348,7 +366,7 @@ def edit_chapter(classID, chapterID):
         one_section.sectionName = form_edit.data["sectionName"]
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
@@ -369,7 +387,7 @@ def edit_section(classID, chapterID, sectionID):
         db.session.add(one_section_block)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_q = CreateQuestion()
     if form_q.validate_on_submit():
         one_question = Question()
@@ -384,7 +402,7 @@ def edit_section(classID, chapterID, sectionID):
         db.session.add(one_question)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_v = CreateVideo()
     if form_v.validate_on_submit():
         one_video = Video()
@@ -393,18 +411,31 @@ def edit_section(classID, chapterID, sectionID):
         db.session.add(one_video)
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     form_si = CreateSectionBlockImages()
     if form_si.validate_on_submit():
         one_image = SectionBlockImages()
-        one_image.sectionBlockID = form_si.data["sectionBlockID"]
-        one_image.imageFile = form_si.data["imageFile"]
-        one_image.xposition = form_si.data["xposition"]
-        one_image.yposition = form_si.data["yposition"]
-        db.session.add(one_image)
-        db.session.commit()
+        orderNo = form_si.data["orderNo"]
+        list =[]
+        list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
+        counter = 1
+        for i in list:
+            print(i)
+            if i[0] != orderNo:
+                if length == counter:
+                    flash("Text Number does not exists")
+            else:
+                one_image.sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
+                one_image.imageFile = form_si.data["imageFile"]
+                one_image.xposition = form_si.data["xposition"]
+                one_image.yposition = form_si.data["yposition"]
+                db.session.add(one_image)
+                db.session.commit()
+                break
+            counter=counter+1
+
     elif request.method == 'POST':
-        flash("Error")
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
@@ -652,6 +683,9 @@ def section_page(class_id, chapter, section):
             print("no")
             section_id_after = []
 
+        this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
+        this_user_class.lastSectionID = section
+        db.session.commit()
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
@@ -749,24 +783,24 @@ def student_quiz(class_id, chapter, section):
 @login_required
 @roles_required('Professor')
 def professor_home():
-    form = CreateClass()
-    if form.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form.data["class_id"]) == []:
+    form_create = CreateClass()
+    form_edit = EditClass()
+    if form_create.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
-        one_class.classID = form.data["class_id"]
-        one_class.className = form.data["class_name"]
+        one_class.classID = form_create.data["class_id"]
+        one_class.className = form_create.data["class_name"]
         current_user.classes.append(one_class)
         db.session.add(one_class)
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    form_edit = EditClass()
     if form_edit.validate_on_submit():
         classID = form_edit.data["class_id"]
         one_class = Class.query.filter_by(classID=classID).first()
         one_class.className = form_edit.data["class_name"]
         db.session.commit()
     elif request.method == 'POST':
-        flash("Error")
+        pass
     # render our classes
     classes_list = []
     for _class in current_user.classes:
@@ -774,7 +808,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form, form_edit=form_edit)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, form_edit=form_edit)
 
 
 @app.route('/student-short')

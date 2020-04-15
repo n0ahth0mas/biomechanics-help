@@ -16,25 +16,31 @@
         <form method="post" class="form">
             <h2>Add Chapter</h2>
             {{ form.csrf_token }}
-            {{ form.orderNo(class_ = 'form-control', placeholder = form.orderNo.label.text, required = true) }}
+            {{ form.orderNo2(class_ = 'form-control', placeholder = form.orderNo2.label.text, required = true) }}
             {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
             <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
         </form>
     </div>
     </div>
     <h3>Here is a list of chapters in this class</h3>
-
+        <!--Making a table for all the chapter-->
         <table id="myTable">
             <tr class="header">
                 <th style="width:5%;">Chapter Number</th>
-                <th style="width:85%;">Chapter</th>
+                <th style="width:80%;">Chapter Name</th>
+                <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
             </tr>
             {% for chapter in chapters %}
             <tr>
-                <td>{{chapter[3]}}</td>
-                <td>{{chapter[1]}}</td>
+                <!--form to edit chapter-->
+                 <form method="post" class="form">
+                        {{ formEdit.csrf_token }}
+                     <td>{{ formEdit.orderNo1(class_ = 'form-control', value = chapter[3]) }}</td>
+                     <td>{{ formEdit.chapterName(class_ = 'form-control', value = chapter[1]) }}</td>
+                     <td><input type="submit" value="Save" class="btn"></td>
+                    </form>
                 <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Open</button></a></td>
                 <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>
             </tr>
