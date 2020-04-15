@@ -16,6 +16,7 @@ var tries = 0;
 var firstTry = 0;
 
 var buttonIDs = [];
+var correctSubmitCount = 0;
 //RENDERING
 
 function startQuiz(){
@@ -41,6 +42,7 @@ function restart(){
     questionIndex=0;
     renderQuestion();
 }
+
 function renderQuestion(){
     console.log(document.getElementById("q_qs"+questionIndex));
     document.getElementById("q_qs"+questionIndex).style.display = "flex";
@@ -99,6 +101,55 @@ function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
         tries++;
         alert(reason);
     }
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev, element) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var answer_parent = document.getElementById(data).parentElement;
+  var drop_zone_index = String(element.id).replace("drop_element", "");
+  drop_zone_index = Number(drop_zone_index);
+  var answer_element_index = String(data).replace("drag_element", "");
+  answer_element_index = Number(answer_element_index);
+  var drop_zone_container = element.parentElement;
+  var drop_zone_count = element.parentElement.children.length - 1;
+  if(answer_element_index === drop_zone_index){
+    //then we know that we have dragged the right answer onto the right drop zone
+    correctSubmitCount++;
+    //ask if we are done with this question
+    //if the correntSubmitCount is equal to the total number of drop zones then we know that we have finished this question
+    if(correctSubmitCount === drop_zone_count){
+        alert("Correct, you finished the question!");
+        progress(true);
+        //need to reset the question elements
+        for(i=0; i < drop_zone_count;i++){
+            (function (i) {
+                console.log(i);
+                var drag_element_id = String("drag_element" + (i+1));
+                var drag_element = document.getElementById(drag_element_id);
+                answer_parent.appendChild(drag_element);
+            })(i);
+        }
+        nextQuestion();
+    }else{
+        alert("Correct!");
+    }
+    ev.target.appendChild(document.getElementById(data));
+  }else{
+    //then we just dragged the wrong answer onto this drop zone
+    //for now just make this wrong
+    progress(false);
+    alert("Wrong! You bad!");
+    tries++;
+  }
 }
 
 function submitShortAnswer(answer, submitButton, reason){
