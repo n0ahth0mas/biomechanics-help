@@ -74,7 +74,7 @@ class CreateClass(FlaskForm):
 
 
 class CreateChapter(FlaskForm):
-    orderNo = IntegerField('Chapter Number',validators=[DataRequired()])
+    orderNo = IntegerField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
@@ -129,9 +129,9 @@ class ResetPasswordForm(FlaskForm):
 
 
 class CreateSectionBlockImages(FlaskForm):
-    xposition_choices = [('',''), ('right', 'right'), ('left', 'left')]
-    yposition_choices = [('',''), ('above', 'above'), ('below', 'below')]
-    sectionBlockID = HiddenField('Section Block ID', validators=[DataRequired()])
+    xposition_choices = [('right', 'right'), ('left', 'left')]
+    yposition_choices = [('above', 'above'), ('below', 'below')]
+    orderNo = IntegerField('Text Number', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
     xposition = SelectField('X Position', choices=xposition_choices)
     yposition = SelectField('Y position', choices=yposition_choices)
