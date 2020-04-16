@@ -37,9 +37,10 @@
                 <!--form to edit chapter-->
                  <form method="post" class="form">
                         {{ formEdit.csrf_token }}
+                        {{ formEdit.chapterID(value = chapter[0])}}
                      <td>{{ formEdit.orderNo1(class_ = 'form-control', value = chapter[3]) }}</td>
                      <td>{{ formEdit.chapterName(class_ = 'form-control', value = chapter[1]) }}</td>
-                     <td><input type="submit" value="Save" class="btn"></td>
+                     <td><input type="submit" value="Save" class="btn" ></td>
                     </form>
                 <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Open</button></a></td>
                 <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>

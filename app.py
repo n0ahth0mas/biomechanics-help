@@ -264,15 +264,11 @@ def home():
 def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
-
-    print(formEdit.orderNo1.data)
-    print(form.orderNo2.data)
-    print("Edit form validated?" + str(formEdit.validate_on_submit()))
-    print("Create form validated?" + str(form.validate_on_submit()))
     if formEdit.orderNo1.data is not None and formEdit.validate():
-        print("yes")
         chapterID = formEdit.data["chapterID"]
+        print(chapterID)
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
+        print(one_chapter)
         one_chapter.orderNo = formEdit.data["orderNo1"]
         one_chapter.chapterName = formEdit.data["chapterName"]
         db.session.commit()
@@ -280,7 +276,6 @@ def edit_class(classID):
         pass
 
     if form.orderNo2.data is not None and form.validate():
-        print("no")
         one_chapter = Chapter()
         one_chapter.orderNo = form.data["orderNo2"]
         one_chapter.chapterName = form.data["chapterName"]
