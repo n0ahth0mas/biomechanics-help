@@ -79,18 +79,18 @@ class CreateChapter(FlaskForm):
 
 
 class CreateSection(FlaskForm):
-    orderNo = IntegerField('Section Number')
+    orderNo2 = IntegerField('Section Number')
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
 
 class CreateSectionBlock(FlaskForm):
-    orderNo = IntegerField('Text Number', validators=[DataRequired()])
+    orderNo2 = IntegerField('Text Number', validators=[DataRequired()])
     sectionText = StringField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
     question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
-    orderNo = IntegerField('Question Number', validators=[DataRequired()])
+    orderNo3 = IntegerField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile = FileField('Image')
@@ -105,9 +105,11 @@ class CreateVideo(FlaskForm):
 
 
 class CreateAnswer(FlaskForm):
-    correctness = BooleanField()
+    correctness_choices = [('0', 'False'), ('1', 'True')]
+    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    imageFile = FileField('Image File', validators=[DataRequired()])
 
 
 class CreateTerm(FlaskForm):
@@ -131,7 +133,7 @@ class ResetPasswordForm(FlaskForm):
 class CreateSectionBlockImages(FlaskForm):
     xposition_choices = [('right', 'right'), ('left', 'left')]
     yposition_choices = [('above', 'above'), ('below', 'below')]
-    orderNo = IntegerField('Text Number', validators=[DataRequired()])
+    orderNo4 = IntegerField('Text Number', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
     xposition = SelectField('X Position', choices=xposition_choices)
     yposition = SelectField('Y position', choices=yposition_choices)
@@ -155,11 +157,33 @@ class EditChapter(FlaskForm):
 
 class EditTerm(FlaskForm):
     termID = HiddenField(validators=[DataRequired()])
-    term = StringField('Term', validators=[DataRequired()])
+    term_e = StringField('Term', validators=[DataRequired()])
     definition = StringField("Definition", validators=[DataRequired()])
 
 
 class EditSection(FlaskForm):
     sectionID = HiddenField(validators=[DataRequired()])
-    orderNo = IntegerField('Section Number', validators=[DataRequired()])
+    orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
+
+
+class EditSectionBlock(FlaskForm):
+    sectionBlockID = HiddenField(validators=[DataRequired()])
+    orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
+    text = StringField('Text', validators=[DataRequired()])
+
+
+class EditQuestion(FlaskForm):
+    question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
+    questionID = HiddenField(validators=[DataRequired()])
+    orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
+    questionText = StringField(validators=[DataRequired()])
+    questionType = SelectField(validators=[DataRequired()], choices=question_type_choices)
+
+
+class EditAnswer(FlaskForm):
+    question_type_choices = [('0', 'False'), ('1', 'True')]
+    answerID = HiddenField()
+    correctness = SelectField(validators=[DataRequired()], choices=question_type_choices)
+    answerText2 = StringField('Answer Text', validators=[DataRequired()])
+    answerReason = StringField('Answer Reason', validators=[DataRequired()])

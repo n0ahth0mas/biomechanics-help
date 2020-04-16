@@ -20,12 +20,13 @@
   background-color: Maroon;
 }
 
-input[type=text] {
+.form {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: white;
+  border: transparent;
+  background-color: transparent;
   border-radius: 4px;
 }
 

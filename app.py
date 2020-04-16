@@ -187,6 +187,7 @@ class Answer(db.Model):
     correctness = db.Column(db.String())
     answerText = db.Column(db.String())
     answerReason = db.Column(db.String())
+    imageFile = db.Column(db.String())
 
 
 class Video(db.Model):
@@ -266,9 +267,7 @@ def edit_class(classID):
     form = CreateChapter()
     if formEdit.orderNo1.data is not None and formEdit.validate():
         chapterID = formEdit.data["chapterID"]
-        print(chapterID)
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
-        print(one_chapter)
         one_chapter.orderNo = formEdit.data["orderNo1"]
         one_chapter.chapterName = formEdit.data["chapterName"]
         db.session.commit()
@@ -300,7 +299,7 @@ def edit_class(classID):
 @roles_required('Professor')
 def edit_glossary(classID):
     form = CreateTerm()
-    if form.validate_on_submit():
+    if form.term.data is not None and form.validate():
         one_entry = Glossary()
         one_entry.classID = classID
         one_entry.term = form.data["term"]
@@ -310,10 +309,10 @@ def edit_glossary(classID):
     elif request.method == 'POST':
         pass
     form_edit = EditTerm()
-    if form_edit.validate_on_submit():
+    if form_edit.term_e.data is not None and form_edit.validate():
         termID = form_edit.data["termID"]
         edit_term = Glossary.query.filter_by(termID=termID).first()
-        edit_term.term = form_edit.data["term"]
+        edit_term.term = form_edit.data["term_e"]
         edit_term.definition = form_edit.data["definition"]
         db.session.commit()
     elif request.method == 'POST':
@@ -336,7 +335,7 @@ def edit_glossary(classID):
         for image in images:
             image_files.append(image)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
-                           form_i=form_i, image_files=image_files)
+                           form_i=form_i, image_files=image_files, form_edit=form_edit)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
@@ -344,20 +343,20 @@ def edit_glossary(classID):
 @roles_required('Professor')
 def edit_chapter(classID, chapterID):
     form = CreateSection()
-    if form.validate_on_submit():
+    if form.orderNo2.data is not None and form.validate():
         one_section = Section()
         one_section.chapterID = chapterID
-        one_section.orderNo = form.data["orderNo"]
+        one_section.orderNo = form.data["orderNo2"]
         one_section.sectionName = form.data["sectionName"]
         db.session.add(one_section)
         db.session.commit()
     elif request.method == 'POST':
         pass
     form_edit = EditSection()
-    if form_edit.validate_on_submit():
+    if form_edit.orderNo1.data is not None and form_edit.validate():
         sectionID = form_edit.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
-        one_section.orderNo = form_edit.data["orderNo"]
+        one_section.orderNo = form_edit.data["orderNo1"]
         one_section.sectionName = form_edit.data["sectionName"]
         db.session.commit()
     elif request.method == 'POST':
@@ -374,20 +373,29 @@ def edit_chapter(classID, chapterID):
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
     form_s = CreateSectionBlock()
-    if form_s.validate_on_submit():
+    if form_s.orderNo2.data is not None and form_s.validate():
         one_section_block = SectionBlock()
-        one_section_block.orderNo = form_s.data["orderNo"]
+        one_section_block.orderNo = form_s.data["orderNo2"]
         one_section_block.sectionText = form_s.data["sectionText"]
         one_section_block.sectionID = sectionID
         db.session.add(one_section_block)
         db.session.commit()
     elif request.method == 'POST':
         pass
+    form_edit = EditSectionBlock()
+    if form_edit.orderNo1.data is not None and form_edit.validate():
+        sectionBlockID = form_edit.data["sectionBlockID"]
+        one_section_block = SectionBlock.query.filter_by(sectionBlockID=sectionBlockID).first()
+        one_section_block.orderNo1 = form_edit.data["orderNo1"]
+        one_section_block.text = form_edit.data["text"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     form_q = CreateQuestion()
-    if form_q.validate_on_submit():
+    if form_q.orderNo3.data is not None and form_q.validate_on_submit():
         one_question = Question()
         one_question.questionText = form_q.data["questionText"]
-        one_question.orderNo = form_q.data["orderNo"]
+        one_question.orderNo = form_q.data["orderNo3"]
         one_question.sectionID = sectionID
         one_question.questionType = form_q.data["questionType"]
         if not form_q.data["imageFile"]:
@@ -398,8 +406,18 @@ def edit_section(classID, chapterID, sectionID):
         db.session.commit()
     elif request.method == 'POST':
         pass
+    form_edit_question = EditQuestion()
+    if form_edit_question.orderNo5.data is not None and form_q.validate_on_submit():
+        questionID = form_edit_question.data["questionID"]
+        one_question = Question.query.filter_by(questionID=questionID).first()
+        one_question.questionText = form_edit_question.data["questionText"]
+        one_question.orderNo = form_edit_question.data["orderNo5"]
+        one_question.questionType = form_edit_question.data["questionType"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     form_v = CreateVideo()
-    if form_v.validate_on_submit():
+    if form_v.videoFile.data is not None and form_v.validate_on_submit():
         one_video = Video()
         one_video.sectionID = sectionID
         one_video.videoFile = form_v.data["videoFile"]
@@ -408,14 +426,13 @@ def edit_section(classID, chapterID, sectionID):
     elif request.method == 'POST':
         pass
     form_si = CreateSectionBlockImages()
-    if form_si.validate_on_submit():
+    if form_si.orderNo4.data is not None and form_si.validate_on_submit():
         one_image = SectionBlockImages()
-        orderNo = form_si.data["orderNo"]
-        list =[]
+        orderNo = form_si.data["orderNo4"]
+        list = []
         list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
         counter = 1
         for i in list:
-            print(i)
             if i[0] != orderNo:
                 if length == counter:
                     flash("Text Number does not exists")
@@ -427,7 +444,7 @@ def edit_section(classID, chapterID, sectionID):
                 db.session.add(one_image)
                 db.session.commit()
                 break
-            counter=counter+1
+            counter = counter+1
 
     elif request.method == 'POST':
         pass
@@ -448,7 +465,7 @@ def edit_section(classID, chapterID, sectionID):
     return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
-                           form_v=form_v, form_si=form_si, image_files=image_files)
+                           form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit, form_edit_question=form_edit_question)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -466,17 +483,27 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
     form_a = CreateAnswer()
-    if form_a.validate_on_submit():
+    if form_a.answerText.data is not None and form_a.validate_on_submit():
         one_answer = Answer()
         one_answer.questionID = questionID
-        if form_a.data["correctness"] == 1:
-            one_answer.correctness = True
-        else:
-            one_answer.correctness = False
+        one_answer.correctness = form_a.data["correctness"]
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
+        one_answer.imageFile = form_a.data["imageFile"]
         db.session.add(one_answer)
         db.session.commit()
+    elif request.method == 'POST':
+        pass
+    form_edit = EditAnswer()
+    if form_edit.answerText2.data is not None and form_edit.validate():
+        answerID = form_edit.data["answerID"]
+        one_answer = Answer.query.filter_by(answerID=answerID).first()
+        one_answer.answerText = form_edit.data["answerText2"]
+        one_answer.answerReason = form_edit.data["answerReason"]
+        one_answer.correctness = form_edit.data["correctness"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
     questions = query_db('SELECT questionText from Questions where questionID="%s"' % questionID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
@@ -484,7 +511,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, form_edit=form_edit)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
