@@ -354,3 +354,129 @@ Traceback (most recent call last):
   File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 276, in edit_class
     one_chapter.orderNo = formEdit.data["orderNo1"]
 AttributeError: 'NoneType' object has no attribute 'orderNo'
+2020-04-16 10:59:50,219 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1091]
+2020-04-16 11:06:23,473 ERROR: Exception on /login [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 937, in login
+    return render_template('forms/login.html', form=form, noNav=True)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\forms\login.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\base", line 153, in template
+    <!--similar lines but if signed in as prof vs signed in as student getting different dashboards for the about page-->
+jinja2.exceptions.TemplateSyntaxError: unexpected '<'
+2020-04-16 11:06:28,960 ERROR: Exception on /login [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 937, in login
+    return render_template('forms/login.html', form=form, noNav=True)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\forms\login.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\base", line 153, in template
+    <!--similar lines but if signed in as prof vs signed in as student getting different dashboards for the about page-->
+jinja2.exceptions.TemplateSyntaxError: unexpected '<'
+2020-04-16 11:06:41,318 ERROR: Exception on /login [GET] [in C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py", line 937, in login
+    return render_template('forms/login.html', form=form, noNav=True)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\forms\login.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "C:\Users\ashbr\AppData\Local\Programs\Python\Python37-32\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\ashbr\OneDrive\Documents\College\Senior\Capstone\biomechanics-help\templates\layouts\base", line 153, in template
+    <!--similar lines but if signed in as prof vs signed in as student getting different dashboards for the about page-->
+jinja2.exceptions.TemplateSyntaxError: unexpected '<'
+2020-04-16 11:25:19,970 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:26:45,769 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:27:55,574 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:28:38,621 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:29:16,092 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:29:37,958 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:29:56,006 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:30:35,582 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:31:15,119 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:31:47,693 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:32:45,005 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:33:12,282 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:33:45,591 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:36:14,796 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:38:07,667 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:38:54,041 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-16 11:39:52,265 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1096]
+2020-04-16 11:42:28,368 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1096]
+2020-04-16 11:59:24,428 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1091]
+2020-04-16 12:02:47,325 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
