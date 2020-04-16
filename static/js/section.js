@@ -4,6 +4,9 @@ const finalScore = document.getElementById("quiz-final-score");
 const progressDiv = document.getElementById("prog_bub");
 const totalIndex = progressDiv.childElementCount-1;
 
+const modalHead = document.getElementById("modal-header");
+const modalBody = document.getElementById("modal-body");
+
 //timer Setup
 let TIMER;
 const questionTime = 60; // total seconds
@@ -93,13 +96,15 @@ function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
     }
     progress(correct);
     if(correct){
-        alert("correct!");
+        modalHead.innerHTML = "<h4>Correct!</h4>";
+        modalBody.innerHTML = reason;
         nextQuestion();
     }else{
         document.getElementById(buttonID).className = "disabled";
         buttonIDs.push(buttonID);
         tries++;
-        alert(reason);
+        modalHead.innerHTML = "<h4>Incorrect!</h4>";
+        modalBody.innerHTML = reason;
     }
 }
 
@@ -157,13 +162,19 @@ function submitShortAnswer(answer, submitButton, reason){
     progress(correct);
     if(correct){
         if(tries == 1) firstTry++;
-        alert(reason);
+        console.log("correct");
+        modalHead.innerHTML = "<h4>Correct!</h4>";
+        modalBody.innerHTML = reason;
         nextQuestion();
     }else if( tries>=2){
-        alert("Hmm, seem's like you're stuck here. The answer is " + answer+". Here's why: " + reason);
+        console.log("last Try");
+        modalHead.innerHTML = "<h4>Hmm, seems like you're stuck here.</h4>";
+        modalBody.innerHTML = "The answer is " + answer+". Here's why: " + reason;
         nextQuestion();
     } else{
-        alert("Oops! Let's try that one again.")
+        console.log("incorrect");
+        modalHead.innerHTML = "<h4>Incorrect</h4>";
+        modalBody.innerHTML = "Oops! Let's try this one again";
         tries++;
     }
     submitButton.parentElement.children[0].value=""
