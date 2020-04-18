@@ -58,8 +58,27 @@
                 <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
                 {% endfor %}
             </div>
+        </div>
 
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div id="modal-header" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div id="modal-body" class="modal-body">
+                <p>Some text in the modal.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
 
             <!-- Quiz Block -->
@@ -104,7 +123,7 @@
                                 <div class="drag-n-drop-container">
                                     {% for answer in a_list[outer_loop.index-1] %}
                                     {% set dropbox_loop = loop %}
-                                        {% if answer[2] == 'True' %}
+                                        {% if answer[2] == 1 %}
                                             <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
                                             <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
                                             <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
@@ -128,12 +147,12 @@
                             {% if question[3] == "short" %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
 
-                            <button class="mult_choice" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
+                            <button class="mult_choice" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
 
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
                             {% for answer in a_list[outer_loop.index-1] %}
-                            <button class="mult_choice" id="Button{{ answer[0] }}" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
+                            <button class="mult_choice" id="Button{{ answer[0] }}" data-toggle="modal" data-target="#myModal" onclick="submitMultipleChoiceAnswer('{{answer[2]}}', '{{answer[4]}}', 'Button{{ answer[0] }}', this)" >
                                 {{answer[3]}}
                             </button>
 
@@ -158,17 +177,29 @@
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
+
+        <!-- if there isn't a section after -->
             {% else %}
-            {% if current_user.has_role_name('Student') %}
-            <a href="/student-class-overview/{{ classID }}">
-                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+            <!-- If there is a section after this one -->
+
+            <!-- next chapter -->
+            {% if chapter_after != [] and next_ch_sect != [] %}
+            <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
+                <button id="next" class="btn btn-primary next-hidden">Next Chapter</button>
             </a>
             {% else %}
-            <a href="/professor-class-overview/{{ classID }}">
-                <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
-            </a>
+                {% if current_user.has_role_name('Student') %}
+                <a href="/student-class-overview/{{ classID }}">
+                    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+                </a>
+                {% else %}
+                <a href="/professor-class-overview/{{ classID }}">
+                    <button id="next" class="btn btn-primary next-hidden">Back to Class Overview</button>
+                </a>
+                {% endif %}
             {% endif %}
         {% endif %}
+
 
           <!-- if there isn't a quiz -->
         {% else %}
@@ -181,16 +212,25 @@
             <!-- If there isn't a section after this one -->
             {% else %}
 
+            <!-- next chapter -->
+            {% if chapter_after != [] and next_ch_sect != [] %}
+            <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
+                <button class="btn btn-primary next">Next Chapter</button>
+            </a>
+            <br>
+            {% endif %}
+
+            <!-- return to overview -->
             <!-- If the user is a student -->
             {% if current_user.has_role_name('Student') %}
             <a href="/student-class-overview/{{ classID }}">
-                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+                <button class="btn btn-primary next">Back to Class Overview</button>
             </a>
 
             <!-- If the user is a prof -->
             {% else %}
             <a href="/professor-class-overview/{{ classID }}">
-                <button class="btn btn-primary next-hidden">Back to Class Overview</button>
+                <button class="btn btn-primary next">Back to Class Overview</button>
             </a>
             {% endif %}
         {% endif %}

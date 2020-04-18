@@ -21,7 +21,7 @@
             <form method="post" class="form drag-form">
                 {{ drag_n_drop_form.csrf_token }}
                 <p style="margin-bottom: 0px;">Mark if the answer is correct:</p>
-                {{ form_a.correctness(placeholder = drag_n_drop_form.correctness.label.text, required = false) }}
+                {{ drag_n_drop_form.correctness(class_ = 'form-control', placeholder = drag_n_drop_form.correctness.label.text, required = false) }}
                 {{ drag_n_drop_form.answerReason(class_ = 'form-control', placeholder = drag_n_drop_form.answerReason.label.text, required = true) }}
                 {{ drag_n_drop_form.answerImage(class_ = 'form-control', placeholder = drag_n_drop_form.answerImage.label.text, required = true) }}
                 {{ drag_n_drop_form.answerXCoord(class_ = 'form-control', id='click-x-coord', placeholder = drag_n_drop_form.answerXCoord.label.text, required = true) }}
@@ -31,10 +31,15 @@
         </div>
         {% else %}
         <form method="post" class="form">
+            <h2>Add Answer</h2>
             {{ form_a.csrf_token }}
-            Mark if the answer is correct {{ form_a.correctness(class_ = 'form-control', placeholder = form_a.correctness.label.text, required = false) }}
+            Answer Text:
             {{ form_a.answerText(class_ = 'form-control', placeholder = form_a.answerText.label.text, required = true) }}
+            True or false?
+            {{ form_a.correctness(class_ = 'form-control', placeholder = form_a.correctness.label.text, required = false) }}
+            Reasoning:
             {{ form_a.answerReason(class_ = 'form-control', placeholder = form_a.answerReason.label.text, required = true) }}
+            {{ form_a.imageFile(placeholder = form_a.imageFile.label.text) }}
             <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
         </form>
         {% endif %}
@@ -45,15 +50,24 @@
         <tr class="header">
             <th style="width:30%;">Answer</th>
             <th style="width:10%;">Correctness</th>
-            <th style="width:50%;">Reason</th>
+            <th style="width:25%;">Reason</th>
+            <th style="width:5%;"></th>
+            <th style="width:20%;">Image File</th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
         </tr>
         {% for answer in answers %}
         <tr>
-            <td>{{answer[3]}}</td>
-            <td>{{answer[2]}}</td>
-            <td>{{answer[4]}}</td>
+            <!--form to edit answer-->
+                 <form method="post" class="form">
+                        {{ form_edit.csrf_token }}
+                        {{ form_edit.answerID(value = answer[0])}}
+                     <td>{{ form_edit.answerText2(class_ = 'form', value = answer[3]) }}</td>
+                     <td>{{ form_edit.correctness(value = answer[2]) }}</td>
+                     <td>{{ form_edit.answerReason(class_ = 'form', value = answer[4]) }}</td>
+                     <td><input type="submit" value="Save" class="btn btn1"></td>
+                    </form>
+            <td>{{answer[5]}}</td>
             <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}"><button type="button" class="btn btn1" >Edit</button></a><br></a></h5></td>
             <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}/delete/{{answer[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
         </tr>

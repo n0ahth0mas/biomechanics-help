@@ -17,7 +17,6 @@ $("#drag-question-image").on("click", function(event) {
 
 $( "#start-quiz-button" ).on("click", function() {
     //put drop zones in the right position
-    console.log("called ready!");
     var drop_zones = document.getElementsByClassName("drop-zone");
     for(i = 0; i < drop_zones.length;i++){
         var drop_zone_x_pos = Number(document.getElementById("drop_element_x_pos" + String(i)).innerHTML);
@@ -30,12 +29,6 @@ $( "#start-quiz-button" ).on("click", function() {
         this_question_image = this_question_image.parentElement;
         var img_width = this_question_image.clientWidth;
         var img_height = this_question_image.clientHeight;
-        console.log("drop-zone-x-pos: " + drop_zone_x_pos);
-        console.log("img_natural_width: " + img_natural_width);
-        console.log("img_width: " + img_width);
-        console.log("drop-zone-y-pos: " + drop_zone_y_pos);
-        console.log("img-natural-height: " + img_natural_height);
-        console.log("img_height: " + img_height);
         drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
         drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
     }

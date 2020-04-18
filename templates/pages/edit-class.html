@@ -16,7 +16,9 @@
         <form method="post" class="form">
             <h2>Add Chapter</h2>
             {{ form.csrf_token }}
+            Chapter Number:
             {{ form.orderNo2(class_ = 'form-control', placeholder = form.orderNo2.label.text, required = true) }}
+            Chapter Name:
             {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
             <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
         </form>
@@ -27,7 +29,9 @@
         <table id="myTable">
             <tr class="header">
                 <th style="width:5%;">Chapter Number</th>
-                <th style="width:80%;">Chapter Name</th>
+                <th style="width:70%;">Chapter Name</th>
+                <th style="width:5%;"></th>
+                <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
@@ -37,11 +41,29 @@
                 <!--form to edit chapter-->
                  <form method="post" class="form">
                         {{ formEdit.csrf_token }}
-                     <td>{{ formEdit.orderNo1(class_ = 'form-control', value = chapter[3]) }}</td>
-                     <td>{{ formEdit.chapterName(class_ = 'form-control', value = chapter[1]) }}</td>
-                     <td><input type="submit" value="Save" class="btn"></td>
+                        {{ formEdit.chapterID(value = chapter[0])}}
+                     <td>{{ formEdit.orderNo1(class_ = 'form', value = chapter[3]) }}</td>
+                     <td>{{ formEdit.chapterName(class_ = 'form', value = chapter[1]) }}</td>
+                     <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
-                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Open</button></a></td>
+                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >View Chapters</button></a></td>
+                <td>
+                     {% if chapter[4] == False %}
+                        <!--form to publish-->
+                        <form method="post" class="form">
+                            {{ form_publish.csrf_token }}
+                            {{ form_publish.chapterID(value = chapter[0])}}
+                            <td><input type="submit" value="Publish" class="btn btn1"></td>
+                        </form>
+                     {% else %}
+                        <!--form to unpublish-->
+                        <form method="post" class="form">
+                            {{ form_publish.csrf_token }}
+                            {{ form_publish.chapterID(value = chapter[0])}}
+                            <td><input type="submit" value="Unpublish" class="btn btn1"></td>
+                        </form>
+                     {% endif %}
+                </td>
                 <td><a href="/edit-class/{{classID}}/delete/{{chapter[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>
             </tr>
             {% endfor %}
