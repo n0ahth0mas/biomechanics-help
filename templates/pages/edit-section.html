@@ -111,7 +111,7 @@
             {% for question in questions %}
             <tr>
                 <!--form to edit section block-->
-                 <form method="post" class="form">
+                 <form method="post" class="form" >
                         {{ form_edit_question.csrf_token }}
                         {{ form_edit_question.questionID(value = question[0])}}
                      <td>{{ form_edit_question.orderNo5(class_ = 'form', value = question[4]) }}</td>
@@ -119,7 +119,14 @@
                      <td>{{ form_edit_question.questionType(value = question[3]) }}</td>
                      <td><input type="submit" value="Save" class="btn"></td>
                     </form>
-                <td>{{question[5]}}</td>
+                <td>{{question[5]}}
+                    <form method="post" class="form">
+                        {{ form_change.csrf_token }}
+                        {{ form_edit_question.questionID(value = question[0])}}
+                        {{ form_change.imageFile1(placeholder = form_change.imageFile1.label.text) }}
+                        <input type="submit" value="Change Image" class="btn btn1">
+                    </form>
+                </td>
                 <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{question[0]}}"><button type="button" class="btn btn1" >Add/Edit Answers</button></a><br></a></h5></td>
                 <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/delete/{{question[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
             </tr>

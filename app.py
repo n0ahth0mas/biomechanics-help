@@ -448,6 +448,14 @@ def edit_section(classID, chapterID, sectionID):
 
     elif request.method == 'POST':
         pass
+    form_change = ChangeImage()
+    if form_change.imageFile1.data is not None and form_change.validate():
+        questionID = form_change.data["questionID"]
+        question_to_change = Question.query.filter_by(questionID=questionID).first()
+        question_to_change.imageFile = form_change.data["imageFile1"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
@@ -465,7 +473,7 @@ def edit_section(classID, chapterID, sectionID):
     return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
-                           form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit, form_edit_question=form_edit_question)
+                           form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit, form_edit_question=form_edit_question, form_change=form_change)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))

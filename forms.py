@@ -187,3 +187,9 @@ class EditAnswer(FlaskForm):
     correctness = SelectField(validators=[DataRequired()], choices=question_type_choices)
     answerText2 = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
+
+
+class ChangeImage(FlaskForm):
+    questionID = HiddenField()
+    imageFile1 = FileField()
+
