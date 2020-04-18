@@ -75,8 +75,11 @@ create TABLE Answers(
         answerText    TEXT check(answerText IS NOT NULL),
         answerReason  TEXT,
         imageFile     TEXT,
-        xposition       TEXT,
-        yposition       TEXT,
+        xposition       INTEGER,
+        yposition       INTEGER,
+        dropBoxHeight   INTEGER,
+        dropBoxWidth    INTEGER,
+        dropBoxColor    TEXT,
         PRIMARY KEY (answerID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
               ON UPDATE CASCADE
