@@ -386,8 +386,8 @@ def edit_section(classID, chapterID, sectionID):
     if form_edit.orderNo1.data is not None and form_edit.validate():
         sectionBlockID = form_edit.data["sectionBlockID"]
         one_section_block = SectionBlock.query.filter_by(sectionBlockID=sectionBlockID).first()
-        one_section_block.orderNo1 = form_edit.data["orderNo1"]
-        one_section_block.text = form_edit.data["text"]
+        one_section_block.orderNo = form_edit.data["orderNo1"]
+        one_section_block.sectionText = form_edit.data["text"]
         db.session.commit()
     elif request.method == 'POST':
         pass
