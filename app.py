@@ -407,7 +407,7 @@ def edit_section(classID, chapterID, sectionID):
     elif request.method == 'POST':
         pass
     form_edit_question = EditQuestion()
-    if form_edit_question.orderNo5.data is not None and form_q.validate_on_submit():
+    if form_edit_question.orderNo5.data is not None and form_edit_question.validate_on_submit():
         questionID = form_edit_question.data["questionID"]
         one_question = Question.query.filter_by(questionID=questionID).first()
         one_question.questionText = form_edit_question.data["questionText"]
@@ -450,8 +450,8 @@ def edit_section(classID, chapterID, sectionID):
         pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
-    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-    questions = query_db('SELECT * from Questions where sectionID="%s"' % sectionID)
+    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
+    questions = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % sectionID)
     videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     answers = []
