@@ -195,3 +195,14 @@ class ChangeImage(FlaskForm):
     imageFile1 = FileField(validators=[DataRequired()])
 
 
+class PublishChapter(FlaskForm):
+    chapterID = HiddenField()
+    publish = HiddenField()
+
+
+class PublishSection(FlaskForm):
+    sectionID = HiddenField()
+    publish = HiddenField()
+
+
+

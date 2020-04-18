@@ -287,7 +287,14 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         pass
-
+    form_publish = PublishChapter()
+    if form_publish.publish.data is not None and form_publish.validate():
+        chapterID = form_publish.data["chapterID"]
+        one_chapter = Section.query.filter_by(chapterID=chapterID).first()
+        one_chapter.publish = form_edit.data["publish"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapters = query_db('SELECT * from Chapters where classID="%s" ORDER BY orderNo' % classID)
     sections_arrays = []
@@ -295,7 +302,7 @@ def edit_class(classID):
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
 
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
-                           className=className, form=form, formEdit=formEdit)
+                           className=className, form=form, formEdit=formEdit, form_publish=form_publish)
 
 
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
@@ -366,11 +373,19 @@ def edit_chapter(classID, chapterID):
         db.session.commit()
     elif request.method == 'POST':
         pass
+    form_publish = PublishSection()
+    if form_publish.publish.data is not None and form_publish.validate():
+        sectionID = form_publish.data["sectionID"]
+        one_section = Section.query.filter_by(sectionID=sectionID).first()
+        one_section.publish = form_edit.data["publish"]
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
     return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID,
-                           chapterName=chapterName, className=className, form=form, form_edit=form_edit)
+                           chapterName=chapterName, className=className, form=form, form_edit=form_edit, form_publish=form_publish)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
