@@ -145,8 +145,9 @@ class CreateGlossaryImage(FlaskForm):
 
 
 class EditClass(FlaskForm):
-    class_name = StringField('Class Name', validators=[DataRequired()])
-    class_id = HiddenField('Class code (think password)', validators=[DataRequired()])
+    classID = HiddenField()
+    className = StringField(validators=[DataRequired()])
+    newClassID = StringField(validators=[DataRequired()])
 
 
 class EditChapter(FlaskForm):
@@ -192,4 +193,5 @@ class EditAnswer(FlaskForm):
 class ChangeImage(FlaskForm):
     questionID = HiddenField()
     imageFile1 = FileField(validators=[DataRequired()])
+
 

@@ -106,9 +106,9 @@ class Class(db.Model):
     __tablename__ = "Classes"
     classID = db.Column(db.Integer(), primary_key=True)
     className = db.Column(db.String())
-    chapters = db.relationship("Chapter", cascade="all, delete-orphan")
-    enrolled = db.relationship("UserClasses", cascade="all, delete-orphan")
-    glossary = db.relationship("Glossary", cascade="all, delete-orphan")
+    chapters = db.relationship("Chapter", cascade="all, delete-orphan, save-update")
+    enrolled = db.relationship("UserClasses", cascade="all, delete-orphan, save-update")
+    glossary = db.relationship("Glossary", cascade="all, delete-orphan, save-update")
 
 
 class Chapter(db.Model):
@@ -117,7 +117,7 @@ class Chapter(db.Model):
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
     orderNo = db.Column(db.Integer())
-    sections = db.relationship("Section", cascade="all, delete-orphan")
+    sections = db.relationship("Section", cascade="all, delete-orphan, save-update")
 
 
 class Section(db.Model):
@@ -126,9 +126,9 @@ class Section(db.Model):
     chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
     sectionName = db.Column(db.String())
     orderNo = db.Column(db.Integer())
-    sectionBlocks = db.relationship("SectionBlock", cascade="all, delete-orphan")
-    questions = db.relationship("Question", cascade="all, delete-orphan")
-    videos = db.relationship("Video", cascade="all, delete-orphan")
+    sectionBlocks = db.relationship("SectionBlock", cascade="all, delete-orphan, save-update")
+    questions = db.relationship("Question", cascade="all, delete-orphan, save-update")
+    videos = db.relationship("Video", cascade="all, delete-orphan, save-update")
 
 
 class Glossary(db.Model):
@@ -266,6 +266,7 @@ def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
     if formEdit.orderNo1.data is not None and formEdit.validate():
+        #can't figure out how to cascade when we update
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.orderNo = formEdit.data["orderNo1"]
@@ -823,7 +824,7 @@ def student_quiz(class_id, chapter, section):
 @roles_required('Professor')
 def professor_home():
     form_create = CreateClass()
-    form_edit = EditClass()
+    formEdit = EditClass()
     if form_create.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
         one_class.classID = form_create.data["class_id"]
@@ -833,10 +834,14 @@ def professor_home():
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    if form_edit.validate_on_submit():
-        classID = form_edit.data["class_id"]
+    error = False
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and error == True:
+        pass
+        # cascading does not work with the classID yet
+        classID = formEdit.data["classID"]
         one_class = Class.query.filter_by(classID=classID).first()
-        one_class.className = form_edit.data["class_name"]
+        one_class.classID = formEdit.data["newClassID"]
+        one_class.className = formEdit.data["className"]
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -847,7 +852,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, form_edit=form_edit)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit)
 
 
 @app.route('/student-short')

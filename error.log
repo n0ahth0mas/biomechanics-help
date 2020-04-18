@@ -480,3 +480,107 @@ jinja2.exceptions.TemplateSyntaxError: unexpected '<'
 2020-04-16 11:42:28,368 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1096]
 2020-04-16 11:59:24,428 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1091]
 2020-04-16 12:02:47,325 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1094]
+2020-04-18 05:16:53,927 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1099]
+2020-04-18 05:19:02,387 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1099]
+2020-04-18 05:19:54,681 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1099]
+2020-04-18 06:19:07,402 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:19:09,768 ERROR: Exception on /professor-home [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 836, in professor_home
+    if form_edit.newClassID.data is not None and form_edit.validate_on_submit():
+NameError: name 'form_edit' is not defined
+2020-04-18 06:19:14,960 ERROR: Exception on /professor-home [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 836, in professor_home
+    if form_edit.newClassID.data is not None and form_edit.validate_on_submit():
+NameError: name 'form_edit' is not defined
+2020-04-18 06:19:33,727 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:19:36,780 ERROR: Exception on /professor-home [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 836, in professor_home
+    if form_edit.newClassID.data is not None and form_edit.validate_on_submit():
+NameError: name 'form_edit' is not defined
+2020-04-18 06:19:59,896 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:20:03,858 ERROR: Exception on /professor-home [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 836, in professor_home
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit():
+AttributeError: 'EditClass' object has no attribute 'newClassID'
+2020-04-18 06:21:11,740 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:21:43,243 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:25:04,800 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:28:34,463 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:37:21,333 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:38:02,835 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:39:19,663 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:40:18,124 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1100]
+2020-04-18 06:46:12,920 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1102]
+2020-04-18 06:49:33,761 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1102]
+2020-04-18 06:50:17,569 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1102]
+2020-04-18 06:50:46,047 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1102]
+2020-04-18 06:52:00,676 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1103]
+2020-04-18 06:52:38,406 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1103]
