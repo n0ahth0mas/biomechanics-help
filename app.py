@@ -117,6 +117,7 @@ class Chapter(db.Model):
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
     orderNo = db.Column(db.Integer())
+    publish = db.Column(db.Boolean())
     sections = db.relationship("Section", cascade="all, delete-orphan, save-update")
 
 
@@ -126,6 +127,7 @@ class Section(db.Model):
     chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
     sectionName = db.Column(db.String())
     orderNo = db.Column(db.Integer())
+    publish = db.Column(db.Boolean())
     sectionBlocks = db.relationship("SectionBlock", cascade="all, delete-orphan, save-update")
     questions = db.relationship("Question", cascade="all, delete-orphan, save-update")
     videos = db.relationship("Video", cascade="all, delete-orphan, save-update")
@@ -184,7 +186,7 @@ class Answer(db.Model):
     __tablename__ = 'Answers'
     answerID = db.Column(db.Integer(), primary_key=True)
     questionID = db.Column(db.Integer(), db.ForeignKey('Questions.questionID'))
-    correctness = db.Column(db.String())
+    correctness = db.Column(db.Boolean())
     answerText = db.Column(db.String())
     answerReason = db.Column(db.String())
     imageFile = db.Column(db.String())
@@ -280,6 +282,7 @@ def edit_class(classID):
         one_chapter.orderNo = form.data["orderNo2"]
         one_chapter.chapterName = form.data["chapterName"]
         one_chapter.classID = classID
+        one_chapter.publish = False
         db.session.add(one_chapter)
         db.session.commit()
     elif request.method == 'POST':
@@ -349,6 +352,7 @@ def edit_chapter(classID, chapterID):
         one_section.chapterID = chapterID
         one_section.orderNo = form.data["orderNo2"]
         one_section.sectionName = form.data["sectionName"]
+        one_section.publish = False
         db.session.add(one_section)
         db.session.commit()
     elif request.method == 'POST':
@@ -435,7 +439,7 @@ def edit_section(classID, chapterID, sectionID):
         counter = 1
         for i in list:
             if i[0] != orderNo:
-                if length == counter:
+                if len(list) == counter:
                     flash("Text Number does not exists")
             else:
                 one_image.sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]

@@ -25,6 +25,7 @@ create TABLE Chapters(
         chapterName   TEXT check(chapterName IS NOT NULL),
         classID     TEXT check(classID IS NOT NULL),
         orderNo      INTEGER ,
+        publish     BOOLEAN,
         PRIMARY KEY (chapterID),
         FOREIGN KEY (classID) REFERENCES Classes(classID)
             ON UPDATE CASCADE
@@ -36,6 +37,7 @@ create TABLE Sections(
         chapterID     INTEGER check(chapterID IS NOT NULL),
         sectionName   TEXT check(sectionName IS NOT NULL),
         orderNo         INTEGER,
+        publish     BOOLEAN,
         PRIMARY KEY (sectionID),
         FOREIGN KEY (chapterID) REFERENCES Chapters (chapterID)
             ON UPDATE CASCADE
