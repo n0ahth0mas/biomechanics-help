@@ -5,20 +5,39 @@
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}">{{questions}}</a>
     <h3>{{questions}}</h3>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary">Add Answer</button>
+    <button id="myBtn" onclick="displayModal()" class="btn btn-primary">Add Answer</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content" {% if questionType == "dragndrop" %}id="new-drag-and-drop-answer"{% endif %}>
         <span class="close">&times;</span>
+        {% if questionType == "dragndrop" %}
+        <div class="dragndrop-img-area">
+            <p>Please click on the question image where you want the student to drag this answer:</p>
+            <img id="drag-question-image" class="drag-n-drop-img" src="{{questionImage}}">
+        </div>
+        <div class="dragndrop-form-area">
+            <form method="post" class="form drag-form">
+                {{ drag_n_drop_form.csrf_token }}
+                <p style="margin-bottom: 0px;">Mark if the answer is correct:</p>
+                {{ form_a.correctness(placeholder = drag_n_drop_form.correctness.label.text, required = false) }}
+                {{ drag_n_drop_form.answerReason(class_ = 'form-control', placeholder = drag_n_drop_form.answerReason.label.text, required = true) }}
+                {{ drag_n_drop_form.answerImage(class_ = 'form-control', placeholder = drag_n_drop_form.answerImage.label.text, required = true) }}
+                {{ drag_n_drop_form.answerXCoord(class_ = 'form-control', id='click-x-coord', placeholder = drag_n_drop_form.answerXCoord.label.text, required = true) }}
+                {{ drag_n_drop_form.answerYCoord(class_ = 'form-control', id='click-y-coord', placeholder = drag_n_drop_form.answerYCoord.label.text, required = true) }}
+                <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
+            </form>
+        </div>
+        {% else %}
         <form method="post" class="form">
             {{ form_a.csrf_token }}
             Mark if the answer is correct {{ form_a.correctness(class_ = 'form-control', placeholder = form_a.correctness.label.text, required = false) }}
             {{ form_a.answerText(class_ = 'form-control', placeholder = form_a.answerText.label.text, required = true) }}
             {{ form_a.answerReason(class_ = 'form-control', placeholder = form_a.answerReason.label.text, required = true) }}
-        <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
-    </form>
+            <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
+        </form>
+        {% endif %}
     </div>
 </div>
     <h3>Here is a list of answers for this question</h3>
@@ -52,7 +71,7 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-btn.onclick = function() {
+function displayModal() {
   modal.style.display = "block";
 }
 

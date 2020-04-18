@@ -120,7 +120,7 @@ function drop(ev, element) {
   var answer_element_index = String(data).replace("drag_element", "");
   answer_element_index = Number(answer_element_index);
   var drop_zone_container = element.parentElement;
-  var drop_zone_count = element.parentElement.children.length - 1;
+  var drop_zone_count = (element.parentElement.children.length - 1)/3;
   if(answer_element_index === drop_zone_index){
     //then we know that we have dragged the right answer onto the right drop zone
     correctSubmitCount++;
@@ -169,11 +169,37 @@ function submitShortAnswer(answer, submitButton, reason){
     submitButton.parentElement.children[0].value=""
 }
 
+function renderDropBoxQuestion() {
+    //put drop zones in the right position
+    var drop_zones = document.getElementsByClassName("drop-zone");
+    for(i = 0; i < drop_zones.length;i++){
+        var drop_zone_x_pos = Number(document.getElementById("drop_element_x_pos" + String(i)).innerHTML);
+        var drop_zone_y_pos = Number(document.getElementById("drop_element_y_pos" + String(i)).innerHTML);
+        var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
+        var img_natural_width = this_question_image.naturalWidth;
+        var img_natural_height = this_question_image.naturalHeight;
+        //this_question_image.style.display = "flex";
+        console.log(this_question_image.parentElement);
+        this_question_image = this_question_image.parentElement;
+        var img_width = this_question_image.clientWidth;
+        var img_height = this_question_image.clientHeight;
+        console.log("drop-zone-natural-left: " + drop_zone_x_pos);
+        console.log("img_natural_width: " + img_natural_width);
+        console.log("img_width: " + img_width);
+        console.log("drop-zone-natural-bottom: " + drop_zone_y_pos);
+        console.log("img-natural-height: " + img_natural_height);
+        console.log("img_height: " + img_height);
+        drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
+        drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+    }
+}
+
 function nextQuestion(){
     if(questionIndex< totalIndex){
         console.log("next question");
         removePrevious();
         renderQuestion();
+        renderDropBoxQuestion();
     }else{
         document.getElementById("questions").style.display = "none";
         document.getElementById("header").style.display = "flex";
@@ -197,6 +223,7 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
+
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("page_vid");
@@ -213,3 +240,4 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+

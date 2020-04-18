@@ -169,6 +169,40 @@ a {
     width: 29.5%;
 }
 
+.q_img{
+   max-height:50%;
+   max-width:50%;
+   display: flex !important;
+}
+
+.drag-n-drop-img{
+    max-width: 100%;
+    max-width: 100%;
+}
+
+.coord-display{
+    margin-left: 10px;
+}
+
+.dragndrop-img-area{
+    width: 50%;
+    float: left;
+}
+
+.drag-form{
+    margin-left: 20px;
+}
+
+#new-drag-and-drop-answer{
+    display: inline-block;
+    left: 10%;
+}
+
+.dragndrop-form-area{
+    float: right;
+    width: 50%;
+}
+
 .drop-zone{
     position: absolute;
     left: 0px;

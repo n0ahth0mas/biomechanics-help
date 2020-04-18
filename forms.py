@@ -163,3 +163,11 @@ class EditSection(FlaskForm):
     sectionID = HiddenField(validators=[DataRequired()])
     orderNo = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
+
+class CreateDragNDropAnswer(FlaskForm):
+    correctness = BooleanField()
+    answerText = HiddenField('Answer Text')
+    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerImage = FileField('Image File', validators=[DataRequired()])
+    answerXCoord = StringField('X Coord', validators=[DataRequired()])
+    answerYCoord = StringField('Y Coord', validators=[DataRequired()])

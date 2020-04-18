@@ -187,6 +187,9 @@ class Answer(db.Model):
     correctness = db.Column(db.String())
     answerText = db.Column(db.String())
     answerReason = db.Column(db.String())
+    xPosition = db.Column(db.String())
+    yPosition = db.Column(db.String())
+    imageFile = db.Column(db.String())
 
 
 class Video(db.Model):
@@ -470,8 +473,25 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 @login_required
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
+    drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
-    if form_a.validate_on_submit():
+    if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
+        drag_answer = Answer()
+        drag_answer.questionID = questionID
+        print(drag_n_drop_form.data["correctness"])
+        if drag_n_drop_form.data["correctness"] == 1:
+            drag_answer.correctness = "True"
+        else:
+            drag_answer.correctness = "False"
+        print(drag_answer.correctness)
+        drag_answer.answerText = "Bla Bla Bla"
+        drag_answer.answerReason = drag_n_drop_form.data["answerReason"]
+        drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
+        drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
+        drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
+        db.session.add(drag_answer)
+        db.session.commit()
+    if form_a.correctness.data is not None and form_a.validate():
         one_answer = Answer()
         one_answer.questionID = questionID
         if form_a.data["correctness"] == 1:
@@ -487,9 +507,11 @@ def edit_question(classID, chapterID, sectionID, questionID):
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
+    questionType = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[3]
+    questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
@@ -650,7 +672,7 @@ def section_page(class_id, chapter, section):
         a_list = []
 
         # creating a list of questions for the page
-        q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
+        q_list = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % section)
 
         # finding all the answers of the questions on the page
         q_image_list = []
@@ -658,6 +680,8 @@ def section_page(class_id, chapter, section):
         for questions in q_list:
             answer_id = questions[0]
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
+            print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][6])
+            print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
 
         # q_image_list = query_db('SELECT * from QuestionImages')
         print("section " + section)
@@ -686,6 +710,8 @@ def section_page(class_id, chapter, section):
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
+
+
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,

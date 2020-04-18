@@ -71,14 +71,13 @@
                     <br>
                     (<span id="quizLength">This review is {{q_list|length}}</span> questions long!)
                     <br>
-                    <button class="startBtn" onclick="startQuiz()">Start Quiz</button>
+                    <button id="start-quiz-button" class="startBtn" onclick="startQuiz()">Start Quiz</button>
                 </h3>
 
 
                 <div class="questions" id="questions">
                     <!-- question grid skeleton -->
                     <div class="question_div">
-
                         <!-- question progress -->
                         <div class="prog_bub" id="prog_bub">
                             {% for question in q_list %}
@@ -91,7 +90,6 @@
                         <div class="timer_box">
                             <div class="timer_time" id="timer_time">60</div>
                         </div>
-
                         <!-- for loop question content -->
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
@@ -107,7 +105,9 @@
                                     {% for answer in a_list[outer_loop.index-1] %}
                                     {% set dropbox_loop = loop %}
                                         {% if answer[2] == 'True' %}
-                                            <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)" style="left: {{answer[6]}}px; bottom: {{answer[7]}}px;"></div>
+                                            <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)"></div>
+                                            <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
+                                            <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
                                         {% endif %}
                                     {% endfor %}
                                     <img class="q_img" src="{{ img }}">
@@ -124,7 +124,6 @@
 
                         <!-- question input/answers -->
                         <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}">
-
                             <!-- short answer -->
                             {% if question[3] == "short" %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
