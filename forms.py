@@ -191,5 +191,5 @@ class EditAnswer(FlaskForm):
 
 class ChangeImage(FlaskForm):
     questionID = HiddenField()
-    imageFile1 = FileField()
+    imageFile1 = FileField(validators=[DataRequired()])
 
