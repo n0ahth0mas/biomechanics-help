@@ -25,7 +25,8 @@
     <table id="myTable">
         <tr class="header">
             <th style="width:5%;">Section Number</th>
-            <th style="width:75%;">Section</th>
+            <th style="width:70%;">Section</th>
+            <th style="width:5%;"></th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
@@ -42,7 +43,23 @@
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
             <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{section[0]}}"><button type="button" class="btn btn1" >View Sections</button></a><br></a></h5></td>
-            <td>Publish</td>
+            <td>
+                {% if section[4] == False %}
+                        <!--form to publish-->
+                        <form method="post" class="form">
+                            {{ form_publish.csrf_token }}
+                            {{ form_publish.sectionID(value = section[0])}}
+                            <td><input type="submit" value="Publish" class="btn btn1"></td>
+                        </form>
+                     {% else %}
+                        <!--form to unpublish-->
+                        <form method="post" class="form">
+                            {{ form_publish.csrf_token }}
+                            {{ form_publish.sectionID(value = section[0])}}
+                            <td><input type="submit" value="Unpublish" class="btn btn1"></td>
+                        </form>
+                     {% endif %}
+            </td>
             <td><a href="/edit-class/{{classID}}/{{chapterID}}/delete/{{section[0]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
         </tr>
         {% endfor %}

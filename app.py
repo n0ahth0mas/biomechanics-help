@@ -288,10 +288,11 @@ def edit_class(classID):
     elif request.method == 'POST':
         pass
     form_publish = PublishChapter()
-    if form_publish.publish.data is not None and form_publish.validate():
+    print(form_publish.validate())
+    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
         chapterID = form_publish.data["chapterID"]
-        one_chapter = Section.query.filter_by(chapterID=chapterID).first()
-        one_chapter.publish = form_edit.data["publish"]
+        one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
+        one_chapter.publish = not one_chapter.publish
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -374,10 +375,12 @@ def edit_chapter(classID, chapterID):
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
-    if form_publish.publish.data is not None and form_publish.validate():
+    print(form_publish.validate())
+    print(form.validate())
+    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
         sectionID = form_publish.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
-        one_section.publish = form_edit.data["publish"]
+        one_section.publish = not one_section.publish
         db.session.commit()
     elif request.method == 'POST':
         pass
