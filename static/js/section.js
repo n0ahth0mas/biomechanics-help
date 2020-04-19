@@ -44,6 +44,7 @@ function restart(){
     tries=0;
     questionIndex=0;
     renderQuestion();
+    renderDropBoxQuestion();
 }
 
 function renderQuestion(){
@@ -122,38 +123,43 @@ function drop(ev, element) {
   var answer_parent = document.getElementById(data).parentElement;
   var drop_zone_index = String(element.id).replace("drop_element", "");
   drop_zone_index = Number(drop_zone_index);
-  var answer_element_index = String(data).replace("drag_element", "");
+  var answer_element_index = String(data).split(":").pop();
   answer_element_index = Number(answer_element_index);
+  console.log(answer_element_index);
   var drop_zone_container = element.parentElement;
-  var drop_zone_count = (element.parentElement.children.length - 1)/3;
+  var drop_zones = [].slice.call(drop_zone_container.children);
+  drop_zones.pop();
+  var this_reason = String(element.lastChild.innerHTML);
   if(answer_element_index === drop_zone_index){
     //then we know that we have dragged the right answer onto the right drop zone
     correctSubmitCount++;
     //ask if we are done with this question
     //if the correntSubmitCount is equal to the total number of drop zones then we know that we have finished this question
-    if(correctSubmitCount === drop_zone_count){
-        alert("Correct, you finished the question!");
+    if(correctSubmitCount === drop_zones.length){
+        modalHead.innerHTML = "<h4>Correct! You Finished!</h4>";
+        modalBody.innerHTML = this_reason;
         progress(true);
         //need to reset the question elements
-        for(i=0; i < drop_zone_count;i++){
+        console.log(answer_parent.children.length);
+        for(i=0; i < drop_zones.length;i++){
             (function (i) {
                 console.log(i);
-                var drag_element_id = String("drag_element" + (i+1));
-                console.log(drag_element_id);
-                var drag_element = document.getElementById(drag_element_id);
+                var drag_element = drop_zones[i].children[children.length - 1]
                 answer_parent.appendChild(drag_element);
             })(i);
         }
         nextQuestion();
     }else{
-        alert("Correct!");
+        modalHead.innerHTML = "<h4>Correct!</h4>";
+        modalBody.innerHTML = this_reason;
     }
     ev.target.appendChild(document.getElementById(data));
   }else{
     //then we just dragged the wrong answer onto this drop zone
     //for now just make this wrong
     progress(false);
-    alert("Wrong! You bad!");
+    modalHead.innerHTML = "<h4>InCorrect!</h4>";
+    modalBody.innerHTML = this_reason;
     tries++;
   }
 }
@@ -183,15 +189,16 @@ function submitShortAnswer(answer, submitButton, reason){
 
 function renderDropBoxQuestion() {
     //put drop zones in the right position
-    var drop_zones = document.getElementsByClassName("drop-zone");
+    var this_drop_zone_id = "drop_zone_container" + String(questionIndex);
+    var drop_zone_container = document.getElementById(this_drop_zone_id);
+    var drop_zones = [].slice.call(drop_zone_container.children)
+    drop_zones.pop();
     for(i = 0; i < drop_zones.length;i++){
-        var drop_zone_x_pos = Number(document.getElementById("drop_element_x_pos" + String(i)).innerHTML);
-        var drop_zone_y_pos = Number(document.getElementById("drop_element_y_pos" + String(i)).innerHTML);
+        var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
+        var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
         var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
         var img_natural_width = this_question_image.naturalWidth;
         var img_natural_height = this_question_image.naturalHeight;
-        //this_question_image.style.display = "flex";
-        console.log(this_question_image.parentElement);
         this_question_image = this_question_image.parentElement;
         var img_width = this_question_image.clientWidth;
         var img_height = this_question_image.clientHeight;

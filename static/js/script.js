@@ -17,15 +17,16 @@ $("#drag-question-image").on("click", function(event) {
 
 $( "#start-quiz-button" ).on("click", function() {
     //put drop zones in the right position
-    var drop_zones = document.getElementsByClassName("drop-zone");
+    var this_drop_zone_id = "drop_zone_container" + String(0);
+    var drop_zone_container = document.getElementById(this_drop_zone_id);
+    var drop_zones = [].slice.call(drop_zone_container.children)
+    drop_zones.pop();
     for(i = 0; i < drop_zones.length;i++){
-        var drop_zone_x_pos = Number(document.getElementById("drop_element_x_pos" + String(i)).innerHTML);
-        var drop_zone_y_pos = Number(document.getElementById("drop_element_y_pos" + String(i)).innerHTML);
+        var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
+        var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
         var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
         var img_natural_width = this_question_image.naturalWidth;
         var img_natural_height = this_question_image.naturalHeight;
-        //this_question_image.style.display = "flex";
-        console.log(this_question_image.parentElement);
         this_question_image = this_question_image.parentElement;
         var img_width = this_question_image.clientWidth;
         var img_height = this_question_image.clientHeight;
