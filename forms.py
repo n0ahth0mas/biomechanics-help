@@ -103,6 +103,7 @@ class CreateImage(FlaskForm):
 class CreateVideo(FlaskForm):
     videoFile = FileField('Video File', validators=[DataRequired()])
 
+
 class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
     definition = StringField("Definition", validators=[DataRequired()])
@@ -158,6 +159,7 @@ class EditSection(FlaskForm):
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
+
 class CreateDragNDropAnswer(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
@@ -166,6 +168,7 @@ class CreateDragNDropAnswer(FlaskForm):
     answerImage = FileField('Image File', validators=[DataRequired()])
     answerXCoord = StringField('X Coord', validators=[DataRequired()])
     answerYCoord = StringField('Y Coord', validators=[DataRequired()])
+
 
 class EditSectionBlock(FlaskForm):
     sectionBlockID = HiddenField(validators=[DataRequired()])
@@ -202,6 +205,7 @@ class PublishChapter(FlaskForm):
 class PublishSection(FlaskForm):
     sectionID = HiddenField()
     publish = HiddenField()
+
 
 class CreateAnswer(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
