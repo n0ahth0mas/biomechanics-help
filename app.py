@@ -24,7 +24,7 @@ import datetime
 from time import time
 import jwt
 import sys
-
+from werkzeug.utils import secure_filename
 
 
 
@@ -40,6 +40,9 @@ app.secret_key = 'xxxxyyyyyzzzzz'
 # app.config.from_object('config')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
 app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'mp4'}
+UPLOAD_FOLDER = os.path.abspath('static/img')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # login = LoginManager()
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
@@ -87,6 +90,9 @@ def verify_reset_password_token(token):
         return -1
     return id
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -192,7 +198,9 @@ class Answer(db.Model):
     xPosition = db.Column(db.String())
     yPosition = db.Column(db.String())
     imageFile = db.Column(db.String())
-
+    dropBoxHeight = db.Column(db.Integer())
+    dropBoxWidth = db.Column(db.Integer())
+    dropBoxColor = db.Column(db.String())
 
 class Video(db.Model):
     __tablename__ = 'Videos'
@@ -515,8 +523,23 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 @login_required
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
+    drag_n_drop_image_form = UploadDragNDropImage()
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
+    local_img_path = ""
+    if drag_n_drop_image_form.drag_answer_image is not None and drag_n_drop_image_form.validate():
+        print("validates drag and drop image form")
+        image = request.files['drag_answer_image']
+        print(image)
+        if 'drag_answer_image' not in request.files:
+            print("file not in request.files")
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            print(filename)
+            img_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            image.save(img_path)
+            local_img_path = "/static/img/" + filename
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
         drag_answer = Answer()
         drag_answer.questionID = questionID
@@ -560,7 +583,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',

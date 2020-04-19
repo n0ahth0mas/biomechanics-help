@@ -213,3 +213,6 @@ class CreateAnswer(FlaskForm):
     answerText = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
+
+class UploadDragNDropImage(FlaskForm):
+    drag_answer_image = FileField('Image File', validators=[DataRequired()])

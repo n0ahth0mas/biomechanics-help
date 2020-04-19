@@ -185,12 +185,17 @@ a {
 }
 
 .dragndrop-img-area{
-    width: 50%;
-    float: left;
+    width: 45%;
+    float: right;
 }
 
 .drag-form{
-    margin-left: 20px;
+    padding: 0px !important;
+    display: none;
+}
+
+.image-form{
+
 }
 
 #new-drag-and-drop-answer{
@@ -199,7 +204,7 @@ a {
 }
 
 .dragndrop-form-area{
-    float: right;
+    float: left;
     width: 50%;
 }
 
