@@ -268,7 +268,7 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
-    return render_template('pages/landing.html', noNav=True)
+    return render_template('pages/landing.html')
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
