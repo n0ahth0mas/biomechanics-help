@@ -166,9 +166,10 @@ function drop(ev, element) {
 
 function submitShortAnswer(answer, submitButton, reason){
     var correct = (submitButton.parentElement.children[0].value).includes(answer)
-    progress(correct);
     if(correct){
-        if(tries == 1) firstTry++;
+        console.log(firstTry)
+        if(tries == 0) firstTry++;
+        console.log(firstTry)
         console.log("correct");
         modalHead.innerHTML = "<h4>Correct!</h4>";
         modalBody.innerHTML = reason;
@@ -208,6 +209,7 @@ function renderDropBoxQuestion() {
 }
 
 function nextQuestion(){
+    tries = 0;
     if(questionIndex< totalIndex){
         console.log("next question");
         removePrevious();
