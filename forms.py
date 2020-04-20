@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, Length
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField, DecimalRangeField
 from wtforms import validators
 
 
@@ -165,9 +165,12 @@ class CreateDragNDropAnswer(FlaskForm):
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = HiddenField('Answer Text')
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
-    answerImage = FileField('Image File', validators=[DataRequired()])
+    answerImage = HiddenField('File Path')
     answerXCoord = StringField('X Coord', validators=[DataRequired()])
     answerYCoord = StringField('Y Coord', validators=[DataRequired()])
+    #this is a percentage of the original image size
+    drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
+    drop_zone_color = HiddenField('Color')
 
 
 class EditSectionBlock(FlaskForm):

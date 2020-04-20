@@ -198,8 +198,7 @@ class Answer(db.Model):
     xPosition = db.Column(db.String())
     yPosition = db.Column(db.String())
     imageFile = db.Column(db.String())
-    dropBoxHeight = db.Column(db.Integer())
-    dropBoxWidth = db.Column(db.Integer())
+    dropBoxSize = db.Column(db.Integer())
     dropBoxColor = db.Column(db.String())
 
 class Video(db.Model):
@@ -532,11 +531,9 @@ def edit_question(classID, chapterID, sectionID, questionID):
         image = request.files['drag_answer_image']
         print(image)
         if 'drag_answer_image' not in request.files:
-            print("file not in request.files")
             return redirect(request.url)
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
-            print(filename)
             img_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             image.save(img_path)
             local_img_path = "/static/img/" + filename
@@ -551,6 +548,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
         drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
         drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
+        drag_answer.dropBoxSize = float(drag_n_drop_form.data["drop_zone_size"])
+        drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
         db.session.add(drag_answer)
         db.session.commit()
     if form_a.imageFile.data is not None and form_a.validate():
@@ -755,8 +754,8 @@ def section_page(class_id, chapter, section):
         for questions in q_list:
             answer_id = questions[0]
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-            print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][6])
-            print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
+            #print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][6])
+            #print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
 
         # q_image_list = query_db('SELECT * from QuestionImages')
         print("section " + section)

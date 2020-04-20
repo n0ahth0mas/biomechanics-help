@@ -13,6 +13,10 @@ $("#drag-question-image").on("click", function(event) {
         var py=y/ch*ih
         document.getElementById("click-x-coord").value = px.toFixed(2);
         document.getElementById("click-y-coord").value = py.toFixed(2);
+        var drop_zone_img = this.parentElement.children[1];
+        drop_zone_img.style.left = String((px/iw) * cw) + "px";
+        drop_zone_img.style.bottom = String((py/iw) * cw) + "px";
+        drop_zone_img.style.top = "unset";
 });
 
 $( "#start-quiz-button" ).on("click", function() {
@@ -35,3 +39,27 @@ $( "#start-quiz-button" ).on("click", function() {
     }
 
 });
+
+$( document ).ready(function() {
+    if(drag_n_drop_answer_img.style.display !== "none"){
+        //then we know we should show the add answer modal
+        document.getElementById("myModal").style.display = "block";
+        //and we should also hide the answer image upload form and show the drag form
+        document.getElementsByClassName("image-form")[0].style.display = "none";
+        document.getElementsByClassName("drag-form")[0].style.display = "inline";
+        document.getElementsByClassName("drag-answer-img-container")[0].style.display = "block";
+        document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementsByClassName("drag-n-drop-img")[0].clientHeight) + "px";
+    }
+});
+
+function changedDropBoxSize(element){
+    console.log(element.value);
+    var percentage = Number(element.value) / 100.0;
+    var answer_img = document.getElementById('drag_n_drop_answer_img');
+    answer_img.style.height = String(answer_img.naturalHeight * percentage) + "px";
+    answer_img.style.width = "auto";
+}
+
+function changeBorderColor(element){
+    document.getElementById("drag_n_drop_answer_img").style.borderColor = String(element.value);
+}

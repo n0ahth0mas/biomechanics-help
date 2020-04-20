@@ -177,7 +177,8 @@ a {
 
 .drag-n-drop-img{
     max-width: 100%;
-    max-width: 100%;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .coord-display{
@@ -187,6 +188,7 @@ a {
 .dragndrop-img-area{
     width: 45%;
     float: right;
+    display: none;
 }
 
 .drag-form{
@@ -198,14 +200,28 @@ a {
 
 }
 
+#drag_n_drop_answer_img{
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border: 4px solid black;
+}
+
 #new-drag-and-drop-answer{
     display: inline-block;
     left: 10%;
 }
 
+.drag-answer-img-container{
+    display: none;
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+}
+
 .dragndrop-form-area{
-    float: left;
-    width: 50%;
 }
 
 .drop-zone{
