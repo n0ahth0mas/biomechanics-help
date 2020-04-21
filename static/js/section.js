@@ -129,13 +129,16 @@ function drop(ev, element) {
   var drop_zone_container = element.parentElement;
   var drop_zones = [].slice.call(drop_zone_container.children);
   drop_zones.pop();
-  var this_reason = String(element.lastChild.innerHTML);
+  var this_reason = String(element.children[2].innerHTML);
   if(answer_element_index === drop_zone_index){
     //then we know that we have dragged the right answer onto the right drop zone
     correctSubmitCount++;
     //ask if we are done with this question
     //if the correntSubmitCount is equal to the total number of drop zones then we know that we have finished this question
+    console.log("correctSubmitCount: " + correctSubmitCount);
+    console.log("drop_zones.length: " + drop_zones.length);
     if(correctSubmitCount === drop_zones.length){
+        console.log("about to say that you finished!");
         modalHead.innerHTML = "<h4>Correct! You Finished!</h4>";
         modalBody.innerHTML = this_reason;
         progress(true);
@@ -144,10 +147,12 @@ function drop(ev, element) {
         for(i=0; i < drop_zones.length;i++){
             (function (i) {
                 console.log(i);
-                var drag_element = drop_zones[i].children[children.length - 1]
-                answer_parent.appendChild(drag_element);
+                //talk to Lucas about this
+                //var drag_element = drop_zones[i].children[children.length - 1]
+                //answer_parent.appendChild(drag_element);
             })(i);
         }
+        $('#myModal').modal('show');
         nextQuestion();
     }else{
         modalHead.innerHTML = "<h4>Correct!</h4>";
@@ -162,6 +167,7 @@ function drop(ev, element) {
     modalBody.innerHTML = this_reason;
     tries++;
   }
+  $('#myModal').modal('show');
 }
 
 function submitShortAnswer(answer, submitButton, reason){
