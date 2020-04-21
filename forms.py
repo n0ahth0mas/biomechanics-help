@@ -169,7 +169,8 @@ class CreateDragNDropAnswer(FlaskForm):
     #this is a percentage of the original image size
     drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
     drop_zone_color = HiddenField('Color')
-    drop_zone_adjusted_size = HiddenField('Adjusted percentage')
+    drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
+    drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
     correctness = HiddenField('Correctness')
 
 

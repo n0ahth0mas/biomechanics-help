@@ -45,7 +45,8 @@
                 <input class="form-control" type="number" style="display: none;" id="click-y-coord" name="answerYCoord" value="0">
                 {% endif %}
                 <input class="form-control" id="correctness" name="correctness" style="display: none;" type="text" value="{{drag_n_drop_correct}}">
-                {{ drag_n_drop_form.drop_zone_adjusted_size(class_ = 'form-control', id='adjusted-size-ratio',placeholder = drag_n_drop_form.drop_zone_adjusted_size.label.text, required = true) }}
+                {{ drag_n_drop_form.drop_zone_adjusted_height_ratio(class_ = 'form-control', id='adjusted-height-ratio',placeholder = drag_n_drop_form.drop_zone_adjusted_height_ratio.label.text, required = true) }}
+                {{ drag_n_drop_form.drop_zone_adjusted_width_ratio(class_ = 'form-control', id='adjusted-width-ratio',placeholder = drag_n_drop_form.drop_zone_adjusted_width_ratio.label.text, required = true) }}
                 <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
             </form>
         </div>

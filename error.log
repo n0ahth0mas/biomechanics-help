@@ -15872,3 +15872,621 @@ Traceback (most recent call last):
     section_name = section_data[2]
 TypeError: 'NoneType' object is not subscriptable
 2020-04-21 11:53:33,551 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1171]
+2020-04-21 11:55:42,340 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1171]
+2020-04-21 11:57:08,687 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 11:58:15,273 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 11:58:15,430 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:03:48,012 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:05:58,400 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:05:58,714 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:17:52,321 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1171]
+2020-04-21 12:18:27,238 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:18:59,503 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:18:59,928 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:19:42,680 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:19:43,052 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:34:03,669 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1171]
+2020-04-21 12:34:08,912 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 766, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 12:58:41,119 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1173]
+2020-04-21 12:59:26,614 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1173]
+2020-04-21 12:59:50,234 ERROR: Exception on /edit-class/12345678/2/2/question/4 [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 553, in edit_question
+    drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
+ValueError: could not convert string to float: ''
+2020-04-21 13:03:29,224 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:03:29,378 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:04:03,947 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:04:04,216 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:05:04,347 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:05:04,611 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:06:05,158 ERROR: Exception on /edit-class/12345678/2/2/question/4 [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 552, in edit_question
+    drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
+ValueError: could not convert string to float: ''
+2020-04-21 13:12:52,345 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:12:52,555 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:22:03,331 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1173]
+2020-04-21 13:22:07,698 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:22:50,849 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:22:51,226 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:24:44,615 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:24:45,011 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:25:58,030 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:25:58,474 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:27:22,862 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:28:41,496 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable
+2020-04-21 13:29:33,826 ERROR: Exception on /section/12345678/2/question.png [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 768, in section_page
+    section_name = section_data[2]
+TypeError: 'NoneType' object is not subscriptable

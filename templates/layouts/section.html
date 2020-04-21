@@ -128,6 +128,8 @@
                                                 <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
                                                 <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
                                                 <div style="display: none;" id="answer_reason{{dropbox_loop.index-1}}">{{answer[4]}}</div>
+                                                <div style="display: none;" id="width_adjustment{{dropbox_loop.index-1}}">{{answer[8]}}</div>
+                                                <div style="display: none;" id="height_adjustment{{dropbox_loop.index-1}}">{{answer[9]}}</div>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -163,7 +165,9 @@
                             {% set inner_loop = loop %}
                             <div class="drag_answer_container_div">
                                 <img id="drag_element{{outer_loop.index}}:{{inner_loop.index}}" src="{{answer[5]}}" draggable="true" ondragstart="drag(event)">
-                                <div style="display: none;" id="answer_img_size_adjustment{{outer_loop.index}}:{{inner_loop.index}}">{{answer[8]}}</div>
+                                <div style="display: none;" id="answer_img_height_adjustment{{outer_loop.index}}:{{inner_loop.index}}">{{answer[8]}}</div>
+                                <div style="display: none;" id="answer_img_width_adjustment{{outer_loop.index}}:{{inner_loop.index}}">{{answer[9]}}</div>
+                                <div style="display: none;" id="answer_correct{{outer_loop.index}}:{{inner_loop.index}}">{{answer[2]}}</div>
                             </div>
                             {% endfor %}
                             {% endif %}

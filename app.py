@@ -198,7 +198,8 @@ class Answer(db.Model):
     xPosition = db.Column(db.String())
     yPosition = db.Column(db.String())
     imageFile = db.Column(db.String())
-    dropBoxSize = db.Column(db.Integer())
+    dropBoxHeightAdjustment = db.Column(db.Integer())
+    dropBoxWidthAdjustment = db.Column(db.Integer())
     dropBoxColor = db.Column(db.String())
 
 class Video(db.Model):
@@ -548,7 +549,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
         drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
         drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
-        drag_answer.dropBoxSize = float(drag_n_drop_form.data["drop_zone_adjusted_size"])
+        drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
+        drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
         drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
         db.session.add(drag_answer)
         db.session.commit()

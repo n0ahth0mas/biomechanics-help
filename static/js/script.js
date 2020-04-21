@@ -76,15 +76,18 @@ function changedDropBoxSize(element){
     var percentage = Number(element.value) / 100.0;
     var answer_img = document.getElementById('drag_n_drop_answer_img');
     answer_img.style.height = String(answer_img.naturalHeight * percentage) + "px";
-    answer_img.style.width = "auto";
+    answer_img.style.width = String(answer_img.naturalWidth * percentage) + "px";
     if(document.getElementById("drag-question-image") !== null){
         var question_img_height = Number(document.getElementById("drag-question-image").clientHeight);
+        var question_img_width = Number(document.getElementById("drag-question-image").clientWidth);
         var answer_img_height = Number(document.getElementById('drag_n_drop_answer_img').clientHeight);
-        document.getElementById("adjusted-size-ratio").value = answer_img_height/question_img_height;
+        var answer_img_width = Number(document.getElementById('drag_n_drop_answer_img').clientWidth);
+        document.getElementById("adjusted-height-ratio").value = answer_img_height/question_img_height;
+        document.getElementById("adjusted-width-ratio").value = answer_img_width/question_img_width;
     }else{
-        document.getElementById("adjusted-size-ratio").value = percentage;
+        document.getElementById("adjusted-height-ratio").value = percentage;
+        document.getElementById("adjusted-width-ratio").value = percentage;
     }
-    console.log(document.getElementById("adjusted-size-ratio").value);
 }
 
 function changeBorderColor(element){
