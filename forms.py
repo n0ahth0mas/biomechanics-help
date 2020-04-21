@@ -144,7 +144,7 @@ class EditClass(FlaskForm):
 
 class EditChapter(FlaskForm):
     chapterID = HiddenField()
-    orderNo1 = StringField('Chapter Number', validators=[DataRequired()])
+    orderNo1 = IntegerField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
