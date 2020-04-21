@@ -517,7 +517,6 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
                            chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
 
-
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
@@ -526,10 +525,12 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
     local_img_path = ""
+    drag_n_drop_correct = ""
     if drag_n_drop_image_form.drag_answer_image is not None and drag_n_drop_image_form.validate():
         print("validates drag and drop image form")
         image = request.files['drag_answer_image']
-        print(image)
+        drag_n_drop_correct = drag_n_drop_image_form.data["correctness"]
+        print(drag_n_drop_correct)
         if 'drag_answer_image' not in request.files:
             return redirect(request.url)
         if image and allowed_file(image.filename):
@@ -540,7 +541,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
         drag_answer = Answer()
         drag_answer.questionID = questionID
-        print(drag_n_drop_form.data["correctness"])
         drag_answer.correctness = drag_n_drop_form.data["correctness"]
         print(drag_answer.correctness)
         drag_answer.answerText = ""
@@ -548,7 +548,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
         drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
         drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
-        drag_answer.dropBoxSize = float(drag_n_drop_form.data["drop_zone_size"])
+        drag_answer.dropBoxSize = float(drag_n_drop_form.data["drop_zone_adjusted_size"])
         drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
         db.session.add(drag_answer)
         db.session.commit()
@@ -580,9 +580,10 @@ def edit_question(classID, chapterID, sectionID, questionID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     questionType = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[3]
     questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
+    print(drag_n_drop_correct)
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path, drag_n_drop_correct=drag_n_drop_correct)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',

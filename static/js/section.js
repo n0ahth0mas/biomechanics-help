@@ -120,7 +120,7 @@ function drag(ev) {
 function drop(ev, element) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
-  var answer_parent = document.getElementById(data).parentElement;
+  var answer_parent = document.getElementById(data).parentElement.parentElement;
   var drop_zone_index = String(element.id).replace("drop_element", "");
   drop_zone_index = Number(drop_zone_index);
   var answer_element_index = String(data).split(":").pop();
@@ -189,6 +189,16 @@ function submitShortAnswer(answer, submitButton, reason){
 }
 
 function renderDropBoxQuestion() {
+    var this_question_header = document.getElementById("q_qs" + questionIndex);
+    var drag_and_drop_answers = this_question_header.children;
+    var this_question_img = document.getElementById("drop_zone_container" + questionIndex);
+    this_question_img = this_question_img.children[this_question_img.children.length-1];
+    for(j = 0; j < drag_and_drop_answers.length; j++){
+        var this_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
+        var this_answer_img = drag_and_drop_answers[j].children[0];
+        this_answer_img.style.height = String(this_question_img.clientHeight * this_percentage) + "px";
+        this_answer_img.style.width = "auto";
+    }
     //put drop zones in the right position
     var this_drop_zone_id = "drop_zone_container" + String(questionIndex);
     var drop_zone_container = document.getElementById(this_drop_zone_id);
@@ -205,6 +215,8 @@ function renderDropBoxQuestion() {
         var img_height = this_question_image.clientHeight;
         drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
         drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+        drop_zones[i].style.height = String(this_question_header.children[i].children[0].height) + "px";
+        drop_zones[i].style.width = String(this_question_header.children[i].children[0].width) + "px";
     }
 }
 

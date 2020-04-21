@@ -20,6 +20,18 @@ $("#drag-question-image").on("click", function(event) {
 });
 
 $( "#start-quiz-button" ).on("click", function() {
+    var first_question_header = document.getElementById("q_qs0");
+    var drag_and_drop_answers = first_question_header.children;
+    var first_question_img = document.getElementById("drop_zone_container0");
+    first_question_img = first_question_img.children[first_question_img.children.length-1];
+    for(j = 0; j < drag_and_drop_answers.length; j++){
+        var this_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
+        var this_answer_img = drag_and_drop_answers[j].children[0];
+        console.log(this_percentage);
+        console.log(first_question_img.clientHeight);
+        this_answer_img.style.height = String(first_question_img.clientHeight * this_percentage) + "px";
+        this_answer_img.style.width = "auto";
+    }
     //put drop zones in the right position
     var this_drop_zone_id = "drop_zone_container" + String(0);
     var drop_zone_container = document.getElementById(this_drop_zone_id);
@@ -36,8 +48,9 @@ $( "#start-quiz-button" ).on("click", function() {
         var img_height = this_question_image.clientHeight;
         drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
         drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+        drop_zones[i].style.height = String(first_question_header.children[i].children[0].height) + "px";
+        drop_zones[i].style.width = String(first_question_header.children[i].children[0].width) + "px";
     }
-
 });
 
 $( document ).ready(function() {
@@ -48,7 +61,13 @@ $( document ).ready(function() {
         document.getElementsByClassName("image-form")[0].style.display = "none";
         document.getElementsByClassName("drag-form")[0].style.display = "inline";
         document.getElementsByClassName("drag-answer-img-container")[0].style.display = "block";
-        document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementsByClassName("drag-n-drop-img")[0].clientHeight) + "px";
+        if(document.getElementById("drag-question-image") !== null){
+            document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementsByClassName("drag-n-drop-img")[0].clientHeight) + "px";
+        }else{
+            document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementById("drag_n_drop_answer_img").naturalHeight) + "px";
+            console.log(document.getElementById("drag_n_drop_answer_img").style.maxHeight);
+            document.getElementsByClassName("drag-answer-img-container")[0].style.height = document.getElementById("drag_n_drop_answer_img").style.maxHeight;
+        }
     }
 });
 
@@ -58,6 +77,14 @@ function changedDropBoxSize(element){
     var answer_img = document.getElementById('drag_n_drop_answer_img');
     answer_img.style.height = String(answer_img.naturalHeight * percentage) + "px";
     answer_img.style.width = "auto";
+    if(document.getElementById("drag-question-image") !== null){
+        var question_img_height = Number(document.getElementById("drag-question-image").clientHeight);
+        var answer_img_height = Number(document.getElementById('drag_n_drop_answer_img').clientHeight);
+        document.getElementById("adjusted-size-ratio").value = answer_img_height/question_img_height;
+    }else{
+        document.getElementById("adjusted-size-ratio").value = percentage;
+    }
+    console.log(document.getElementById("adjusted-size-ratio").value);
 }
 
 function changeBorderColor(element){

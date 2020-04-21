@@ -161,8 +161,6 @@ class EditSection(FlaskForm):
 
 
 class CreateDragNDropAnswer(FlaskForm):
-    correctness_choices = [('0', 'False'), ('1', 'True')]
-    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = HiddenField('Answer Text')
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     answerImage = HiddenField('File Path')
@@ -171,6 +169,8 @@ class CreateDragNDropAnswer(FlaskForm):
     #this is a percentage of the original image size
     drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
     drop_zone_color = HiddenField('Color')
+    drop_zone_adjusted_size = HiddenField('Adjusted percentage')
+    correctness = HiddenField('Correctness')
 
 
 class EditSectionBlock(FlaskForm):
@@ -219,3 +219,5 @@ class CreateAnswer(FlaskForm):
 
 class UploadDragNDropImage(FlaskForm):
     drag_answer_image = FileField('Image File', validators=[DataRequired()])
+    correctness_choices = [('0', 'False'), ('1', 'True')]
+    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
