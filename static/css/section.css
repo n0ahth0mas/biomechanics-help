@@ -116,8 +116,29 @@ after{
     border: 2px solid #D1D1D1;
 }
 
+.selected{
+    border-radius: 8px;
+    margin: .5%;
+    font-size: 20px;
+    transition-duration: .4s;
+    background-color: #D1D1D1;
+}
+
+.disabled{
+    border-radius: 8px;
+    margin: .5%;
+    font-size: 20px;
+    background-color: #525252;
+    pointer-events: none;
+}
+
 .mult_choice:hover{
     background-color: #D1D1D1;
+    transform: scale(1.1, 1.1);
+}
+
+.selected:hover{
+    background-color: white;
     transform: scale(1.1, 1.1);
 }
 
@@ -126,14 +147,6 @@ after{
     height: 50px;
     border-radius: 8px;
     border: 2px solid #D1D1D1;
-}
-
-.disabled {
-    border-radius: 8px;
-    margin: .5%;
-    font-size: 20px;
-    opacity: 0.6;
-    pointer-events: none;
 }
 
 .timer_box {
