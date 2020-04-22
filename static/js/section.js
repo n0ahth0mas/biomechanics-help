@@ -121,6 +121,7 @@ function drop(ev, element) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   var answer_parent = document.getElementById(data).parentElement.parentElement;
+  console.log(answer_parent);
   var drop_zone_index = String(element.id).replace("drop_element", "");
   drop_zone_index = Number(drop_zone_index);
   var answer_element_index = String(data).split(":").pop();
@@ -137,6 +138,7 @@ function drop(ev, element) {
     //if the correntSubmitCount is equal to the total number of drop zones then we know that we have finished this question
     console.log("correctSubmitCount: " + correctSubmitCount);
     console.log("drop_zones.length: " + drop_zones.length);
+    ev.target.appendChild(document.getElementById(data));
     if(correctSubmitCount === drop_zones.length){
         console.log("about to say that you finished!");
         modalHead.innerHTML = "<h4>Correct! You Finished!</h4>";
@@ -144,21 +146,24 @@ function drop(ev, element) {
         progress(true);
         //need to reset the question elements
         console.log(answer_parent.children.length);
+        var answer_containers = answer_parent.getElementsByClassName("drag_answer_container_div");
         for(i=0; i < drop_zones.length;i++){
             (function (i) {
-                console.log(i);
-                //talk to Lucas about this
-                //var drag_element = drop_zones[i].children[children.length - 1]
-                //answer_parent.appendChild(drag_element);
+                var drag_element = drop_zones[i].children[drop_zones[i].children.length - 1];
+                //need this drag elements index
+                var this_answer_img_index = Number(String(drag_element.id).split(":").pop());
+                console.log("this drag answer index: " + this_answer_img_index);
+                //answer_parent.insertBefore(drag_element, answer_parent.children[0]);
+                answer_containers[i].insertBefore(drag_element, answer_containers[i].children[0]);
             })(i);
         }
+        correctSubmitCount = 0;
         $('#myModal').modal('show');
         nextQuestion();
     }else{
         modalHead.innerHTML = "<h4>Correct!</h4>";
         modalBody.innerHTML = this_reason;
     }
-    ev.target.appendChild(document.getElementById(data));
   }else{
     //then we just dragged the wrong answer onto this drop zone
     //for now just make this wrong

@@ -803,6 +803,10 @@ def section_page(class_id, chapter, section):
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
 
+@login.unauthorized_handler
+def unauthorized():
+    # do stuff
+    return redirect(home_url + "login")
 
 @app.route('/forgot', methods=('GET', 'POST'))
 def forgot():
