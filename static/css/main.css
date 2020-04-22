@@ -234,6 +234,10 @@ a {
     border: 2px solid black;
 }
 
+.big-linkedin{
+    font-size: 24px;
+}
+
 .drag-n-drop-container{
     position: relative;
     width: 100%;

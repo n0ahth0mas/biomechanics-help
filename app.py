@@ -105,6 +105,10 @@ def shutdown_session(exception=None):
 # Controllers.
 # ----------------------------------------------------------------------------#
 login = LoginManager()
+@login.unauthorized_handler
+def unauthorized():
+    # do stuff
+    return redirect("/login")
 login.init_app(app)
 
 
@@ -800,11 +804,6 @@ def section_page(class_id, chapter, section):
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
 
-@login.unauthorized_handler
-def unauthorized():
-    # do stuff
-    return redirect(home_url + "login")
-
 @app.route('/forgot', methods=('GET', 'POST'))
 def forgot():
     form = ForgotForm(request.form)
@@ -902,6 +901,16 @@ def professor_home():
         current_user.classes.append(one_class)
         db.session.add(one_class)
         db.session.commit()
+        #create a folder for this class' images to live in
+        #this helps us avoid naming conflicts with images and videos
+        path = os.path.abspath("/static/img")
+        path = path + str(form_create.data["class_id"])
+        try:
+            os.mkdir(path)
+        except OSError:
+            print("Creation of the directory %s failed" % path)
+        else:
+            print("Successfully created the directory %s " % path)
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
     if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
