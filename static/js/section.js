@@ -15,11 +15,20 @@ const counter = document.getElementById("timer_time");
 var count = 1;
 
 var questionIndex = 0;
-var tries = 0;
+
 var firstTry = 0;
 
-var buttonIDs = [];
+
 var correctSubmitCount = 0;
+
+//TO RESET AFTER QUESTIONS
+var init=true;
+var numCorrect = 0
+var tries = 0;
+var buttonIDs = [];
+var selectedButtons = [];
+var greyedOut = [];
+
 //RENDERING
 
 function startQuiz(){
@@ -89,6 +98,87 @@ function renderCounter(){
 }
 
 /* QUIZ */
+// gets number of right answers
+function initQs(buttonID){
+console.log("running Init")
+    for(var i=0; i<document.getElementById(buttonID).parentElement.children.length; i++){
+        if(document.getElementById(buttonID).parentElement.children[i].value ==1) numCorrect++;
+    }
+    init = false;
+}
+
+//checks if button has been selected
+function toggleSelected(buttonID, button, reason, correctness, text){
+    if (init) initQs(buttonID)
+
+    if(buttonIDs.includes(buttonID)){
+        var index= buttonIDs.indexOf(buttonID);
+        buttonIDs.splice(index, 1);
+        selectedButtons.splice(index, 1);
+        document.getElementById(buttonID).className = "mult_choice";
+    } else{
+        buttonIDs.push(buttonID);
+        selectedButtons.push([buttonID, button, reason, correctness, text]);
+        document.getElementById(buttonID).className = "selected";
+    }
+}
+
+function checkMultChoice(){
+    var truth = true;
+    var correctChoice = 0
+    var innerModalWrong = []
+    var innerModalCorrect = []
+
+    for(var i=0; i<selectedButtons.length; i++){
+       truth = truth && (selectedButtons[i][3] == 1)
+       if(selectedButtons[i][3] == 0){
+            innerModalWrong.push("<h4>" + selectedButtons[i][4]+":</h4>");
+            innerModalWrong.push("<p>"+ selectedButtons[i][2] + "<p>");
+            document.getElementById(selectedButtons[i][0]).className = "disabled";
+            greyedOut.push(selectedButtons[i][0])
+       } else{
+            innerModalCorrect.push("<h4>" + selectedButtons[i][4]+":</h4>");
+            innerModalCorrect.push("<p>"+ selectedButtons[i][2] + "<p>");
+            document.getElementById(selectedButtons[i][0]).className = "mult_choice"
+            correctChoice++
+       }
+    }
+
+    truth = truth && (selectedButtons.length>=1)
+    if(truth && (numCorrect == correctChoice)){
+        if (tries==0) firstTry++;
+        modalHead.innerHTML = "<h3>Correct!</h3>"
+        modalBody.innerHTML = "<p>Here's why your answers were correct</p>"
+        for(var i=0; i<=innerModalCorrect.length-1; i++){
+            console.log(innerModalCorrect[i])
+            modalBody.innerHTML += innerModalCorrect[i]
+        }
+        console.log(greyedOut);
+        for(var i=0; i<greyedOut.length; i++){
+            document.getElementById(greyedOut[i]).className = "mult_choice"
+        }
+        nextQuestion();
+    }else {
+        if(correctChoice == 0){
+            modalHead.innerHTML = "<h3>Incorrect<h3>"
+            modalBody.innerHTML = "<p> Here's why the answers you selected are incorrect </p>"
+        } else{
+            modalHead.innerHTML = "<h3>Partially Correct!<h3>"
+            modalBody.innerHTML = "<p>You got " + correctChoice + " out of " + numCorrect +". If it looks like you got all of the answers right, that means you selected a wrong answer somewhere! If you didn't find all of the correct answers, why don't you try again!</p>"
+        }
+        for(var i=0; i<=innerModalWrong.length-1; i++){
+            console.log(innerModalWrong[i])
+            modalBody.innerHTML += innerModalWrong[i]
+        }
+        tries++;
+        buttonIDs = [];
+        selectedButtons = [];
+        innerModalWrong = [];
+        innerModalCorrect = [];
+    }
+}
+
+/*
 function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
     if(truthValue == '1'){
         correct = true;
@@ -108,6 +198,7 @@ function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
         modalBody.innerHTML = reason;
     }
 }
+*/
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -210,6 +301,10 @@ function renderDropBoxQuestion() {
 
 function nextQuestion(){
     tries = 0;
+    init= true;
+    numCorrect = 0
+    buttonIDs = [];
+    selectedButtons = [];
     if(questionIndex< totalIndex){
         console.log("next question");
         removePrevious();
