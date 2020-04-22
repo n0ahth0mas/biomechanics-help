@@ -286,7 +286,6 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         pass
-
     if form.orderNo2.data is not None and form.validate():
         one_chapter = Chapter()
         one_chapter.orderNo = form.data["orderNo2"]
@@ -298,8 +297,7 @@ def edit_class(classID):
     elif request.method == 'POST':
         pass
     form_publish = PublishChapter()
-    print(form_publish.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    if not form_publish.chapterID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         chapterID = form_publish.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.publish = not one_chapter.publish
@@ -385,9 +383,8 @@ def edit_chapter(classID, chapterID):
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
-    print(form_publish.validate())
-    print(form.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    print(form_publish.sectionID.data)
+    if not form_publish.sectionID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         sectionID = form_publish.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
         one_section.publish = not one_section.publish

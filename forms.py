@@ -218,6 +218,7 @@ class CreateAnswer(FlaskForm):
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
 
+
 class UploadDragNDropImage(FlaskForm):
     drag_answer_image = FileField('Image File', validators=[DataRequired()])
     correctness_choices = [('0', 'False'), ('1', 'True')]
