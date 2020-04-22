@@ -900,18 +900,14 @@ def professor_home():
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit():
-        # cascading does not work with the classID yet
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
         classID = formEdit.data["classID"]
-        #one_class = Class.query.filter_by(classID=classID).first()
-        #one_class.classID = formEdit.data["newClassID"]
-        #one_class.className = formEdit.data["className"]
         Class.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"], className=formEdit.data["className"]))
         UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
         Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
         db.session.commit()
-
     elif request.method == 'POST':
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
     # render our classes
     classes_list = []
