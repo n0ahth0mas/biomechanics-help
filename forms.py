@@ -144,7 +144,7 @@ class EditClass(FlaskForm):
 
 class EditChapter(FlaskForm):
     chapterID = HiddenField()
-    orderNo1 = StringField('Chapter Number', validators=[DataRequired()])
+    orderNo1 = IntegerField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
@@ -217,6 +217,7 @@ class CreateAnswer(FlaskForm):
     answerText = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
+
 
 class UploadDragNDropImage(FlaskForm):
     drag_answer_image = FileField('Image File', validators=[DataRequired()])

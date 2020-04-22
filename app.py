@@ -286,7 +286,6 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         pass
-
     if form.orderNo2.data is not None and form.validate():
         one_chapter = Chapter()
         one_chapter.orderNo = form.data["orderNo2"]
@@ -298,8 +297,7 @@ def edit_class(classID):
     elif request.method == 'POST':
         pass
     form_publish = PublishChapter()
-    print(form_publish.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    if not form_publish.chapterID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         chapterID = form_publish.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.publish = not one_chapter.publish
@@ -385,9 +383,8 @@ def edit_chapter(classID, chapterID):
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
-    print(form_publish.validate())
-    print(form.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    print(form_publish.sectionID.data)
+    if not form_publish.sectionID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         sectionID = form_publish.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
         one_section.publish = not one_section.publish
@@ -907,16 +904,14 @@ def professor_home():
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    error = False
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and error == True:
-        pass
-        # cascading does not work with the classID yet
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
         classID = formEdit.data["classID"]
-        one_class = Class.query.filter_by(classID=classID).first()
-        one_class.classID = formEdit.data["newClassID"]
-        one_class.className = formEdit.data["className"]
+        Class.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"], className=formEdit.data["className"]))
+        UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
+        Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
         db.session.commit()
     elif request.method == 'POST':
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
     # render our classes
     classes_list = []
