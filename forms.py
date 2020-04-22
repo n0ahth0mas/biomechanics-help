@@ -144,7 +144,7 @@ class EditClass(FlaskForm):
 
 class EditChapter(FlaskForm):
     chapterID = HiddenField()
-    orderNo1 = StringField('Chapter Number', validators=[DataRequired()])
+    orderNo1 = IntegerField('Chapter Number', validators=[DataRequired()])
     chapterName = StringField('Chapter Name', validators=[DataRequired()])
 
 
@@ -161,8 +161,6 @@ class EditSection(FlaskForm):
 
 
 class CreateDragNDropAnswer(FlaskForm):
-    correctness_choices = [('0', 'False'), ('1', 'True')]
-    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = HiddenField('Answer Text')
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     answerImage = HiddenField('File Path')
@@ -171,6 +169,9 @@ class CreateDragNDropAnswer(FlaskForm):
     #this is a percentage of the original image size
     drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
     drop_zone_color = HiddenField('Color')
+    drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
+    drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
+    correctness = HiddenField('Correctness')
 
 
 class EditSectionBlock(FlaskForm):
@@ -217,5 +218,8 @@ class CreateAnswer(FlaskForm):
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
 
+
 class UploadDragNDropImage(FlaskForm):
     drag_answer_image = FileField('Image File', validators=[DataRequired()])
+    correctness_choices = [('0', 'False'), ('1', 'True')]
+    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)

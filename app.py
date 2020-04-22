@@ -198,7 +198,8 @@ class Answer(db.Model):
     xPosition = db.Column(db.String())
     yPosition = db.Column(db.String())
     imageFile = db.Column(db.String())
-    dropBoxSize = db.Column(db.Integer())
+    dropBoxHeightAdjustment = db.Column(db.Integer())
+    dropBoxWidthAdjustment = db.Column(db.Integer())
     dropBoxColor = db.Column(db.String())
 
 class Video(db.Model):
@@ -285,7 +286,6 @@ def edit_class(classID):
         db.session.commit()
     elif request.method == 'POST':
         pass
-
     if form.orderNo2.data is not None and form.validate():
         one_chapter = Chapter()
         one_chapter.orderNo = form.data["orderNo2"]
@@ -297,8 +297,7 @@ def edit_class(classID):
     elif request.method == 'POST':
         pass
     form_publish = PublishChapter()
-    print(form_publish.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    if not form_publish.chapterID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         chapterID = form_publish.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.publish = not one_chapter.publish
@@ -384,9 +383,8 @@ def edit_chapter(classID, chapterID):
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
-    print(form_publish.validate())
-    print(form.validate())
-    if form_publish.publish.data is not None and form_publish.validate() and not form.validate():
+    print(form_publish.sectionID.data)
+    if not form_publish.sectionID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         sectionID = form_publish.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
         one_section.publish = not one_section.publish
@@ -517,7 +515,6 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
                            chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
 
-
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
@@ -526,10 +523,12 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
     local_img_path = ""
+    drag_n_drop_correct = ""
     if drag_n_drop_image_form.drag_answer_image is not None and drag_n_drop_image_form.validate():
         print("validates drag and drop image form")
         image = request.files['drag_answer_image']
-        print(image)
+        drag_n_drop_correct = drag_n_drop_image_form.data["correctness"]
+        print(drag_n_drop_correct)
         if 'drag_answer_image' not in request.files:
             return redirect(request.url)
         if image and allowed_file(image.filename):
@@ -540,7 +539,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
         drag_answer = Answer()
         drag_answer.questionID = questionID
-        print(drag_n_drop_form.data["correctness"])
         drag_answer.correctness = drag_n_drop_form.data["correctness"]
         print(drag_answer.correctness)
         drag_answer.answerText = ""
@@ -548,7 +546,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
         drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
         drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
-        drag_answer.dropBoxSize = float(drag_n_drop_form.data["drop_zone_size"])
+        drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
+        drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
         drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
         db.session.add(drag_answer)
         db.session.commit()
@@ -580,9 +579,10 @@ def edit_question(classID, chapterID, sectionID, questionID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     questionType = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[3]
     questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
+    print(drag_n_drop_correct)
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path, drag_n_drop_correct=drag_n_drop_correct)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
@@ -800,6 +800,10 @@ def section_page(class_id, chapter, section):
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
 
+@login.unauthorized_handler
+def unauthorized():
+    # do stuff
+    return redirect(home_url + "login")
 
 @app.route('/forgot', methods=('GET', 'POST'))
 def forgot():
@@ -900,16 +904,14 @@ def professor_home():
         db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    error = False
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and error == True:
-        pass
-        # cascading does not work with the classID yet
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
         classID = formEdit.data["classID"]
-        one_class = Class.query.filter_by(classID=classID).first()
-        one_class.classID = formEdit.data["newClassID"]
-        one_class.className = formEdit.data["className"]
+        Class.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"], className=formEdit.data["className"]))
+        UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
+        Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
         db.session.commit()
     elif request.method == 'POST':
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
     # render our classes
     classes_list = []

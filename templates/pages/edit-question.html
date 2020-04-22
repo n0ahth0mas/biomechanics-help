@@ -18,6 +18,8 @@
                 {{ drag_n_drop_image_form.csrf_token }}
                 <p style="margin-bottom: 0px;">First, select an answer image (the image you would like the student to drag):</p>
                 {{ drag_n_drop_image_form.drag_answer_image(class_ = 'form-control', placeholder = drag_n_drop_image_form.drag_answer_image.label.text, required = true) }}
+                <p style="margin-bottom: 0px;">Mark if the answer is correct:</p>
+                {{ drag_n_drop_image_form.correctness(class_ = 'form-control', placeholder = drag_n_drop_image_form.correctness.label.text, required = true)}}
                 <input type="submit" value="Upload Image" class="btn btn-primary btn-lg btn-block">
             </form>
             <form method="post" class="form drag-form">
@@ -25,18 +27,26 @@
                 <input class="form-control" id="answerImage" name="answerImage" style="display: none;" type="text" value="{{drag_n_drop_answer_image}}">
                 <p>Set answer image size:</p>
                 {{ drag_n_drop_form.drop_zone_size(class_ = 'form-control', placeholder = drag_n_drop_form.drop_zone_size.label.text, required = true, onchange = 'changedDropBoxSize(this)') }}
-                <p>Click on the question image where you would like the student to drag this answer.</p>
+                {% if drag_n_drop_correct == '1' %}<p>Click on the question image where you would like the student to drag this answer.</p>{% endif %}
                 <div style="display: none;" class="drag-answer-img-container">
-                    <img id="drag-question-image" class="drag-n-drop-img" src="{{questionImage}}">
+                    {% if drag_n_drop_correct == '1' %}<img id="drag-question-image" class="drag-n-drop-img" src="{{questionImage}}">{% endif %}
                     <img {% if drag_n_drop_answer_image == "" %} style="display: none;" {% endif %} src="{{drag_n_drop_answer_image}}" id="drag_n_drop_answer_img">
                 </div>
+                {% if drag_n_drop_correct == '1' %}
                 <p>Select a color for the drop box so that it always stands out:</p>
                 <input class="form-control" type="color" id="drop_zone_color" onchange="changeBorderColor(this)" name="drop_zone_color" value="#000000">
-                <p style="margin-bottom: 0px;">Mark if the answer is correct:</p>
-                {{ drag_n_drop_form.correctness(class_ = 'form-control', placeholder = drag_n_drop_form.correctness.label.text, required = false) }}
                 {{ drag_n_drop_form.answerReason(class_ = 'form-control', placeholder = drag_n_drop_form.answerReason.label.text, required = true) }}
                 {{ drag_n_drop_form.answerXCoord(class_ = 'form-control', style='display: none;', id='click-x-coord', placeholder = drag_n_drop_form.answerXCoord.label.text, required = true) }}
                 {{ drag_n_drop_form.answerYCoord(class_ = 'form-control', style='display: none;', id='click-y-coord', placeholder = drag_n_drop_form.answerYCoord.label.text, required = true) }}
+                {% else %}
+                <input class="form-control" type="color" style="display: none;" id="drop_zone_color" onchange="changeBorderColor(this)" name="drop_zone_color" value="#000000">
+                {{ drag_n_drop_form.answerReason(class_ = 'form-control', placeholder = drag_n_drop_form.answerReason.label.text, required = true) }}
+                <input class="form-control" type="number" style="display: none;" id="click-x-coord" name="answerXCoord" value="0">
+                <input class="form-control" type="number" style="display: none;" id="click-y-coord" name="answerYCoord" value="0">
+                {% endif %}
+                <input class="form-control" id="correctness" name="correctness" style="display: none;" type="text" value="{{drag_n_drop_correct}}">
+                {{ drag_n_drop_form.drop_zone_adjusted_height_ratio(class_ = 'form-control', id='adjusted-height-ratio',placeholder = drag_n_drop_form.drop_zone_adjusted_height_ratio.label.text, required = true) }}
+                {{ drag_n_drop_form.drop_zone_adjusted_width_ratio(class_ = 'form-control', id='adjusted-width-ratio',placeholder = drag_n_drop_form.drop_zone_adjusted_width_ratio.label.text, required = true) }}
                 <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
             </form>
         </div>

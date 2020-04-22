@@ -118,16 +118,18 @@
                         {% else %}
                             {% set img = question[5] %}
                         {% endif %}
-                        <a {% if question[3] == "dragndrop" %} style="width: 150%;" {% endif %} class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
+                        <a {% if question[3] == "dragndrop" %} style="width: 200%;" {% endif %} class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                             {% if question[3] == "dragndrop" %}
                                 <div class="drag-n-drop-container" id="drop_zone_container{{outer_loop.index-1}}">
                                     {% for answer in a_list[outer_loop.index-1] %}
                                     {% set dropbox_loop = loop %}
                                         {% if answer[2] == 1 %}
-                                            <div id="drop_element{{dropbox_loop.index}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                            <div id="drop_element{{dropbox_loop.index}}" style="border-color: {{answer[9]}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)">
                                                 <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
                                                 <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
                                                 <div style="display: none;" id="answer_reason{{dropbox_loop.index-1}}">{{answer[4]}}</div>
+                                                <div style="display: none;" id="width_adjustment{{dropbox_loop.index-1}}">{{answer[8]}}</div>
+                                                <div style="display: none;" id="height_adjustment{{dropbox_loop.index-1}}">{{answer[9]}}</div>
                                             </div>
                                         {% endif %}
                                     {% endfor %}
@@ -144,7 +146,7 @@
                         </div>
 
                         <!-- question input/answers -->
-                        <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}">
+                        <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}" {% if question[3] == "dragndrop" %} style="height: 150px;" {% endif %} >
                             <!-- short answer -->
                             {% if question[3] == "short" %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
@@ -162,7 +164,12 @@
                             {% elif question[3] == "dragndrop" %}
                             {% for answer in a_list[outer_loop.index-1] %}
                             {% set inner_loop = loop %}
-                            <img id="drag_element{{outer_loop.index}}:{{inner_loop.index}}" src="{{answer[5]}}" draggable="true" ondragstart="drag(event)">
+                            <div class="drag_answer_container_div">
+                                <img id="drag_element{{outer_loop.index}}:{{inner_loop.index}}" src="{{answer[5]}}" draggable="true" ondragstart="drag(event)">
+                                <div style="display: none;" id="answer_img_height_adjustment{{outer_loop.index}}:{{inner_loop.index}}">{{answer[8]}}</div>
+                                <div style="display: none;" id="answer_img_width_adjustment{{outer_loop.index}}:{{inner_loop.index}}">{{answer[9]}}</div>
+                                <div style="display: none;" id="answer_correct{{outer_loop.index}}:{{inner_loop.index}}">{{answer[2]}}</div>
+                            </div>
                             {% endfor %}
                             {% endif %}
                         </div>

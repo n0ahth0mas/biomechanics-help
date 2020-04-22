@@ -211,7 +211,8 @@ function drag(ev) {
 function drop(ev, element) {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
-  var answer_parent = document.getElementById(data).parentElement;
+  var answer_parent = document.getElementById(data).parentElement.parentElement;
+  console.log(answer_parent);
   var drop_zone_index = String(element.id).replace("drop_element", "");
   drop_zone_index = Number(drop_zone_index);
   var answer_element_index = String(data).split(":").pop();
@@ -220,31 +221,40 @@ function drop(ev, element) {
   var drop_zone_container = element.parentElement;
   var drop_zones = [].slice.call(drop_zone_container.children);
   drop_zones.pop();
-  var this_reason = String(element.lastChild.innerHTML);
+  var this_reason = String(element.children[2].innerHTML);
   if(answer_element_index === drop_zone_index){
     //then we know that we have dragged the right answer onto the right drop zone
     correctSubmitCount++;
     //ask if we are done with this question
     //if the correntSubmitCount is equal to the total number of drop zones then we know that we have finished this question
+    console.log("correctSubmitCount: " + correctSubmitCount);
+    console.log("drop_zones.length: " + drop_zones.length);
+    ev.target.appendChild(document.getElementById(data));
     if(correctSubmitCount === drop_zones.length){
+        console.log("about to say that you finished!");
         modalHead.innerHTML = "<h4>Correct! You Finished!</h4>";
         modalBody.innerHTML = this_reason;
         progress(true);
         //need to reset the question elements
         console.log(answer_parent.children.length);
+        var answer_containers = answer_parent.getElementsByClassName("drag_answer_container_div");
         for(i=0; i < drop_zones.length;i++){
             (function (i) {
-                console.log(i);
-                var drag_element = drop_zones[i].children[children.length - 1]
-                answer_parent.appendChild(drag_element);
+                var drag_element = drop_zones[i].children[drop_zones[i].children.length - 1];
+                //need this drag elements index
+                var this_answer_img_index = Number(String(drag_element.id).split(":").pop());
+                console.log("this drag answer index: " + this_answer_img_index);
+                //answer_parent.insertBefore(drag_element, answer_parent.children[0]);
+                answer_containers[i].insertBefore(drag_element, answer_containers[i].children[0]);
             })(i);
         }
+        correctSubmitCount = 0;
+        $('#myModal').modal('show');
         nextQuestion();
     }else{
         modalHead.innerHTML = "<h4>Correct!</h4>";
         modalBody.innerHTML = this_reason;
     }
-    ev.target.appendChild(document.getElementById(data));
   }else{
     //then we just dragged the wrong answer onto this drop zone
     //for now just make this wrong
@@ -253,6 +263,7 @@ function drop(ev, element) {
     modalBody.innerHTML = this_reason;
     tries++;
   }
+  $('#myModal').modal('show');
 }
 
 function submitShortAnswer(answer, submitButton, reason){
@@ -280,6 +291,34 @@ function submitShortAnswer(answer, submitButton, reason){
 }
 
 function renderDropBoxQuestion() {
+    var this_question_header = document.getElementById("q_qs" + questionIndex);
+    var drag_and_drop_answers = this_question_header.children;
+    var this_question_img = document.getElementById("drop_zone_container" + questionIndex);
+    this_question_img = this_question_img.children[this_question_img.children.length-1];
+    for(j = 0; j < drag_and_drop_answers.length; j++){
+        var this_height_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
+        var this_width_percentage = Number(drag_and_drop_answers[j].children[2].innerHTML);
+        var this_answer_img = drag_and_drop_answers[j].children[0];
+        var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
+        //if this answer is true
+        if(this_answer_correctness === '1'){
+            console.log("thinks this one is correct");
+            this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
+            console.log("set answer image height to: " + this_answer_img.style.height);
+            this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
+        }else{
+            console.log("thinks this one is wrong");
+            //otherwise just apply the percentage and ignore the question image
+            console.log("height percent: " + this_height_percentage);
+            console.log("width percent: " + this_width_percentage);
+            console.log(this_answer_img.naturalHeight);
+            console.log(this_answer_img.naturalWidth);
+            this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
+            this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
+            console.log(this_answer_img.style.height);
+            console.log(this_answer_img.style.width);
+        }
+    }
     //put drop zones in the right position
     var this_drop_zone_id = "drop_zone_container" + String(questionIndex);
     var drop_zone_container = document.getElementById(this_drop_zone_id);
@@ -294,8 +333,13 @@ function renderDropBoxQuestion() {
         this_question_image = this_question_image.parentElement;
         var img_width = this_question_image.clientWidth;
         var img_height = this_question_image.clientHeight;
+        var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
+        var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
         drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
         drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+        console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
+        drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
+        drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
     }
 }
 

@@ -77,7 +77,8 @@ create TABLE Answers(
         imageFile     TEXT,
         xposition       INTEGER,
         yposition       INTEGER,
-        dropBoxSize   INTEGER,
+        dropBoxHeightAdjustment   INTEGER,
+        dropBoxWidthAdjustment INTEGER,
         dropBoxColor    TEXT,
         PRIMARY KEY (answerID),
         FOREIGN KEY (questionID) REFERENCES Questions (questionID)
