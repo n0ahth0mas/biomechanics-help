@@ -73,7 +73,7 @@ $( "#start-quiz-button" ).on("click", function() {
 });
 
 $( document ).ready(function() {
-    if(drag_n_drop_answer_img.style.display !== "none"){
+    if(document.getElementById("drag_n_drop_answer_img") !== null && document.getElementById("drag_n_drop_answer_img").style.display !== "none"){
         //then we know we should show the add answer modal
         document.getElementById("myModal").style.display = "block";
         //and we should also hide the answer image upload form and show the drag form
@@ -88,6 +88,13 @@ $( document ).ready(function() {
             document.getElementsByClassName("drag-answer-img-container")[0].style.height = document.getElementById("drag_n_drop_answer_img").style.maxHeight;
         }
     }
+    console.log("got this far");
+    //reset select fields so that they cooperate
+    var els = document.getElementsByClassName("reset_me");
+    for (i = 0; i < els.length; i++) {
+        els[i].value = els[i].getAttribute('value');
+    }
+
 });
 
 function changedDropBoxSize(element){

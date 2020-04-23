@@ -136,7 +136,7 @@
                          {% elif question[3] == "dragndrop" %}
                          Drag and Drop
                          {% endif %}
-                         {{ form_edit_question.questionType(value = question[3]) }}
+                         {{ form_edit_question.questionType(value = question[3], class_ = 'reset_me') }}
                      </td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
@@ -165,7 +165,6 @@
     {% for video in videos %}
         {{video[1]}}
     {% endfor %}
-
 <script>
 // Get the modal
 var modal = document.getElementsByClassName('modal');
