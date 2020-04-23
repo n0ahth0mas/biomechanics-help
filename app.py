@@ -916,13 +916,14 @@ def professor_home():
     print(formEdit.validate_on_submit())
     print(formEdit.data["classID"])
     print(query_db('SELECT * from Classes where classID="%s"' % formEdit.data["classID"]))
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit():
         print("thinks we are in the right form area")
         classID = formEdit.data["classID"]
-        Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
-        UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
-        Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
-        db.session.commit()
+        if query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
+            Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
+            UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
+            Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
+            db.session.commit()
         #want to rename this class' image folder here
         basedir = 'static/img'
         print(os.listdir(basedir))
