@@ -912,12 +912,24 @@ def professor_home():
             print("Successfully created the directory %s " % path)
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
-        classID = formEdit.data["classID"]
-        Class.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"], className=formEdit.data["className"]))
-        UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
-        Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.data["newClassID"]))
+    print(formEdit.newClassID.data)
+    print(formEdit.validate_on_submit())
+    print(formEdit.data["classID"])
+    print(query_db('SELECT * from Classes where classID="%s"' % formEdit.data["classID"]))
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+        print("thinks we are in the right form area")
+        classID = formEdit.newClassID.data
+        Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
+        UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
+        Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
         db.session.commit()
+        #want to rename this class' image folder here
+        basedir = '/static/img'
+        print(os.listdir(basedir))
+        for fn in os.listdir(basedir):
+            if fn == formEdit.newClassID.data:
+                print("found our folder")
+                os.rename(os.path.join(basedir, fn), os.path.join(basedir, str(formEdit.newClassID.data)))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass

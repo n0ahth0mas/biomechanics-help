@@ -18102,3 +18102,256 @@ FileNotFoundError: [WinError 3] The system cannot find the path specified: '/sta
 2020-04-22 17:05:11,231 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1180]
 2020-04-22 17:06:08,206 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1180]
 2020-04-22 17:09:05,341 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1181]
+2020-04-22 17:10:10,055 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1181]
+2020-04-22 17:19:52,924 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1184]
+2020-04-22 17:20:12,446 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1185]
+2020-04-22 17:21:47,198 ERROR: Exception on /delete/1000 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: Chapters.publish
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 643, in delete_class
+    db.session.delete(class_to_delete)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2003, in delete
+    self._delete_impl(state, instance, head=True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2029, in _delete_impl
+    cascade_states = list(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\mapper.py", line 3048, in cascade_iterator
+    queue = deque(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1807, in cascade_iterator
+    tuples = self._value_as_iterable(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1781, in _value_as_iterable
+    x = impl.get(state, dict_, passive=passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\attributes.py", line 710, in get
+    value = self.callable_(state, passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 746, in _load_for_state
+    return self._emit_lazyload(
+  File "<string>", line 1, in <lambda>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 887, in _emit_lazyload
+    q(session)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 541, in all
+    return list(self)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 444, in __iter__
+    return q._execute_and_instances(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\query.py", line 3414, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: Chapters.publish
+[SQL: SELECT "Chapters"."chapterID" AS "Chapters_chapterID", "Chapters"."chapterName" AS "Chapters_chapterName", "Chapters"."classID" AS "Chapters_classID", "Chapters"."orderNo" AS "Chapters_orderNo", "Chapters".publish AS "Chapters_publish" 
+FROM "Chapters" 
+WHERE ? = "Chapters"."classID"]
+[parameters: ('1000',)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-04-22 17:23:00,964 ERROR: Exception on /professor-home [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 915, in professor_home
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_edit.data["classID"]) == []:
+NameError: name 'form_edit' is not defined
+2020-04-22 17:23:48,820 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1185]
+2020-04-22 17:24:54,766 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1187]
+2020-04-22 17:26:27,572 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1188]
+2020-04-22 17:27:34,882 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 17:29:41,776 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 17:29:51,325 ERROR: Exception on /professor-home [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 924, in professor_home
+    print(os.listdir(basedir))
+FileNotFoundError: [WinError 3] The system cannot find the path specified: '/static/img/'
+2020-04-22 17:30:38,848 ERROR: Exception on /delete/56565656 [GET] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: Chapters.publish
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 643, in delete_class
+    db.session.delete(class_to_delete)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2003, in delete
+    self._delete_impl(state, instance, head=True)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\session.py", line 2029, in _delete_impl
+    cascade_states = list(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\mapper.py", line 3048, in cascade_iterator
+    queue = deque(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1807, in cascade_iterator
+    tuples = self._value_as_iterable(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\relationships.py", line 1781, in _value_as_iterable
+    x = impl.get(state, dict_, passive=passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\attributes.py", line 710, in get
+    value = self.callable_(state, passive)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 746, in _load_for_state
+    return self._emit_lazyload(
+  File "<string>", line 1, in <lambda>
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\strategies.py", line 887, in _emit_lazyload
+    q(session)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 541, in all
+    return list(self)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\ext\baked.py", line 444, in __iter__
+    return q._execute_and_instances(context)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\orm\query.py", line 3414, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\sql\elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\util\compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\sqlalchemy\engine\default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: Chapters.publish
+[SQL: SELECT "Chapters"."chapterID" AS "Chapters_chapterID", "Chapters"."chapterName" AS "Chapters_chapterName", "Chapters"."classID" AS "Chapters_classID", "Chapters"."orderNo" AS "Chapters_orderNo", "Chapters".publish AS "Chapters_publish" 
+FROM "Chapters" 
+WHERE ? = "Chapters"."classID"]
+[parameters: ('56565656',)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-04-22 17:38:27,347 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 17:44:03,407 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 17:44:52,082 ERROR: Exception on /professor-home [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 918, in professor_home
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.data["class_id"]) == []:
+KeyError: 'class_id'
+2020-04-22 17:45:32,032 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 17:47:17,794 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
+2020-04-22 17:56:31,066 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
+2020-04-22 17:57:15,924 ERROR: Exception on /professor-home [POST] [in C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py:1890]
+Traceback (most recent call last):
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_user\decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py", line 925, in professor_home
+    print(os.listdir(basedir))
+FileNotFoundError: [WinError 3] The system cannot find the path specified: '/static/img'
