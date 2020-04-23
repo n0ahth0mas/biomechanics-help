@@ -223,3 +223,6 @@ class UploadDragNDropImage(FlaskForm):
     drag_answer_image = FileField('Image File', validators=[DataRequired()])
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
+
+class ProfJoinClass(FlaskForm):
+    classCode = StringField('Class Code', validators=[DataRequired()])

@@ -917,8 +917,13 @@ def student_quiz(class_id, chapter, section):
 @login_required
 @roles_required('Professor')
 def professor_home():
+    prof_join_class_form = ProfJoinClass()
     form_create = CreateClass()
     formEdit = EditClass()
+    if prof_join_class_form.classCode is not None and prof_join_class_form.validate():
+        one_class = Class.query.filter_by(classID=prof_join_class_form.classCode.data).one()
+        current_user.classes.append(one_class)
+        db.session.commit()
     if form_create.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
         one_class.classID = form_create.data["class_id"]
@@ -960,7 +965,7 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit, prof_join_class_form=prof_join_class_form)
 
 
 @app.route('/student-short')

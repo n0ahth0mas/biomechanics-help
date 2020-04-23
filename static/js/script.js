@@ -119,3 +119,11 @@ function changedDropBoxSize(element){
 function changeBorderColor(element){
     document.getElementById("drag_n_drop_answer_img").style.borderColor = String(element.value);
 }
+
+function showCollabForm(){
+    document.getElementById("collab-form-modal").style.display = "block";
+}
+
+function collabFormClose(){
+    document.getElementById("collab-form-modal").style.display = "none";
+}
