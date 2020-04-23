@@ -18596,3 +18596,4 @@ Traceback (most recent call last):
 sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.NoneType' is not mapped
 2020-04-22 18:34:57,429 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
 2020-04-22 18:36:13,032 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
+2020-04-22 18:37:27,964 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
