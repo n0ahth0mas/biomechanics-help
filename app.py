@@ -836,7 +836,8 @@ def forgot():
         user_object = query_db('SELECT * from Users WHERE email="%s"' % email, one=True)
         if user_object is None:
             flash("Unable to find user with those details, please try again")
-            return render_template('forms/login.html', form=form)
+            #return render_template('forms/login.html', form=form)
+            return redirect("/login")
         else:
             token = get_user_token(email)
             html_body = render_template('email/reset_password.html', token=token)
