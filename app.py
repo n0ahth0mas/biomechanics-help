@@ -918,16 +918,16 @@ def professor_home():
     print(query_db('SELECT * from Classes where classID="%s"' % formEdit.data["classID"]))
     if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
         print("thinks we are in the right form area")
-        classID = formEdit.newClassID.data
+        classID = formEdit.data["classID"]
         Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
         UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
         Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
         db.session.commit()
         #want to rename this class' image folder here
-        basedir = '/static/img'
+        basedir = 'static/img'
         print(os.listdir(basedir))
         for fn in os.listdir(basedir):
-            if fn == formEdit.newClassID.data:
+            if fn == formEdit.data["classID"]:
                 print("found our folder")
                 os.rename(os.path.join(basedir, fn), os.path.join(basedir, str(formEdit.newClassID.data)))
     elif request.method == 'POST':
