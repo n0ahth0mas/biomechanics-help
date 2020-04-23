@@ -538,11 +538,27 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 @login_required
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
+    point_n_click_answer_form = PointNClickAnswer()
     drag_n_drop_image_form = UploadDragNDropImage()
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
+    if point_n_click_answer_form.answer_box_width is not None and point_n_click_answer_form.validate():
+        #validated point and click answer form
+        point_answer = Answer()
+        point_answer.questionID = questionID
+        point_answer.correctness = point_n_click_answer_form.correctness.data
+        point_answer.answerText = ""
+        point_answer.answerReason = point_n_click_answer_form.answerReason.data
+        point_answer.xPosition = point_n_click_answer_form.answerXCoord.data
+        point_answer.yPosition = point_n_click_answer_form.answerYCoord.data
+        point_answer.imageFile = ""
+        point_answer.dropBoxHeightAdjustment = float(point_n_click_answer_form.answer_area_adjusted_height_ratio.data)
+        point_answer.dropBoxWidthAdjustment = float(point_n_click_answer_form.answer_area_adjusted_width_ratio.data)
+        point_answer.dropBoxColor = ""
+        db.session.add(point_answer)
+        db.session.commit()
     if drag_n_drop_image_form.drag_answer_image is not None and drag_n_drop_image_form.validate():
         print("validates drag and drop image form")
         image = request.files['drag_answer_image']
@@ -605,7 +621,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     print(drag_n_drop_correct)
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path, drag_n_drop_correct=drag_n_drop_correct)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path, drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
@@ -850,6 +866,7 @@ def forgot():
             smtpObj.sendmail(sender, msg["To"], msg.as_string())
             successurl = home_url + "forgot-success"
             return redirect(successurl)
+            #except :
     return render_template('forms/forgotPassword.html', form=form)
 
 

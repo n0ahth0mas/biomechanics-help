@@ -89,7 +89,7 @@ class CreateSectionBlock(FlaskForm):
 
 
 class CreateQuestion(FlaskForm):
-    question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
+    question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop'), ('pointnclick', 'Point and Click')]
     orderNo3 = IntegerField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
@@ -159,21 +159,6 @@ class EditSection(FlaskForm):
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
-
-class CreateDragNDropAnswer(FlaskForm):
-    answerText = HiddenField('Answer Text')
-    answerReason = StringField('Answer Reason', validators=[DataRequired()])
-    answerImage = HiddenField('File Path')
-    answerXCoord = StringField('X Coord', validators=[DataRequired()])
-    answerYCoord = StringField('Y Coord', validators=[DataRequired()])
-    #this is a percentage of the original image size
-    drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
-    drop_zone_color = HiddenField('Color')
-    drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
-    drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
-    correctness = HiddenField('Correctness')
-
-
 class EditSectionBlock(FlaskForm):
     sectionBlockID = HiddenField(validators=[DataRequired()])
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
@@ -181,7 +166,7 @@ class EditSectionBlock(FlaskForm):
 
 
 class EditQuestion(FlaskForm):
-    question_type_choices = [('', 'Change Question Type'), ('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
+    question_type_choices = [('', 'Change Question Type'), ('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop'), ('pointnclick', 'Point and Click')]
     questionID = HiddenField(validators=[DataRequired()])
     orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
     questionText = StringField(validators=[DataRequired()])
@@ -226,3 +211,29 @@ class UploadDragNDropImage(FlaskForm):
 
 class ProfJoinClass(FlaskForm):
     classCode = StringField('Class Code', validators=[DataRequired()])
+
+class PointNClickAnswer(FlaskForm):
+    answerText = HiddenField('Answer Text')
+    correctness_choices = [('0', 'False'), ('1', 'True')]
+    correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
+    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerXCoord = StringField('X Coord', validators=[DataRequired()])
+    answerYCoord = StringField('Y Coord', validators=[DataRequired()])
+    # this is a percentage of the original image size
+    answer_box_width = IntegerField('Input answer box\'s width in pixels')
+    answer_box_height = IntegerField('Input answer box\'s height in pixels')
+    answer_area_adjusted_height_ratio = HiddenField('Adjusted height ratio')
+    answer_area_adjusted_width_ratio = HiddenField('Adjusted width ratio')
+
+class CreateDragNDropAnswer(FlaskForm):
+    answerText = HiddenField('Answer Text')
+    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerImage = HiddenField('File Path')
+    answerXCoord = StringField('X Coord', validators=[DataRequired()])
+    answerYCoord = StringField('Y Coord', validators=[DataRequired()])
+    # this is a percentage of the original image size
+    drop_zone_size = DecimalRangeField('Drop Box Size', validators=[DataRequired()])
+    drop_zone_color = HiddenField('Color')
+    drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
+    drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
+    correctness = HiddenField('Correctness')

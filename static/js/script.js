@@ -127,3 +127,40 @@ function showCollabForm(){
 function collabFormClose(){
     document.getElementById("collab-form-modal").style.display = "none";
 }
+
+function changedPointNClickWidth(element){
+    var new_width = String(element.value) + "px";
+    document.getElementById("point-n-click-answer-area").style.width = new_width;
+    var this_question_image_width = document.getElementById("point-n-click-question-image").clientWidth;
+    document.getElementById("area-adjusted-width-ratio").value = element.value/this_question_image_width;
+    console.log("adjustment percentage: " + document.getElementById("area-adjusted-width-ratio").value);
+}
+
+function changedPointNClickHeight(element){
+    var new_height = String(element.value) + "px";
+    document.getElementById("point-n-click-answer-area").style.height = new_height;
+    var this_question_image_height = document.getElementById("point-n-click-question-image").clientHeight;
+    document.getElementById("area-adjusted-height-ratio").value = element.value/this_question_image_height;
+    console.log("adjustment percentage: " + document.getElementById("area-adjusted-height-ratio").value);
+}
+
+$("#point-n-click-question-image").on("click", function(event) {
+        console.log("called correct function");
+        bounds=this.getBoundingClientRect();
+        var left=bounds.left;
+        var bottom=bounds.bottom;
+        var x = event.pageX - left;
+        var y = (event.pageY - bottom) * (-1);
+        var cw=this.clientWidth
+        var ch=this.clientHeight
+        var iw=this.naturalWidth
+        var ih=this.naturalHeight
+        var px=x/cw*iw
+        var py=y/ch*ih
+        document.getElementById("point-n-click-x-coord").value = px.toFixed(2);
+        document.getElementById("point-n-click-y-coord").value = py.toFixed(2);
+        var answer_box = document.getElementById("point-n-click-answer-area");
+        answer_box.style.left = String((px/iw) * cw) + "px";
+        answer_box.style.bottom = String((py/iw) * cw) + "px";
+        answer_box.style.top = "unset";
+});

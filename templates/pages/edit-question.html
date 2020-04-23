@@ -50,6 +50,25 @@
                 <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
             </form>
         </div>
+        {% elif questionType == "pointnclick" %}
+        <form method="post" class="form image-form">
+            {{ point_n_click_answer_form.csrf_token }}
+            <p style="margin-bottom: 0px;">Mark if the answer is correct:</p>
+            {{ point_n_click_answer_form.correctness(class_ = 'form-control', placeholder = point_n_click_answer_form.correctness.label.text, required = true)}}
+            {{ point_n_click_answer_form.answerReason(class_ = 'form-control', placeholder = point_n_click_answer_form.answerReason.label.text, required = true)}}
+            <p>Set answer area size, and click where you would like the zone to live on the image:</p>
+            {{ point_n_click_answer_form.answer_box_width(class_ = 'form-control', onkeyup= 'changedPointNClickWidth(this)', placeholder = point_n_click_answer_form.answer_box_width.label.text, required = true)}}
+            {{ point_n_click_answer_form.answer_box_height(class_ = 'form-control', onkeyup= 'changedPointNClickHeight(this)', placeholder = point_n_click_answer_form.answer_box_height.label.text, required = true)}}
+            {{ point_n_click_answer_form.answer_area_adjusted_height_ratio(class_ = 'form-control', id='area-adjusted-height-ratio', placeholder = point_n_click_answer_form.answer_area_adjusted_height_ratio.label.text, required = true)}}
+            {{ point_n_click_answer_form.answer_area_adjusted_width_ratio(class_ = 'form-control', id='area-adjusted-width-ratio', placeholder = point_n_click_answer_form.answer_area_adjusted_width_ratio.label.text, required = true)}}
+            {{ point_n_click_answer_form.answerXCoord(class_ = 'form-control', style='display: none;', id='point-n-click-x-coord', placeholder = point_n_click_answer_form.answerXCoord.label.text, required = true) }}
+            {{ point_n_click_answer_form.answerYCoord(class_ = 'form-control', style='display: none;', id='point-n-click-y-coord', placeholder = point_n_click_answer_form.answerYCoord.label.text, required = true) }}
+            <div class="point-n-click-img-container">
+                <img id="point-n-click-question-image" class="point-n-click-img" src="{{questionImage}}">
+                <div id="point-n-click-answer-area"></div>
+            </div>
+            <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
+        </form>
         {% else %}
         <form method="post" class="form">
             <h2>Add Answer</h2>
