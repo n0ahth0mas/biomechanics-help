@@ -1095,18 +1095,22 @@ def new_student_account():
 @roles_required('Professor')
 def professor_class_home(classID):
     print("called professor class home")
+    #get chapters in order like we should
     chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
     print(chapters)
+    #2d array of sections, also in order like they should be
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s" ORDER by "orderNo" ' % chapter[0]))
 
+    #3d array of questions, ordered by orderNo
     questions = []
     for sectionarray in sections_arrays:
         for section in sectionarray:
-            questions.append(query_db('SELECT * from Questions where sectionID="%s"' % section[0]))
+            questions.append(query_db('SELECT * from Questions where sectionID="%s" ORDER by "orderNo" ' % section[0]))
     print(sections_arrays)
     print(questions)
+    #3d array of answers
     answers = []
     for question_array in questions:
         for question in question_array:

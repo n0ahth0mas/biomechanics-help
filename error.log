@@ -18599,3 +18599,7 @@ sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.NoneType' is not mappe
 2020-04-22 18:37:27,964 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1191]
 2020-04-22 18:40:08,540 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
 2020-04-22 18:44:46,916 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
+2020-04-22 18:48:50,865 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
+2020-04-22 21:31:53,356 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1192]
+2020-04-22 21:42:59,540 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1195]
+2020-04-22 21:45:31,190 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1196]
