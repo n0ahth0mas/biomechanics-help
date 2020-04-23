@@ -903,8 +903,7 @@ def professor_home():
         db.session.commit()
         #create a folder for this class' images to live in
         #this helps us avoid naming conflicts with images and videos
-        path = os.path.abspath("/static/img")
-        path = path + str(form_create.data["class_id"])
+        path = "static/img/" + str(form_create.data["class_id"])
         try:
             os.mkdir(path)
         except OSError:
