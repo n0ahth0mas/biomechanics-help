@@ -181,11 +181,11 @@ class EditSectionBlock(FlaskForm):
 
 
 class EditQuestion(FlaskForm):
-    question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
+    question_type_choices = [('', 'Change Question Type'), ('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop')]
     questionID = HiddenField(validators=[DataRequired()])
     orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
     questionText = StringField(validators=[DataRequired()])
-    questionType = SelectField(validators=[DataRequired()], choices=question_type_choices)
+    questionType = SelectField(choices=question_type_choices, default=('', 'Change Question Type'))
 
 
 class EditAnswer(FlaskForm):

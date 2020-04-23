@@ -289,6 +289,7 @@ def edit_class(classID):
         one_chapter.orderNo = formEdit.data["orderNo1"]
         one_chapter.chapterName = formEdit.data["chapterName"]
         db.session.commit()
+        return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
     if form.orderNo2.data is not None and form.validate():
@@ -299,6 +300,8 @@ def edit_class(classID):
         one_chapter.publish = False
         db.session.add(one_chapter)
         db.session.commit()
+        print(classID)
+        return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
     form_publish = PublishChapter()
@@ -331,6 +334,7 @@ def edit_glossary(classID):
         one_entry.definition = form.data["definition"]
         db.session.add(one_entry)
         db.session.commit()
+        return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
     form_edit = EditTerm()
@@ -340,6 +344,7 @@ def edit_glossary(classID):
         edit_term.term = form_edit.data["term_e"]
         edit_term.definition = form_edit.data["definition"]
         db.session.commit()
+        return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
     form_i = CreateGlossaryImage()
@@ -349,6 +354,7 @@ def edit_glossary(classID):
         one_image.imageFile = form_i.data["imageFile"]
         db.session.add(one_image)
         db.session.commit()
+        return redirect(url_for('edit_glossary'))
     elif request.method == 'POST':
         pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
@@ -376,6 +382,7 @@ def edit_chapter(classID, chapterID):
         one_section.publish = False
         db.session.add(one_section)
         db.session.commit()
+        return redirect('/edit-class/%s/%s' % (classID, chapterID))
     elif request.method == 'POST':
         pass
     form_edit = EditSection()
@@ -385,6 +392,7 @@ def edit_chapter(classID, chapterID):
         one_section.orderNo = form_edit.data["orderNo1"]
         one_section.sectionName = form_edit.data["sectionName"]
         db.session.commit()
+        return redirect('/edit-class/%s/%s' % (classID, chapterID))
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
@@ -415,6 +423,7 @@ def edit_section(classID, chapterID, sectionID):
         one_section_block.sectionID = sectionID
         db.session.add(one_section_block)
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     form_edit = EditSectionBlock()
@@ -424,6 +433,7 @@ def edit_section(classID, chapterID, sectionID):
         one_section_block.orderNo = form_edit.data["orderNo1"]
         one_section_block.sectionText = form_edit.data["text"]
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     form_q = CreateQuestion()
@@ -439,6 +449,7 @@ def edit_section(classID, chapterID, sectionID):
             one_question.imageFile = form_q.data["imageFile"]
         db.session.add(one_question)
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     form_edit_question = EditQuestion()
@@ -447,7 +458,8 @@ def edit_section(classID, chapterID, sectionID):
         one_question = Question.query.filter_by(questionID=questionID).first()
         one_question.questionText = form_edit_question.data["questionText"]
         one_question.orderNo = form_edit_question.data["orderNo5"]
-        one_question.questionType = form_edit_question.data["questionType"]
+        if not form_edit_question.data["questionType"] == "":
+            one_question.questionType = form_edit_question.data["questionType"]
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -458,6 +470,7 @@ def edit_section(classID, chapterID, sectionID):
         one_video.videoFile = form_v.data["videoFile"]
         db.session.add(one_video)
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     form_si = CreateSectionBlockImages()
@@ -556,7 +569,9 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
         db.session.add(drag_answer)
         db.session.commit()
-    if form_a.imageFile.data is not None and form_a.validate():
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+    if form_a.answerText.data is not None and form_a.validate():
+        print("here")
         one_answer = Answer()
         one_answer.questionID = questionID
         one_answer.correctness = form_a.data["correctness"]
@@ -565,6 +580,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.imageFile = form_a.data["imageFile"]
         db.session.add(one_answer)
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
         pass
     form_edit = EditAnswer()
@@ -916,6 +932,7 @@ def professor_home():
             print("Creation of the directory %s failed" % path)
         else:
             print("Successfully created the directory %s " % path)
+        return redirect(url_for('professor_home'))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
     if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
