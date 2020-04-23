@@ -538,9 +538,9 @@ def edit_question(classID, chapterID, sectionID, questionID):
             return redirect(request.url)
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)
-            img_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
             image.save(img_path)
-            local_img_path = "/static/img/" + filename
+            local_img_path = "/static/img/" + str(classID) + "/" + filename
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
         drag_answer = Answer()
         drag_answer.questionID = questionID
