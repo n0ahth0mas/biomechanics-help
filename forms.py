@@ -189,9 +189,9 @@ class EditQuestion(FlaskForm):
 
 
 class EditAnswer(FlaskForm):
-    question_type_choices = [('0', 'False'), ('1', 'True')]
+    question_type_choices = [('', 'Change Correctness'), ('0', 'False'), ('1', 'True')]
     answerID = HiddenField()
-    correctness = SelectField(validators=[DataRequired()], choices=question_type_choices)
+    correctness = SelectField(choices=question_type_choices)
     answerText2 = StringField('Answer Text', validators=[DataRequired()])
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
 

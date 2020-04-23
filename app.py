@@ -461,6 +461,7 @@ def edit_section(classID, chapterID, sectionID):
         if not form_edit_question.data["questionType"] == "":
             one_question.questionType = form_edit_question.data["questionType"]
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     form_v = CreateVideo()
@@ -571,7 +572,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
-        print("here")
         one_answer = Answer()
         one_answer.questionID = questionID
         one_answer.correctness = form_a.data["correctness"]
@@ -589,8 +589,10 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer = Answer.query.filter_by(answerID=answerID).first()
         one_answer.answerText = form_edit.data["answerText2"]
         one_answer.answerReason = form_edit.data["answerReason"]
-        one_answer.correctness = form_edit.data["correctness"]
+        if not form_a.data["correctness"] == "":
+            one_answer.correctness = form_edit.data["correctness"]
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
         pass
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
