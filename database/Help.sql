@@ -13,6 +13,9 @@ drop table if exists School;
 drop table if exists Users;
 drop table if exists User_roles;
 drop table if exists Roles;
+drop table if exists GlossaryImages;
+drop table if exists DragBoxes;
+drop table if exists SectionBlockImages;
 
 create TABLE Classes(
         className     TEXT check(className IS NOT NULL),

@@ -1,6 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
+import shutil
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -642,6 +643,11 @@ def delete_class(classID):
     class_to_delete = Class.query.filter_by(classID=classID).first()
     db.session.delete(class_to_delete)
     db.session.commit()
+    #find this class' media folder and delete it
+    basedir = 'static/img'
+    for fn in os.listdir(basedir):
+        if fn == str(classID):
+            shutil.rmtree((basedir + "/" + str(classID)))
     return render_template('pages/delete-class.html')
 
 
@@ -912,12 +918,7 @@ def professor_home():
             print("Successfully created the directory %s " % path)
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    print(formEdit.newClassID.data)
-    print(formEdit.validate_on_submit())
-    print(formEdit.data["classID"])
-    print(query_db('SELECT * from Classes where classID="%s"' % formEdit.data["classID"]))
     if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
-        print("thinks we are in the right form area")
         classID = formEdit.data["classID"]
         Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
         UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
@@ -925,10 +926,8 @@ def professor_home():
         db.session.commit()
         #want to rename this class' image folder here
         basedir = 'static/img'
-        print(os.listdir(basedir))
         for fn in os.listdir(basedir):
             if fn == formEdit.data["classID"]:
-                print("found our folder")
                 os.rename(os.path.join(basedir, fn), os.path.join(basedir, str(formEdit.newClassID.data)))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
