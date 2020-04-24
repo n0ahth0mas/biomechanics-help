@@ -20415,3 +20415,4 @@ Traceback (most recent call last):
     section_name = section_data[2]
 TypeError: 'NoneType' object is not subscriptable
 2020-04-23 18:30:49,366 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1238]
+2020-04-23 19:13:18,113 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1238]
