@@ -105,12 +105,7 @@
                         {{ form_edit.answerID(value = answer[0])}}
                      <td>{{ form_edit.answerText2(class_ = 'form', value = answer[3]) }}</td>
                      <td>
-                         {% if answer[2]==0 %}
-                            False
-                         {% else %}
-                            True
-                         {% endif %}
-                         {{ form_edit.correctness(value = answer[2]) }}
+                         {{ form_edit.correctness(value = answer[2], class_ = 'reset_me') }}
                      </td>
                      <td>{{ form_edit.answerReason(class_ = 'form', value = answer[4]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>

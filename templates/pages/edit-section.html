@@ -129,13 +129,7 @@
                         {{ form_edit_question.questionID(value = question[0])}}
                      <td>{{ form_edit_question.orderNo5(class_ = 'form', value = question[4]) }}</td>
                      <td>{{ form_edit_question.questionText(class_ = 'form', value = question[1]) }}</td>
-                     <td>{% if question[3] == "short" %}
-                         Short Answer
-                         {% elif question[3] == "multiple" %}
-                         Multiple Choice
-                         {% elif question[3] == "dragndrop" %}
-                         Drag and Drop
-                         {% endif %}
+                     <td>
                          {{ form_edit_question.questionType(value = question[3], class_ = 'reset_me') }}
                      </td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
