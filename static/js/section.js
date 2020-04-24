@@ -262,7 +262,7 @@ function drop(ev, element) {
     //for now just make this wrong
     progress(false);
     modalHead.innerHTML = "<h4>InCorrect!</h4>";
-    modalBody.innerHTML = this_reason;
+    modalBody.innerHTML = "Let's try that again!";
     tries++;
   }
   $('#myModal').modal('show');
@@ -411,8 +411,6 @@ function clickedPointAndClickQ(event, question_image){
     var bottom=bounds.bottom;
     var x = event.pageX - left;
     var y = (event.pageY - bottom) * (-1);
-    console.log("click x postion: " + x);
-    console.log("click y position: " + y);
     //we need to check and make sure that our x and y fall in one of our answers
     //if this answer is wrong, let them know and say why
     //same for if they are right but instead we move on

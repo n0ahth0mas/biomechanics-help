@@ -544,7 +544,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
     form_a = CreateAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
-    if point_n_click_answer_form.answer_box_width is not None and point_n_click_answer_form.validate():
+    print(point_n_click_answer_form.answer_box_width)
+    if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
         #validated point and click answer form
         point_answer = Answer()
         point_answer.questionID = questionID
@@ -559,7 +560,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         point_answer.dropBoxColor = ""
         db.session.add(point_answer)
         db.session.commit()
-    if drag_n_drop_image_form.drag_answer_image is not None and drag_n_drop_image_form.validate():
+    if drag_n_drop_image_form.drag_answer_image.data is not None and drag_n_drop_image_form.validate():
         print("validates drag and drop image form")
         image = request.files['drag_answer_image']
         drag_n_drop_correct = drag_n_drop_image_form.data["correctness"]
@@ -892,42 +893,6 @@ def reset_password(token):
 @app.route('/forgot-success')
 def forgotSuccess():
     return render_template('forms/forgotSuccess.html')
-
-
-@app.route('/student-quiz/<class_id>/<chapter>/<section>', methods=['GET'])
-@login_required
-def student_quiz(class_id, chapter, section):
-    print("called student quiz")
-    if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
-        a_list = []
-        print(a_list)
-        # creating a list of questions for the page
-        q_list = query_db('SELECT * from Questions where sectionID="%s"' % section)
-        # q_list2 = json.dumps(q_list)
-        print(q_list)
-        # finding all the answers of the questions on the page
-        q_image_list = []
-        for questions in q_list:
-            answer_id = questions[0]
-            try:
-                this_image = query_db('SELECT * from QuestionImages where questionID="%s"' % questions[0])[0][1]
-                q_image_list.append(this_image)
-            except IndexError:
-                print("An index error occured")
-
-            print(answer_id)
-            print("{}".format(answer_id))
-            a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-        # a_list2 = json.dumps(a_list)
-
-        # q_image_list = query_db('SELECT * from QuestionImages')
-        print(q_image_list)
-        # print(a_list)
-        return render_template('layouts/studentquiz.html', chapter=chapter, section=section, q_list=q_list,
-                               a_list=a_list, classID=class_id, q_images=q_image_list)
-    else:
-        flash("Please enroll in a class before navigating to it.")
-        return redirect(home_url)
 
 
 @app.route('/professor-home', methods=('GET', 'POST'))
