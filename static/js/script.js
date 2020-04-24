@@ -1,3 +1,4 @@
+//for professor when building drag and drop question
 $("#drag-question-image").on("click", function(event) {
         console.log("called function");
         bounds=this.getBoundingClientRect();
@@ -19,56 +20,69 @@ $("#drag-question-image").on("click", function(event) {
         drop_zone_img.style.top = "unset";
 });
 
+//initialize drag and drop question at start
 $( "#start-quiz-button" ).on("click", function() {
     var this_question_header = document.getElementById("q_qs0");
     var drag_and_drop_answers = this_question_header.children;
     var this_question_img = document.getElementById("drop_zone_container0");
-    this_question_img = this_question_img.children[this_question_img.children.length-1];
-    for(j = 0; j < drag_and_drop_answers.length; j++){
-        var this_height_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
-        var this_width_percentage = Number(drag_and_drop_answers[j].children[2].innerHTML);
-        var this_answer_img = drag_and_drop_answers[j].children[0];
-        var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
-        //if this answer is true
-        if(this_answer_correctness === '1'){
-            console.log("thinks this one is correct");
-            this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
-            console.log("set answer image height to: " + this_answer_img.style.height);
-            this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
-        }else{
-            console.log("thinks this one is wrong");
-            //otherwise just apply the percentage and ignore the question image
-            console.log("height percent: " + this_height_percentage);
-            console.log("width percent: " + this_width_percentage);
-            console.log(this_answer_img.naturalHeight);
-            console.log(this_answer_img.naturalWidth);
-            this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
-            this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
-            console.log(this_answer_img.style.height);
-            console.log(this_answer_img.style.width);
+    if(this_question_img !== null){
+        this_question_img = this_question_img.children[this_question_img.children.length-1];
+        for(j = 0; j < drag_and_drop_answers.length; j++){
+            var this_height_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
+            var this_width_percentage = Number(drag_and_drop_answers[j].children[2].innerHTML);
+            var this_answer_img = drag_and_drop_answers[j].children[0];
+            var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
+            //if this answer is true
+            if(this_answer_correctness === '1'){
+                console.log("thinks this one is correct");
+                this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
+                console.log("set answer image height to: " + this_answer_img.style.height);
+                this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
+            }else{
+                console.log("thinks this one is wrong");
+                //otherwise just apply the percentage and ignore the question image
+                console.log("height percent: " + this_height_percentage);
+                console.log("width percent: " + this_width_percentage);
+                console.log(this_answer_img.naturalHeight);
+                console.log(this_answer_img.naturalWidth);
+                this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
+                this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
+                console.log(this_answer_img.style.height);
+                console.log(this_answer_img.style.width);
+            }
+        }
+        //put drop zones in the right position
+        var this_drop_zone_id = "drop_zone_container0";
+        var drop_zone_container = document.getElementById(this_drop_zone_id);
+        var drop_zones = [].slice.call(drop_zone_container.children)
+        drop_zones.pop();
+        for(i = 0; i < drop_zones.length;i++){
+            var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
+            var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
+            var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
+            var img_natural_width = this_question_image.naturalWidth;
+            var img_natural_height = this_question_image.naturalHeight;
+            this_question_image = this_question_image.parentElement;
+            var img_width = this_question_image.clientWidth;
+            var img_height = this_question_image.clientHeight;
+            var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
+            var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
+            drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
+            drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+            console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
+            drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
+            drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
         }
     }
-    //put drop zones in the right position
-    var this_drop_zone_id = "drop_zone_container0";
-    var drop_zone_container = document.getElementById(this_drop_zone_id);
-    var drop_zones = [].slice.call(drop_zone_container.children)
-    drop_zones.pop();
-    for(i = 0; i < drop_zones.length;i++){
-        var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
-        var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
-        var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
-        var img_natural_width = this_question_image.naturalWidth;
-        var img_natural_height = this_question_image.naturalHeight;
-        this_question_image = this_question_image.parentElement;
-        var img_width = this_question_image.clientWidth;
-        var img_height = this_question_image.clientHeight;
-        var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
-        var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
-        drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
-        drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
-        console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
-        drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
-        drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
+    //initalize point and click question
+    //if it is the first question
+    var point_and_click_question_img = document.getElementById("point-click-question-img" + String(0));
+    if(point_and_click_question_img !== null){
+        console.log("found point and click image");
+        console.log(point_and_click_question_img);
+        point_and_click_question_img.className = "active_point_n_click";
+    }else{
+        console.log("thinks its null");
     }
 });
 
@@ -89,7 +103,7 @@ $( document ).ready(function() {
         }
     }
     console.log("got this far");
-    //reset select fields so that they cooperate
+    //reset select fields so that they cooperate in professor section
     var els = document.getElementsByClassName("reset_me");
     for (i = 0; i < els.length; i++) {
         els[i].value = els[i].getAttribute('value');
@@ -97,8 +111,8 @@ $( document ).ready(function() {
 
 });
 
+//changed the size of a drop box
 function changedDropBoxSize(element){
-    console.log(element.value);
     var percentage = Number(element.value) / 100.0;
     var answer_img = document.getElementById('drag_n_drop_answer_img');
     answer_img.style.height = String(answer_img.naturalHeight * percentage) + "px";
@@ -116,10 +130,12 @@ function changedDropBoxSize(element){
     }
 }
 
+//for building drag and drop questions
 function changeBorderColor(element){
     document.getElementById("drag_n_drop_answer_img").style.borderColor = String(element.value);
 }
 
+//professor collaboration
 function showCollabForm(){
     document.getElementById("collab-form-modal").style.display = "block";
 }
@@ -128,6 +144,7 @@ function collabFormClose(){
     document.getElementById("collab-form-modal").style.display = "none";
 }
 
+//changing the size of a point and click question
 function changedPointNClickWidth(element){
     var new_width = String(element.value) + "px";
     document.getElementById("point-n-click-answer-area").style.width = new_width;
@@ -136,6 +153,7 @@ function changedPointNClickWidth(element){
     console.log("adjustment percentage: " + document.getElementById("area-adjusted-width-ratio").value);
 }
 
+//changing the size of a point and click area
 function changedPointNClickHeight(element){
     var new_height = String(element.value) + "px";
     document.getElementById("point-n-click-answer-area").style.height = new_height;
