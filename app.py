@@ -354,7 +354,7 @@ def edit_glossary(classID):
         one_image.imageFile = form_i.data["imageFile"]
         db.session.add(one_image)
         db.session.commit()
-        return redirect(url_for('edit_glossary'))
+        return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
