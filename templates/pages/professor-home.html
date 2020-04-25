@@ -47,6 +47,21 @@
             </form>
         </div>
     </div>
+
+    <button onclick="shareClassWithCanvasStudents()" class="btn btn-primary">Share This Class With Students On Canvas</button>
+    <div id="canvas-form-modal" class="modal">
+
+        <div class="modal-content">
+            <span onclick="canvasFormClose()" class="close">&times;</span>
+            <form method="post" class="form">
+                <h2>Share Class With Canvas Class</h2>
+                <h6>This class will be shared via an announcement with all the students in a canvas class of your choice.</h6>
+                {{ share_with_canvas_form.csrf_token }}
+                {{ share_with_canvas_form.canvasClassCode(class_ = 'form-control', placeholder = share_with_canvas_form.canvasClassCode.label.text, required = true) }}
+                <input type="submit" value="Share Class" class="btn btn-primary btn-lg btn-block">
+            </form>
+        </div>
+    </div>
     <h4>Here is a list of classes created<br></h4>
     <table id="myTable">
         <tr class="header">

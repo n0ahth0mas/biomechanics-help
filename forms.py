@@ -237,3 +237,6 @@ class CreateDragNDropAnswer(FlaskForm):
     drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
     drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
     correctness = HiddenField('Correctness')
+
+class ShareClassWithCanvas(FlaskForm):
+    canvasClassCode = StringField('Class Code', validators=[DataRequired()])

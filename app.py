@@ -441,10 +441,19 @@ def edit_section(classID, chapterID, sectionID):
         one_question = Question()
         one_question.questionText = form_q.data["questionText"]
         one_question.orderNo = form_q.data["orderNo3"]
+        #we need to check and make sure that the order of this question wont clash with other order conflicts
         one_question.sectionID = sectionID
+        if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
+            #then we are about to have a conflict
+            flash('Please enter a question order number that does not already exist.')
+            return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         one_question.questionType = form_q.data["questionType"]
         if not form_q.data["imageFile"]:
             one_question.imageFile = "question.png"
+            #we want to decline producing this form if there is no image and we are a drag and drop question
+            if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
+                flash('Please provide a question image for this question type.')
+                return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         else:
             one_question.imageFile = form_q.data["imageFile"]
         db.session.add(one_question)
@@ -619,10 +628,12 @@ def edit_question(classID, chapterID, sectionID, questionID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     questionType = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[3]
     questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
-    print(drag_n_drop_correct)
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
-                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType, questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit, drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path, drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form)
+                           form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType,
+                           questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit,
+                           drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path,
+                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
@@ -902,6 +913,10 @@ def professor_home():
     prof_join_class_form = ProfJoinClass()
     form_create = CreateClass()
     formEdit = EditClass()
+    share_class_with_canvas_form = ShareClassWithCanvas()
+    if share_class_with_canvas_form.canvasClassCode is not None and share_class_with_canvas_form.validate():
+        print("validated share form")
+        
     if prof_join_class_form.classCode is not None and prof_join_class_form.validate():
         one_class = Class.query.filter_by(classID=prof_join_class_form.classCode.data).one()
         current_user.classes.append(one_class)
@@ -947,7 +962,8 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit, prof_join_class_form=prof_join_class_form)
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit, prof_join_class_form=prof_join_class_form,
+                           share_with_canvas_form=share_class_with_canvas_form)
 
 
 @app.route('/student-short')

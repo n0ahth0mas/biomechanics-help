@@ -169,6 +169,11 @@ a {
     width: 29.5%;
 }
 
+.section-error-alert{
+    color: red;
+    font-size: 20px;
+}
+
 .q_img{
    max-height:50%;
    max-width:50%;

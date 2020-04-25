@@ -182,3 +182,11 @@ $("#point-n-click-question-image").on("click", function(event) {
         answer_box.style.bottom = String((py/iw) * cw) + "px";
         answer_box.style.top = "unset";
 });
+
+function shareClassWithCanvasStudents(){
+    document.getElementById("canvas-form-modal").style.display = "block";
+}
+
+function canvasFormClose(){
+    document.getElementById("canvas-form-modal").style.display = "none";
+}
