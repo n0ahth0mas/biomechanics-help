@@ -351,7 +351,14 @@ def edit_glossary(classID):
     if form_i.validate_on_submit():
         one_image = GlossaryImages()
         one_image.termID = form_i.data["termID"]
-        one_image.imageFile = form_i.data["imageFile"]
+        image = request.files["imageFile"]
+        if 'imageFile' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.add(one_image)
         db.session.commit()
         return redirect('/edit-class/%s/glossary' % classID)
@@ -443,19 +450,28 @@ def edit_section(classID, chapterID, sectionID):
         one_question.orderNo = form_q.data["orderNo3"]
         #we need to check and make sure that the order of this question wont clash with other order conflicts
         one_question.sectionID = sectionID
-        if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
+        print(query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None)
+        #if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
             #then we are about to have a conflict
-            flash('Please enter a question order number that does not already exist.')
-            return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+            #flash('Please enter a question order number that does not already exist.')
+            #return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         one_question.questionType = form_q.data["questionType"]
-        if not form_q.data["imageFile"]:
+        if not form_q.data["imageFile2"]:
             one_question.imageFile = "question.png"
             #we want to decline producing this form if there is no image and we are a drag and drop question
             if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
                 flash('Please provide a question image for this question type.')
                 return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         else:
-            one_question.imageFile = form_q.data["imageFile"]
+            image = request.files["imageFile2"]
+            if 'imageFile2' not in request.files:
+                return redirect(request.url)
+            if image and allowed_file(image.filename):
+                print("here")
+                filename = secure_filename(image.filename)
+                img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                image.save(img_path)
+                one_question.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.add(one_question)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -496,21 +512,36 @@ def edit_section(classID, chapterID, sectionID):
                     flash("Text Number does not exists")
             else:
                 one_image.sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
-                one_image.imageFile = form_si.data["imageFile"]
+                image = request.files["imageFile"]
+                if 'imageFile' not in request.files:
+                    return redirect(request.url)
+                if image and allowed_file(image.filename):
+                    print("here")
+                    filename = secure_filename(image.filename)
+                    img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                    image.save(img_path)
+                    one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
                 one_image.xposition = form_si.data["xposition"]
                 one_image.yposition = form_si.data["yposition"]
                 db.session.add(one_image)
                 db.session.commit()
                 break
             counter = counter+1
-
     elif request.method == 'POST':
         pass
+
     form_change = ChangeImage()
     if form_change.imageFile1.data is not None and form_change.validate():
         questionID = form_change.data["questionID"]
         question_to_change = Question.query.filter_by(questionID=questionID).first()
-        question_to_change.imageFile = form_change.data["imageFile1"]
+        image = request.files["imageFile1"]
+        if 'imageFile1' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            question_to_change.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -542,6 +573,7 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
                            chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
+
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
@@ -694,6 +726,10 @@ def delete_class(classID):
     for fn in os.listdir(basedir):
         if fn == str(classID):
             shutil.rmtree((basedir + "/" + str(classID)))
+    basedirV = 'static/video'
+    for fn in os.listdir(basedirV):
+        if fn == str(classID):
+            shutil.rmtree((basedirV + "/" + str(classID)))
     return render_template('pages/delete-class.html')
 
 
@@ -937,6 +973,13 @@ def professor_home():
             print("Creation of the directory %s failed" % path)
         else:
             print("Successfully created the directory %s " % path)
+        pathV = "static/video/" + str(form_create.data["class_id"])
+        try:
+            os.mkdir(pathV)
+        except OSError:
+            print("Creation of the directory %s failed" % pathV)
+        else:
+            print("Successfully created the directory %s " % pathV)
         return redirect(url_for('professor_home'))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
@@ -952,6 +995,10 @@ def professor_home():
         for fn in os.listdir(basedir):
             if fn == formEdit.data["classID"]:
                 os.rename(os.path.join(basedir, fn), os.path.join(basedir, str(formEdit.newClassID.data)))
+        basedirV = 'static/video'
+        for fn in os.listdir(basedirV):
+            if fn == formEdit.data["classID"]:
+                os.rename(os.path.join(basedirV, fn), os.path.join(basedirV, str(formEdit.newClassID.data)))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
