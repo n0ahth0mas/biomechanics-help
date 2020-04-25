@@ -42,8 +42,11 @@ app.secret_key = 'xxxxyyyyyzzzzz'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
 app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'mp4'}
+ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
 UPLOAD_FOLDER = os.path.abspath('static/img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
+app.config['UPLOAD_VIDEO_FOLDER'] = UPLOAD_VIDEO_FOLDER
 # login = LoginManager()
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
@@ -94,6 +97,10 @@ def verify_reset_password_token(token):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def allowed_video(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_VIDEO
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -493,7 +500,15 @@ def edit_section(classID, chapterID, sectionID):
     if form_v.videoFile.data is not None and form_v.validate_on_submit():
         one_video = Video()
         one_video.sectionID = sectionID
-        one_video.videoFile = form_v.data["videoFile"]
+        video = request.files["videoFile"]
+        if 'videoFile' not in request.files:
+            return redirect(request.url)
+        if video and allowed_video(video.filename):
+            print("here")
+            filename = secure_filename(video.filename)
+            video_path = os.path.join((app.config['UPLOAD_VIDEO_FOLDER'] + "/" + str(classID)), filename)
+            video.save(video_path)
+            one_video.videoFile = "/static/video/" + str(classID) + "/" + filename
         db.session.add(one_video)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -516,7 +531,6 @@ def edit_section(classID, chapterID, sectionID):
                 if 'imageFile' not in request.files:
                     return redirect(request.url)
                 if image and allowed_file(image.filename):
-                    print("here")
                     filename = secure_filename(image.filename)
                     img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
                     image.save(img_path)
