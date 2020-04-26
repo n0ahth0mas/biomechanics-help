@@ -190,3 +190,25 @@ function shareClassWithCanvasStudents(){
 function canvasFormClose(){
     document.getElementById("canvas-form-modal").style.display = "none";
 }
+
+
+$( "#drag-and-drop-form" ).submit(function( event ) {
+  if ( $( "#adjusted-height-ratio" ).val() === "" ) {
+    //then we need to set that now
+    //we need to divide the answer image clientHeight by the client height of our question image
+    console.log("thinks that we didnt change the size of the image");
+    if(document.getElementById("drag-question-image") !== null){
+        var question_img_height = Number(document.getElementById("drag-question-image").clientHeight);
+        var question_img_width = Number(document.getElementById("drag-question-image").clientWidth);
+        var answer_img_height = Number(document.getElementById('drag_n_drop_answer_img').clientHeight);
+        var answer_img_width = Number(document.getElementById('drag_n_drop_answer_img').clientWidth);
+        document.getElementById("adjusted-height-ratio").value = answer_img_height/question_img_height;
+        document.getElementById("adjusted-width-ratio").value = answer_img_width/question_img_width;
+    }else{
+        //this means this is a false drag and drop answer, therefore no question image
+        document.getElementById("adjusted-height-ratio").value = 1;
+        document.getElementById("adjusted-width-ratio").value = 1;
+    }
+  }
+  return;
+});
