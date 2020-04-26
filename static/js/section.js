@@ -80,8 +80,6 @@ function progress(correct){
     if(correct){
         if (tries == 0){
             color = "#0f0"; //chg color to green
-            console.log(firstTry)
-            firstTry++
         }
         else color = "#FFA500"; //change to orange
     } else color = "#f00"; //chg color to red
@@ -147,6 +145,7 @@ function checkMultChoice(){
     }
 
     truth = truth && (selectedButtons.length>=1)
+    progress(truth)
     if(truth && (numCorrect == correctChoice)){
         if (tries==0) firstTry++;
         modalHead.innerHTML = "<h3>Correct!</h3>"
@@ -179,28 +178,6 @@ function checkMultChoice(){
         innerModalCorrect = [];
     }
 }
-
-/*
-function submitMultipleChoiceAnswer(truthValue, reason, buttonID, button){
-    if(truthValue == '1'){
-        correct = true;
-    }else{
-        correct = false;
-    }
-    progress(correct);
-    if(correct){
-        modalHead.innerHTML = "<h4>Correct!</h4>";
-        modalBody.innerHTML = reason;
-        nextQuestion();
-    }else{
-        document.getElementById(buttonID).className = "disabled";
-        buttonIDs.push(buttonID);
-        tries++;
-        modalHead.innerHTML = "<h4>Incorrect!</h4>";
-        modalBody.innerHTML = reason;
-    }
-}
-*/
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -289,6 +266,7 @@ function submitShortAnswer(answer, submitButton, reason){
         modalBody.innerHTML = "Oops! Let's try this one again";
         tries++;
     }
+    progress(correct)
     submitButton.parentElement.children[0].value=""
 }
 

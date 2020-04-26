@@ -149,6 +149,10 @@ after{
     border: 2px solid #D1D1D1;
 }
 
+.buttonDiv{
+    padding-left: 10px;
+}
+
 .timer_box {
     align-items: center;
     display: flex;
