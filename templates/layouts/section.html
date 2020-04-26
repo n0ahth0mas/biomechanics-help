@@ -158,9 +158,15 @@
                             {% for answer in a_list[outer_loop.index-1] %}
                             <button class="mult_choice" id="Button{{ answer[0] }}"  value="{{answer[2]}}" onclick="toggleSelected('Button{{ answer[0] }}', this, '{{answer[4]}}', '{{answer[2]}}', '{{answer[3]}}')" >
                                 {{answer[3]}}
+                                {% if answer[5]!="" %}
+                                <br>
+                                <img src={{answer[5]}}/>
+                                {% endif %}
                             </button>
                             {% endfor %}
-                            <button onclick="checkMultChoice()" data-toggle="modal" data-target="#myModal" >Submit</button>
+                            <div class="buttonDiv">
+                                <button onclick="checkMultChoice()" data-toggle="modal" data-target="#myModal" >Submit</button>
+                            </div>
                             {% elif question[3] == "dragndrop" %}
                             {% for answer in a_list[outer_loop.index-1] %}
                             {% set inner_loop = loop %}
