@@ -27,10 +27,6 @@ import jwt
 import sys
 from werkzeug.utils import secure_filename
 
-
-
-
-
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
@@ -42,8 +38,11 @@ app.secret_key = 'xxxxyyyyyzzzzz'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
 app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'mp4'}
+ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
 UPLOAD_FOLDER = os.path.abspath('static/img')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
+app.config['UPLOAD_VIDEO_FOLDER'] = UPLOAD_VIDEO_FOLDER
 # login = LoginManager()
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
@@ -91,9 +90,16 @@ def verify_reset_password_token(token):
         return -1
     return id
 
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def allowed_video(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_VIDEO
+
 
 # Automatically tear down SQLAlchemy.
 '''
@@ -106,10 +112,14 @@ def shutdown_session(exception=None):
 # Controllers.
 # ----------------------------------------------------------------------------#
 login = LoginManager()
+
+
 @login.unauthorized_handler
 def unauthorized():
     # do stuff
     return redirect("/login")
+
+
 login.init_app(app)
 
 
@@ -207,6 +217,7 @@ class Answer(db.Model):
     dropBoxWidthAdjustment = db.Column(db.Integer())
     dropBoxColor = db.Column(db.String())
 
+
 class Video(db.Model):
     __tablename__ = 'Videos'
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
@@ -267,8 +278,8 @@ class User(db.Model, UserMixin):
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
-#Function that defines a pop up
 
+# Function that defines a pop up
 
 
 @app.route('/')
@@ -283,7 +294,7 @@ def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
     if formEdit.orderNo1.data is not None and formEdit.validate():
-        #can't figure out how to cascade when we update
+        # can't figure out how to cascade when we update
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.orderNo = formEdit.data["orderNo1"]
@@ -351,7 +362,14 @@ def edit_glossary(classID):
     if form_i.validate_on_submit():
         one_image = GlossaryImages()
         one_image.termID = form_i.data["termID"]
-        one_image.imageFile = form_i.data["imageFile"]
+        image = request.files["imageFile"]
+        if 'imageFile' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.add(one_image)
         db.session.commit()
         return redirect('/edit-class/%s/glossary' % classID)
@@ -408,13 +426,23 @@ def edit_chapter(classID, chapterID):
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
     return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID,
-                           chapterName=chapterName, className=className, form=form, form_edit=form_edit, form_publish=form_publish)
+                           chapterName=chapterName, className=className, form=form, form_edit=form_edit,
+                           form_publish=form_publish)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
+    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
+    image_files = []
+    for sectionBlock in sectionBlocks:
+        images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
+        for image in images:
+            image_files.append(image)
+
+    videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
         one_section_block = SectionBlock()
@@ -441,21 +469,30 @@ def edit_section(classID, chapterID, sectionID):
         one_question = Question()
         one_question.questionText = form_q.data["questionText"]
         one_question.orderNo = form_q.data["orderNo3"]
-        #we need to check and make sure that the order of this question wont clash with other order conflicts
+        # we need to check and make sure that the order of this question wont clash with other order conflicts
         one_question.sectionID = sectionID
-        if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
-            #then we are about to have a conflict
-            flash('Please enter a question order number that does not already exist.')
-            return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+        print(query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None)
+        # if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
+        # then we are about to have a conflict
+        # flash('Please enter a question order number that does not already exist.')
+        # return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         one_question.questionType = form_q.data["questionType"]
-        if not form_q.data["imageFile"]:
+        if not form_q.data["imageFile2"]:
             one_question.imageFile = "question.png"
-            #we want to decline producing this form if there is no image and we are a drag and drop question
+            # we want to decline producing this form if there is no image and we are a drag and drop question
             if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
                 flash('Please provide a question image for this question type.')
                 return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         else:
-            one_question.imageFile = form_q.data["imageFile"]
+            image = request.files["imageFile2"]
+            if 'imageFile2' not in request.files:
+                return redirect(request.url)
+            if image and allowed_file(image.filename):
+                print("here")
+                filename = secure_filename(image.filename)
+                img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                image.save(img_path)
+                one_question.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.add(one_question)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -477,9 +514,24 @@ def edit_section(classID, chapterID, sectionID):
     if form_v.videoFile.data is not None and form_v.validate_on_submit():
         one_video = Video()
         one_video.sectionID = sectionID
-        one_video.videoFile = form_v.data["videoFile"]
+        video = request.files["videoFile"]
+        if 'videoFile' not in request.files:
+            return redirect(request.url)
+        if video and allowed_video(video.filename):
+            print("here")
+            filename = secure_filename(video.filename)
+            video_path = os.path.join((app.config['UPLOAD_VIDEO_FOLDER'] + "/" + str(classID)), filename)
+            video.save(video_path)
+            one_video.videoFile = "/static/video/" + str(classID) + "/" + filename
         db.session.add(one_video)
-        db.session.commit()
+        if len(videos) > 0:
+            for video in videos:
+                if not one_video.videoFile in video[1]:
+                    db.session.commit()
+                else:
+                    flash("This video already exists for this section")
+        else:
+            db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
@@ -495,43 +547,63 @@ def edit_section(classID, chapterID, sectionID):
                 if len(list) == counter:
                     flash("Text Number does not exists")
             else:
-                one_image.sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
-                one_image.imageFile = form_si.data["imageFile"]
+                one_image.sectionBlockID = \
+                    query_db(
+                        'SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][
+                        0]
+                image = request.files["imageFile"]
+                if 'imageFile' not in request.files:
+                    return redirect(request.url)
+                if image and allowed_file(image.filename):
+                    filename = secure_filename(image.filename)
+                    img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                    image.save(img_path)
+                    one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
                 one_image.xposition = form_si.data["xposition"]
                 one_image.yposition = form_si.data["yposition"]
                 db.session.add(one_image)
-                db.session.commit()
-                break
-            counter = counter+1
-
+                if len(images) > 0:
+                    for image in images:
+                        if not one_image.imageFile in image[1]:
+                            db.session.commit()
+                        else:
+                            flash("This video already exists for this section")
+                else:
+                    db.session.commit()
+                return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+            counter = counter + 1
     elif request.method == 'POST':
         pass
+
     form_change = ChangeImage()
     if form_change.imageFile1.data is not None and form_change.validate():
         questionID = form_change.data["questionID"]
         question_to_change = Question.query.filter_by(questionID=questionID).first()
-        question_to_change.imageFile = form_change.data["imageFile1"]
+        image = request.files["imageFile1"]
+        if 'imageFile1' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            question_to_change.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.commit()
     elif request.method == 'POST':
         pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
-    sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
     questions = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % sectionID)
-    videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     answers = []
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
-    image_files = []
-    for sectionBlock in sectionBlocks:
-        images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
-        for image in images:
-            image_files.append(image)
+
     return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
-                           form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit, form_edit_question=form_edit_question, form_change=form_change)
+                           form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
+                           form_edit_question=form_edit_question, form_change=form_change)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -542,6 +614,7 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
                            chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
+
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @login_required
@@ -555,7 +628,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_correct = ""
     print(point_n_click_answer_form.answer_box_width)
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
-        #validated point and click answer form
+        # validated point and click answer form
         point_answer = Answer()
         point_answer.questionID = questionID
         point_answer.correctness = point_n_click_answer_form.correctness.data
@@ -671,14 +744,17 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
                            sectionBlockID=sectionBlockID)
 
 
-@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/<imageFile>', methods=('GET', 'POST'))
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/?<imageFile>',
+           methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
-    section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(imageFile=imageFile).first()
+    section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(
+        imageFile=imageFile).first()
     db.session.delete(section_block_image_to_delete)
     db.session.commit()
-    return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID, sectionID=sectionID,
+    return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID,
+                           sectionID=sectionID,
                            sectionBlockID=sectionBlockID, imageFile=imageFile)
 
 
@@ -689,11 +765,15 @@ def delete_class(classID):
     class_to_delete = Class.query.filter_by(classID=classID).first()
     db.session.delete(class_to_delete)
     db.session.commit()
-    #find this class' media folder and delete it
+    # find this class' media folder and delete it
     basedir = 'static/img'
     for fn in os.listdir(basedir):
         if fn == str(classID):
             shutil.rmtree((basedir + "/" + str(classID)))
+    basedirV = 'static/video'
+    for fn in os.listdir(basedirV):
+        if fn == str(classID):
+            shutil.rmtree((basedirV + "/" + str(classID)))
     return render_template('pages/delete-class.html')
 
 
@@ -730,7 +810,7 @@ def delete_term(classID, termID):
 @app.route('/edit-class/<classID>/glossary/delete/image/<termID>/<imageFile>', methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
-def delete_term_image(classID, termID,imageFile):
+def delete_term_image(classID, termID, imageFile):
     image_to_delete = GlossaryImages.query.filter_by(termID=termID).filter_by(imageFile=imageFile).first()
     db.session.delete(image_to_delete)
     db.session.commit()
@@ -810,8 +890,8 @@ def section_page(class_id, chapter, section):
         for questions in q_list:
             answer_id = questions[0]
             a_list.append(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id)))
-            #print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][6])
-            #print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
+            # print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][6])
+            # print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
 
         # q_image_list = query_db('SELECT * from QuestionImages')
         print("section " + section)
@@ -836,25 +916,28 @@ def section_page(class_id, chapter, section):
         if section_after:
             section_id_after = section_after[0]
         else:
-            chapter_after = query_db('SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1), one=True)
+            chapter_after = query_db(
+                'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1),
+                one=True)
             if chapter_after:
                 chapter_id_after = chapter_after[0]
-                next_ch_sect = query_db('SELECT * from Sections WHERE chapterID = "%s" AND orderNo = 1' % chapter_id_after, one = True)
-
+                next_ch_sect = query_db(
+                    'SELECT * from Sections WHERE chapterID = "%s" AND orderNo = 1' % chapter_id_after, one=True)
 
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
 
-
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
-                               section_name=section_name, section_id_before=section_id_before, next_ch_sect = next_ch_sect,
+                               section_name=section_name, section_id_before=section_id_before,
+                               next_ch_sect=next_ch_sect,
                                chapter_after=chapter_after, section_id_after=section_id_after)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
+
 
 @app.route('/forgot', methods=('GET', 'POST'))
 def forgot():
@@ -864,7 +947,7 @@ def forgot():
         user_object = query_db('SELECT * from Users WHERE email="%s"' % email, one=True)
         if user_object is None:
             flash("Unable to find user with those details, please try again")
-            #return render_template('forms/login.html', form=form)
+            # return render_template('forms/login.html', form=form)
             return redirect("/login")
         else:
             token = get_user_token(email)
@@ -878,7 +961,7 @@ def forgot():
             smtpObj.sendmail(sender, msg["To"], msg.as_string())
             successurl = home_url + "forgot-success"
             return redirect(successurl)
-            #except :
+            # except :
     return render_template('forms/forgotPassword.html', form=form)
 
 
@@ -916,20 +999,21 @@ def professor_home():
     share_class_with_canvas_form = ShareClassWithCanvas()
     if share_class_with_canvas_form.canvasClassCode is not None and share_class_with_canvas_form.validate():
         print("validated share form")
-        
+
     if prof_join_class_form.classCode is not None and prof_join_class_form.validate():
         one_class = Class.query.filter_by(classID=prof_join_class_form.classCode.data).one()
         current_user.classes.append(one_class)
         db.session.commit()
-    if form_create.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
+    if form_create.validate_on_submit() and query_db(
+            'SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
         one_class.classID = form_create.data["class_id"]
         one_class.className = form_create.data["class_name"]
         current_user.classes.append(one_class)
         db.session.add(one_class)
         db.session.commit()
-        #create a folder for this class' images to live in
-        #this helps us avoid naming conflicts with images and videos
+        # create a folder for this class' images to live in
+        # this helps us avoid naming conflicts with images and videos
         path = "static/img/" + str(form_create.data["class_id"])
         try:
             os.mkdir(path)
@@ -937,21 +1021,35 @@ def professor_home():
             print("Creation of the directory %s failed" % path)
         else:
             print("Successfully created the directory %s " % path)
+        pathV = "static/video/" + str(form_create.data["class_id"])
+        try:
+            os.mkdir(pathV)
+        except OSError:
+            print("Creation of the directory %s failed" % pathV)
+        else:
+            print("Successfully created the directory %s " % pathV)
         return redirect(url_for('professor_home'))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db(
+            'SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
         classID = formEdit.data["classID"]
-        if query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
-            Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
+        if query_db(
+                'SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
+            Class.query.filter_by(classID=classID).update(
+                dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
             UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
             Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
             db.session.commit()
-        #want to rename this class' image folder here
+        # want to rename this class' image folder here
         basedir = 'static/img'
         for fn in os.listdir(basedir):
             if fn == formEdit.data["classID"]:
                 os.rename(os.path.join(basedir, fn), os.path.join(basedir, str(formEdit.newClassID.data)))
+        basedirV = 'static/video'
+        for fn in os.listdir(basedirV):
+            if fn == formEdit.data["classID"]:
+                os.rename(os.path.join(basedirV, fn), os.path.join(basedirV, str(formEdit.newClassID.data)))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
@@ -962,7 +1060,8 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
-    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create, formEdit=formEdit, prof_join_class_form=prof_join_class_form,
+    return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
+                           formEdit=formEdit, prof_join_class_form=prof_join_class_form,
                            share_with_canvas_form=share_class_with_canvas_form)
 
 
@@ -1118,22 +1217,22 @@ def new_student_account():
 @roles_required('Professor')
 def professor_class_home(classID):
     print("called professor class home")
-    #get chapters in order like we should
+    # get chapters in order like we should
     chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
     print(chapters)
-    #2d array of sections, also in order like they should be
+    # 2d array of sections, also in order like they should be
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s" ORDER by "orderNo" ' % chapter[0]))
 
-    #3d array of questions, ordered by orderNo
+    # 3d array of questions, ordered by orderNo
     questions = []
     for sectionarray in sections_arrays:
         for section in sectionarray:
             questions.append(query_db('SELECT * from Questions where sectionID="%s" ORDER by "orderNo" ' % section[0]))
     print(sections_arrays)
     print(questions)
-    #3d array of answers
+    # 3d array of answers
     answers = []
     for question_array in questions:
         for question in question_array:
@@ -1162,25 +1261,31 @@ def student_class_home(classID):
     #    for question in question_array:
     #        answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    last_section_ID = query_db("SELECT * from Enroll where email='%s' AND classID='%s'" % (current_user.id, classID), one=True)[2]
+    last_section_ID = \
+        query_db("SELECT * from Enroll where email='%s' AND classID='%s'" % (current_user.id, classID), one=True)[2]
     if last_section_ID is None:
-        #this means that we have yet to start this class
-        #we want to default to the first section in the first chapter of this class
-        first_chapter_ID = query_db("SELECT * from Chapters where classID='%s' AND orderNo='%s'" % (classID, 1), one=True)[0]
-        first_section_ID = query_db("SELECT * from Sections where chapterID='%s' AND orderNo='%s'" % (first_chapter_ID, 1), one=True)[0]
+        # this means that we have yet to start this class
+        # we want to default to the first section in the first chapter of this class
+        first_chapter_ID = \
+            query_db("SELECT * from Chapters where classID='%s' AND orderNo='%s'" % (classID, 1), one=True)[0]
+        first_section_ID = \
+            query_db("SELECT * from Sections where chapterID='%s' AND orderNo='%s'" % (first_chapter_ID, 1), one=True)[
+                0]
         last_section_ID = first_section_ID
         last_chapter_ID = first_chapter_ID
     else:
         last_chapter_ID = query_db("SELECT * from Sections where sectionID='%s'" % last_section_ID, one=True)[1]
     print(last_chapter_ID)
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
-                           class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID, last_section_ID=last_section_ID)
+                           class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID,
+                           last_section_ID=last_section_ID)
 
 
 @app.route("/about-the-developers")
 @login_required
 def developers():
     return render_template('/layouts/about-the-devs.html')
+
 
 @app.route("/logout")
 @login_required

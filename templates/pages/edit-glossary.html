@@ -50,7 +50,7 @@
                 {% endfor %}
                 </ul></td>
                 <td>
-                    <form method="post" class="form">
+                    <form method="post" class="form" enctype=multipart/form-data>
                         {{ form_i.csrf_token }}
                         {{ form_i.termID(value = term[1]) }}
                         {{ form_i.imageFile(placeholder = form_i.imageFile.label.text) }}

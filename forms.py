@@ -93,7 +93,7 @@ class CreateQuestion(FlaskForm):
     orderNo3 = IntegerField('Question Number', validators=[DataRequired()])
     questionText = StringField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
-    imageFile = FileField('Image')
+    imageFile2 = FileField('Image')
 
 
 class CreateImage(FlaskForm):
@@ -209,8 +209,10 @@ class UploadDragNDropImage(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
 
+
 class ProfJoinClass(FlaskForm):
     classCode = StringField('Class Code', validators=[DataRequired()])
+
 
 class PointNClickAnswer(FlaskForm):
     answerText = HiddenField('Answer Text')
@@ -225,6 +227,7 @@ class PointNClickAnswer(FlaskForm):
     answer_area_adjusted_height_ratio = HiddenField('Adjusted height ratio')
     answer_area_adjusted_width_ratio = HiddenField('Adjusted width ratio')
 
+
 class CreateDragNDropAnswer(FlaskForm):
     answerText = HiddenField('Answer Text')
     answerReason = StringField('Answer Reason', validators=[DataRequired()])
@@ -237,6 +240,7 @@ class CreateDragNDropAnswer(FlaskForm):
     drop_zone_adjusted_height_ratio = HiddenField('Adjusted height ratio')
     drop_zone_adjusted_width_ratio = HiddenField('Adjusted width ratio')
     correctness = HiddenField('Correctness')
+
 
 class ShareClassWithCanvas(FlaskForm):
     canvasClassCode = StringField('Class Code', validators=[DataRequired()])
