@@ -119,8 +119,8 @@
                             {% set img = question[5] %}
                         {% endif %}
                         {% if question[3] != "pointnclick" %}
-                            <a {% if question[3] == "dragndrop" %} style="width: 200%;" {% endif %} class="q_img_container" data-fancybox "href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                 {% if question[3] == "dragndrop" %}
+                                 <a style="width: 200%" class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                     <div class="drag-n-drop-container" id="drop_zone_container{{outer_loop.index-1}}">
                                         {% for answer in a_list[outer_loop.index-1] %}
                                         {% set dropbox_loop = loop %}
@@ -137,6 +137,7 @@
                                         <img class="q_img" src="{{ img }}">
                                     </div>
                                 {% else %}
+                                 <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                     <img class="q_img" src="{{ img }}">
                                 {% endif %}
                             </a>
@@ -175,7 +176,7 @@
                                 {{answer[3]}}
                                 {% if answer[5]!="" %}
                                 <br>
-                                <img src={{answer[5]}}/>
+                                <img src={{answer[5]}} width="150px">
                                 {% endif %}
                             </button>
                             {% endfor %}

@@ -133,12 +133,12 @@ after{
 }
 
 .mult_choice:hover{
-    background-color: #D1D1D1;
+    background-color: #FBFFB2;
     transform: scale(1.1, 1.1);
 }
 
 .selected:hover{
-    background-color: white;
+    background-color: #FBFFB2;
     transform: scale(1.1, 1.1);
 }
 
