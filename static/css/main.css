@@ -169,6 +169,11 @@ a {
     width: 29.5%;
 }
 
+.section-error-alert{
+    color: red;
+    font-size: 20px;
+}
+
 .q_img{
    max-height:50%;
    max-width:50%;
@@ -244,9 +249,23 @@ a {
 }
 
 .point-n-click-img{
+    display: none !important;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.active_point_n_click{
+    max-height: 100%;
+    max-width: 100%;
+}
+.point-n-click-img-prof{
     max-width: 100%;
     position: relative;
     margin-bottom: 25px;
+}
+
+#answer-zone-deets{
+    display: none;
 }
 
 #point-n-click-answer-area{

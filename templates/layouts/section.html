@@ -118,28 +118,43 @@
                         {% else %}
                             {% set img = question[5] %}
                         {% endif %}
-                        <a {% if question[3] == "dragndrop" %} style="width: 200%;" {% endif %} class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
-                            {% if question[3] == "dragndrop" %}
-                                <div class="drag-n-drop-container" id="drop_zone_container{{outer_loop.index-1}}">
-                                    {% for answer in a_list[outer_loop.index-1] %}
-                                    {% set dropbox_loop = loop %}
-                                        {% if answer[2] == 1 %}
-                                            <div id="drop_element{{dropbox_loop.index}}" style="border-color: {{answer[9]}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                                                <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
-                                                <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
-                                                <div style="display: none;" id="answer_reason{{dropbox_loop.index-1}}">{{answer[4]}}</div>
-                                                <div style="display: none;" id="width_adjustment{{dropbox_loop.index-1}}">{{answer[8]}}</div>
-                                                <div style="display: none;" id="height_adjustment{{dropbox_loop.index-1}}">{{answer[9]}}</div>
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
+                        {% if question[3] != "pointnclick" %}
+                            <a {% if question[3] == "dragndrop" %} style="width: 200%;" {% endif %} class="q_img_container" data-fancybox "href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
+                                {% if question[3] == "dragndrop" %}
+                                    <div class="drag-n-drop-container" id="drop_zone_container{{outer_loop.index-1}}">
+                                        {% for answer in a_list[outer_loop.index-1] %}
+                                        {% set dropbox_loop = loop %}
+                                            {% if answer[2] == 1 %}
+                                                <div id="drop_element{{dropbox_loop.index}}" style="border-color: {{answer[9]}}" class="drop-zone" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                                    <div style="display: none;" id="drop_element_x_pos{{dropbox_loop.index-1}}">{{answer[6]}}</div>
+                                                    <div style="display: none;" id="drop_element_y_pos{{dropbox_loop.index-1}}">{{answer[7]}}</div>
+                                                    <div style="display: none;" id="answer_reason{{dropbox_loop.index-1}}">{{answer[4]}}</div>
+                                                    <div style="display: none;" id="width_adjustment{{dropbox_loop.index-1}}">{{answer[8]}}</div>
+                                                    <div style="display: none;" id="height_adjustment{{dropbox_loop.index-1}}">{{answer[9]}}</div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <img class="q_img" src="{{ img }}">
+                                    </div>
+                                {% else %}
                                     <img class="q_img" src="{{ img }}">
-                                </div>
-                            {% else %}
-                                <img class="q_img" src="{{ img }}">
-                            {% endif %}
-                        </a>
-
+                                {% endif %}
+                            </a>
+                        {% elif question[3] == 'pointnclick' %}
+                        <img class="point-n-click-img" onclick="clickedPointAndClickQ(event, this)" id="point-click-question-img{{outer_loop.index-1}}" src="{{ img }}">
+                        <ul id="answer-zone-deets">
+                            {% for answer in a_list[outer_loop.index-1] %}
+                            <li>
+                                <div id="answer-box-x-coord">{{answer[6]}}</div>
+                                <div id="answer-box-y-coord">{{answer[7]}}</div>
+                                <div id="answer-reason">{{answer[4]}}</div>
+                                <div id="answer-box-width-adjustment">{{answer[8]}}</div>
+                                <div id="answer-box-height-adjustment">{{answer[9]}}</div>
+                                <div id="answer-correctness">{{answer[2]}}</div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
                         <!-- question text -->
                         <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
                             <h4>{{question[1]}}</h4>

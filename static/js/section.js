@@ -67,7 +67,9 @@ function renderQuestion(){
 function removePrevious(){
     document.getElementById("q_qs"+questionIndex).style.display = "none";
     document.getElementById("q_header"+questionIndex).style.display = "none";
-    document.getElementById("q_img_container"+questionIndex).style.display = "none";
+    if(document.getElementById("q_img_container"+questionIndex) !== null){
+        document.getElementById("q_img_container"+questionIndex).style.display = "none";
+    }
     questionIndex++;
     counter.innerHTML = 60;
     count = 1;
@@ -260,7 +262,7 @@ function drop(ev, element) {
     //for now just make this wrong
     progress(false);
     modalHead.innerHTML = "<h4>InCorrect!</h4>";
-    modalBody.innerHTML = this_reason;
+    modalBody.innerHTML = "Let's try that again!";
     tries++;
   }
   $('#myModal').modal('show');
@@ -351,6 +353,14 @@ function nextQuestion(){
     selectedButtons = [];
     if(questionIndex< totalIndex){
         console.log("next question");
+        var point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex + 1));
+        if(point_and_click_question_img !== null){
+            console.log("found point and click image");
+            console.log(point_and_click_question_img);
+            point_and_click_question_img.className = "active_point_n_click";
+        }else{
+            console.log("thinks its null");
+        }
         removePrevious();
         renderQuestion();
         renderDropBoxQuestion();
@@ -395,3 +405,51 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 
+function clickedPointAndClickQ(event, question_image){
+    bounds=question_image.getBoundingClientRect();
+    var left=bounds.left;
+    var bottom=bounds.bottom;
+    var x = event.pageX - left;
+    var y = (event.pageY - bottom) * (-1);
+    //we need to check and make sure that our x and y fall in one of our answers
+    //if this answer is wrong, let them know and say why
+    //same for if they are right but instead we move on
+
+    var info_by_answer = document.getElementById("answer-zone-deets").children;
+    for(i = 0; i < info_by_answer.length;i++){
+        var this_answer_details = info_by_answer[i].children;
+        var this_box_x_local_position = (Number(this_answer_details[0].innerHTML)/question_image.naturalWidth) * question_image.clientWidth;
+        var this_box_y_local_position = (Number(this_answer_details[1].innerHTML)/question_image.naturalHeight) * question_image.clientHeight;
+        var this_box_width_ratio = Number(this_answer_details[3].innerHTML);
+        var this_box_height_ratio = Number(this_answer_details[4].innerHTML);
+        var this_answer_correctness = this_answer_details[5].innerHTML;
+        var this_answer_reason = this_answer_details[2].innerHTML;
+        //in pixels
+        //console.log(question_image.clientWidth);
+        console.log(this_box_x_local_position);
+        var this_box_height = question_image.clientHeight * this_box_height_ratio;
+        var this_box_width = question_image.clientWidth * this_box_width_ratio;
+        console.log("this_box_height: " + this_box_height);
+        console.log("this_box_width: " + this_box_width);
+        //for the click to be inside our bounds it must be greater than our box's local x and y but less than its width and height plus those respective values
+        if(this_box_x_local_position < x && this_box_y_local_position < y && (this_box_x_local_position + this_box_width) > x && (this_box_y_local_position + this_box_height) > y){
+            console.log("thinks that we are inside this box's dimensions for this answer");
+            //now we want to let the student know whether they got the answer correct and why
+            if(this_answer_correctness === '1'){
+                //they have clicked the right place
+                $('#myModal').find('#modal-header').html("<h4>Correct!</h4>");
+                $('#myModal').find('#modal-body').html(this_answer_reason);
+                $('#myModal').modal('show');
+                progress(true);
+                nextQuestion();
+            }else{
+                //they have clicked the wrong place
+                $('#myModal').find('#modal-header').html("<h4>InCorrect!</h4>");
+                $('#myModal').find('#modal-body').html("Let's try that again!");
+                $('#myModal').modal('show');
+                tries++;
+                progress(false);
+            }
+        }
+    }
+}
