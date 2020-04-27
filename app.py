@@ -49,7 +49,6 @@ pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
-
 home_url = "http://127.0.0.1:5000/"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
@@ -117,6 +116,7 @@ login = LoginManager()
 @login.unauthorized_handler
 def unauthorized():
     # do stuff
+    print("we hit the unauthorized view")
     return redirect("/login")
 
 
