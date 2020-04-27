@@ -39,13 +39,11 @@
             {% for video in video_files %}
             {% set vid_loop = loop %}
             <video controls class="page_vid" id="video{{vid_loop.index}}">
-                <!-- hard coded for now - remember to change -->
-                <p> {{video}}</p>
-                <source src="/static/video/samplevid.mp4" type="video/mp4">
+                <source src="{{ video[1] }}" type="video/mp4">
             </video>
             {% endfor %}
 
-            {% if video_files != [] %}
+            {% if video_files|length >1 %}
             <!-- navigation -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -119,8 +117,8 @@
                             {% set img = question[5] %}
                         {% endif %}
                         {% if question[3] != "pointnclick" %}
-                            <a {% if question[3] == "dragndrop" %} style="width: 200%;" {% endif %} class="q_img_container" data-fancybox "href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                 {% if question[3] == "dragndrop" %}
+                                 <a style="width: 200%" class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                     <div class="drag-n-drop-container" id="drop_zone_container{{outer_loop.index-1}}">
                                         {% for answer in a_list[outer_loop.index-1] %}
                                         {% set dropbox_loop = loop %}
@@ -137,6 +135,7 @@
                                         <img class="q_img" src="{{ img }}">
                                     </div>
                                 {% else %}
+                                 <a class="q_img_container" data-fancybox href="{{ img }}" id="q_img_container{{ outer_loop.index-1 }}">
                                     <img class="q_img" src="{{ img }}">
                                 {% endif %}
                             </a>
@@ -170,12 +169,20 @@
 
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
+                             <div>
                             {% for answer in a_list[outer_loop.index-1] %}
                             <button class="mult_choice" id="Button{{ answer[0] }}"  value="{{answer[2]}}" onclick="toggleSelected('Button{{ answer[0] }}', this, '{{answer[4]}}', '{{answer[2]}}', '{{answer[3]}}')" >
                                 {{answer[3]}}
+                                {% if answer[5]!="" %}
+                                <br>
+                                <img src={{answer[5]}} width="150px">
+                                {% endif %}
                             </button>
                             {% endfor %}
-                            <button onclick="checkMultChoice()" data-toggle="modal" data-target="#myModal" >Submit</button>
+                             </div>
+                            <div class="buttonDiv">
+                                <button onclick="checkMultChoice()" data-toggle="modal" data-target="#myModal" >Submit</button>
+                            </div>
                             {% elif question[3] == "dragndrop" %}
                             {% for answer in a_list[outer_loop.index-1] %}
                             {% set inner_loop = loop %}
