@@ -452,9 +452,6 @@ def edit_section(classID, chapterID, sectionID):
     video_links = []
     for video in videos:
         video_links.append((video[1], video[1].replace("/", "%%%")))
-    print(video_links)
-    print(videos)
-
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
         one_section_block = SectionBlock()
