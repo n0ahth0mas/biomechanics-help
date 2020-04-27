@@ -351,8 +351,14 @@ function nextQuestion(){
     numCorrect = 0
     buttonIDs = [];
     selectedButtons = [];
+    var current_point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex));
+    if(current_point_and_click_question_img !== null){
+        console.log(current_point_and_click_question_img);
+        current_point_and_click_question_img.className = "point-n-click-img";
+    }
     if(questionIndex< totalIndex){
         console.log("next question");
+        //this represents the next point and click question
         var point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex + 1));
         if(point_and_click_question_img !== null){
             console.log("found point and click image");
@@ -361,6 +367,7 @@ function nextQuestion(){
         }else{
             console.log("thinks its null");
         }
+        //we also want to hide the current point and click image
         removePrevious();
         renderQuestion();
         renderDropBoxQuestion();

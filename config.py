@@ -10,3 +10,8 @@ DEBUG = True
 # https://randomkeygen.com/
 SECRET_KEY = 'my precious'
 
+USER_APP_NAME = "HELP IN PT"
+
+USER_UNAUTHENTICATED_ENDPOINT = 'login'
+
+USER_UNAUTHORIZED_ENDPOINT = 'login'
