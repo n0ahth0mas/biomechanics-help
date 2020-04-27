@@ -440,7 +440,11 @@ def edit_section(classID, chapterID, sectionID):
         images = query_db('SELECT * from SectionBlockImages where sectionBlockID="%s"' % sectionBlock[0])
         for image in images:
             image_files.append(image)
+    links = []
+    for image_file in image_files:
+        links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
 
+    print(links)
     videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
 
     form_s = CreateSectionBlock()
@@ -603,7 +607,7 @@ def edit_section(classID, chapterID, sectionID):
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
                            form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
-                           form_edit_question=form_edit_question, form_change=form_change)
+                           form_edit_question=form_edit_question, form_change=form_change, links=links)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -613,7 +617,7 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     sectionText = query_db('SELECT sectionText from Sections where sectionID="%s"' % sectionBlockID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
-                           chapterID=chapterID, sectionID=sectionID, sectionName=sectionName)
+                           chapterID=chapterID, sectionID=sectionID, sectionName=sectionName, links=links)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
@@ -744,11 +748,12 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
                            sectionBlockID=sectionBlockID)
 
 
-@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/?<imageFile>',
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/<imageFile>',
            methods=('GET', 'POST'))
 @login_required
 @roles_required('Professor')
 def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
+    imageFile = imageFile.replace("%%", "/")
     section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(
         imageFile=imageFile).first()
     db.session.delete(section_block_image_to_delete)
