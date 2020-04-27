@@ -9,6 +9,7 @@
     <div class="page-container">
         <div class="gridbody">
             <h1>{{chapter_name}}: {{section_name}}</h1>
+            <hr>
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
@@ -31,6 +32,8 @@
                     </p>
                     {% endfor %}
                 </p>
+                <hr>
+                <br>
             </div>
 
         <!-- Video Block -->
@@ -204,7 +207,7 @@
         <!-- If there is a quiz element -->
 
         <!-- If there is a section after this one -->
-        {% if section_id_after != [] %}
+        {% if section_id_after != [] and section_after[4] == 1 %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
@@ -214,7 +217,7 @@
             <!-- If there is a section after this one -->
 
             <!-- next chapter -->
-            {% if chapter_after != [] and next_ch_sect != [] %}
+            {% if chapter_after != [] and next_ch_sect != [] and chapter_after[4] == 1 and next_ch_sect[4] == 1 %}
             <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
                 <button id="next" class="btn btn-primary next-hidden">Next Chapter</button>
             </a>
@@ -235,7 +238,7 @@
           <!-- if there isn't a quiz -->
         {% else %}
             <!-- If there is a section after this one -->
-            {% if section_id_after != [] %}
+            {% if section_after != [] and section_after[4] == 1 %}
             <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
                 <button class="btn btn-primary next">Next Page</button>
             </a>
@@ -244,7 +247,7 @@
             {% else %}
 
             <!-- next chapter -->
-            {% if chapter_after != [] and next_ch_sect != [] %}
+            {% if chapter_after != [] and next_ch_sect != []  and chapter_after[4] == 1 and next_ch_sect[4] == 1 %}
             <a href="/section/{{ classID }}/{{ chapter_after[0] }}/{{ next_ch_sect[0]}}">
                 <button class="btn btn-primary next">Next Chapter</button>
             </a>
