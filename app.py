@@ -383,8 +383,12 @@ def edit_glossary(classID):
         images = query_db('SELECT * from GlossaryImages where termID="%s"' % term[1])
         for image in images:
             image_files.append(image)
+    links = []
+    for image_file in image_files:
+        links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
+    print(links)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
-                           form_i=form_i, image_files=image_files, form_edit=form_edit)
+                           form_i=form_i, image_files=image_files, form_edit=form_edit, links=links)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
@@ -816,6 +820,7 @@ def delete_term(classID, termID):
 @login_required
 @roles_required('Professor')
 def delete_term_image(classID, termID, imageFile):
+    imageFile = imageFile.replace("%%", "/")
     image_to_delete = GlossaryImages.query.filter_by(termID=termID).filter_by(imageFile=imageFile).first()
     db.session.delete(image_to_delete)
     db.session.commit()
