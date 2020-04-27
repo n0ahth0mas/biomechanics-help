@@ -159,6 +159,7 @@ class EditSection(FlaskForm):
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
+
 class EditSectionBlock(FlaskForm):
     sectionBlockID = HiddenField(validators=[DataRequired()])
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
@@ -174,7 +175,7 @@ class EditQuestion(FlaskForm):
 
 
 class EditAnswer(FlaskForm):
-    question_type_choices = [('', 'Change Correctness'), ('0', 'False'), ('1', 'True')]
+    question_type_choices = [('0', 'False'), ('1', 'True')]
     answerID = HiddenField()
     correctness = SelectField(choices=question_type_choices)
     answerText2 = StringField('Answer Text', validators=[DataRequired()])

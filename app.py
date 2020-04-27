@@ -448,8 +448,12 @@ def edit_section(classID, chapterID, sectionID):
     for image_file in image_files:
         links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
 
-    print(links)
     videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+    video_links = []
+    for video in videos:
+        video_links.append((video[1], video[1].replace("/", "%%%")))
+    print(video_links)
+    print(videos)
 
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
@@ -486,7 +490,7 @@ def edit_section(classID, chapterID, sectionID):
         # return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         one_question.questionType = form_q.data["questionType"]
         if not form_q.data["imageFile2"]:
-            one_question.imageFile = "question.png"
+            one_question.imageFile = "/static/img/question.png"
             # we want to decline producing this form if there is no image and we are a drag and drop question
             if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
                 flash('Please provide a question image for this question type.')
@@ -526,7 +530,6 @@ def edit_section(classID, chapterID, sectionID):
         if 'videoFile' not in request.files:
             return redirect(request.url)
         if video and allowed_video(video.filename):
-            print("here")
             filename = secure_filename(video.filename)
             video_path = os.path.join((app.config['UPLOAD_VIDEO_FOLDER'] + "/" + str(classID)), filename)
             video.save(video_path)
@@ -575,7 +578,7 @@ def edit_section(classID, chapterID, sectionID):
                         if not one_image.imageFile in image[1]:
                             db.session.commit()
                         else:
-                            flash("This video already exists for this section")
+                            flash("This image already exists for this section")
                 else:
                     db.session.commit()
                 return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -611,7 +614,7 @@ def edit_section(classID, chapterID, sectionID):
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
                            form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
-                           form_edit_question=form_edit_question, form_change=form_change, links=links)
+                           form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
@@ -765,6 +768,23 @@ def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, im
     return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID,
                            sectionID=sectionID,
                            sectionBlockID=sectionBlockID, imageFile=imageFile)
+
+
+@app.route('/edit-class/<classID>/<chapterID>/<sectionID>/delete/video/<videoFile>',
+           methods=('GET', 'POST'))
+@login_required
+@roles_required('Professor')
+def delete_video(classID, chapterID, sectionID, videoFile):
+    videoFile = videoFile.replace("%%%", "/")
+    print(sectionID)
+    print(videoFile)
+    video_to_delete = Video.query.filter_by(sectionID=sectionID).filter_by(videoFile=videoFile).first()
+    print(video_to_delete)
+    db.session.delete(video_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-video.html', classID=classID, chapterID=chapterID,
+                           sectionID=sectionID, vidoeFile=videoFile)
+
 
 
 @app.route('/delete/<classID>', methods=('GET', 'POST'))
