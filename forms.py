@@ -102,7 +102,7 @@ class CreateImage(FlaskForm):
 
 class CreateVideo(FlaskForm):
     videoFile = FileField('Video File', validators=[DataRequired()])
-    orderNo = IntegerField('Order No', validators=[DataRequired()])
+    orderNo = IntegerField('Video Number', validators=[DataRequired()])
 
 
 class CreateTerm(FlaskForm):
@@ -246,3 +246,8 @@ class CreateDragNDropAnswer(FlaskForm):
 
 class ShareClassWithCanvas(FlaskForm):
     canvasClassCode = StringField('Class Code', validators=[DataRequired()])
+
+
+class EditVideo(FlaskForm):
+    videoFile = HiddenField(validators=[DataRequired()])
+    orderNo6 = IntegerField(validators=[DataRequired()])

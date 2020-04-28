@@ -320,7 +320,16 @@ def edit_class(classID):
     sections_arrays = []
     for chapter in chapters:
         sections_arrays.append(query_db('SELECT * from Sections where chapterID="%s"' % chapter[0]))
-
+    x_loop_must_break = False
+    for chapter in chapters:
+        for check in chapters:
+            if not chapter[0] == check[0]:
+                if chapter[3] == check[3]:
+                    flash("Error: Chapter Numbers are not unique. Fix and close error message before moving on")
+                    x_loop_must_break = True
+                    break
+        if x_loop_must_break:
+            break
     return render_template('pages/edit-class.html', chapters=chapters, sections=sections_arrays, classID=classID,
                            className=className, form=form, formEdit=formEdit, form_publish=form_publish)
 
@@ -409,7 +418,6 @@ def edit_chapter(classID, chapterID):
     elif request.method == 'POST':
         pass
     form_publish = PublishSection()
-    print(form_publish.sectionID.data)
     if not form_publish.sectionID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         sectionID = form_publish.data["sectionID"]
         one_section = Section.query.filter_by(sectionID=sectionID).first()
@@ -417,9 +425,22 @@ def edit_chapter(classID, chapterID):
         db.session.commit()
     elif request.method == 'POST':
         pass
+
+
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
     sections = query_db('SELECT * from Sections where chapterID="%s"' % chapterID)
+
+    x_loop_must_break = False
+    for section in sections:
+        for check in sections:
+            if not section[0] == check[0]:
+                if section[3] == check[3]:
+                    flash("Error: Section Numbers are not unique. Fix and close error message before moving on")
+                    x_loop_must_break = True
+                    break
+        if x_loop_must_break:
+            break
     return render_template('pages/edit-chapter.html', sections=sections, chapterID=chapterID, classID=classID,
                            chapterName=chapterName, className=className, form=form, form_edit=form_edit,
                            form_publish=form_publish)
@@ -589,6 +610,17 @@ def edit_section(classID, chapterID, sectionID):
             image.save(img_path)
             question_to_change.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+    elif request.method == 'POST':
+        pass
+
+    form_edit_video = EditVideo()
+    if not form_edit_video.orderNo6.data == "" and form_edit_video.validate():
+        videoFile = form_edit_video.data["videoFile"]
+        one_video = Video.query.filter_by(sectionID=sectionID).filter_by(videoFile=videoFile).first()
+        one_video.orderNo = form_edit_video.data["orderNo6"]
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
@@ -600,9 +632,39 @@ def edit_section(classID, chapterID, sectionID):
     for question in questions:
         answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
 
+    x_loop_must_break = False
+    for sectionBlock in sectionBlocks:
+        for check in sectionBlocks:
+            if not sectionBlock[0] == check[0]:
+                if sectionBlock[3] == check[3]:
+                    flash("Error: Text Numbers are not unique. Fix and close error message before moving on")
+                    x_loop_must_break = True
+                    break
+        if x_loop_must_break:
+            break
+    y_loop_must_break = False
+    for question in questions:
+        for check in questions:
+            if not question[0] == check[0]:
+                if question[4] == check[4]:
+                    flash("Error: Question Numbers are not unique. Fix and close error message before moving on")
+                    y_loop_must_break = True
+                    break
+        if y_loop_must_break:
+            break
+    z_loop_must_break = False
+    for video in videos:
+        for check in videos:
+            if not video[1] == check[1]:
+                if video[2] == check[2]:
+                    flash("Error: Video Order Numbers are not unique. Fix and close error message before moving on")
+                    z_loop_must_break = True
+                    break
+        if z_loop_must_break:
+            break
     return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
-                           questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q,
+                           questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_edit_video=form_edit_video,
                            form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
                            form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links)
 

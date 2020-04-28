@@ -66,16 +66,17 @@
     <h4>Here is a list of classes created<br></h4>
     <table id="myTable">
         <tr class="header">
+            <th style="width:5%;"></th>
             <th style="width:25%;">Class</th>
             <th style="width:20%;">Class Code</th>
             <th style="width:5%;"></th>
             <th style="width:35%;">Students Enrolled</th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
-            <th style="width:5%;"></th>
         </tr>
         {% for _class in classes %}
         <tr>
+            <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn1">Make Edits/<br>Additions</button></a></td>
                  <!--form to edit class-->
                  <form method="post" class="form">
                         {{ formEdit.csrf_token }}
@@ -91,7 +92,6 @@
             {% endfor %}
             </ul></td>
              <td><a href="/professor-class-overview/{{_class[1]}}"><button type="button" class="btn btn1">View Class</button></a></td>
-            <td><a href="/edit-class/{{_class[1]}}"><button type="button" class="btn btn1">Make Edits/Additions</button></a></td>
             <td><a href="/delete/{{_class[1]}}"><button type="button" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn2"><i class="fa fa-trash"></i></button></a></td>
         </tr>
         {% endfor %}
