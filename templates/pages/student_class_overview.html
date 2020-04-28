@@ -6,11 +6,15 @@
     <a href="/section/{{classID}}/{{last_chapter_ID}}/{{last_section_ID}}"><button class="btn btn-primary btn-lg btn-block restart-btn">Pick Up Where You Left Off</button></a>
     {% for chapter in chapters %}
         {% set outer_loop = loop %}
+        {% if chapter[4] ==1 %}
         <h2>Chapter {{chapter[1]}}</h2>
         {% for section in sections[outer_loop.index-1] %}
             {% set second_loop = loop %}
+            {% if section[4] == 1 %}
             <a href="/section/{{classID}}/{{chapter[0]}}/{{section[0]}}"><h3>Section: {{section[2]}}</h3></a>
+        {% endif %}
         {% endfor %}
+    {% endif %}
     {% endfor %}
 </main>
 {% endblock %}
