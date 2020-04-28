@@ -1098,16 +1098,15 @@ def professor_home():
         return redirect(url_for('professor_home'))
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
-    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db(
-            'SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+    if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
         classID = formEdit.data["classID"]
-        if query_db(
-                'SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
-            Class.query.filter_by(classID=classID).update(
-                dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
+        print(query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data)
+        if query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
+            Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
             UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
             Chapter.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
             db.session.commit()
+
         # want to rename this class' image folder here
         basedir = 'static/img'
         for fn in os.listdir(basedir):
@@ -1117,6 +1116,10 @@ def professor_home():
         for fn in os.listdir(basedirV):
             if fn == formEdit.data["classID"]:
                 os.rename(os.path.join(basedirV, fn), os.path.join(basedirV, str(formEdit.newClassID.data)))
+    elif formEdit.newClassID.data is not None and formEdit.validate_on_submit() and not query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+        classID = formEdit.data["classID"]
+        Class.query.filter_by(classID=classID).update(dict(className=formEdit.data["className"]))
+        db.session.commit()
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass

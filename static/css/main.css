@@ -139,8 +139,15 @@ a {
     overflow: hidden;
 }
 
+
+.nav-container{
+    margin-left: 5%;
+    padding-left: 0px;
+}
+
+
 #structure {
-    padding-left: 20% !important;
+    padding-left: 5% !important;
     padding-right: 5% !important;
     width: 100% !important;
     margin-bottom: 35%;
