@@ -848,7 +848,7 @@ def student_home():
 
 
 @app.route('/section/<class_id>/<chapter>/<section>', methods=['GET'])
-@roles_required('Student', 'Professor')
+@roles_required(['Professor', 'Student'])
 def section_page(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         # Section Text
@@ -1078,7 +1078,7 @@ def student_short():
 
 
 @app.route('/glossary/<classID>')
-@roles_required('Student', 'Professor')
+@roles_required(['Student', 'Professor'])
 def glossaryTemplate(classID):
     db_gloss = query_db('SELECT * from Glossary WHERE classID="{}"'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
@@ -1286,13 +1286,13 @@ def student_class_home(classID):
 
 
 @app.route("/about-the-developers")
-@roles_required('Student', 'Professor')
+@roles_required(['Student', 'Professor'])
 def developers():
     return render_template('/layouts/about-the-devs.html')
 
 
 @app.route("/logout")
-@roles_required('Student', 'Professor')
+@roles_required(['Student', 'Professor'])
 def logout():
     logout_user()
     return redirect(home_url)
