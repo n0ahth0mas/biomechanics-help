@@ -983,9 +983,7 @@ def section_page(class_id, chapter, section):
         next_ch_sect = []
         chapter_after = []
         section_id_after = []
-        if section_after:
-            section_id_after = section_after[0]
-        else:
+        if not section_after:
             chapter_after = query_db(
                 'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1),
                 one=True)
@@ -1003,7 +1001,7 @@ def section_page(class_id, chapter, section):
                                section_images=section_images, video_files=video_files, section_text=section_text,
                                section_name=section_name, section_id_before=section_id_before,
                                next_ch_sect=next_ch_sect,
-                               chapter_after=chapter_after, section_id_after=section_id_after)
+                               chapter_after=chapter_after, section_after=section_after)
     else:
         flash("Please enroll in a class before navigating to it.")
         return redirect(home_url)
