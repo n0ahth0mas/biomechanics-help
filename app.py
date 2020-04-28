@@ -1353,10 +1353,6 @@ def student_class_home(classID):
 def developers():
     return render_template('/layouts/about-the-devs.html')
 
-@app.route("/user-manual")
-@roles_required('Professor')
-def user_manual():
-    return render_template('/pages/user-manual.html')
 
 @app.route("/logout")
 @roles_required(['Student', 'Professor'])
