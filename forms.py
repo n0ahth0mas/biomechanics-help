@@ -102,6 +102,7 @@ class CreateImage(FlaskForm):
 
 class CreateVideo(FlaskForm):
     videoFile = FileField('Video File', validators=[DataRequired()])
+    orderNo = IntegerField('Order No', validators=[DataRequired()])
 
 
 class CreateTerm(FlaskForm):

@@ -222,6 +222,7 @@ class Video(db.Model):
     __tablename__ = 'Videos'
     sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
     videoFile = db.Column(db.String(), primary_key=True)
+    orderNo = db.Column(db.Integer())
 
     class Meta:
         unique_together = (("sectionID", "videoFile"),)
@@ -523,6 +524,7 @@ def edit_section(classID, chapterID, sectionID):
     if form_v.videoFile.data is not None and form_v.validate_on_submit():
         one_video = Video()
         one_video.sectionID = sectionID
+        one_video.orderNo = form_v.data["orderNo"]
         video = request.files["videoFile"]
         if 'videoFile' not in request.files:
             return redirect(request.url)

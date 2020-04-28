@@ -160,7 +160,8 @@
         <form method="post" class="form" enctype=multipart/form-data>
             <h3>Add Video</h3>
             {{ form_v.csrf_token }}
-            {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}<br>
+            {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}
+            {{ form_v.orderNo(class_='form-control', placeholder = form_v.orderNo.label.text, required = true) }}<br>
             <input type="submit" value="Add Video" class="btn btn-primary">
         </form>
     <h3>Here are all the videos associated with this section</h3>
@@ -169,6 +170,7 @@
         {% for video_link in video_links %}
         {% if video_link[0] == video[1] %}
         <tr>
+            <td>{{video[2]}}</td>
         <td>
         <video width="600" controls>
             <source src="{{video[1]}}">
