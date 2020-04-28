@@ -31,18 +31,27 @@ from werkzeug.utils import secure_filename
 # App Config.
 # ----------------------------------------------------------------------------#
 from sqlalchemy import and_, text
+class ConfigClass(object):
+    SECRET_KEY = 'xxxxyyyyyzzzzz'
+    USER_UNAUTHENTICATED_ENDPOINT = 'login'
+    USER_UNAUTHORIZED_ENDPOINT = 'login'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///database/help.db'
+    USER_EMAIL_SENDER_EMAIL = "jriley9000@gmail.com"
+    UPLOAD_FOLDER = os.path.abspath('static/img')
+    UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
 
 app = Flask(__name__)
-app.secret_key = 'xxxxyyyyyzzzzz'
+app.config.from_object(__name__+'.ConfigClass')
+#app.secret_key = 'xxxxyyyyyzzzzz'
 # app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
-app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/help.db'
+#app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'mp4'}
 ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
-UPLOAD_FOLDER = os.path.abspath('static/img')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
-app.config['UPLOAD_VIDEO_FOLDER'] = UPLOAD_VIDEO_FOLDER
+#UPLOAD_FOLDER = os.path.abspath('static/img')
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
+#app.config['UPLOAD_VIDEO_FOLDER'] = UPLOAD_VIDEO_FOLDER
 # login = LoginManager()
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
@@ -54,7 +63,6 @@ home_url = "http://127.0.0.1:5000/"
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
 smtpObj.login(sender, "Mouse12345!")
-
 
 def get_sql_alc_db():
     with app.app_context():
@@ -110,18 +118,6 @@ def shutdown_session(exception=None):
 # ----------------------------------------------------------------------------#
 # Controllers.
 # ----------------------------------------------------------------------------#
-login = LoginManager()
-
-
-@login.unauthorized_handler
-def unauthorized():
-    # do stuff
-    print("we hit the unauthorized view")
-    return redirect("/login")
-
-
-login.init_app(app)
-
 
 class Class(db.Model):
     __tablename__ = "Classes"
@@ -278,17 +274,12 @@ class User(db.Model, UserMixin):
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
 
-
-# Function that defines a pop up
-
-
 @app.route('/')
 def home():
     return render_template('pages/landing.html')
 
 
 @app.route('/edit-class/<classID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_class(classID):
     formEdit = EditChapter()
@@ -334,7 +325,6 @@ def edit_class(classID):
 
 
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_glossary(classID):
     form = CreateTerm()
@@ -392,7 +382,6 @@ def edit_glossary(classID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_chapter(classID, chapterID):
     form = CreateSection()
@@ -435,7 +424,6 @@ def edit_chapter(classID, chapterID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
@@ -615,7 +603,6 @@ def edit_section(classID, chapterID, sectionID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
     sectionText = query_db('SELECT sectionText from Sections where sectionID="%s"' % sectionBlockID)[0][0]
@@ -625,7 +612,6 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
     point_n_click_answer_form = PointNClickAnswer()
@@ -719,7 +705,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
            methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_answer(classID, chapterID, sectionID, questionID, answerID):
     answer_to_delete = Answer.query.filter_by(answerID=answerID).first()
@@ -731,7 +716,6 @@ def delete_answer(classID, chapterID, sectionID, questionID, answerID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/delete/<questionID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_question(classID, chapterID, sectionID, questionID):
     question_to_delete = Question.query.filter_by(questionID=questionID).first()
@@ -742,7 +726,6 @@ def delete_question(classID, chapterID, sectionID, questionID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
     section_block_to_delete = SectionBlock.query.filter_by(sectionBlockID=sectionBlockID).first()
@@ -754,7 +737,6 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>/delete/<imageFile>',
            methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
     imageFile = imageFile.replace("%%", "/")
@@ -768,7 +750,6 @@ def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, im
 
 
 @app.route('/delete/<classID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_class(classID):
     class_to_delete = Class.query.filter_by(classID=classID).first()
@@ -787,7 +768,6 @@ def delete_class(classID):
 
 
 @app.route('/edit-class/<classID>/delete/<chapterID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_chapter(classID, chapterID):
     chapter_to_delete = Chapter.query.filter_by(chapterID=chapterID).first()
@@ -797,7 +777,6 @@ def delete_chapter(classID, chapterID):
 
 
 @app.route('/edit-class/<classID>/<chapterID>/delete/<sectionID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_section(classID, chapterID, sectionID):
     section_to_delete = Section.query.filter_by(sectionID=sectionID).first()
@@ -807,7 +786,6 @@ def delete_section(classID, chapterID, sectionID):
 
 
 @app.route('/edit-class/<classID>/glossary/delete/<termID>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_term(classID, termID):
     term_to_delete = Glossary.query.filter_by(termID=termID).first()
@@ -817,7 +795,6 @@ def delete_term(classID, termID):
 
 
 @app.route('/edit-class/<classID>/glossary/delete/image/<termID>/<imageFile>', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def delete_term_image(classID, termID, imageFile):
     imageFile = imageFile.replace("%%", "/")
@@ -828,7 +805,6 @@ def delete_term_image(classID, termID, imageFile):
 
 
 @app.route('/student-home', methods=('GET', 'POST'))
-@login_required
 @roles_required('Student')
 def student_home():
     print(request.endpoint)
@@ -850,7 +826,7 @@ def student_home():
 
 
 @app.route('/section/<class_id>/<chapter>/<section>', methods=['GET'])
-@login_required
+@roles_required('Student', 'Professor')
 def section_page(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         # Section Text
@@ -1000,7 +976,6 @@ def forgotSuccess():
 
 
 @app.route('/professor-home', methods=('GET', 'POST'))
-@login_required
 @roles_required('Professor')
 def professor_home():
     prof_join_class_form = ProfJoinClass()
@@ -1076,13 +1051,12 @@ def professor_home():
 
 
 @app.route('/student-short')
-@login_required
 def student_short():
     return render_template('pages/placeholder.student.short.html')
 
 
 @app.route('/glossary/<classID>')
-@login_required
+@roles_required('Student', 'Professor')
 def glossaryTemplate(classID):
     db_gloss = query_db('SELECT * from Glossary WHERE classID="{}"'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
@@ -1223,7 +1197,6 @@ def new_student_account():
 
 
 @app.route('/professor-class-overview/<classID>')
-@login_required
 @roles_required('Professor')
 def professor_class_home(classID):
     print("called professor class home")
@@ -1255,7 +1228,6 @@ def professor_class_home(classID):
 
 
 @app.route('/student-class-overview/<classID>')
-@login_required
 @roles_required('Student')
 def student_class_home(classID):
     chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
@@ -1292,13 +1264,13 @@ def student_class_home(classID):
 
 
 @app.route("/about-the-developers")
-@login_required
+@roles_required('Student', 'Professor')
 def developers():
     return render_template('/layouts/about-the-devs.html')
 
 
 @app.route("/logout")
-@login_required
+@roles_required('Student', 'Professor')
 def logout():
     logout_user()
     return redirect(home_url)
@@ -1339,7 +1311,7 @@ if not app.debug:
 
 # Default port: want to switch this
 if __name__ == '__main__':
-    app.secret_key = 'xxxxyyyyyzzzzz'
+    #app.secret_key = 'xxxxyyyyyzzzzz'
     app.run()
 
 # Or specify port manually:
