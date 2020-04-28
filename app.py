@@ -344,6 +344,7 @@ def edit_glossary(classID):
         one_entry.classID = classID
         one_entry.term = form.data["term"]
         one_entry.definition = form.data["definition"]
+        print(one_entry.definition)
         db.session.add(one_entry)
         db.session.commit()
         return redirect('/edit-class/%s/glossary' % classID)
@@ -455,10 +456,12 @@ def edit_section(classID, chapterID, sectionID):
         video_links.append((video[1], video[1].replace("/", "%%%")))
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
+        print("here")
         one_section_block = SectionBlock()
         one_section_block.orderNo = form_s.data["orderNo2"]
         one_section_block.sectionText = form_s.data["sectionText"]
         one_section_block.sectionID = sectionID
+        print(one_section_block)
         db.session.add(one_section_block)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))

@@ -41,7 +41,7 @@
                         {{ form_edit.csrf_token }}
                         {{ form_edit.termID(value = term[1])}}
                      <td>{{ form_edit.term_e(class_ = 'form', value = term[2]) }}</td>
-                     <td>{{ form_edit.definition(class_ = 'form', value = term[3]) }}</td>
+                     <td>{{ form_edit.definition(class_ = 'form reset_me', value = term[3]) }}</td>
                      <td><input type="submit" value="Save" class="btn"></td>
                     </form>
                 <td><ul class="class-student-list">
@@ -134,6 +134,8 @@ function myFunction() {
     }
   }
 }
+
+
 </script>
 </main>
 {% endblock %}

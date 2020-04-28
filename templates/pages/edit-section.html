@@ -76,7 +76,7 @@
                         {{ form_edit.csrf_token }}
                         {{ form_edit.sectionBlockID(value = sectionBlock[0])}}
                      <td>{{ form_edit.orderNo1(class_ = 'form', value = sectionBlock[3]) }}</td>
-                     <td>{{ form_edit.text(class_ = 'form', value = sectionBlock[1]) }}</td>
+                     <td>{{ form_edit.text(class_ = 'form reset_me', value = sectionBlock[1]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
                 <td><ul class="class-student-list">
@@ -137,9 +137,9 @@
                         {{ form_edit_question.csrf_token }}
                         {{ form_edit_question.questionID(value = question[0])}}
                      <td>{{ form_edit_question.orderNo5(class_ = 'form', value = question[4]) }}</td>
-                     <td>{{ form_edit_question.questionText(class_ = 'form', value = question[1]) }}</td>
+                     <td>{{ form_edit_question.questionText(class_ = 'form reset_me', value = question[1]) }}</td>
                      <td>
-                         {{ form_edit_question.questionType(value = question[3], class_ = 'reset_me') }}
+                         {{ form_edit_question.questionType(value = question[3], class_ = 'form reset_me') }}
                      </td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
