@@ -1,0 +1,50 @@
+main{
+    padding-top : 50px;
+    padding-bottom: 50px;
+}
+
+.prof-list{
+    font-size: 15px;
+    padding-right: 2%;
+}
+
+.create{
+    padding-left: 10%;
+    padding-right: 5%;
+}
+
+.edit{
+    text-align: left;
+    padding-top: 10px;
+}
+
+.delete{
+    text-align: left;
+    padding-top: 10px;
+}
+
+.text{
+    text-align: left;
+    font-size: 15px;
+    padding-top: 10px;
+}
+
+.page_vid{
+    display: none;
+    max-width:100%;
+    max-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.vid_wrapper{
+    display:flex
+}
+
+.video{
+    display: inline-block;
+    max-width : 100%;
+    max-height: 600px;
+    position: relative;
+    margin: auto;
+}

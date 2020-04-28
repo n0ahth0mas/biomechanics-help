@@ -1,0 +1,60 @@
+{% extends 'layouts/base' %}
+{% block title %}HELP! Tutorial{% endblock %}
+{% block content %}
+<div id="sidebar" class="sidenav" style="font-size:10px;">
+
+    <a href="#prof">Professor</a> <!--Link to Professor section on page-->
+    <ul id = "prof-list">
+        <a href="#create">Create Content</a>
+        <a href="#edit">Edit Content</a>
+        <a href="#delete">Delete Content</a>
+    </ul>
+    <a href="#general">General</a> <!--Link to General Section on page-->
+
+</div>
+
+    <!-- Begin page content -->
+    <link href="/static/css/main-tutorial.css" rel="stylesheet" type="text/css"/>
+    <main id="structure" role="main" class="container">
+        <div>
+            <h1>HELP! Tutorial</h1>
+        </div>
+        <!--Section relating to the text on this page-->
+        <div id="prof">
+            <h2>Professor Content</h2>
+            <h3 id="create"><strong>Create Content</strong></h3>
+                <div class="vid_wrapper">
+                    <div class="videos">
+                        <video controls class="page_vid" id="video">
+                            <source src="static/video/samplevid.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                        <p id="text">
+                            This is text describing how to create content!
+                        </p>
+                        <hr>
+                </div>
+            <h3 id="edit"><strong>Edit Content</strong></h3>
+                <p id="text">
+                    This is text describing how to edit content!
+                </p>
+                <hr>
+            <h3 id="delete"><strong>Delete Content</strong></h3>
+                <p id="text">
+                    This is text describing how to delete content!
+                </p>
+                <hr>
+        </div>
+        <div id="General">
+            <h2>General Content</h2>
+            <h3 id="genSub"><strong>Sub Point in General Content</strong></h3>
+                <p id="text">
+                    This is text describing a tutorial for specific content relating the the subtopic genSub in General Content!
+                </p>
+                <hr>
+        </div>
+</div>
+<br><br><br>
+
+</main>
+{% endblock %}

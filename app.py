@@ -1344,6 +1344,10 @@ def student_class_home(classID):
                            class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID,
                            last_section_ID=last_section_ID)
 
+@app.route("/tutorial")
+@roles_required(['Student', 'Professor'])
+def tutorial():
+    return render_template('layouts/main-tutorial.html')
 
 @app.route("/about-the-developers")
 @roles_required(['Student', 'Professor'])
