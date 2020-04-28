@@ -132,6 +132,7 @@
                                                     <div style="display: none;" id="answer_reason{{dropbox_loop.index-1}}">{{answer[4]}}</div>
                                                     <div style="display: none;" id="width_adjustment{{dropbox_loop.index-1}}">{{answer[8]}}</div>
                                                     <div style="display: none;" id="height_adjustment{{dropbox_loop.index-1}}">{{answer[9]}}</div>
+                                                    <div style="display: none;" id="drop-zone-color{{dropbox_loop.index-1}}">{{answer[10]}}</div>
                                                 </div>
                                             {% endif %}
                                         {% endfor %}
@@ -143,7 +144,7 @@
                                 {% endif %}
                             </a>
                         {% elif question[3] == 'pointnclick' %}
-                        <img class="point-n-click-img" onclick="clickedPointAndClickQ(event, this)" id="point-click-question-img{{outer_loop.index-1}}" src="{{ img }}">
+                        <img class="point-n-click-img big-section-img" onclick="clickedPointAndClickQ(event, this)" id="point-click-question-img{{outer_loop.index-1}}" src="{{ img }}">
                         <ul id="answer-zone-deets">
                             {% for answer in a_list[outer_loop.index-1] %}
                             <li>
@@ -158,7 +159,7 @@
                         </ul>
                         {% endif %}
                         <!-- question text -->
-                        <div class="q_header" id="q_header{{ outer_loop.index-1 }}">
+                        <div {% if question[3] == 'pointnclick' %} class="point-n-click-header" {% else %} class="q_header" {% endif %} id="q_header{{ outer_loop.index-1 }}">
                             <h4>{{question[1]}}</h4>
                         </div>
 
@@ -168,7 +169,7 @@
                             {% if question[3] == "short" %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
 
-                            <button class="mult_choice" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
+                            <button class="mult_choice btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
 
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
@@ -184,7 +185,7 @@
                             {% endfor %}
                              </div>
                             <div class="buttonDiv">
-                                <button onclick="checkMultChoice()" data-toggle="modal" data-target="#myModal" >Submit</button>
+                                <button onclick="checkMultChoice()" class="btn-success btn" data-toggle="modal" data-target="#myModal" >Submit</button>
                             </div>
                             {% elif question[3] == "dragndrop" %}
                             {% for answer in a_list[outer_loop.index-1] %}

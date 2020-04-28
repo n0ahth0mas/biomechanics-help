@@ -34,21 +34,12 @@ $( "#start-quiz-button" ).on("click", function() {
             var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
             //if this answer is true
             if(this_answer_correctness === '1'){
-                console.log("thinks this one is correct");
                 this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
-                console.log("set answer image height to: " + this_answer_img.style.height);
                 this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
             }else{
-                console.log("thinks this one is wrong");
                 //otherwise just apply the percentage and ignore the question image
-                console.log("height percent: " + this_height_percentage);
-                console.log("width percent: " + this_width_percentage);
-                console.log(this_answer_img.naturalHeight);
-                console.log(this_answer_img.naturalWidth);
                 this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
                 this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
-                console.log(this_answer_img.style.height);
-                console.log(this_answer_img.style.width);
             }
         }
         //put drop zones in the right position
@@ -67,9 +58,10 @@ $( "#start-quiz-button" ).on("click", function() {
             var img_height = this_question_image.clientHeight;
             var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
             var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
+            var this_drop_zone_color = drop_zones[i].children[5].innerHTML;
+            drop_zones[i].style.borderColor = this_drop_zone_color;
             drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
             drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
-            console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
             drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
             drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
         }
@@ -78,9 +70,7 @@ $( "#start-quiz-button" ).on("click", function() {
     //if it is the first question
     var point_and_click_question_img = document.getElementById("point-click-question-img" + String(0));
     if(point_and_click_question_img !== null){
-        console.log("found point and click image");
-        console.log(point_and_click_question_img);
-        point_and_click_question_img.className = "active_point_n_click";
+        point_and_click_question_img.className = "active_point_n_click big-section-img";
     }else{
         console.log("thinks its null");
     }

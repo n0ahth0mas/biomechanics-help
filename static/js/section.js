@@ -54,14 +54,21 @@ function restart(){
     questionIndex=0;
     renderQuestion();
     renderDropBoxQuestion();
+    //render point and click question if first
+    var point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex));
+    if(point_and_click_question_img !== null){
+        //the first question is a point and click question
+        point_and_click_question_img.className = "active_point_n_click big-section-img";
+    }
 }
 
 function renderQuestion(){
     console.log(document.getElementById("q_qs"+questionIndex));
     document.getElementById("q_qs"+questionIndex).style.display = "flex";
     document.getElementById("q_header"+questionIndex).style.display = "flex";
-    document.getElementById("q_img_container"+questionIndex).style.display = "flex";
-
+    if(document.getElementById("q_img_container"+questionIndex) !== null){
+        document.getElementById("q_img_container"+questionIndex).style.display = "flex";
+    }
 }
 
 function removePrevious(){
@@ -228,6 +235,9 @@ function drop(ev, element) {
             })(i);
         }
         correctSubmitCount = 0;
+        if(tries === 0){
+            firstTry++;
+        }
         $('#myModal').modal('show');
         nextQuestion();
     }else{
@@ -266,7 +276,7 @@ function submitShortAnswer(answer, submitButton, reason){
         modalBody.innerHTML = "Oops! Let's try this one again";
         tries++;
     }
-    progress(correct)
+    progress(correct);
     submitButton.parentElement.children[0].value=""
 }
 
@@ -274,52 +284,56 @@ function renderDropBoxQuestion() {
     var this_question_header = document.getElementById("q_qs" + questionIndex);
     var drag_and_drop_answers = this_question_header.children;
     var this_question_img = document.getElementById("drop_zone_container" + questionIndex);
-    this_question_img = this_question_img.children[this_question_img.children.length-1];
-    for(j = 0; j < drag_and_drop_answers.length; j++){
-        var this_height_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
-        var this_width_percentage = Number(drag_and_drop_answers[j].children[2].innerHTML);
-        var this_answer_img = drag_and_drop_answers[j].children[0];
-        var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
-        //if this answer is true
-        if(this_answer_correctness === '1'){
-            console.log("thinks this one is correct");
-            this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
-            console.log("set answer image height to: " + this_answer_img.style.height);
-            this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
-        }else{
-            console.log("thinks this one is wrong");
-            //otherwise just apply the percentage and ignore the question image
-            console.log("height percent: " + this_height_percentage);
-            console.log("width percent: " + this_width_percentage);
-            console.log(this_answer_img.naturalHeight);
-            console.log(this_answer_img.naturalWidth);
-            this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
-            this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
-            console.log(this_answer_img.style.height);
-            console.log(this_answer_img.style.width);
+    if(this_question_img !== null){
+        this_question_img = this_question_img.children[this_question_img.children.length-1];
+        for(j = 0; j < drag_and_drop_answers.length; j++){
+            var this_height_percentage = Number(drag_and_drop_answers[j].children[1].innerHTML);
+            var this_width_percentage = Number(drag_and_drop_answers[j].children[2].innerHTML);
+            var this_answer_img = drag_and_drop_answers[j].children[0];
+            var this_answer_correctness = drag_and_drop_answers[j].children[3].innerHTML;
+            //if this answer is true
+            if(this_answer_correctness === '1'){
+                console.log("thinks this one is correct");
+                this_answer_img.style.height = String(this_question_img.clientHeight * this_height_percentage) + "px";
+                console.log("set answer image height to: " + this_answer_img.style.height);
+                this_answer_img.style.width = String(this_question_img.clientWidth * this_width_percentage) + "px";
+            }else{
+                console.log("thinks this one is wrong");
+                //otherwise just apply the percentage and ignore the question image
+                console.log("height percent: " + this_height_percentage);
+                console.log("width percent: " + this_width_percentage);
+                console.log(this_answer_img.naturalHeight);
+                console.log(this_answer_img.naturalWidth);
+                this_answer_img.style.height = String(this_answer_img.naturalHeight * this_height_percentage) + "px";
+                this_answer_img.style.width = String(this_answer_img.naturalWidth * this_width_percentage) + "px";
+                console.log(this_answer_img.style.height);
+                console.log(this_answer_img.style.width);
+            }
         }
-    }
-    //put drop zones in the right position
-    var this_drop_zone_id = "drop_zone_container" + String(questionIndex);
-    var drop_zone_container = document.getElementById(this_drop_zone_id);
-    var drop_zones = [].slice.call(drop_zone_container.children)
-    drop_zones.pop();
-    for(i = 0; i < drop_zones.length;i++){
-        var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
-        var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
-        var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
-        var img_natural_width = this_question_image.naturalWidth;
-        var img_natural_height = this_question_image.naturalHeight;
-        this_question_image = this_question_image.parentElement;
-        var img_width = this_question_image.clientWidth;
-        var img_height = this_question_image.clientHeight;
-        var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
-        var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
-        drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
-        drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
-        console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
-        drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
-        drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
+        //put drop zones in the right position
+        var this_drop_zone_id = "drop_zone_container" + String(questionIndex);
+        var drop_zone_container = document.getElementById(this_drop_zone_id);
+        var drop_zones = [].slice.call(drop_zone_container.children)
+        drop_zones.pop();
+        for(i = 0; i < drop_zones.length;i++){
+            var drop_zone_x_pos = Number(drop_zones[i].children[0].innerHTML);
+            var drop_zone_y_pos = Number(drop_zones[i].children[1].innerHTML);
+            var this_question_image = drop_zones[i].parentElement.children[drop_zones[i].parentElement.children.length-1];
+            var img_natural_width = this_question_image.naturalWidth;
+            var img_natural_height = this_question_image.naturalHeight;
+            this_question_image = this_question_image.parentElement;
+            var img_width = this_question_image.clientWidth;
+            var img_height = this_question_image.clientHeight;
+            var this_height_adjustment = Number(drop_zones[i].children[3].innerHTML);
+            var this_width_adjustment = Number(drop_zones[i].children[4].innerHTML);
+            var this_drop_zone_color = drop_zones[i].children[5].innerHTML;
+            drop_zones[i].style.borderColor = this_drop_zone_color;
+            drop_zones[i].style.left = String((drop_zone_x_pos/img_natural_width) * img_width) + "px";
+            drop_zones[i].style.bottom = String((drop_zone_y_pos/img_natural_height) * img_height) + "px";
+            console.log("answer client Height: " + this_question_header.children[i].children[0].clientHeight);
+            drop_zones[i].style.height = String(this_question_img.clientHeight * this_height_adjustment) + "px";
+            drop_zones[i].style.width = String(this_question_img.clientWidth * this_width_adjustment) + "px";
+        }
     }
 }
 
@@ -332,18 +346,14 @@ function nextQuestion(){
     var current_point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex));
     if(current_point_and_click_question_img !== null){
         console.log(current_point_and_click_question_img);
-        current_point_and_click_question_img.className = "point-n-click-img";
+        current_point_and_click_question_img.className = "point-n-click-img big-section-img";
     }
     if(questionIndex< totalIndex){
         console.log("next question");
         //this represents the next point and click question
         var point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex + 1));
         if(point_and_click_question_img !== null){
-            console.log("found point and click image");
-            console.log(point_and_click_question_img);
-            point_and_click_question_img.className = "active_point_n_click";
-        }else{
-            console.log("thinks its null");
+            point_and_click_question_img.className = "active_point_n_click big-section-img";
         }
         //we also want to hide the current point and click image
         removePrevious();
@@ -395,7 +405,10 @@ function clickedPointAndClickQ(event, question_image){
     var left=bounds.left;
     var bottom=bounds.bottom;
     var x = event.pageX - left;
-    var y = (event.pageY - bottom) * (-1);
+    var y = (event.pageY - bottom) * (-1) + $(window).scrollTop();
+    console.log("x: " + x);
+    //console.log();
+    console.log("y: " + y);
     //we need to check and make sure that our x and y fall in one of our answers
     //if this answer is wrong, let them know and say why
     //same for if they are right but instead we move on
@@ -411,22 +424,29 @@ function clickedPointAndClickQ(event, question_image){
         var this_answer_reason = this_answer_details[2].innerHTML;
         //in pixels
         //console.log(question_image.clientWidth);
-        console.log(this_box_x_local_position);
         var this_box_height = question_image.clientHeight * this_box_height_ratio;
         var this_box_width = question_image.clientWidth * this_box_width_ratio;
-        console.log("this_box_height: " + this_box_height);
-        console.log("this_box_width: " + this_box_width);
         //for the click to be inside our bounds it must be greater than our box's local x and y but less than its width and height plus those respective values
         if(this_box_x_local_position < x && this_box_y_local_position < y && (this_box_x_local_position + this_box_width) > x && (this_box_y_local_position + this_box_height) > y){
-            console.log("thinks that we are inside this box's dimensions for this answer");
             //now we want to let the student know whether they got the answer correct and why
             if(this_answer_correctness === '1'){
                 //they have clicked the right place
-                $('#myModal').find('#modal-header').html("<h4>Correct!</h4>");
-                $('#myModal').find('#modal-body').html(this_answer_reason);
-                $('#myModal').modal('show');
-                progress(true);
-                nextQuestion();
+                if(tries === 0){
+                    //they got it right on the first try
+                    $('#myModal').find('#modal-header').html("<h4>Correct!</h4>");
+                    $('#myModal').find('#modal-body').html(this_answer_reason);
+                    $('#myModal').modal('show');
+                    firstTry++;
+                    progress(true);
+                    nextQuestion();
+                }else{
+                    //they got it right but not on the first try
+                    $('#myModal').find('#modal-header').html("<h4>Correct!</h4>");
+                    $('#myModal').find('#modal-body').html(this_answer_reason);
+                    $('#myModal').modal('show');
+                    progress(true);
+                    nextQuestion();
+                }
             }else{
                 //they have clicked the wrong place
                 $('#myModal').find('#modal-header').html("<h4>InCorrect!</h4>");
