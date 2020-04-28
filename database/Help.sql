@@ -136,6 +136,7 @@ create TABLE SectionBlockImages(
 create TABLE Videos(
         sectionID      INTEGER check(sectionID IS NOT NULL),
         videoFile      TEXT check(videoFile IS NOT NULL),
+        orderNo         INTEGER,
         PRIMARY KEY (sectionID,videoFile),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE

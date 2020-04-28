@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField, HiddenField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField, HiddenField, TextAreaField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField, DecimalRangeField
 from wtforms import validators
@@ -85,13 +85,13 @@ class CreateSection(FlaskForm):
 
 class CreateSectionBlock(FlaskForm):
     orderNo2 = IntegerField('Text Number', validators=[DataRequired()])
-    sectionText = StringField('Section Text', validators=[DataRequired()])
+    sectionText = TextAreaField('Section Text', validators=[DataRequired()])
 
 
 class CreateQuestion(FlaskForm):
     question_type_choices = [('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop'), ('pointnclick', 'Point and Click')]
     orderNo3 = IntegerField('Question Number', validators=[DataRequired()])
-    questionText = StringField('Question Text', validators=[DataRequired()])
+    questionText = TextAreaField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile2 = FileField('Image')
 
@@ -102,11 +102,12 @@ class CreateImage(FlaskForm):
 
 class CreateVideo(FlaskForm):
     videoFile = FileField('Video File', validators=[DataRequired()])
+    orderNo = IntegerField('Order No', validators=[DataRequired()])
 
 
 class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
-    definition = StringField("Definition", validators=[DataRequired()])
+    definition = TextAreaField("Definition", validators=[DataRequired()])
 
 
 class ForgotForm(FlaskForm):
@@ -151,7 +152,7 @@ class EditChapter(FlaskForm):
 class EditTerm(FlaskForm):
     termID = HiddenField(validators=[DataRequired()])
     term_e = StringField('Term', validators=[DataRequired()])
-    definition = StringField("Definition", validators=[DataRequired()])
+    definition = TextAreaField("Definition", validators=[DataRequired()])
 
 
 class EditSection(FlaskForm):
@@ -159,26 +160,27 @@ class EditSection(FlaskForm):
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
     sectionName = StringField('Section Name', validators=[DataRequired()])
 
+
 class EditSectionBlock(FlaskForm):
     sectionBlockID = HiddenField(validators=[DataRequired()])
     orderNo1 = IntegerField('Section Number', validators=[DataRequired()])
-    text = StringField('Text', validators=[DataRequired()])
+    text = TextAreaField('Text', validators=[DataRequired()])
 
 
 class EditQuestion(FlaskForm):
     question_type_choices = [('', 'Change Question Type'), ('short', 'Short Answer'), ('multiple', 'Multiple Choice'), ('dragndrop', 'Drag and Drop'), ('pointnclick', 'Point and Click')]
     questionID = HiddenField(validators=[DataRequired()])
     orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
-    questionText = StringField(validators=[DataRequired()])
+    questionText = TextAreaField(validators=[DataRequired()])
     questionType = SelectField(choices=question_type_choices, default=('', 'Change Question Type'))
 
 
 class EditAnswer(FlaskForm):
-    question_type_choices = [('', 'Change Correctness'), ('0', 'False'), ('1', 'True')]
+    question_type_choices = [('0', 'False'), ('1', 'True')]
     answerID = HiddenField()
     correctness = SelectField(choices=question_type_choices)
-    answerText2 = StringField('Answer Text', validators=[DataRequired()])
-    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerText2 = TextAreaField('Answer Text', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
 
 
 class ChangeImage(FlaskForm):
@@ -199,8 +201,8 @@ class PublishSection(FlaskForm):
 class CreateAnswer(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
-    answerText = StringField('Answer Text', validators=[DataRequired()])
-    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerText = TextAreaField('Answer Text', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
 
 
