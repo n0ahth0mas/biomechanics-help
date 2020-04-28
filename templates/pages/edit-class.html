@@ -28,9 +28,9 @@
         <!--Making a table for all the chapter-->
         <table id="myTable">
             <tr class="header">
+                <th style="width:5%;"></th>
                 <th style="width:5%;">Chapter Number</th>
                 <th style="width:70%;">Chapter Name</th>
-                <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
                 <th style="width:5%;"></th>
@@ -38,6 +38,7 @@
             </tr>
             {% for chapter in chapters %}
             <tr>
+                 <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Add/Edit<br>Sections</button></a></td>
                 <!--form to edit chapter-->
                  <form method="post" class="form">
                         {{ formEdit.csrf_token }}
@@ -46,7 +47,7 @@
                      <td>{{ formEdit.chapterName(class_ = 'form', value = chapter[1]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
-                <td><a href="/edit-class/{{classID}}/{{chapter[0]}}"><button type="button" class="btn btn1" >Add/Edit Sections</button></a></td>
+
                 <td>
                      {% if chapter[4] == False %}
                         <!--form to publish-->

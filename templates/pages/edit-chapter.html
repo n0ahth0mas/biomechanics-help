@@ -26,9 +26,9 @@
     <h3>Here is a list of sections in this chapter</h3>
     <table id="myTable">
         <tr class="header">
+            <th style="width:5%;"></th>
             <th style="width:5%;">Section Number</th>
             <th style="width:70%;">Section</th>
-            <th style="width:5%;"></th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
             <th style="width:5%;"></th>
@@ -36,6 +36,7 @@
         </tr>
         {% for section in sections %}
         <tr>
+             <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{section[0]}}"><button type="button" class="btn btn1" >Add/Edit<br>Section Content</button></a><br></a></h5></td>
             <!--form to edit section-->
                  <form method="post" class="form">
                         {{ form_edit.csrf_token }}
@@ -44,7 +45,7 @@
                      <td>{{ form_edit.sectionName(class_ = 'form', value = section[2]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
-            <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{section[0]}}"><button type="button" class="btn btn1" >Add/Edit Section Content</button></a><br></a></h5></td>
+
             <td>
                 {% if section[4] == False %}
                         <!--form to publish-->
