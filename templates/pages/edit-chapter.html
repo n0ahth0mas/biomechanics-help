@@ -2,6 +2,16 @@
 {% block title %}Edit Chapter{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert fade in">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a>
     <h1>Edit Chapter: {{chapterName}}</h1>
     <!-- Trigger/Open The Modal -->

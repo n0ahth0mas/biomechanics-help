@@ -16768,3 +16768,136 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "C:\Users\jrile\AppData\Local\Programs\Python\Python38\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
+2020-04-28 00:27:28,408 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1334]
+2020-04-28 00:28:01,653 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1334]
+2020-04-28 00:28:30,023 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1335]
+2020-04-28 00:31:13,275 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1335]
+2020-04-28 00:31:14,939 ERROR: Exception on /edit-class/Infinity100 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1967, in finalize_request
+    response = self.make_response(rv)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2096, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-04-28 00:32:27,520 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1337]
+2020-04-28 00:32:32,892 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1337]
+2020-04-28 00:40:33,360 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1334]
+2020-04-28 00:41:07,643 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1337]
+2020-04-28 00:41:19,945 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1337]
+2020-04-28 00:44:14,516 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1348]
+2020-04-28 00:44:28,577 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1348]
+2020-04-28 00:44:38,652 ERROR: Exception on /edit-class/Infinity100/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 436, in edit_chapter
+    if not chapter[0] == check[0]:
+NameError: name 'chapter' is not defined
+2020-04-28 00:44:57,252 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1348]
+2020-04-28 00:49:29,740 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1368]
+2020-04-28 00:53:17,691 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1368]
+2020-04-28 00:53:52,315 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1368]
+2020-04-28 00:55:42,474 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:06:45,166 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1380]
+2020-04-28 01:07:22,081 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:10:16,009 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:12:54,909 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:13:50,052 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:14:16,551 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:15:01,402 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:17:45,730 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:18:15,048 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:18:27,181 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:18:42,521 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:20:08,737 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:21:23,946 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:21:59,274 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:26:44,634 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:26:57,289 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:27:33,011 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:27:48,272 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:28:33,817 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:29:11,609 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:29:18,741 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1378]
+2020-04-28 01:51:43,585 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:51:47,719 ERROR: Exception on /edit-class/Infinity100/1/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 617, in edit_section
+    if not form_publish.orderNo6.data == "" and form_edit_video.validate():
+NameError: name 'form_publish' is not defined
+2020-04-28 01:52:02,206 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:52:03,169 ERROR: Exception on /edit-class/Infinity100/1/1 [GET] [in /Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/app.py", line 663, in edit_section
+    return render_template('pages/edit-section.html', className=className, sectionBlocks=sectionBlocks, classID=classID,
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 137, in render_template
+    return _render(
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages/jinja2/_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-section.html", line 1, in top-level template code
+    {% extends 'layouts/base' %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/layouts/base", line 164, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/ricardo/Documents/GitHub/biomechanics-help/templates/pages/edit-section.html", line 192, in block "content"
+    {{ form_edit_video.videoFile(value = video[1])}}<br>
+jinja2.exceptions.UndefinedError: 'forms.EditVideo object' has no attribute 'videoFile'
+2020-04-28 01:52:19,582 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:53:28,074 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:53:51,038 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:54:07,009 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:56:04,756 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:56:36,396 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1388]
+2020-04-28 01:57:39,295 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1390]
+2020-04-28 01:59:26,346 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1390]
+2020-04-28 02:00:14,292 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1390]
+2020-04-28 02:00:45,123 INFO: errors [in /Users/ricardo/Documents/GitHub/biomechanics-help/app.py:1390]
