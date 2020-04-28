@@ -450,7 +450,7 @@ def edit_section(classID, chapterID, sectionID):
     for image_file in image_files:
         links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
 
-    videos = query_db('SELECT * from Videos where sectionID="%s"' % sectionID)
+    videos = query_db('SELECT * from Videos where sectionID="%s" ORDER BY orderNo' % sectionID)
     video_links = []
     for video in videos:
         video_links.append((video[1], video[1].replace("/", "%%%")))
