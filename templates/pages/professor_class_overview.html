@@ -6,9 +6,11 @@
     {% for chapter in chapters %}
         {% set outer_loop = loop %}
         <h2>Chapter {{chapter[1]}}</h2>
+        {% if chapter[4] ==0 %} <p><i>Unpublished - students are unable to see content of chapter</i></p> {% endif %}
         {% for section in sections[outer_loop.index-1] %}
             {% set second_loop = loop %}
             <a href="/section/{{classID}}/{{chapter[0]}}/{{section[0]}}"><h3>Section: {{section[2]}}</h3></a>
+            {% if section[4] ==0 %} <p><i>Unpublished - students are unable to see content of section</i></p> {% endif %}
             {% for question in questions[second_loop.index-1] %}
                 {% set third_loop = loop %}
                 {% if question[2] == section[0] %}
