@@ -832,6 +832,16 @@ def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, im
                            sectionBlockID=sectionBlockID, imageFile=imageFile)
 
 
+@app.route('/professor-home/delete/<classID>/<studentemail>',
+           methods=('GET', 'POST'))
+@roles_required('Professor')
+def delete_student(classID, studentemail):
+    student_to_delete = UserClasses.query.filter_by(classID=classID).filter_by(email=studentemail).first()
+    db.session.delete(student_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-student.html')
+
+
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/delete/video/<videoFile>',
            methods=('GET', 'POST'))
 @login_required
