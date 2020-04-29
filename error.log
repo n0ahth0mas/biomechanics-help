@@ -16911,3 +16911,6 @@ jinja2.exceptions.UndefinedError: 'forms.EditVideo object' has no attribute 'vid
 2020-04-28 13:38:48,101 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1392]
 2020-04-28 13:39:08,935 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1392]
 2020-04-28 13:41:06,010 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1392]
+2020-04-29 15:50:03,478 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1421]
+2020-04-29 15:57:06,067 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1421]
+2020-04-29 16:02:20,111 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1421]

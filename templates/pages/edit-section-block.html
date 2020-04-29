@@ -1,7 +1,7 @@
 {% extends 'layouts/base' %}
 {% block title %}EditChapter{% endblock %}
 {% block content %}
-<main id="structure" role="main" class="container">
+<main id="structure" role="main" class="container main-content-container">
     <h1>Edit Section Block: {{sectionBlockID}}</h1>
     <form method="post" class="form add-chapter-form">
         {{ form.csrf_token }}
