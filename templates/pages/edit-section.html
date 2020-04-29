@@ -147,7 +147,7 @@
                 <td><img src="{{question[5]}}" width="100" height="100">
                     <form method="post" class="form" enctype=multipart/form-data>
                         {{ form_change.csrf_token }}
-                        {{ form_edit_question.questionID(value = question[0])}}
+                        {{ form_change.questionID(value = question[0])}}
                         {{ form_change.imageFile1(placeholder = form_change.imageFile1.label.text) }}
                         <input type="submit" value="Replace Image" class="btn btn1" value="{{imageFile1}}">
                     </form>

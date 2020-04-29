@@ -755,6 +755,21 @@ def edit_question(classID, chapterID, sectionID, questionID):
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
         pass
+    form_change = ChangeImage()
+    if form_change.imageFile1.data is not None and form_change.validate():
+        answerID = form_change.data["questionID"]
+        answer_to_change = Answer.query.filter_by(answerID=questionID).first()
+        image = request.files["imageFile1"]
+        if 'imageFile1' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            answer_to_change.imageFile = "/static/img/" + str(classID) + "/" + filename
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+
     answers = query_db('SELECT * from Answers where questionID="%s"' % questionID)
     questions = query_db('SELECT questionText from Questions where questionID="%s"' % questionID)[0][0]
     chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
@@ -762,12 +777,13 @@ def edit_question(classID, chapterID, sectionID, questionID):
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     questionType = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[3]
     questionImage = query_db('SELECT * from Questions where questionID="%s"' % questionID, one=True)[5]
+
     return render_template('pages/edit-question.html', classID=classID, className=className, chapterID=chapterID,
                            chapterName=chapterName, sectionID=sectionID, questions=questions, answers=answers,
                            form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType,
                            questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit,
                            drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path,
-                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form)
+                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form, form_change=form_change)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
