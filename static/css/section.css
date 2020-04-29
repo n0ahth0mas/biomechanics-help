@@ -71,6 +71,21 @@ after{
     grid-column-end: one;
     grid-row-end: top;
 }
+
+.mcImg{
+    max-width: 150px;
+    max-height:150px;
+}
+
+.enlarge{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    grid-column-start: three;
+    grid-row-start: top;
+    grid-column-end: three;
+    grid-row-end: top;
+}
 .q_img{
    max-height:100%;
    max-width:100%;
@@ -121,7 +136,7 @@ after{
     margin: .5%;
     font-size: 20px;
     transition-duration: .4s;
-    background-color: #D1D1D1;
+    background-color: #FFFCCB;
 }
 
 .disabled{
@@ -133,12 +148,12 @@ after{
 }
 
 .mult_choice:hover{
-    background-color: #FBFFB2;
+    background-color: #CBEEFF;
     transform: scale(1.1, 1.1);
 }
 
 .selected:hover{
-    background-color: #FBFFB2;
+    background-color: #CBEEFF;
     transform: scale(1.1, 1.1);
 }
 
@@ -149,7 +164,7 @@ after{
     border: 2px solid #D1D1D1;
 }
 
-.buttonDiv{
+.mcSubmit{
     padding-left: 10px;
 }
 

@@ -3,6 +3,7 @@ const scoreCounter = document.getElementById("scoreCounter");
 const finalScore = document.getElementById("quiz-final-score");
 const progressDiv = document.getElementById("prog_bub");
 const totalIndex = progressDiv.childElementCount-1;
+const enlargeBtn = document.getElementById("enlarge");
 
 const modalHead = document.getElementById("modal-header");
 const modalBody = document.getElementById("modal-body");
@@ -68,6 +69,21 @@ function renderQuestion(){
     document.getElementById("q_header"+questionIndex).style.display = "flex";
     if(document.getElementById("q_img_container"+questionIndex) !== null){
         document.getElementById("q_img_container"+questionIndex).style.display = "flex";
+        popImageModal();
+    }
+    if(document.getElementById("mcSubmit"+questionIndex)!= null){
+        enlargeBtn.style.display = "flex"
+    }
+}
+
+function popImageModal(){
+    modalHead.innerHTML= "<h4>Answer Images for Question " + (questionIndex+1) +"</h4>"
+    modalBody.innerHTML="Click images to enlarge them.<br><br>"
+    var answers = document.getElementById("answers"+questionIndex).children
+    for(var i =0; i<=answers.length-1; i++){
+        console.log("img"+questionIndex+"."+i)
+        img = document.getElementById("img"+questionIndex+"."+i).src
+        modalBody.innerHTML+= "Answer " + (i+1) +": <a href= " + img + " data-fancybox><img src=" + img + " class='mcImg' /> </a>"
     }
 }
 
@@ -349,12 +365,12 @@ function nextQuestion(){
         current_point_and_click_question_img.className = "point-n-click-img big-section-img";
     }
     if(questionIndex< totalIndex){
-        console.log("next question");
         //this represents the next point and click question
         var point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex + 1));
         if(point_and_click_question_img !== null){
             point_and_click_question_img.className = "active_point_n_click big-section-img";
         }
+        enlargeBtn.style.display = "none"
         //we also want to hide the current point and click image
         removePrevious();
         renderQuestion();

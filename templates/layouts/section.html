@@ -169,22 +169,26 @@
                             {% if question[3] == "short" %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
 
-                            <button class="mult_choice btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
+                            <button class="btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
 
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
-                             <div>
+                             <div id="answers{{outer_loop.index-1}}">
                             {% for answer in a_list[outer_loop.index-1] %}
+                            {% set answer_loop = loop %}
                             <button class="mult_choice" id="Button{{ answer[0] }}"  value="{{answer[2]}}" onclick="toggleSelected('Button{{ answer[0] }}', this, '{{answer[4]}}', '{{answer[2]}}', '{{answer[3]}}')" >
                                 {{answer[3]}}
+
                                 {% if answer[5]!="" %}
                                 <br>
-                                <img src={{answer[5]}} width="150px">
+                                <img src={{answer[5]}} class="mcImg" id="img{{outer_loop.index-1}}.{{answer_loop.index-1}}">
                                 {% endif %}
+
+
                             </button>
                             {% endfor %}
                              </div>
-                            <div class="buttonDiv">
+                            <div class="mcSubmit" id="mcSubmit{{outer_loop.index-1}}">
                                 <button onclick="checkMultChoice()" class="btn-success btn" data-toggle="modal" data-target="#myModal" >Submit</button>
                             </div>
                             {% elif question[3] == "dragndrop" %}
@@ -200,10 +204,15 @@
                             {% endif %}
                         </div>
                         {% endfor %}
+                <div class="enlarge" id="enlarge" >
+                    <button class="btn-success btn" data-toggle="modal" data-target="#myModal">Enlarge Answer Images</button>
+                </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
         <div class="page_nav">
         <!-- If there is a quiz element -->
 
