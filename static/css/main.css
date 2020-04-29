@@ -139,6 +139,17 @@ a {
     overflow: hidden;
 }
 
+#tutorial-structure{
+    padding-left: 18%;
+    width: 100% !important;
+    margin-bottom: 35%;
+}
+
+#glossary-structure{
+    padding-left: 18%;
+    width: 100% !important;
+    margin-bottom: 35%;
+}
 
 .nav-container{
     margin-left: 5%;
