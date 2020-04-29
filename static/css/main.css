@@ -145,10 +145,14 @@ a {
     padding-left: 0px;
 }
 
+.main-content-container{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 60px;
+}
+
 
 #structure {
-    padding-left: 5% !important;
-    padding-right: 5% !important;
     width: 100% !important;
     margin-bottom: 35%;
 }
