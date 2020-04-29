@@ -31,3 +31,29 @@
   </div>
 </main>
 {% endmacro %}
+
+{% macro tips(data) %}
+<img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#tutModal">
+<!-- modal for help popups -->
+        <div id="tutModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div id="tut-header" class="modal-header">
+                  <h4>Tips
+                <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+              </div>
+              <div id="tut-body" class="modal-body">
+                  <p> {{data}}</p>
+              </div>
+              <div class="tut-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+{% endmacro %}

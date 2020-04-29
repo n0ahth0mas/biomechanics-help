@@ -325,6 +325,11 @@ a {
 ul {
     list-style-type: none;
 }
+
+.tips{
+    width:15px;
+    margin:5px;
+}
 /*
 
 #content{
