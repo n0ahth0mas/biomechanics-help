@@ -6,13 +6,18 @@
     {% for chapter in chapters %}
         {% set outer_loop = loop %}
         <h2>Chapter {{chapter[1]}}</h2>
-        {% if chapter[4] ==0 %} <p><i>Unpublished - students are unable to see content of chapter</i></p> {% endif %}
+        {% if chapter[4] ==0 %} <p><i>Unpublished - students are unable to see content of chapter</i>
+        <!-- tutorial btn -->
+        {{ tips("chapter","To publish a chapter, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
+        ") }}
+        </p> {% endif %}
         {% for section in sections[outer_loop.index-1] %}
             {% set second_loop = loop %}
             <a href="/section/{{classID}}/{{chapter[0]}}/{{section[0]}}"><h3>Section: {{section[2]}}</h3></a>
             {% if section[4] ==0 %} <p><i>Unpublished - students are unable to see content of section</i>
             <!-- tutorial btn -->
-            {{ tips("This is the macro data") }}
+            {{ tips("section","To publish a section, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
+            ") }}
 
             </p> {% endif %}
             {% for question in questions[second_loop.index-1] %}

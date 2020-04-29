@@ -1,27 +1,11 @@
 {% extends 'layouts/base' %}
 {% block title %}Edit Section{% endblock %}
 {% block content %}
+{% from "layouts/macros.html" import questionTypes with context %}
 <main id="structure" role="main" class="container">
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-block alert-error section-error-alert fade in">
-      <a class="close" data-dismiss="alert">&times;</a>
-      {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a>
-    <br><br>
-    <a href="/section/{{classID}}/{{chapterID}}/{{sectionID}}"><button class="btn btn-success">Preview Section</button></a>
-    <h1>Edit Section: {{sectionName}}</h1>
-    <!-- Trigger/Open The Modal -->
-
-    <button id="myBtn" class="btn btn-primary myBtn">Add Text</button>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <!-- ALL MODALS -->
+    <!-- Add Text Modal -->
+    <div id="addTextModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -37,19 +21,10 @@
     </form>
     </div>
     </div>
-    <br>
 
-    <h3>Here is a list of texts for the section</h3>
-    <table id="myTable">
-            <tr class="header">
-                <th style="width:5%;">Text Number</th>
-                <th style="width:60%;">Text</th>
-                 <th style="width:5%;"></th>
-                <th style="width:20;">Images
-                <!-- Trigger/Open The Modal -->
-                <button id="myBtn" class="btn myBtn btn1">Add Image</button>
 
-                <div id="myModal" class="modal">
+    <!-- Add image Modal -->
+     <div id="addImageModal" class="modal">
 
                     <div class="modal-content">
                     <span class="close">&times;</span>
@@ -66,7 +41,77 @@
                         <input type="submit" value="Add Image" class="btn btn-primary btn-lg btn-block">
                     </form>
                     </div>
-                </div></th>
+                </div>
+
+    <!-- Question Modal -->
+        <div id="createQuestionModal" class="modal">
+
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <form method="post" class="form" enctype=multipart/form-data>
+            <h2>Add Question {{ questionTypes() }}</h2>
+            {{ form_q.csrf_token }}
+            Question Number:
+            {{ form_q.orderNo3(class_ = 'form-control', placeholder = form_q.orderNo3.label.text) }}
+            Question:
+            {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
+            Question Type:<br>
+            {{ form_q.questionType(placeholder = form_q.questionType.label.text, required = true) }}<br><br>
+            Image File: (If no image is uploaded, there will be a default image uploaded)
+            {{ form_q.imageFile2(placeholder = form_q.imageFile2.label.text) }}
+            <br>
+        <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
+    </form>
+    </div>
+    </div>
+
+    <!-- Video Modal -->
+        <div id="addVidModal" class="modal">
+
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <form method="post" class="form" enctype=multipart/form-data>
+            <h3>Add Video</h3>
+            {{ form_v.csrf_token }}
+            {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}<br>
+            Video Number:
+            {{ form_v.orderNo(class='form-control', placeholder = form_v.orderNo.label.text, required = true) }}
+            <input type="submit" value="Add Video" class="btn-primary btn-lg btn-block">
+        </form>
+    </div>
+</div>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert fade in">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a>
+    <br><br>
+    <a href="/section/{{classID}}/{{chapterID}}/{{sectionID}}"><button class="btn btn-success">Preview Section</button></a>
+    <h1>Edit Section: {{sectionName}}</h1>
+    <!-- Trigger/Open The Modal -->
+
+    <button id="addTextBtn" class="btn btn-primary myBtn">Add Text</button> {{ tips("text", "CONTENT NEEDED-section text") }}
+    <br>
+
+    <h3>Here is a list of texts for the section</h3>
+    <table id="myTable">
+            <tr class="header">
+                <th style="width:5%;">Text Number</th>
+                <th style="width:60%;">Text</th>
+                 <th style="width:5%;"></th>
+                <th style="width:20;">Images
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn" class="btn myBtn btn1">Add Image</button>{{ tips("image", "CONTENT NEEDED-section image") }}
+
+               </th>
                 <th style="width:5%;"></th>
             </tr>
             {% for sectionBlock in sectionBlocks %}
@@ -97,28 +142,8 @@
         </table><br><br>
 
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary myBtn">Add Question</button>
+    <button id="questionBtn" class="btn btn-primary myBtn">Add Question</button>{{ tips("question", "CONTENT NEEDED-section question") }}
 
-    <div id="myModal" class="modal">
-
-        <div class="modal-content">
-        <span class="close">&times;</span>
-        <form method="post" class="form" enctype=multipart/form-data>
-            <h2>Add Question</h2>
-            {{ form_q.csrf_token }}
-            Question Number:
-            {{ form_q.orderNo3(class_ = 'form-control', placeholder = form_q.orderNo3.label.text) }}
-            Question:
-            {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
-            Question Type:<br>
-            {{ form_q.questionType(placeholder = form_q.questionType.label.text, required = true) }}<br><br>
-            Image File: (If no image is uploaded, there will be a default image uploaded)
-            {{ form_q.imageFile2(placeholder = form_q.imageFile2.label.text) }}
-            <br>
-        <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
-    </form>
-    </div>
-</div>
     <h3>Here is a list of questions for the section</h3>
     <table id="myTable">
             <tr class="header">
@@ -157,22 +182,8 @@
             </tr>
              {% endfor %}
         </table><br><br>
-    <button id="myBtn" class="btn btn-primary myBtn">Add Video</button>
+    <button id="videoBtn" class="btn btn-primary myBtn">Add Video</button>{{ tips("video","NEED CONTENT - section vid!!!!") }}
 
-    <div id="myModal" class="modal">
-
-        <div class="modal-content">
-        <span class="close">&times;</span>
-        <form method="post" class="form" enctype=multipart/form-data>
-            <h3>Add Video</h3>
-            {{ form_v.csrf_token }}
-            {{ form_v.videoFile(placeholder = form_v.videoFile.label.text, required = true) }}<br>
-            Video Number:
-            {{ form_v.orderNo(class='form-control', placeholder = form_v.orderNo.label.text, required = true) }}
-            <input type="submit" value="Add Video" class="btn-primary btn-lg btn-block">
-        </form>
-    </div>
-</div>
     <h3>Here are all the videos associated with this section</h3>
     <table id="myTable">
         <tr class="header">
