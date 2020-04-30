@@ -271,20 +271,38 @@ function drop(ev, element) {
   $('#myModal').modal('show');
 }
 
-function submitShortAnswer(answer, submitButton, reason){
-    var correct = (submitButton.parentElement.children[0].value).includes(answer)
+function submitShortAnswer(submitButton, answerList){
+    var correct = false;
+    var enteredVal = ""
+    for(var i=0; i<=answerList.length-1; i++){
+        console.log(answerList[i])
+        var includes = ((submitButton.parentElement.children[0].value).includes(answerList[i][0]))
+        if (includes){
+            enteredVal=i;
+            correct = true
+            break;
+        }
+    }
     if(correct){
-        console.log(firstTry)
         if(tries == 0) firstTry++;
         console.log(firstTry)
         console.log("correct");
         modalHead.innerHTML = "<h4>Correct!</h4>";
-        modalBody.innerHTML = reason;
+        modalBody.innerHTML = "Your answer is correct because: " + answerList[enteredVal][1];
+        if(answerList.length > 1){
+            modalBody.innerHTML += "<br><br>Other possible answers include:<br>";
+            for(var i=0; i<=answerList.length-1; i++){
+                if (i!= enteredVal) modalBody.innerHTML += (answerList[i][0] + "<br>");
+            }
+        }
         nextQuestion();
     }else if( tries>=2){
         console.log("last Try");
         modalHead.innerHTML = "<h4>Hmm, seems like you're stuck here.</h4>";
-        modalBody.innerHTML = "The answer is " + answer+". Here's why: " + reason;
+        modalBody.innerHTML = "Here are possible answers and reasons for why they are correct:<br>"
+        for(var i=0; i<=answerList.length-1; i++){
+            modalBody.innerHTML += answerList[i][0] +": " + answerList[i][1]+"<br>"
+        }
         nextQuestion();
     } else{
         console.log("incorrect");
