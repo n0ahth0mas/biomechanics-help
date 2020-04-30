@@ -3,25 +3,18 @@
 {% block content %}
 <main id="structure" role="main" class="main-content-container">
     <h1>{{class_name}} Overview</h1>
-    <p><i>Unpublished chapter - students are unable to see content of chapter</i>
-        <!-- tutorial btn -->
-        {{ tips("chapter","To publish a chapter, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
-        ") }}
-        </p>
-    <p><i>Unpublished section - students are unable to see content of section</i>
-            <!-- tutorial btn -->
-            {{ tips("section","To publish a section, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
-            ") }}
-
-            </p>
     {% for chapter in chapters %}
+    <br>
         {% set outer_loop = loop %}
 
-        {% if chapter[4] ==0 %} <h2>Chapter {{chapter[1]}} (Unpublished)</h2> {% else %} <h2>Chapter {{chapter[1]}}</h2>{% endif %}
+        {% if chapter[4] ==0 %} <h2>Chapter: {{chapter[1]}} <i>(Unpublished){{ tips("chapter","Students are not able to see content of chapter. To publish a chapter, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
+        ") }}</i></h2> {% else %} <h2>Chapter {{chapter[1]}}</h2>{% endif %}
         {% for section in sections[outer_loop.index-1] %}
             {% set second_loop = loop %}
             <div class="indent">
-                <a href="/section/{{classID}}/{{chapter[0]}}/{{section[0]}}">{% if section[4] ==0 %}<p>-Section: {{section[2]}} (Unpublished)</p></a> {% else %} <p>-Section: {{section[2]}}</p></a>{% endif %}
+                <a href="/section/{{classID}}/{{chapter[0]}}/{{section[0]}}">{% if section[4] ==0 %}<h3>-Section: {{section[2]}} <i>(Unpublished)</i></a>
+            {{ tips("section","Students are not able to see content of section. To publish a section, navigate to its location in the professor portal and click publish on the righthand side. If a section is published and a chapter is not, the section will not appear.
+            ") }}</h3> {% else %} <h3>-Section: {{section[2]}}</h3></a>{% endif %}
             </div>
 
             <!--{% for question in questions[second_loop.index-1] %}

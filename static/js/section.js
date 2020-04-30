@@ -377,6 +377,8 @@ function nextQuestion(){
     numCorrect = 0
     buttonIDs = [];
     selectedButtons = [];
+    //modalBody.innerHTML = "";
+    //modalHead.innerHTML= "";
     var current_point_and_click_question_img = document.getElementById("point-click-question-img" + String(questionIndex));
     if(current_point_and_click_question_img !== null){
         console.log(current_point_and_click_question_img);
