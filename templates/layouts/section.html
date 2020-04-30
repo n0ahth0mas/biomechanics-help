@@ -169,7 +169,9 @@
                             {% if question[3] == "short" %}
                             {% set saList= [] %}
                             {% for answer in a_list[outer_loop.index-1] %}
-                                {{ saList.append([answer[3], answer[4]]) or "" }}
+                                {% if answer[2] ==1 %}
+                                    {{ saList.append([answer[3], answer[4]]) or "" }}
+                                {% endif %}
                             {% endfor %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
 
