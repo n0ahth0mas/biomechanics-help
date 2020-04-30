@@ -84,7 +84,9 @@
             {{ form_a.correctness(class_ = 'form-control', placeholder = form_a.correctness.label.text, required = false) }}
             Reasoning:
             {{ form_a.answerReason(class_ = 'form-control', placeholder = form_a.answerReason.label.text, required = true) }}
-            {{ form_a.imageFile(placeholder = form_a.imageFile.label.text) }}
+            {% if questionType != 'short' %}
+                {{ form_a.imageFile(placeholder = form_a.imageFile.label.text) }}
+            {% endif %}
             <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
         </form>
         {% endif %}
