@@ -166,6 +166,10 @@ h1, h3, h4 {
     margin-top: 15px;
 }
 
+.modal-content{
+    display: block !important;
+}
+
 .navbar-dark .navbar-nav .nav-link{
     color: white!important;
 }
