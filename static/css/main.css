@@ -162,6 +162,16 @@ a {
     padding-top: 60px;
 }
 
+.navbar-dark .navbar-nav .nav-link{
+    color: white!important;
+}
+
+.navbar-color{
+    background-color: #b30000 !important;
+    background-image: none !important;
+    z-index: 2;
+}
+
 
 #structure {
     width: 100% !important;

@@ -1,7 +1,7 @@
 {% extends 'layouts/base' %}
 {% block title %}Class Overview{% endblock %}
 {% block content %}
-<main id="structure" role="main" class="container main-content-container">
+<main id="structure" role="main" class="main-content-container">
     <h1>{{class_name}} Overview</h1>
     <a href="/section/{{classID}}/{{last_chapter_ID}}/{{last_section_ID}}"><button class="btn btn-primary btn-lg btn-block restart-btn">Pick Up Where You Left Off</button></a>
     {% for chapter in chapters %}
