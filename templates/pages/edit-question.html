@@ -8,7 +8,8 @@
     <button id="myBtn" onclick="displayModal()" class="btn btn-primary">Add Answer</button>
     {% if questionType == "dragndrop" %}{{ tips("dragAndDropHelp", "NEED CONTENT - Drag and Drop") }}
     {% elif questionType == "pointnclick"%}{{ tips("pointClickHelp", "NEED CONTENT - Point and Click") }}
-    {% else %}{{ tips("shortAndMcHelp", "NEED CONTENT - shortAnswer and MC") }}{% endif %}
+    {% else %}{{ tips("shortAndMcHelp", "Here you can add, edit and delete answers. Answers will have the following attributes: the answer itself, correctness, and the reasoning on why the answer is
+    wrong or right. You can also have an image associated with the answer. ") }}{% endif %}
     <!-- The Modal -->
     <div id="myModal" class="modal">
 

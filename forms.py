@@ -251,3 +251,8 @@ class ShareClassWithCanvas(FlaskForm):
 class EditVideo(FlaskForm):
     videoFile = HiddenField(validators=[DataRequired()])
     orderNo6 = IntegerField(validators=[DataRequired()])
+
+
+class AddSchool(FlaskForm):
+    schoolName = StringField('School Name', validators=[DataRequired()])
+    schoolID = StringField('School Code', validators=[DataRequired()])

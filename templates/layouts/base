@@ -22,6 +22,12 @@
   background-color: Maroon;
 }
 
+.btn3 {
+     position: absolute;
+     top: 10%;
+    right: 5%;
+}
+
 .form {
   width: 100%;
   padding: 12px 20px;
@@ -51,6 +57,29 @@
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 25%;
+  border: 1px solid #ddd;
+  font-size: 12px;
+}
+
+#myTable1 th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
 
 /* The Modal (background) */
 .modal {
