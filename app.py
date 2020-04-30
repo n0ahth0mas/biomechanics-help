@@ -976,7 +976,13 @@ def section_page(class_id, chapter, section):
         a_list = []
 
         # creating a list of questions for the page
-        q_list = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % section)
+        questions = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % section)
+
+        # getting rid of the questions that have no answer
+        q_list = []
+        for q in questions:
+            if query_db('SELECT * from Answers where questionID="%s"' % q[0]):
+                q_list.append(q)
 
         # finding all the answers of the questions on the page
         q_image_list = []
