@@ -167,10 +167,13 @@
                         <div class="q_qs" id="q_qs{{ outer_loop.index-1 }}" {% if question[3] == "dragndrop" %} style="height: 150px;" {% endif %} >
                             <!-- short answer -->
                             {% if question[3] == "short" %}
+                            {% set saList= [] %}
+                            {% for answer in a_list[outer_loop.index-1] %}
+                                {{ saList.append([answer[3], answer[4]]) or "" }}
+                            {% endfor %}
                             <input class="input" id="input" placeholder="Enter short answer here" type="text">
 
-                            <button class="btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer('{{ a_list[outer_loop.index-1][0][3]}}', this, '{{a_list[outer_loop.index-1][0][4]}}')">Submit </button>
-
+                            <button class="btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer(this, {{ saList }})">Submit </button>
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
                              <div id="answers{{outer_loop.index-1}}">
@@ -212,7 +215,6 @@
             </div>
 
         </div>
-
         <div class="page_nav">
         <!-- If there is a quiz element -->
 
