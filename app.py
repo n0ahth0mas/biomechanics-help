@@ -821,8 +821,10 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
 @roles_required('Professor')
 def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
     imageFile = imageFile.replace("%%", "/")
+    print(imageFile)
     section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(
         imageFile=imageFile).first()
+    print(section_block_image_to_delete)
     db.session.delete(section_block_image_to_delete)
     db.session.commit()
     return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID,
