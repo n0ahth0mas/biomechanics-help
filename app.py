@@ -199,6 +199,12 @@ class Question(db.Model):
     answers = db.relationship("Answer", cascade="all, delete-orphan")
 
 
+class School(db.Model):
+    __tablename__ = 'School'
+    schoolID = db.Column(db.Integer(), primary_key=True)
+    schoolName = db.Column(db.String())
+
+
 class Answer(db.Model):
     __tablename__ = 'Answers'
     answerID = db.Column(db.Integer(), primary_key=True)
@@ -286,7 +292,6 @@ def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
     if formEdit.orderNo1.data is not None and formEdit.validate():
-        # can't figure out how to cascade when we update
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.orderNo = formEdit.data["orderNo1"]
@@ -465,12 +470,10 @@ def edit_section(classID, chapterID, sectionID):
         video_links.append((video[1], video[1].replace("/", "%%%")))
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
-        print("here")
         one_section_block = SectionBlock()
         one_section_block.orderNo = form_s.data["orderNo2"]
         one_section_block.sectionText = form_s.data["sectionText"]
         one_section_block.sectionID = sectionID
-        print(one_section_block)
         db.session.add(one_section_block)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -510,7 +513,6 @@ def edit_section(classID, chapterID, sectionID):
             if 'imageFile2' not in request.files:
                 return redirect(request.url)
             if image and allowed_file(image.filename):
-                print("here")
                 filename = secure_filename(image.filename)
                 img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
                 image.save(img_path)
@@ -687,7 +689,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
     form_a = CreateAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
-    print(point_n_click_answer_form.answer_box_width)
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
         # validated point and click answer form
         point_answer = Answer()
@@ -704,10 +705,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.add(point_answer)
         db.session.commit()
     if drag_n_drop_image_form.drag_answer_image.data is not None and drag_n_drop_image_form.validate():
-        print("validates drag and drop image form")
         image = request.files['drag_answer_image']
         drag_n_drop_correct = drag_n_drop_image_form.data["correctness"]
-        print(drag_n_drop_correct)
         if 'drag_answer_image' not in request.files:
             return redirect(request.url)
         if image and allowed_file(image.filename):
@@ -719,7 +718,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
         drag_answer = Answer()
         drag_answer.questionID = questionID
         drag_answer.correctness = drag_n_drop_form.data["correctness"]
-        print(drag_answer.correctness)
         drag_answer.answerText = ""
         drag_answer.answerReason = drag_n_drop_form.data["answerReason"]
         drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
@@ -978,7 +976,13 @@ def section_page(class_id, chapter, section):
         a_list = []
 
         # creating a list of questions for the page
-        q_list = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % section)
+        questions = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % section)
+
+        # getting rid of the questions that have no answer
+        q_list = []
+        for q in questions:
+            if query_db('SELECT * from Answers where questionID="%s"' % q[0]):
+                q_list.append(q)
 
         # finding all the answers of the questions on the page
         q_image_list = []
@@ -1021,7 +1025,6 @@ def section_page(class_id, chapter, section):
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
-
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
@@ -1156,9 +1159,41 @@ def professor_home():
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
+    admin = False
+    if current_user.id == "ricardobarraza52@gmail.com" or current_user.id == "dchiu@pugetsound.edu" or current_user.id == "ashbraden1@gmail.com" or current_user.id == "jjriley@pugetsound.edu" or current_user.id == "npthomas@pugetsound.edu":
+        admin = True
+
     return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
                            formEdit=formEdit, prof_join_class_form=prof_join_class_form,
-                           share_with_canvas_form=share_class_with_canvas_form)
+                           share_with_canvas_form=share_class_with_canvas_form, admin=admin)
+
+
+@app.route('/administrator', methods=('GET', 'POST'))
+@roles_required('Professor')
+def admin():
+    formSchool = AddSchool()
+    if formSchool.schoolID.data is not None and formSchool.validate_on_submit() and query_db('SELECT * from School where schoolID="%s"' % formSchool.data["schoolID"]) == []:
+        one_school = School()
+        one_school.schoolID = formSchool.data["schoolID"]
+        one_school.schoolName = formSchool.data["schoolName"]
+        db.session.add(one_school)
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
+    schools = query_db('SELECT * from School')
+    classes = query_db('SELECT * from Classes')
+    users = query_db('SELECT * from Users')
+
+    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users), classes=len(classes))
+
+
+@app.route('/administrator/<schoolID>/delete', methods=('GET', 'POST'))
+@roles_required('Professor')
+def delete_school(schoolID):
+    school_to_delete = School.query.filter_by(schoolID=schoolID).first()
+    db.session.delete(school_to_delete)
+    db.session.commit()
+    return render_template('pages/delete-school.html', schoolID=schoolID)
 
 
 @app.route('/student-short')

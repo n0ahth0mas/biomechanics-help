@@ -115,7 +115,12 @@
                      <td>{{ form_edit.answerReason(class_ = 'form reset_me', value = answer[4]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
-            <td><img src="{{answer[5]}}" width="100" height="100">
+            <td>
+                {% if answer[5] == None%}
+                    No Files
+                {% else %}
+                    <img src="{{answer[5]}}" width="100" height="100">
+                {% endif %}
                 <form method="post" class="form" enctype=multipart/form-data>
                         {{ form_change.csrf_token }}
                         {{ form_change.questionID(value = answer[0])}}

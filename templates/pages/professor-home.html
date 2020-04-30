@@ -3,7 +3,7 @@
 {% block content %}
 <!-- Begin page content -->
 <main id="structure" role="main" class="main-content-container">
-    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a>
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> {% if admin==True %}<a href="/administrator"><button type="button" class="btn btn-success btn3">Administrator</button></a>{% endif %}
     <div>
         <h1>Welcome <i>{{ name }}</i></h1>
     </div>

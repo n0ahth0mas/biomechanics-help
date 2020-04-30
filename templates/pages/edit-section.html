@@ -1,7 +1,6 @@
 {% extends 'layouts/base' %}
 {% block title %}Edit Section{% endblock %}
 {% block content %}
-
 {% from "layouts/macros.html" import questionTypes with context %}
 <main id="structure" role="main" class="main-content-container">
     <div id="addTextModal" class="modal">
@@ -19,11 +18,8 @@
     </form>
     </div>
     </div>
-
-
     <!-- Add image Modal -->
      <div id="addImageModal" class="modal">
-
                     <div class="modal-content">
                     <span class="close">&times;</span>
                     <form method="post" class="form" enctype=multipart/form-data>
@@ -55,7 +51,7 @@
             {{ form_q.questionText(class_ = 'form-control', placeholder = form_q.questionText.label.text, required = true) }}
             Question Type:<br>
             {{ form_q.questionType(placeholder = form_q.questionType.label.text, required = true) }}<br><br>
-            Image File: (If no image is uploaded, there will be a default image uploaded)
+            Image File: (If no image is uploaded, there will be a default image uploaded)<br>
             {{ form_q.imageFile2(placeholder = form_q.imageFile2.label.text) }}
             <br>
         <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
@@ -78,12 +74,10 @@
         </form>
     </div>
 </div>
-
-
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-block alert-error section-error-alert fade in">
+    <div class="alert alert-block alert-error section-error-alert">
       <a class="close" data-dismiss="alert">&times;</a>
       {{ message }}
     </div>
@@ -92,11 +86,14 @@
     {% endwith %}
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a>
     <br><br>
-    <a href="/section/{{classID}}/{{chapterID}}/{{sectionID}}"><button class="btn btn-success">Preview Section</button></a>
+
+        <a href="/section/{{classID}}/{{chapterID}}/{{sectionID}}"><button class="btn btn-success">Preview Section</button></a>
+
     <h1>Edit Section: {{sectionName}}</h1>
     <!-- Trigger/Open The Modal -->
 
-    <button id="addTextBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addTextModal">Add Text</button> {{ tips("text", "CONTENT NEEDED-section text") }}
+    <button id="addTextBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addTextModal">Add Text</button> {{ tips("text", "Here, you can add, edit, and delete text. Each text has a text number and
+    can have multiple images associated with it.") }}
     <br>
 
     <h3>Here is a list of texts for the section</h3>
@@ -107,7 +104,8 @@
                  <th style="width:5%;"></th>
                 <th style="width:20;">Images
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal">Add Image</button>{{ tips("image", "CONTENT NEEDED-section image") }}
+                <button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal">Add Image</button>{{ tips("image", "To add an image, you must put what text number that
+                    image is going to be associated with it, as well the positions of the image, according to the text.") }}
 
                </th>
                 <th style="width:5%;"></th>
@@ -140,7 +138,8 @@
         </table><br><br>
 
     <!-- Trigger/Open The Modal -->
-    <button id="questionBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#createQuestionModal">Add Question</button>{{ tips("question", "CONTENT NEEDED-section question") }}
+    <button id="questionBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#createQuestionModal">Add Question</button>{{ tips("question", "Here you can add, edit and delete. There are four different
+    types of questions: Short Answer, Multiple Choice, Drag and Drop, and Point and Click. You can also have an image associated with the question. If no question is uploaded, then a default image will take its place.") }}
 
     <h3>Here is a list of questions for the section</h3>
     <table id="myTable">
@@ -180,10 +179,10 @@
             </tr>
              {% endfor %}
         </table><br><br>
-    <button id="videoBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addVidModal">Add Video</button>{{ tips("video","NEED CONTENT - section vid!!!!") }}
+    <button id="videoBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addVidModal">Add Video</button>{{ tips("video","Here you can add videos and set what order the videos appear for the students. ") }}
 
     <h3>Here are all the videos associated with this section</h3>
-    <table id="myTable">
+    <table id="myTable1">
         <tr class="header">
                  <th style="width:5%;">Video Number</th>
                 <th style="width:85%;">Video</th>
@@ -214,6 +213,7 @@
     {% endfor %}
 
     </table>
+
 <script>
 // Get the modal
 var modal = document.getElementsByClassName('modal');

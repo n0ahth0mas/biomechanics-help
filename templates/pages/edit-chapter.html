@@ -5,7 +5,7 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-block alert-error section-error-alert fade in">
+    <div class="alert alert-block alert-error">
       <a class="close" data-dismiss="alert">&times;</a>
       {{ message }}
     </div>
@@ -16,7 +16,12 @@
     <h1>Edit Chapter: {{chapterName}}</h1>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary">Add Section</button>
-    {{ tips("section", "NEED DATA - create/edit/delete section") }}
+    {{ tips("section", "In this page, one can add, edit and delete sections and their attributes, section number and section name. Section are meant to have all the content, eg. set of questions, texts and videos.
+    To add a section, click on the blue button and fill in the form accordingly.
+    To edit a section just simply click the attribute you want to change for the section and click the save button that
+    is in the same row as the chapter you want to edit.
+    To delete section, just click the chapter you want to trash icon that is in the row of the chapter you want to delete. You can also publish section, so that students can have access to your
+    section that you have created. The chapter that the section belongs to must be published as well for it to be accessible by the student.") }}
     <!-- The Modal -->
     <div id="myModal" class="modal">
 

@@ -6,6 +6,17 @@
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+.preview {
+  background-color: Gray;
+  border: none;
+  color: White;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+div.indent {
+  text-indent: 5%;
+}
 .btn {
   background-color: Transparent;
   border: none;
@@ -20,6 +31,12 @@
 
 .btn2:hover {
   background-color: Maroon;
+}
+
+.btn3 {
+     position: absolute;
+     top: 10%;
+    right: 5%;
 }
 
 .form {
@@ -51,6 +68,29 @@
 #myTable tr.header, #myTable tr:hover {
   background-color: #f1f1f1;
 }
+
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 25%;
+  border: 1px solid #ddd;
+  font-size: 12px;
+}
+
+#myTable1 th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+
 
 /* The Modal (background) */
 .modal {
