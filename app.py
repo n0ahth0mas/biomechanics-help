@@ -292,7 +292,6 @@ def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
     if formEdit.orderNo1.data is not None and formEdit.validate():
-        # can't figure out how to cascade when we update
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
         one_chapter.orderNo = formEdit.data["orderNo1"]
@@ -1168,7 +1167,7 @@ def professor_home():
 @roles_required('Professor')
 def admin():
     formSchool = AddSchool()
-    if formSchool.schoolID.data is not None and formSchool.validate_on_submit():
+    if formSchool.schoolID.data is not None and formSchool.validate_on_submit() and query_db('SELECT * from School where schoolID="%s"' % formSchool.data["schoolID"]) == []:
         one_school = School()
         one_school.schoolID = formSchool.data["schoolID"]
         one_school.schoolName = formSchool.data["schoolName"]
