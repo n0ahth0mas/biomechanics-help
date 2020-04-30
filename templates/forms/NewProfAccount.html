@@ -3,13 +3,13 @@
 {% block content %}
   <form method="post" class="form student-login-form">
       {{ form.csrf_token }}
-    <h3 class="form-heading">Professor Registration <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h3 class="form-heading">Professor Registration <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home float-right"></i></a></h3>
     {{ form.schoolProfCode(class_ = 'form-control', placeholder = form.schoolProfCode.label.text, required = true, autofocus = true) }}
     {{ form.fullName(class_ = 'form-control', placeholder = form.fullName.label.text, required = true) }}
     {{ form.email(class_ = 'form-control', placeholder = form.email.label.text, required = true) }}
     {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
     {{ form.confirm(class_ = 'form-control last-input', placeholder = form.confirm.label.text, required = true) }}
-    <p class="pull-left"><a href="{{ url_for('login') }}">Login</a></p>
+    <p class="float-left"><a href="{{ url_for('login') }}">Login</a></p>
     <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block">
   </form>
 <link type="text/css" rel="stylesheet" href="/static/css/home.css"/>
