@@ -96,7 +96,7 @@
     <h1>Edit Section: {{sectionName}}</h1>
     <!-- Trigger/Open The Modal -->
 
-    <button id="addTextBtn" class="btn btn-primary myBtn">Add Text</button> {{ tips("text", "CONTENT NEEDED-section text") }}
+    <button id="addTextBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addTextModal">Add Text</button> {{ tips("text", "CONTENT NEEDED-section text") }}
     <br>
 
     <h3>Here is a list of texts for the section</h3>
@@ -107,7 +107,7 @@
                  <th style="width:5%;"></th>
                 <th style="width:20;">Images
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn" class="btn myBtn btn1">Add Image</button>{{ tips("image", "CONTENT NEEDED-section image") }}
+                <button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal">Add Image</button>{{ tips("image", "CONTENT NEEDED-section image") }}
 
                </th>
                 <th style="width:5%;"></th>
@@ -140,7 +140,7 @@
         </table><br><br>
 
     <!-- Trigger/Open The Modal -->
-    <button id="questionBtn" class="btn btn-primary myBtn">Add Question</button>{{ tips("question", "CONTENT NEEDED-section question") }}
+    <button id="questionBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#createQuestionModal">Add Question</button>{{ tips("question", "CONTENT NEEDED-section question") }}
 
     <h3>Here is a list of questions for the section</h3>
     <table id="myTable">
@@ -180,7 +180,7 @@
             </tr>
              {% endfor %}
         </table><br><br>
-    <button id="videoBtn" class="btn btn-primary myBtn">Add Video</button>{{ tips("video","NEED CONTENT - section vid!!!!") }}
+    <button id="videoBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addVidModal">Add Video</button>{{ tips("video","NEED CONTENT - section vid!!!!") }}
 
     <h3>Here are all the videos associated with this section</h3>
     <table id="myTable">
@@ -223,7 +223,8 @@ var btn = document.getElementsByClassName("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close");
-
+//unecessary
+/*
 btn[0].onclick = function() {
     modal[0].style.display = "block";
 }
@@ -236,9 +237,11 @@ btn[2].onclick = function() {
 btn[3].onclick = function() {
     modal[3].style.display = "block";
 }
-
+*/
 
 // When the user clicks on <span> (x), close the modal
+//redundant
+/*
 span[0].onclick = function() {
     modal[0].style.display = "none";
 }
@@ -251,7 +254,7 @@ span[2].onclick = function() {
 span[3].onclick = function() {
     modal[3].style.display = "none";
 }
-
+*/
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {

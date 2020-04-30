@@ -162,6 +162,10 @@ a {
     padding-top: 60px;
 }
 
+.modal-backdrop {
+    display:none;
+}
+
 h1, h3, h4 {
     margin-top: 15px;
 }
@@ -180,7 +184,9 @@ h1, h3, h4 {
     z-index: 2;
 }
 
-
+.modal{
+    overflow: auto;
+}
 #structure {
     width: 100% !important;
     margin-bottom: 35%;
@@ -274,7 +280,6 @@ h1, h3, h4 {
 
 #new-drag-and-drop-answer{
     display: inline-block;
-    left: 10%;
 }
 
 .drag-answer-img-container{
