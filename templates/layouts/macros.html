@@ -32,10 +32,10 @@
 </main>
 {% endmacro %}
 
-{% macro tips(data) %}
-<img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#tutModal">
+{% macro tips(name, data) %}
+<img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#{{ name }}Modal">
 <!-- modal for help popups -->
-        <div id="tutModal" class="modal fade" role="dialog">
+        <div id="{{ name }}Modal" class="modal fade" role="dialog">
           <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -45,7 +45,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
               </div>
               <div id="tut-body" class="modal-body">
-                  <p> {{data}}</p>
+                  <p class="pTut">{{data}}</p>
               </div>
               <div class="tut-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -56,4 +56,32 @@
         </div>
 
 
+{% endmacro %}
+
+{% macro questionTypes() %}
+<img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#qTypesModal">
+<!-- modal for help popups -->
+        <div id="qTypesModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div id="qTypes-header" class="modal-header">
+                  <h4>Tips
+                <button type="button" class="close" data-dismiss="modal">&times;</button></h4>
+              </div>
+              <div id="qTypes-body" class="modal-body">
+                  <h3>Multiple choice:</h3>
+                  <p class="pTut"> This is a multiple choice answer </p>
+                  <h3>Short Answer:</h3>
+                  <h3>Drag and Drop:</h3>
+                  <h3>Point and Click:</h3>
+              </div>
+              <div class="tut-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
 {% endmacro %}

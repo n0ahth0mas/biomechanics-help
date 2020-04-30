@@ -2,13 +2,8 @@
 {% block title %}Edit Glossary{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="main-content-container">
-    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">Glossary</a>
-    <!-- Trigger/Open The Modal -->
-    <h3>Here is a list of terms in the Glossary</h3>
-    <button id="myBtn" class="btn btn-primary myBtn">Add Term</button>
-
     <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="glossModal" class="modal">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -24,6 +19,11 @@
     </form>
     </div>
     </div>
+
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">Glossary</a>
+    <!-- Trigger/Open The Modal -->
+    <h3>Here is a list of terms in the Glossary</h3>
+    <button id="glossBtn" class="btn btn-primary myBtn">Add Term</button>{{ tips("glossHelp", "NEED CONTENT - Glossary") }}
     <br><br>
     <table id="myTable">
             <tr class="header">
