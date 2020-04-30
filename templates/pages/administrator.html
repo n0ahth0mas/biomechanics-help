@@ -13,7 +13,9 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <form method="post" class="form">
                 <h2>Add Class</h2>
                 {{ formSchool.csrf_token }}

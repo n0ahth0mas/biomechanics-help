@@ -15,12 +15,14 @@
       </p>
     </div>
 
-    <button id="myBtn" class="btn btn-primary">Add Class</button>
+    <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Class</button>
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <form method="post" class="form">
                 <h2>Add Class</h2>
                 {{ form.csrf_token }}
@@ -33,13 +35,15 @@
         </div>
     </div>
 
-    <button id="collab-button" onclick="showCollabForm()" class="btn btn-primary">Collaborate on a Class</button>
+    <button id="collab-button" class="btn btn-primary" data-toggle="modal" data-target="#collab-form-modal">Collaborate on a Class</button>
     {{ tips("NEED CONTENT - Create/edit/delete a class") }}
     <!-- The Modal -->
     <div id="collab-form-modal" class="modal">
 
         <div class="modal-content">
-            <span onclick="collabFormClose()" class="close">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             <form method="post" class="form">
                 <h2>Collaborate on a Class</h2>
                 {{ prof_join_class_form.csrf_token }}

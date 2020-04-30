@@ -15,7 +15,7 @@
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a>
     <h1>Edit Class: {{className}}</h1>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary">Add Chapter</button>
+    <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Chapter</button>
     {{ tips("chapter", "On this page, one can add, edit and delete chapters and their attributes, chapter number and chapter name. Chapters are meant to have sections within them.
     To add a chapter, click on the blue button and fill in the form accordingly.
     To edit a chapter just simply click the attribute you want to change for the chapter and click the save button that
@@ -24,20 +24,21 @@
     chapter that you have created. Sections must be published as well to have them be accessible for the student.") }}
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <form method="post" class="form">
-            <h2>Add Chapter</h2>
-            {{ form.csrf_token }}
-            Chapter Number:
-            {{ form.orderNo2(class_ = 'form-control', placeholder = form.orderNo2.label.text, required = true) }}
-            Chapter Name:
-            {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
-            <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
-        </form>
-    </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <form method="post" class="form">
+                <h2>Add Chapter</h2>
+                {{ form.csrf_token }}
+                Chapter Number:
+                {{ form.orderNo2(class_ = 'form-control', placeholder = form.orderNo2.label.text, required = true) }}
+                Chapter Name:
+                {{ form.chapterName(class_ = 'form-control', placeholder = form.chapterName.label.text, required = true) }}
+                <input type="submit" value="Create Chapter" class="btn btn-primary btn-lg btn-block">
+            </form>
+        </div>
     </div>
     <h3>Here is a list of chapters in this class</h3>
         <!--Making a table for all the chapter-->

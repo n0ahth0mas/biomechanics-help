@@ -203,6 +203,7 @@ $( "#drag-and-drop-form" ).submit(function( event ) {
   return;
 });
 
+/*
 //close modals with jquery
 $( "span" ).filter( ".close" ).on('click', function(){
     // code here
@@ -225,3 +226,5 @@ $( "span" ).filter( ".close" ).on('click', function(){
         additional_modals[j].style.display = "none";
     }
 });
+
+*/

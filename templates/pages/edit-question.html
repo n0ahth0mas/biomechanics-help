@@ -5,7 +5,7 @@
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}">{{questions}}</a>
     <h3>{{questions}}</h3>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" onclick="displayModal()" class="btn btn-primary">Add Answer</button>
+    <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Answer</button>
     {% if questionType == "dragndrop" %}{{ tips("dragAndDropHelp", "First, Pick an image and decide whether this answer will be correct or incorrect.\n Next, you will be asked to pick a size for the answer image and to place this image on the question image where you would like the student to drag their answer.\n Only right answers will be given a dropbox.") }}
     {% elif questionType == "pointnclick"%}{{ tips("pointClickHelp", "You will be asked to designate an area on the question image as either a right or wrong answer. Be sure to pick a size for the box and be careful not not overlap answers. Students will not be able to see the box.") }}
     {% elif questionType == "short" %}{{ tips("shortHelp", "For short answers, simply write an answer, the reason why it is true or false and submit!") }}
@@ -16,7 +16,9 @@
 
     <!-- Modal content -->
     <div class="modal-content" {% if questionType == "dragndrop" %}id="new-drag-and-drop-answer"{% endif %}>
-        <span class="close">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         {% if questionType == "dragndrop" %}
         <div class="dragndrop-form-area">
             <form method="post" class="form image-form" enctype=multipart/form-data>

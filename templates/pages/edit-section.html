@@ -6,7 +6,9 @@
     <div id="addTextModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
         <form method="post" class="form">
             <h2>Add Text</h2>
             {{ form_s.csrf_token }}
@@ -21,7 +23,9 @@
     <!-- Add image Modal -->
      <div id="addImageModal" class="modal">
                     <div class="modal-content">
-                    <span class="close">&times;</span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     <form method="post" class="form" enctype=multipart/form-data>
                     <h2>Add Image</h2>
                         {{ form_si.csrf_token }}
@@ -41,7 +45,9 @@
         <div id="createQuestionModal" class="modal">
 
         <div class="modal-content">
-        <span class="close">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <form method="post" class="form" enctype=multipart/form-data>
             <h2>Add Question {{ questionTypes() }}</h2>
             {{ form_q.csrf_token }}
@@ -63,7 +69,9 @@
         <div id="addVidModal" class="modal">
 
         <div class="modal-content">
-        <span class="close">&times;</span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         <form method="post" class="form" enctype=multipart/form-data>
             <h3>Add Video</h3>
             {{ form_v.csrf_token }}

@@ -15,7 +15,7 @@
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a>
     <h1>Edit Chapter: {{chapterName}}</h1>
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" class="btn btn-primary">Add Section</button>
+    <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Section</button>
     {{ tips("section", "In this page, one can add, edit and delete sections and their attributes, section number and section name. Section are meant to have all the content, eg. set of questions, texts and videos.
     To add a section, click on the blue button and fill in the form accordingly.
     To edit a section just simply click the attribute you want to change for the section and click the save button that
@@ -27,7 +27,9 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <form method="post" class="form">
             <h2>Add Section</h2>
             {{ form.csrf_token }}
