@@ -33,9 +33,9 @@
 {% endmacro %}
 
 {% macro tips(name, data) %}
-<img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#{{ name }}Modal">
+<img src="/static/img/tips.png" class="tips" data-toggle="modal" data-target="#{{ name }}Modal">
 <!-- modal for help popups -->
-        <div id="{{ name }}Modal" class="modal fade" role="dialog">
+        <div id="{{ name }}Modal" class="modal" role="dialog">
           <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -61,7 +61,7 @@
 {% macro questionTypes() %}
 <img src="/static/img/tips.png" class="tips" onclick="popTutModal()" data-toggle="modal" data-target="#qTypesModal">
 <!-- modal for help popups -->
-        <div id="qTypesModal" class="modal fade" role="dialog">
+        <div id="qTypesModal" class="modal" role="dialog">
           <div class="modal-dialog">
 
             <!-- Modal content-->
