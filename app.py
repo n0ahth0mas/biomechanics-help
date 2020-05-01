@@ -204,7 +204,6 @@ class School(db.Model):
     schoolID = db.Column(db.Integer(), primary_key=True)
     schoolName = db.Column(db.String())
     subscription = db.Column(db.Boolean())
-    glossary = db.relationship("UserSchool", cascade="all, delete-orphan, save-update")
 
 
 class Answer(db.Model):
@@ -1196,6 +1195,7 @@ def professor_home():
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     admin = False
+    print(current_user.schoolID)
     #admins = query_db('SELECT * from UserSchool WHERE schoolID="%s"' % )
     #    admin = True
 
@@ -1311,6 +1311,7 @@ def login():
         passhash = h.hexdigest()
         # check passhash against the database
         user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
+        print(user_object)
         if user_object is None:
             flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
