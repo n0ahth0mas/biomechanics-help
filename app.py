@@ -207,15 +207,6 @@ class School(db.Model):
     glossary = db.relationship("UserSchool", cascade="all, delete-orphan, save-update")
 
 
-class UserSchool(db.Model):
-    __tablename__ = 'UserSchool'
-    schoolID = db.Column(db.Integer(), db.ForeignKey('School.schoolID'), primary_key=True)
-    email = db.Column(db.String(), db.ForeignKey('SectionBlock.sectionBlockID'), primary_key=True)
-
-    class Meta:
-        unique_together = (("schoolID", "email"),)
-
-
 class Answer(db.Model):
     __tablename__ = 'Answers'
     answerID = db.Column(db.Integer(), primary_key=True)
