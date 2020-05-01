@@ -207,3 +207,12 @@ $( "#drag-and-drop-form" ).submit(function( event ) {
 function setFormTextNumber (index){
     document.getElementById("orderNo4").value = index
 }
+
+var nav = document.getElementById("nav")
+function checkbox(){
+    if(document.getElementById("checkbox").checked == true){
+        nav.className = "navbar fixed-top navbar-expand-lg navbar-dark navbar-gradient"
+    } else{
+        nav.className = "navbar fixed-top navbar-expand-lg navbar-dark navbar-static"
+    }
+}
