@@ -186,6 +186,12 @@ class EditAnswer(FlaskForm):
     answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
 
 
+class EditShortAnswer(FlaskForm):
+    answerID = HiddenField()
+    answerText4 = TextAreaField('Answer Text', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+
+
 class ChangeImage(FlaskForm):
     questionID = HiddenField()
     imageFile1 = FileField(validators=[DataRequired()])
@@ -205,6 +211,12 @@ class CreateAnswer(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = TextAreaField('Answer Text', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+    imageFile = FileField('Image File')
+
+
+class CreateShortAnswer(FlaskForm):
+    answerText3 = TextAreaField('Answer Text', validators=[DataRequired()])
     answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
     imageFile = FileField('Image File')
 

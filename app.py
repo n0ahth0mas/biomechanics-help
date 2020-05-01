@@ -720,6 +720,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_image_form = UploadDragNDropImage()
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
+    form_short = CreateShortAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
@@ -763,12 +764,25 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
+        print("here")
         one_answer = Answer()
         one_answer.questionID = questionID
         one_answer.correctness = form_a.data["correctness"]
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
         one_answer.imageFile = form_a.data["imageFile"]
+        db.session.add(one_answer)
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+    elif request.method == 'POST':
+        pass
+    if form_short.answerText3.data is not None and form_short.validate():
+        one_answer = Answer()
+        one_answer.questionID = questionID
+        one_answer.answerText = form_short.data["answerText3"]
+        one_answer.correctness = True
+        one_answer.answerReason = form_short.data["answerReason"]
+        one_answer.imageFile = form_short.data["imageFile"]
         db.session.add(one_answer)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
@@ -782,6 +796,16 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.answerReason = form_edit.data["answerReason"]
         if not form_a.data["correctness"] == "":
             one_answer.correctness = form_edit.data["correctness"]
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+    elif request.method == 'POST':
+        pass
+    form_short_edit = EditShortAnswer()
+    if form_short_edit.answerText4.data is not None and form_short_edit.validate():
+        answerID = form_short_edit.data["answerID"]
+        one_answer = Answer.query.filter_by(answerID=answerID).first()
+        one_answer.answerText = form_short_edit.data["answerText4"]
+        one_answer.answerReason = form_short_edit.data["answerReason"]
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
@@ -814,7 +838,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
                            form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType,
                            questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit,
                            drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path,
-                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form, form_change=form_change)
+                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form,
+                           form_change=form_change, form_short_edit=form_short_edit, form_short=form_short)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
