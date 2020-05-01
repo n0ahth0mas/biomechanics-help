@@ -10,6 +10,7 @@ drop table if exists SectionImages;
 drop table if exists Videos;
 drop table if exists Enroll;
 drop table if exists School;
+drop table if exists UserSchool;
 drop table if exists Users;
 drop table if exists User_roles;
 drop table if exists Roles;
@@ -164,6 +165,18 @@ CREATE TABLE School(
         schoolID       TEXT,
         schoolName     TEXT,
         PRIMARY KEY(schoolID)
+);
+
+CREATE TABLE UserSchool(
+        schoolID       TEXT,
+        email           TEXT,
+        PRIMARY KEY(schoolID, email)
+        FOREIGN KEY (email) REFERENCES Users (email)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
+        FOREIGN KEY (schoolID) REFERENCES School (studentID)
+            ON UPDATE CASCADE
+            ON DELETE CASCADE
 );
 
 CREATE TABLE Users(
