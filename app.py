@@ -203,6 +203,17 @@ class School(db.Model):
     __tablename__ = 'School'
     schoolID = db.Column(db.Integer(), primary_key=True)
     schoolName = db.Column(db.String())
+    subscription = db.Column(db.Boolean())
+    glossary = db.relationship("UserSchool", cascade="all, delete-orphan, save-update")
+
+
+class UserSchool(db.Model):
+    __tablename__ = 'UserSchool'
+    schoolID = db.Column(db.Integer(), db.ForeignKey('School.schoolID'), primary_key=True)
+    email = db.Column(db.String(), db.ForeignKey('SectionBlock.sectionBlockID'), primary_key=True)
+
+    class Meta:
+        unique_together = (("schoolID", "email"),)
 
 
 class Answer(db.Model):
@@ -261,6 +272,7 @@ class User(db.Model, UserMixin):
     id = email
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
+    schoolID = db.Column(db.String(), db.ForeignKey('School.schoolID'))
     roles = db.relationship('Role', secondary='User_roles')
     classes = db.relationship('Class', secondary='Enroll')
     active = True
@@ -283,6 +295,23 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
+    adminID = "3141592653589admin"
+    if not query_db('SELECT * from School where schoolID="%s"' % adminID):
+        admin = School()
+        admin.schoolID = adminID
+        admin.schoolName = "administrator"
+        admin.subscription = True
+        roleP = Role()
+        roleP.id = 35
+        roleP.name = "Professor"
+        roleS = Role()
+        roleS.id = 36
+        roleS.name = "Student"
+        db.session.add(admin)
+        db.session.add(roleP)
+        db.session.add(roleS)
+        db.session.commit()
+
     return render_template('pages/landing.html')
 
 
@@ -1162,8 +1191,8 @@ def professor_home():
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     admin = False
-    if current_user.id == "ricardobarraza52@gmail.com" or current_user.id == "dchiu@pugetsound.edu" or current_user.id == "ashbraden1@gmail.com" or current_user.id == "jjriley@pugetsound.edu" or current_user.id == "npthomas@pugetsound.edu":
-        admin = True
+    #admins = query_db('SELECT * from UserSchool WHERE schoolID="%s"' % )
+    #    admin = True
 
     return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
                            formEdit=formEdit, prof_join_class_form=prof_join_class_form,
@@ -1305,6 +1334,7 @@ def new_prof_acc():
             passhash = h.hexdigest()
             user = User(id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
                         password=passhash)
+            user.schoolID = school_code[0]
             role = Role.query.filter_by(name='Professor').one()
             user.roles.append(role)
             db.session.add(user)
