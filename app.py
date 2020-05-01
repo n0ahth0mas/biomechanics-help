@@ -1085,11 +1085,15 @@ def section_page(class_id, chapter, section):
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
+        prof = False
+        if query_db('SELECT role_id from User_roles where user_id = "%s"' % current_user.id)[0][0] == 35:
+            prof = True
+
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
                                section_name=section_name, section_id_before=section_id_before,
-                               next_ch_sect=next_ch_sect,
+                               next_ch_sect=next_ch_sect, prof=prof,
                                chapter_after=chapter_after, section_after=section_after)
     else:
         flash("Please enroll in a class before navigating to it.")
