@@ -351,17 +351,17 @@ def edit_glossary(classID):
         db.session.add(one_entry)
         db.session.commit()
 
-        print(request.files.to_dict())
-        for img in request.files.to_dict():
+        print(request.files.getlist("imgs"))
+        for img in request.files.getlist(form.imgs.name):
             # Create Images
             one_image = GlossaryImages()
             one_image.termID = one_entry.termID
-            file_name = secure_filename(img[img].filename)
+            file_name = secure_filename(img.filename)
             one_image.imageFile = "/static/img/" + str(classID) + "/" + file_name
             db.session.add(one_image)
             db.session.commit()
             img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), file_name)
-            img[img].save(img_path)
+            img.save(img_path)
 
         print(one_entry.definition)
 
