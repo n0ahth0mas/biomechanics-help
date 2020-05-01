@@ -46,13 +46,17 @@
                     {% if _term[1][0] == _alpha %}
                         <p>
                             <strong>{{_term[1]}}</strong>: {{_term[2]}}
-                            {% for _image in images %}
-                                {% if _image[0][0] == _term[0] %}
-                                    <p class="img_container" id="{{_term[1]}} Image"title="{{_term[1]}} Image">
-                                        <img class="img" alt="Picture Unavailable" src="{{ _image[0][1] }}">
-                                    </p>
-                                {% endif %}
-                            {% endfor %}
+                            <div class="term-images-container card-group">
+                                {% for _image_array in images %}
+                                    {% for _image in _image_array %}
+                                        {% if _image[0] == _term[0] %}
+                                            <div class="card card-width-setting" id="{{_term[1]}} Image"title="{{_term[1]}} Image">
+                                                <img class="card-img-top" alt="Picture Unavailable" src="{{ _image[1] }}">
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
                         </p>
                         <hr>
                         {% set idx = (idx+1) %}
