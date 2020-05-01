@@ -227,6 +227,9 @@ h1, h3, h4 {
     max-width: 10rem;
 }
 
+.hidden-form-field{
+    display: none !important;
+}
 
 .term-images-container{
     display: inline-block;

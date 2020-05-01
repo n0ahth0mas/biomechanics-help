@@ -203,28 +203,7 @@ $( "#drag-and-drop-form" ).submit(function( event ) {
   return;
 });
 
-/*
-//close modals with jquery
-$( "span" ).filter( ".close" ).on('click', function(){
-    // code here
-    console.log("thinks we clicked a thing");
-    var modals = document.getElementsByClassName("modal-content");
-    console.log(modals.length);
-    for(i = 0; i < modals.length;i++){
-        console.log(modals[i].style.display);
-        modals[i].style.display = "none";
-        console.log(modals[i].style.display);
-    }
 
-    var specialModal = document.getElementById("myModal");
-    if(specialModal !== null){
-        specialModal.style.display = "none";
-    }
-
-    var additional_modals = document.getElementsByClassName("modal");
-    for(j = 0; j < additional_modals.length;j++){
-        additional_modals[j].style.display = "none";
-    }
-});
-
-*/
+function setFormTextNumber (index){
+    document.getElementById("orderNo4").value = index
+}
