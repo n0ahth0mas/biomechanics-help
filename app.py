@@ -1240,7 +1240,16 @@ def admin():
         one_school = School()
         one_school.schoolID = formSchool.data["schoolID"]
         one_school.schoolName = formSchool.data["schoolName"]
+        one_school.subscription = True
         db.session.add(one_school)
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
+    form_subscription = Subscription()
+    if not form_subscription.schoolID.data == "" and form_subscription.validate():
+        schoolID = form_subscription.data["schoolID"]
+        one_school = School.query.filter_by(schoolID=schoolID).first()
+        one_school.subscription = not one_school.subscription
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -1248,7 +1257,8 @@ def admin():
     classes = query_db('SELECT * from Classes')
     users = query_db('SELECT * from Users')
 
-    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users), classes=len(classes))
+    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users),
+                           classes=len(classes), form_subscription=form_subscription)
 
 
 @app.route('/administrator/<schoolID>/delete', methods=('GET', 'POST'))

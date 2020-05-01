@@ -199,12 +199,10 @@ class ChangeImage(FlaskForm):
 
 class PublishChapter(FlaskForm):
     chapterID = HiddenField()
-    publish = HiddenField()
 
 
 class PublishSection(FlaskForm):
     sectionID = HiddenField()
-    publish = HiddenField()
 
 
 class CreateAnswer(FlaskForm):
@@ -271,3 +269,8 @@ class EditVideo(FlaskForm):
 class AddSchool(FlaskForm):
     schoolName = StringField('School Name', validators=[DataRequired()])
     schoolID = StringField('School Code', validators=[DataRequired()])
+    subscription = BooleanField(validators=[DataRequired()])
+
+
+class Subscription(FlaskForm):
+    schoolID = HiddenField()
