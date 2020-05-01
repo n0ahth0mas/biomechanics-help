@@ -76,6 +76,17 @@
             </div>
             <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
         </form>
+        {% elif questionType == "short" %}
+        <form method="post" class="form">
+            <h2>Add Answer</h2>
+            {{ form_short.csrf_token }}
+            Answer Text:
+            {{ form_short.answerText3(class_ = 'form-control', placeholder = form_short.answerText3.label.text, required = true) }}
+            Reasoning:
+            {{ form_short.answerReason(class_ = 'form-control', placeholder = form_short.answerReason.label.text, required = true) }}
+            {{ form_short.imageFile(placeholder = form_a.imageFile.label.text) }}
+            <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
+        </form>
         {% else %}
         <form method="post" class="form">
             <h2>Add Answer</h2>
@@ -86,9 +97,7 @@
             {{ form_a.correctness(class_ = 'form-control', placeholder = form_a.correctness.label.text, required = false) }}
             Reasoning:
             {{ form_a.answerReason(class_ = 'form-control', placeholder = form_a.answerReason.label.text, required = true) }}
-            {% if questionType != 'short' %}
-                {{ form_a.imageFile(placeholder = form_a.imageFile.label.text) }}
-            {% endif %}
+            {{ form_a.imageFile(placeholder = form_a.imageFile.label.text) }}
             <input type="submit" value="Create Answer" class="btn btn-primary btn-lg btn-block">
         </form>
         {% endif %}
@@ -99,7 +108,9 @@
     <table id="myTable">
         <tr class="header">
             <th style="width:30%;">Answer</th>
-            <th style="width:10%;">Correctness</th>
+            {% if questionType != 'short' %}
+                <th style="width:10%;">Correctness</th>
+            {% endif  %}
             <th style="width:25%;">Reason</th>
             <th style="width:5%;"></th>
             <th style="width:20%;">Image File</th>
@@ -108,6 +119,16 @@
         </tr>
         {% for answer in answers %}
         <tr>
+            {% if questionType=="short" %}
+                <!--form to edit answer-->
+                 <form method="post" class="form">
+                        {{ form_edit.csrf_token }}
+                        {{ form_short_edit.answerID(value = answer[0])}}
+                     <td>{{ form_short_edit.answerText4(class_ = 'form reset_me', value = answer[3]) }}</td>
+                     <td>{{ form_short_edit.answerReason(class_ = 'form reset_me', value = answer[4]) }}</td>
+                     <td><input type="submit" value="Save" class="btn btn1"></td>
+                    </form>
+            {% else %}
             <!--form to edit answer-->
                  <form method="post" class="form">
                         {{ form_edit.csrf_token }}
@@ -119,6 +140,7 @@
                      <td>{{ form_edit.answerReason(class_ = 'form reset_me', value = answer[4]) }}</td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
+            {% endif %}
             <td>
                 {% if answer[5] == None%}
                     No File has been uploaded

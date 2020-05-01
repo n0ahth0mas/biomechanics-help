@@ -164,25 +164,15 @@ CREATE TABLE Enroll(
 CREATE TABLE School(
         schoolID       TEXT,
         schoolName     TEXT,
+        subscription    BOOLEAN check(subscription IS NOT NULL),
         PRIMARY KEY(schoolID)
-);
-
-CREATE TABLE UserSchool(
-        schoolID       TEXT,
-        email           TEXT,
-        PRIMARY KEY(schoolID, email)
-        FOREIGN KEY (email) REFERENCES Users (email)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
-        FOREIGN KEY (schoolID) REFERENCES School (studentID)
-            ON UPDATE CASCADE
-            ON DELETE CASCADE
 );
 
 CREATE TABLE Users(
         email           TEXT,
         password        TEXT,
         name            TEXT,
+        schoolID        TEXT,
         PRIMARY KEY(email)
 );
 

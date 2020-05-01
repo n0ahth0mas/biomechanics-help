@@ -32,12 +32,28 @@
         <tr class="header">
             <th style="width:40%;">School Name</th>
             <th style="width:40%;">School Code</th>
-            <th style="width:10%;"></th>
+            <th style="width:5%;">Status</th>
+            <th style="width:5%;"></th>
             </tr>
     {% for school in schools %}
         <tr>
             <td>{{ school[1] }}</td>
             <td>{{ school[0] }}</td>
+                {% if school[2] == False %}
+                        <!--form to publish-->
+                        <form method="post" class="form">
+                            {{ form_subscription.csrf_token }}
+                            {{ form_subscription.schoolID(value = school[0])}}
+                            <td><input type="submit" value="Activate" class="btn btn1"></td>
+                        </form>
+                     {% else %}
+                        <!--form to unpublish-->
+                        <form method="post" class="form">
+                            {{ form_subscription.csrf_token }}
+                            {{ form_subscription.schoolID(value = school[0])}}
+                            <td><input type="submit" value="Unactivate" class="btn btn1"></td>
+                        </form>
+                     {% endif %}
             <td><a href="/administrator/{{school[0]}}/delete"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>
         </tr>
     {% endfor %}

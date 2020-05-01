@@ -203,6 +203,7 @@ class School(db.Model):
     __tablename__ = 'School'
     schoolID = db.Column(db.Integer(), primary_key=True)
     schoolName = db.Column(db.String())
+    subscription = db.Column(db.Boolean())
 
 
 class Answer(db.Model):
@@ -261,6 +262,7 @@ class User(db.Model, UserMixin):
     id = email
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
+    schoolID = db.Column(db.String(), db.ForeignKey('School.schoolID'))
     roles = db.relationship('Role', secondary='User_roles')
     classes = db.relationship('Class', secondary='Enroll')
     active = True
@@ -283,6 +285,23 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 
 @app.route('/')
 def home():
+    adminID = "3141592653589admin"
+    if not query_db('SELECT * from School where schoolID="%s"' % adminID):
+        admin = School()
+        admin.schoolID = adminID
+        admin.schoolName = "administrator"
+        admin.subscription = True
+        roleP = Role()
+        roleP.id = 35
+        roleP.name = "Professor"
+        roleS = Role()
+        roleS.id = 36
+        roleS.name = "Student"
+        db.session.add(admin)
+        db.session.add(roleP)
+        db.session.add(roleS)
+        db.session.commit()
+
     return render_template('pages/landing.html')
 
 
@@ -701,6 +720,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_image_form = UploadDragNDropImage()
     drag_n_drop_form = CreateDragNDropAnswer()
     form_a = CreateAnswer()
+    form_short = CreateShortAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
@@ -744,12 +764,25 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
+        print("here")
         one_answer = Answer()
         one_answer.questionID = questionID
         one_answer.correctness = form_a.data["correctness"]
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
         one_answer.imageFile = form_a.data["imageFile"]
+        db.session.add(one_answer)
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+    elif request.method == 'POST':
+        pass
+    if form_short.answerText3.data is not None and form_short.validate():
+        one_answer = Answer()
+        one_answer.questionID = questionID
+        one_answer.answerText = form_short.data["answerText3"]
+        one_answer.correctness = True
+        one_answer.answerReason = form_short.data["answerReason"]
+        one_answer.imageFile = form_short.data["imageFile"]
         db.session.add(one_answer)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
@@ -763,6 +796,16 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.answerReason = form_edit.data["answerReason"]
         if not form_a.data["correctness"] == "":
             one_answer.correctness = form_edit.data["correctness"]
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
+    elif request.method == 'POST':
+        pass
+    form_short_edit = EditShortAnswer()
+    if form_short_edit.answerText4.data is not None and form_short_edit.validate():
+        answerID = form_short_edit.data["answerID"]
+        one_answer = Answer.query.filter_by(answerID=answerID).first()
+        one_answer.answerText = form_short_edit.data["answerText4"]
+        one_answer.answerReason = form_short_edit.data["answerReason"]
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
@@ -795,7 +838,8 @@ def edit_question(classID, chapterID, sectionID, questionID):
                            form_a=form_a, questionID=questionID, sectionName=sectionName, questionType=questionType,
                            questionImage=questionImage, drag_n_drop_form=drag_n_drop_form, form_edit=form_edit,
                            drag_n_drop_image_form=drag_n_drop_image_form, drag_n_drop_answer_image=local_img_path,
-                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form, form_change=form_change)
+                           drag_n_drop_correct=drag_n_drop_correct, point_n_click_answer_form=point_n_click_answer_form,
+                           form_change=form_change, form_short_edit=form_short_edit, form_short=form_short)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>/delete/<answerID>',
@@ -1041,11 +1085,15 @@ def section_page(class_id, chapter, section):
         this_user_class = UserClasses.query.filter_by(email=current_user.id, classID=class_id).first()
         this_user_class.lastSectionID = section
         db.session.commit()
+        prof = False
+        if query_db('SELECT role_id from User_roles where user_id = "%s"' % current_user.id)[0][0] == 35:
+            prof = True
+
         return render_template('layouts/section.html', chapter=chapter, section=section, q_list=q_list,
                                a_list=a_list, classID=class_id, chapter_name=chapter_name, section_order=section_order,
                                section_images=section_images, video_files=video_files, section_text=section_text,
                                section_name=section_name, section_id_before=section_id_before,
-                               next_ch_sect=next_ch_sect,
+                               next_ch_sect=next_ch_sect, prof=prof,
                                chapter_after=chapter_after, section_after=section_after)
     else:
         flash("Please enroll in a class before navigating to it.")
@@ -1176,7 +1224,7 @@ def professor_home():
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     admin = False
-    if current_user.id == "ricardobarraza52@gmail.com" or current_user.id == "dchiu@pugetsound.edu" or current_user.id == "ashbraden1@gmail.com" or current_user.id == "jjriley@pugetsound.edu" or current_user.id == "npthomas@pugetsound.edu":
+    if current_user.schoolID == "3141592653589admin":
         admin = True
 
     return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
@@ -1192,7 +1240,16 @@ def admin():
         one_school = School()
         one_school.schoolID = formSchool.data["schoolID"]
         one_school.schoolName = formSchool.data["schoolName"]
+        one_school.subscription = True
         db.session.add(one_school)
+        db.session.commit()
+    elif request.method == 'POST':
+        pass
+    form_subscription = Subscription()
+    if not form_subscription.schoolID.data == "" and form_subscription.validate():
+        schoolID = form_subscription.data["schoolID"]
+        one_school = School.query.filter_by(schoolID=schoolID).first()
+        one_school.subscription = not one_school.subscription
         db.session.commit()
     elif request.method == 'POST':
         pass
@@ -1200,7 +1257,8 @@ def admin():
     classes = query_db('SELECT * from Classes')
     users = query_db('SELECT * from Users')
 
-    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users), classes=len(classes))
+    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users),
+                           classes=len(classes), form_subscription=form_subscription)
 
 
 @app.route('/administrator/<schoolID>/delete', methods=('GET', 'POST'))
@@ -1291,6 +1349,7 @@ def login():
         passhash = h.hexdigest()
         # check passhash against the database
         user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
+        print(user_object)
         if user_object is None:
             flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
@@ -1322,6 +1381,7 @@ def new_prof_acc():
             passhash = h.hexdigest()
             user = User(id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
                         password=passhash)
+            user.schoolID = school_code[0]
             role = Role.query.filter_by(name='Professor').one()
             user.roles.append(role)
             db.session.add(user)
