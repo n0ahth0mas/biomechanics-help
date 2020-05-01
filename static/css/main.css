@@ -220,7 +220,18 @@ h1, h3, h4 {
 }
 
 #myBtn2{
-    margin-top: 20px;
+    margin-left: 1%;
+}
+
+.card-width-setting{
+    max-width: 10rem;
+}
+
+
+.term-images-container{
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 .student-login-form{

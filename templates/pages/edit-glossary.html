@@ -17,6 +17,7 @@
             {{ form.term(class_ = 'form-control', placeholder = form.term.label.text, required = true) }}
             Definition:
             {{ form.definition(class_ = 'form-control', placeholder = form.definition.label.text, required = true) }}
+            {{ form.imgs(class_ = 'form-control') }}
             <input type="submit" value="Add Text" class="btn btn-primary btn-lg btn-block">
     </form>
     </div>
@@ -24,6 +25,9 @@
 
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/glossary">Glossary</a>
     <!-- Trigger/Open The Modal -->
+    <br>
+    <br>
+    <a href="/glossary/{{classID}}"><button class="btn btn-success">View Glossary</button></a>
     <h3>Terms</h3>
     <button id="glossBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#glossModal">Add Term</button>{{ tips("glossHelp", "This is page is used to add, edit and delete terms from the Glossary. Each term has a definition and
     can have multiple images associated with it.") }}

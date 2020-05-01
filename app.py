@@ -377,9 +377,23 @@ def edit_glossary(classID):
         one_entry.classID = classID
         one_entry.term = form.data["term"]
         one_entry.definition = form.data["definition"]
-        print(one_entry.definition)
         db.session.add(one_entry)
         db.session.commit()
+
+        print(request.files.to_dict())
+        for img in request.files.to_dict():
+            # Create Images
+            one_image = GlossaryImages()
+            one_image.termID = one_entry.termID
+            file_name = secure_filename(img[img].filename)
+            one_image.imageFile = "/static/img/" + str(classID) + "/" + file_name
+            db.session.add(one_image)
+            db.session.commit()
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), file_name)
+            img[img].save(img_path)
+
+        print(one_entry.definition)
+
         return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
@@ -1235,7 +1249,7 @@ def student_short():
 @app.route('/glossary/<classID>')
 @roles_required(['Student', 'Professor'])
 def glossaryTemplate(classID):
-    db_gloss = query_db('SELECT * from Glossary WHERE classID="{}"'.format(classID))
+    db_gloss = query_db('SELECT * from Glossary WHERE classID="{}" ORDER BY term'.format(classID))
     db_class_name = query_db('SELECT className from Classes WHERE classID="{}"'.format(classID), one=True)
 
     class_name = db_class_name[0]
@@ -1249,10 +1263,13 @@ def glossaryTemplate(classID):
         terms.append((x[2]))
         defs.append(x[3])
 
-    for y in range(len(ids)):
-        temp = query_db('SELECT * from GlossaryImages WHERE termID = "%s"' % str(ids[y]))
-        if temp != []:
-            images.append(temp)
+    #for y in range(len(ids)):
+    #    print("thinks it should get another glossary image from the db")
+    #    temp = query_db('SELECT * from GlossaryImages WHERE termID = "%s"' % str(ids[y]))
+    #    if temp != []:
+    #        images.append(temp)
+    for this_id in ids:
+        images.append(query_db('SELECT * from GlossaryImages WHERE termID = "%s"' % this_id))
 
     alpha = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
              "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]

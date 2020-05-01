@@ -16,6 +16,8 @@
     <h1>Edit Class: {{className}}</h1>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Chapter</button>
+    <button id="myBtn2" class="btn btn-primary" onclick="window.location.href = '/edit-class/{{classID}}/glossary';">Open Glossary</button>
+
     {{ tips("chapter", "On this page, one can add, edit and delete chapters and their attributes, chapter number and chapter name. Chapters are meant to have sections within them.
     To add a chapter, click on the blue button and fill in the form accordingly.
     To edit a chapter just simply click the attribute you want to change for the chapter and click the save button that
@@ -85,7 +87,6 @@
             </tr>
             {% endfor %}
         </table>
-    <button id="myBtn2" class="btn btn-primary" onclick="window.location.href = '/edit-class/{{classID}}/glossary';">Open Glossary</button>
 
 <script>
 // Get the modal

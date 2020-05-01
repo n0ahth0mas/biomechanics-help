@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, SelectField, HiddenField, TextAreaField
+from wtforms import TextField, PasswordField, StringField, IntegerField, FileField, BooleanField, SubmitField, \
+    SelectField, HiddenField, TextAreaField, MultipleFileField
 from wtforms.validators import DataRequired, EqualTo, Length
 from wtforms.fields.html5 import EmailField, DecimalRangeField
 from wtforms import validators
@@ -108,6 +109,8 @@ class CreateVideo(FlaskForm):
 class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
     definition = TextAreaField("Definition", validators=[DataRequired()])
+    imgs = MultipleFileField("Term Images")
+    upload = SubmitField('Upload')
 
 
 class ForgotForm(FlaskForm):
