@@ -1195,9 +1195,8 @@ def professor_home():
         class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
         classes_list.append(class_tuple)
     admin = False
-    print(current_user.schoolID)
-    #admins = query_db('SELECT * from UserSchool WHERE schoolID="%s"' % )
-    #    admin = True
+    if current_user.schoolID == "3141592653589admin":
+        admin = True
 
     return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
                            formEdit=formEdit, prof_join_class_form=prof_join_class_form,
