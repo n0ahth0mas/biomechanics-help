@@ -275,3 +275,7 @@ class AddSchool(FlaskForm):
 
 class Subscription(FlaskForm):
     schoolID1 = HiddenField()
+
+
+class DeleteImage(FlaskForm):
+    sectionBlockID2 = HiddenField()
