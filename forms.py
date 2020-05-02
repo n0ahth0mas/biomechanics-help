@@ -51,10 +51,11 @@ class StudentRegForm(FlaskForm):
         [DataRequired(),
          EqualTo('password', message='Passwords must match')]
     )
+    organization = SelectField(validators=[DataRequired()])
 
 
 class ProfessorRegForm(FlaskForm):
-    schoolProfCode = StringField('Your Schools Professor Code', validators=[DataRequired()])
+    schoolProfCode = StringField('Organization Code', validators=[DataRequired()])
     fullName = StringField('Full name', validators=[DataRequired()])
     email = EmailField('Email address', [validators.DataRequired(), validators.Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -273,4 +274,4 @@ class AddSchool(FlaskForm):
 
 
 class Subscription(FlaskForm):
-    schoolID = HiddenField()
+    schoolID1 = HiddenField()
