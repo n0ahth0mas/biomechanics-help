@@ -594,7 +594,7 @@ def edit_section(classID, chapterID, sectionID):
         pass
     form_si = CreateSectionBlockImages()
     if form_si.orderNo4.data is not None and form_si.validate_on_submit():
-        one_image = SectionBlockImages()
+
         orderNo = form_si.data["orderNo4"]
         list = []
         list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
@@ -604,10 +604,13 @@ def edit_section(classID, chapterID, sectionID):
                 if len(list) == counter:
                     flash("Text Number does not exists")
             else:
-                one_image.sectionBlockID = \
-                    query_db(
-                        'SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][
-                        0]
+                sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
+                if SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first() is not None:
+                    one_image = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first()
+                    print("no")
+                else:
+                    one_image = SectionBlockImages()
+                    one_image.sectionBlockID = sectionBlockID
                 image = request.files["imageFile"]
                 if 'imageFile' not in request.files:
                     return redirect(request.url)
