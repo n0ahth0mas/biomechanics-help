@@ -55,13 +55,19 @@
                  <table>
                 {% for image_file in image_files %}
                     {% if image_file[0] == term[1] %}
-                        {% for link in links %}
-                            {% if link[1] == image_file[1] %}
                                 <tr>
-                                    <td><li><img src="{{ image_file[1] }}" height="100" width="100"><a href="/edit-class/{{classID}}/glossary/delete/image/{{term[1]}}/{{link[2]}}"><button type="button" class="btn" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a><br></li></td>
+                                    <td>
+                                        <li><img src="{{ image_file[1] }}" height="100" width="100"></li>
+                                        <li>
+                                            <form method="post" class="form">
+                                                {{ form_delete_image.csrf_token }}
+                                                {{ form_delete_image.termID3(value = image_file[0])}}
+                                                {{ form_delete_image.imageFile(value = image_file[1])}}
+                                                <li><input type="submit" value="Delete Image"class="btn"></li>
+                                            </form>
+                                        </li>
+                                    </td>
                                 </tr>
-                             {% endif %}
-                        {% endfor %}
                     {% endif %}
                 {% endfor %}
                 </table>
