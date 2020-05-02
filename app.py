@@ -414,6 +414,14 @@ def edit_glossary(classID):
         return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
+
+    form_delete_image = DeleteTermImage()
+    if form_delete_image.validate() and form_delete_image.termID3:
+        termID = form_delete_image.data["termID3"]
+        imageFile = form_delete_image.data["imageFile"]
+        image_to_delete = GlossaryImages.query.filter_by(termID=termID).filter_by(imageFile=imageFile).first()
+        db.session.delete(image_to_delete)
+        db.session.commit()
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
 
     terms = query_db('SELECT * from Glossary where classID="%s"' % classID)
@@ -427,7 +435,7 @@ def edit_glossary(classID):
         links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
     print(links)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
-                           form_i=form_i, image_files=image_files, form_edit=form_edit, links=links)
+                           form_i=form_i, image_files=image_files, form_edit=form_edit, links=links, form_delete_image=form_delete_image)
 
 
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
@@ -487,6 +495,9 @@ def edit_chapter(classID, chapterID):
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
+
+
+
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
     image_files = []
     for sectionBlock in sectionBlocks:
@@ -632,7 +643,9 @@ def edit_section(classID, chapterID, sectionID):
                 return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
             counter = counter + 1
     form_delete_image = DeleteImage()
-    if form_delete_image.sectionBlockID2.data is not None and form_delete_image.validate():
+    print(form_delete_image.validate())
+    print(form_delete_image.sectionBlockID2.data)
+    if form_delete_image.sectionBlockID2.data is not None and form_delete_image.validate() and not form_delete_image.sectionBlockID2.data == "":
         sectionBlockID = form_delete_image.data["sectionBlockID2"]
         one_image = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first()
         db.session.delete(one_image)
@@ -668,6 +681,20 @@ def edit_section(classID, chapterID, sectionID):
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
+
+    form_delete_video = DeleteVideo()
+    if form_delete_video.videoFile2.data is not None and form_delete_video.validate():
+        videoFile = form_delete_video.data["videoFile2"]
+        print("here")
+        one_video = Video.query.filter_by(sectionID=sectionID).filter_by(videoFile=videoFile).first()
+        print(one_video)
+        db.session.delete(one_video)
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+
+    elif request.method == 'POST':
+        pass
+
     className = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
     sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
     questions = query_db('SELECT * from Questions where sectionID="%s" ORDER BY orderNo' % sectionID)
@@ -711,7 +738,8 @@ def edit_section(classID, chapterID, sectionID):
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_edit_video=form_edit_video,
                            form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
-                           form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links, form_delete_image=form_delete_image)
+                           form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links, form_delete_image=form_delete_image,
+                           form_delete_video=form_delete_video)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
