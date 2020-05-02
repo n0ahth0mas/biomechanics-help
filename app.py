@@ -1112,8 +1112,10 @@ def forgot():
             return redirect("/login")
         else:
             token = get_user_token(email)
+            print(token)
             html_body = render_template('email/reset_password.html', token=token)
             html = MIMEText(html_body, 'html')
+            print(html)
             msg = MIMEMultipart()
             msg["From"] = sender
             msg["To"] = email
@@ -1129,6 +1131,7 @@ def forgot():
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     user = verify_reset_password_token(token)
+    print(token)
     if user == -1:
         return redirect(home_url)
     else:
