@@ -17763,3 +17763,6 @@ Traceback (most recent call last):
     raise self._undefined_exception(hint)
 jinja2.exceptions.UndefinedError: 'flask_login.mixins.AnonymousUserMixin object' has no attribute 'has_role_name'
 2020-05-02 08:58:54,812 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1548]
+2020-05-02 09:11:54,653 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1548]
+2020-05-02 09:13:06,359 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1548]
+2020-05-02 09:15:09,167 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1548]

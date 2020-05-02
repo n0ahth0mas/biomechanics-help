@@ -22,6 +22,10 @@ html, body {
     cursor: pointer;
 }
 
+#imageFile2{
+    margin-bottom: 20px;
+}
+
 
 .student-home-content{
     margin-left: 20%;

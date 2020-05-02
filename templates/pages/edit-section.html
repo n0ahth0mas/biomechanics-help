@@ -48,7 +48,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
         <form method="post" class="form" enctype=multipart/form-data>
-            <h2>Add Question {{ questionTypes() }}</h2>
+            <h2>Add Question</h2>
             {{ form_q.csrf_token }}
             Question Number:
             {{ form_q.orderNo3(class_ = 'form-control', placeholder = form_q.orderNo3.label.text) }}
@@ -147,7 +147,7 @@
 
     <!-- Trigger/Open The Modal -->
     <button id="questionBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#createQuestionModal">Add Question</button>{{ tips("question", "Here you can add, edit and delete. There are four different
-    types of questions: Short Answer, Multiple Choice, Drag and Drop, and Point and Click. You can also have an image associated with the question. If no question is uploaded, then a default image will take its place.") }}
+    types of questions: Short Answer, Multiple Choice, Drag and Drop, and Point and Click. You must select an image if you are creating a drag and drop question or a point and click question. Images are optional for short answer/multiple choice.") }}
 
     <h3>Questions</h3>
     <table id="myTable">
