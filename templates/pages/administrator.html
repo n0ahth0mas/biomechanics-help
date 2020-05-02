@@ -18,11 +18,11 @@
             </button>
             <form method="post" class="form">
                 <h2>Add Class</h2>
-                {{ formSchool.csrf_token }}
+                {{ form.csrf_token }}
                 School Name:
-                {{ formSchool.schoolName(class_ = 'form-control', placeholder = formSchool.schoolName.label.text, required = true) }}
+                {{ form.schoolName(class_ = 'form-control', placeholder = form.schoolName.label.text, required = true) }}
                 School Code:
-                {{ formSchool.schoolID(class_ = 'form-control', placeholder = formSchool.schoolID.label.text, required = true) }}
+                {{ form.schoolID(class_ = 'form-control', placeholder = form.schoolID.label.text, required = true) }}
                 <input type="submit" value="Create Class" class="btn btn-primary btn-lg btn-block">
             </form>
         </div>
@@ -43,15 +43,15 @@
                         <!--form to publish-->
                         <form method="post" class="form">
                             {{ form_subscription.csrf_token }}
-                            {{ form_subscription.schoolID(value = school[0])}}
+                            {{ form_subscription.schoolID1(value = school[0])}}
                             <td><input type="submit" value="Activate" class="btn btn1"></td>
                         </form>
                      {% else %}
                         <!--form to unpublish-->
                         <form method="post" class="form">
                             {{ form_subscription.csrf_token }}
-                            {{ form_subscription.schoolID(value = school[0])}}
-                            <td><input type="submit" value="Unactivate" class="btn btn1"></td>
+                            {{ form_subscription.schoolID1(value = school[0])}}
+                            <td><input type="submit" value="Deactivate" class="btn btn1"></td>
                         </form>
                      {% endif %}
             <td><a href="/administrator/{{school[0]}}/delete"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>

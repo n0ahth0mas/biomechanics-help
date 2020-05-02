@@ -1235,29 +1235,32 @@ def professor_home():
 @app.route('/administrator', methods=('GET', 'POST'))
 @roles_required('Professor')
 def admin():
-    formSchool = AddSchool()
-    if formSchool.schoolID.data is not None and formSchool.validate_on_submit() and query_db('SELECT * from School where schoolID="%s"' % formSchool.data["schoolID"]) == []:
+    form = AddSchool()
+    form_subscription = Subscription()
+    if form.schoolID.data is not None and not form.schoolID.data == "" and form_subscription.validate() and query_db('SELECT * from School where schoolID="%s"' % form.data["schoolID"]) == []:
         one_school = School()
-        one_school.schoolID = formSchool.data["schoolID"]
-        one_school.schoolName = formSchool.data["schoolName"]
+        one_school.schoolID = form.data["schoolID"]
+        one_school.schoolName = form.data["schoolName"]
         one_school.subscription = True
         db.session.add(one_school)
         db.session.commit()
+        return redirect('/administrator')
     elif request.method == 'POST':
         pass
-    form_subscription = Subscription()
-    if not form_subscription.schoolID.data == "" and form_subscription.validate():
-        schoolID = form_subscription.data["schoolID"]
+    if not form_subscription.schoolID1.data == "" and form_subscription.validate() and not form.validate():
+        schoolID = form_subscription.data["schoolID1"]
         one_school = School.query.filter_by(schoolID=schoolID).first()
         one_school.subscription = not one_school.subscription
         db.session.commit()
+        return redirect('/administrator')
     elif request.method == 'POST':
         pass
+
     schools = query_db('SELECT * from School')
     classes = query_db('SELECT * from Classes')
     users = query_db('SELECT * from Users')
 
-    return render_template('pages/administrator.html', name=current_user.name, formSchool=formSchool, schools=schools, users=len(users),
+    return render_template('pages/administrator.html', name=current_user.name, form=form, schools=schools, users=len(users),
                            classes=len(classes), form_subscription=form_subscription)
 
 
@@ -1396,6 +1399,13 @@ def new_prof_acc():
 @app.route('/new-student-account', methods=['GET', 'POST'])
 def new_student_account():
     form = StudentRegForm()
+    organizations = query_db('SELECT schoolID, schoolName FROM School')
+    choices = [('', 'Select your Organization')]
+    for organization in organizations:
+        if not organization[0] == "3141592653589admin":
+            choices.append(organization)
+
+    form.organization.choices = choices
     if form.validate_on_submit():
         # check that we don't already have this user registered
         user_object = query_db('select * from Users where email= ? ', [form.data["email"]], one=True)
@@ -1405,7 +1415,7 @@ def new_student_account():
             h = hashlib.md5(password.encode())
             passhash = h.hexdigest()
             user = User(
-                id=form.data["email"], email=form.data["email"], name=form.data["fullName"], active=True,
+                id=form.data["email"], email=form.data["email"], name=form.data["fullName"], schoolID=form.data["organization"], active=True,
                 password=passhash)
             # prof_role = Role(name='Student')
             # user.roles = [prof_role]
