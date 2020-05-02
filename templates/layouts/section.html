@@ -54,12 +54,14 @@
             {% endif %}
         </div>
             <!-- progress -->
+        {% if video_files|length >1 %}
             <div style="text-align:center">
                 {% for dot in video_files %}
                 {% set dot_loop = loop %}
                 <span class="dot" onclick="currentSlide({{dot_loop.index}})"></span>
                 {% endfor %}
             </div>
+        {% endif %}
         </div>
 
         <!-- Modal -->
@@ -210,7 +212,7 @@
                         </div>
                         {% endfor %}
                 <div class="enlarge" id="enlarge" >
-                    <button class="btn-success btn" data-toggle="modal" data-target="#myModal">Enlarge Answer Images</button>
+                    <button class="btn-success btn" data-toggle="modal" data-target="#myModal" onclick="popImageModal()">Enlarge Answer Images</button>
                 </div>
                     </div>
                 </div>
