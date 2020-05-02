@@ -154,12 +154,7 @@ div.indent {
     <!-- /styles -->
 
     <!-- favicons -->
-    <link rel="shortcut icon" href="/static/ico/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/static/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="/static/ico/favicon.png">
+    <link rel="shortcut icon" href="/static/ico/helpICO.png">
     <!-- /favicons -->
 
     <!-- scripts -->
@@ -174,7 +169,7 @@ div.indent {
 <!-- Wrap all page content here -->
 <div id="wrap">
     <!-- Fixed navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-color">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark navbar-gradient" id="nav">
         <a class="navbar-brand" href="/">Home</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
@@ -208,14 +203,18 @@ div.indent {
 
                <!-- Paths for About -->
                {% if request.endpoint=='student_home' or request.endpoint== 'professor_home' or request.endpoint=='glossaryTemplate' or request.endpoint== 'section_page' or request.endpoint== 'edit_class' or request.endpoint== 'professor_class_home' or request.endpoint== 'student_class_home' or request.endpoint== 'edit_chapter' or request.endpoint== 'edit_section' or request.endpoint== 'edit_section_block' or request.endpoint== 'edit_question' or request.endpoint== 'delete_answer' or request.endpoint== 'delete_question' or request.endpoint== 'delete_section_block' or request.endpoint== 'delete_class' or request.endpoint== 'delete_chapter'  or request.endpoint== 'delete_section'  or request.endpoint== 'delete_term' or request.endpoint== 'developers' or request.endpoint=='tutorial' or request.endpoint=='edit_glossary'%}<a class="nav-link nav-item" href="{{ url_for('logout') }}">Logout</a>{% endif %}
+
             </div>
+            <!-- Turn off Gradient -->
+            <div class="check" id="checkbox" onclick="checkbox()" class="nav-item">Pause</div>
+                <!--<input type="checkbox"  checked>-->
         </div>
     </nav>
   {% block content %}{% endblock %}
 
 </div>
 
-<div id="footer">
+<div id="footer" style="position:absolute; bottom:0px; width:100%">
     <p style="color:darkgreen; text-align:center;">
         This Project was brought to you by the Help! in Biomechanics Sqwad.
     </p>

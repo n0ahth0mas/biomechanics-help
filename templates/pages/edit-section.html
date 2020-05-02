@@ -29,8 +29,7 @@
                     <form method="post" class="form" enctype=multipart/form-data>
                     <h2>Add Image</h2>
                         {{ form_si.csrf_token }}
-                        Text Number:
-                        {{ form_si.orderNo4(class_ = 'form-control',  placeholder = form_si.orderNo4.label.text) }}
+                        {{ form_si.orderNo4(class_ = 'form-control hidden-form-field',  placeholder = form_si.orderNo4.label.text) }}
                         {{ form_si.imageFile(placeholder = form_si.imageFile.label.text) }}<br>
                         Horizontal Position:
                         {{ form_si.xposition(class_ = 'form-control', placeholder = form_si.xposition.label.text) }}
@@ -108,17 +107,17 @@
     <table id="myTable">
             <tr class="header">
                 <th style="width:5%;">Text Number</th>
-                <th style="width:60%;">Text</th>
+                <th style="width:50%;">Text</th>
                  <th style="width:5%;"></th>
-                <th style="width:20;">Images
+                <th style="width:10%;">Images
                 <!-- Trigger/Open The Modal -->
-                <button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal">Add Image</button>{{ tips("image", "To add an image, you must put what text number that
-                    image is going to be associated with it, as well the positions of the image, according to the text.") }}
 
                </th>
+                <th style="width: 15%;">Add Image</th>
                 <th style="width:5%;"></th>
             </tr>
             {% for sectionBlock in sectionBlocks %}
+            {% set block_loop = loop %}
             <tr>
                 <!--form to edit section block-->
                  <form method="post" class="form">
@@ -139,6 +138,7 @@
                     {% endif %}
                 {% endfor %}
                 </ul></td>
+                <td><button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal" onclick="setFormTextNumber({{block_loop.index}})">Add Image</button>{{ tips("image", "Add images to text blocks by clicking the 'Add Image' button. This will associate the given image with that text block. You will also be asked for a position for the image relative to the text block.") }}</td>
                 <!--<td></div><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}/add-section-block-images"><button type="button" class="btn btn1" >Add/Edit Images</button></a><br></a></h5></td>-->
                 <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}/delete"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
             </tr>

@@ -12,6 +12,17 @@ html, body {
   font-family: 'Ubuntu', sans-serif !important;
 }
 
+.check{
+    margin-left:auto;
+    margin-right: 1%;
+    text-align:center;
+    display: flex;
+    font-size: 10px;
+    color: white !important;
+    cursor: pointer;
+}
+
+
 .student-home-content{
     margin-left: 20%;
     margin-top: 100px;
@@ -178,7 +189,12 @@ h1, h3, h4 {
     color: white!important;
 }
 
-.navbar-color{
+.navbar-static{
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    z-index: 2;
+}
+
+.navbar-gradient{
 	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	-webkit-animation: gradient 15s ease infinite;
@@ -227,6 +243,9 @@ h1, h3, h4 {
     max-width: 10rem;
 }
 
+.hidden-form-field{
+    display: none !important;
+}
 
 .term-images-container{
     display: inline-block;
