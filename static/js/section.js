@@ -44,6 +44,7 @@ function restart(){
     removePrevious();
     document.getElementById("questions").style.display = "flex"
     document.getElementById("header").style.display = "none"
+    enlargeBtn.style.display = "none"
     for(i=0; i<questionIndex; i++){
         document.getElementById("progress" + i).style.background = "#FFFFFF";
     }
@@ -69,7 +70,6 @@ function renderQuestion(){
     document.getElementById("q_header"+questionIndex).style.display = "flex";
     if(document.getElementById("q_img_container"+questionIndex) !== null){
         document.getElementById("q_img_container"+questionIndex).style.display = "flex";
-        popImageModal();
     }
     if(document.getElementById("mcSubmit"+questionIndex)!= null){
         enlargeBtn.style.display = "flex"
