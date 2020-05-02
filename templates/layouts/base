@@ -206,9 +206,8 @@ div.indent {
 
             </div>
             <!-- Turn off Gradient -->
-            <div class="check">
-                <input type="checkbox" id="checkbox" onclick="checkbox()" checked>
-            </div>
+            <div class="check" id="checkbox" onclick="checkbox()" class="nav-item">Pause</div>
+                <!--<input type="checkbox"  checked>-->
         </div>
     </nav>
   {% block content %}{% endblock %}

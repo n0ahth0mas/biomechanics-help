@@ -210,9 +210,11 @@ function setFormTextNumber (index){
 
 var nav = document.getElementById("nav")
 function checkbox(){
-    if(document.getElementById("checkbox").checked == true){
-        nav.className = "navbar fixed-top navbar-expand-lg navbar-dark navbar-gradient"
-    } else{
+    if(document.getElementById("checkbox").innerHTML === "Pause"){
         nav.className = "navbar fixed-top navbar-expand-lg navbar-dark navbar-static"
+        document.getElementById("checkbox").innerHTML = "Play"
+    } else{
+        nav.className = "navbar fixed-top navbar-expand-lg navbar-dark navbar-gradient"
+        document.getElementById("checkbox").innerHTML = "Pause"
     }
 }
