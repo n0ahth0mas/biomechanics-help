@@ -594,7 +594,6 @@ def edit_section(classID, chapterID, sectionID):
         pass
     form_si = CreateSectionBlockImages()
     if form_si.orderNo4.data is not None and form_si.validate_on_submit():
-
         orderNo = form_si.data["orderNo4"]
         list = []
         list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
@@ -632,6 +631,14 @@ def edit_section(classID, chapterID, sectionID):
                     db.session.commit()
                 return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
             counter = counter + 1
+    form_delete_image = DeleteImage()
+    if form_delete_image.sectionBlockID2.data is not None and form_delete_image.validate():
+        sectionBlockID = form_delete_image.data["sectionBlockID2"]
+        one_image = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first()
+        db.session.delete(one_image)
+        db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+
     elif request.method == 'POST':
         pass
 
@@ -704,7 +711,7 @@ def edit_section(classID, chapterID, sectionID):
                            chapterName=chapterName, chapterID=chapterID, sectionID=sectionID, sectionName=sectionName,
                            questions=questions, answers=answers, videos=videos, form_s=form_s, form_q=form_q, form_edit_video=form_edit_video,
                            form_v=form_v, form_si=form_si, image_files=image_files, form_edit=form_edit,
-                           form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links)
+                           form_edit_question=form_edit_question, form_change=form_change, links=links, video_links=video_links, form_delete_image=form_delete_image)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
