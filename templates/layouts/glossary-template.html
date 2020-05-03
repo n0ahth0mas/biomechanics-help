@@ -51,7 +51,9 @@
                                     {% for _image in _image_array %}
                                         {% if _image[0] == _term[0] %}
                                             <div class="card card-width-setting" id="{{_term[1]}} Image"title="{{_term[1]}} Image">
+                                                {% if _image[1]!= None %}
                                                 <img class="card-img-top" alt="Picture Unavailable" src="{{ _image[1] }}">
+                                                {% endif %}
                                             </div>
                                         {% endif %}
                                     {% endfor %}

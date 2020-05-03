@@ -186,7 +186,7 @@
                             <button class="mult_choice" id="Button{{ answer[0] }}"  value="{{answer[2]}}" onclick="toggleSelected('Button{{ answer[0] }}', this, '{{answer[4]}}', '{{answer[2]}}', '{{answer[3]}}')" >
                                 {{answer[3]}}
 
-                                {% if answer[5]!="" %}
+                                {% if answer[5]!= None %}
                                 <br>
                                 <img src={{answer[5]}} class="mcImg" id="img{{outer_loop.index-1}}.{{answer_loop.index-1}}">
                                 {% endif %}

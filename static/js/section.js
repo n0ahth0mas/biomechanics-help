@@ -10,7 +10,7 @@ const modalBody = document.getElementById("modal-body");
 
 //timer Setup
 let TIMER;
-const questionTime = 6000; // total seconds
+const questionTime = 60; // total seconds
 let gaugeWidth = 200;
 const counter = document.getElementById("timer_time");
 var count = 1;
@@ -82,8 +82,10 @@ function popImageModal(){
     var answers = document.getElementById("answers"+questionIndex).children
     for(var i =0; i<=answers.length-1; i++){
         console.log("img"+questionIndex+"."+i)
-        img = document.getElementById("img"+questionIndex+"."+i).src
-        modalBody.innerHTML+= "Answer " + (i+1) +": <a href= " + img + " data-fancybox><img src=" + img + " class='mcImg' /> </a>"
+        if(typeof(document.getElementById("img"+questionIndex+"."+i)) != 'undefined' && document.getElementById("img"+questionIndex+"."+i) != null){
+            img = document.getElementById("img"+questionIndex+"."+i).src
+         modalBody.innerHTML+= "Answer " + (i+1) +": <a href= " + img + " data-fancybox><img src=" + img + " class='mcImg' /> </a>"
+     }
     }
 }
 
@@ -275,7 +277,7 @@ function submitShortAnswer(submitButton, answerList){
     var enteredVal = ""
     for(var i=0; i<=answerList.length-1; i++){
         console.log(answerList[i])
-        var includes = ((submitButton.parentElement.children[0].value).includes(answerList[i][0]))
+        var includes = ((submitButton.parentElement.children[0].value.toLowerCase()).includes(answerList[i][0].toLowerCase()))
         if (includes){
             enteredVal=i;
             correct = true
@@ -487,7 +489,7 @@ function clickedPointAndClickQ(event, question_image){
                 }
             }else{
                 //they have clicked the wrong place
-                $('#myModal').find('#modal-header').html("<h4>InCorrect!</h4>");
+                $('#myModal').find('#modal-header').html("<h4>Incorrect!</h4>");
                 $('#myModal').find('#modal-body').html("Let's try that again!");
                 $('#myModal').modal('show');
                 tries++;
