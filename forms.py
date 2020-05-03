@@ -114,8 +114,7 @@ class CreateVideo(FlaskForm):
 class CreateTerm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
     definition = TextAreaField("Definition", validators=[DataRequired()])
-    imgs = MultipleFileField("Term Images")
-    upload = SubmitField('Upload')
+    imageFile = FileField("Term Images")
 
 
 class ForgotForm(FlaskForm):

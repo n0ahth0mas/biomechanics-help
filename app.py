@@ -380,20 +380,20 @@ def edit_glossary(classID):
         one_entry.definition = form.data["definition"]
         db.session.add(one_entry)
         db.session.commit()
-
-        print(request.files.getlist("imgs"))
-        for img in request.files.getlist(form.imgs.name):
-            # Create Images
-            one_image = GlossaryImages()
-            one_image.termID = one_entry.termID
-            file_name = secure_filename(img.filename)
-            one_image.imageFile = "/static/img/" + str(classID) + "/" + file_name
+        one_image = GlossaryImages()
+        one_image.termID = one_entry.termID
+        image = request.files["imageFile"]
+        if 'imageFile' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
+        if image and GlossaryImages.query.filter_by(termID=one_image.termID).filter_by(
+                imageFile=one_image.imageFile).first() is None:
             db.session.add(one_image)
             db.session.commit()
-            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), file_name)
-            img.save(img_path)
-
-        print(one_entry.definition)
 
         return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
