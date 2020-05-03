@@ -2,6 +2,16 @@
 {% block title %}Edit Glossary{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="main-content-container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <!-- The Modal -->
     <div id="glossModal" class="modal">
 
@@ -49,19 +59,25 @@
                         {{ form_edit.termID(value = term[1])}}
                      <td>{{ form_edit.term_e(class_ = 'form', value = term[2]) }}</td>
                      <td>{{ form_edit.definition(class_ = 'form reset_me', value = term[3]) }}</td>
-                     <td><input type="submit" value="Save" class="btn"></td>
+                     <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>
                 <td><ul class="class-student-list">
                  <table>
                 {% for image_file in image_files %}
                     {% if image_file[0] == term[1] %}
-                        {% for link in links %}
-                            {% if link[1] == image_file[1] %}
                                 <tr>
-                                    <td><li><img src="{{ image_file[1] }}" height="100" width="100"><a href="/edit-class/{{classID}}/glossary/delete/image/{{term[1]}}/{{link[2]}}"><button type="button" class="btn" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a><br></li></td>
+                                    <td>
+                                        <li><img src="{{ image_file[1] }}" height="100" width="100">
+
+                                            <form method="post" class="form">
+                                                {{ form_delete_image.csrf_token }}
+                                                {{ form_delete_image.termID3(value = image_file[0])}}
+                                                {{ form_delete_image.imageFile(value = image_file[1])}}
+                                                <input type="submit" value="Delete Image"class="btn btn2">
+                                            </form>
+                                        </li>
+                                    </td>
                                 </tr>
-                             {% endif %}
-                        {% endfor %}
                     {% endif %}
                 {% endfor %}
                 </table>
@@ -71,7 +87,7 @@
                         {{ form_i.csrf_token }}
                         {{ form_i.termID(value = term[1]) }}
                         {{ form_i.imageFile(placeholder = form_i.imageFile.label.text) }}
-                        <input type="submit" value="Submit" class="btn">
+                        <input type="submit" value="Submit" class="btn btn1">
                     </form>
                 </td>
                 <td><a href="/edit-class/{{classID}}/glossary/delete/{{term[1]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>

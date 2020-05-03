@@ -447,8 +447,7 @@ function clickedPointAndClickQ(event, question_image){
     //we need to check and make sure that our x and y fall in one of our answers
     //if this answer is wrong, let them know and say why
     //same for if they are right but instead we move on
-
-    var info_by_answer = document.getElementById("answer-zone-deets").children;
+    var info_by_answer = document.getElementById("answer-zone-deets" + questionIndex).children;
     for(i = 0; i < info_by_answer.length;i++){
         var this_answer_details = info_by_answer[i].children;
         var this_box_x_local_position = (Number(this_answer_details[0].innerHTML)/question_image.naturalWidth) * question_image.clientWidth;
@@ -458,9 +457,13 @@ function clickedPointAndClickQ(event, question_image){
         var this_answer_correctness = this_answer_details[5].innerHTML;
         var this_answer_reason = this_answer_details[2].innerHTML;
         //in pixels
-        //console.log(question_image.clientWidth);
+        console.log(question_image.clientWidth);
         var this_box_height = question_image.clientHeight * this_box_height_ratio;
         var this_box_width = question_image.clientWidth * this_box_width_ratio;
+        console.log("this box local x position: " + this_box_x_local_position);
+        console.log("this box local y postiion: " + this_box_y_local_position);
+        console.log("this box width: " + this_box_width);
+        console.log("this box height: " + this_box_height);
         //for the click to be inside our bounds it must be greater than our box's local x and y but less than its width and height plus those respective values
         if(this_box_x_local_position < x && this_box_y_local_position < y && (this_box_x_local_position + this_box_width) > x && (this_box_y_local_position + this_box_height) > y){
             //now we want to let the student know whether they got the answer correct and why

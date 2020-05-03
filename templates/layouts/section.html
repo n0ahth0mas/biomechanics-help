@@ -147,7 +147,7 @@
                             </a>
                         {% elif question[3] == 'pointnclick' %}
                         <img class="point-n-click-img big-section-img" onclick="clickedPointAndClickQ(event, this)" id="point-click-question-img{{outer_loop.index-1}}" src="{{ img }}">
-                        <ul id="answer-zone-deets">
+                        <ul id="answer-zone-deets{{outer_loop.index-1}}" class="answer-zone-deets">
                             {% for answer in a_list[outer_loop.index-1] %}
                             <li>
                                 <div id="answer-box-x-coord">{{answer[6]}}</div>

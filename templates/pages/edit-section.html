@@ -136,7 +136,7 @@
                         <form method="post" class="form">
                             {{ form_delete_image.csrf_token }}
                             {{ form_delete_image.sectionBlockID2(value = sectionBlock[0])}}
-                            <li><input type="submit" value="Delete Image"class="btn"></li>
+                            <input type="submit" value="Delete Image"class="btn btn2">
                         </form>
                             {% endif %}
                         {% endfor %}
@@ -149,6 +149,45 @@
             </tr>
              {% endfor %}
         </table><br><br>
+
+     <button id="videoBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addVidModal">Add Video</button>{{ tips("video","Here you can add videos and set what order the videos appear for the students. ") }}
+    <h3>Videos</h3>
+    <table id="myTable1">
+        <tr class="header">
+                 <th style="width:5%;">Video Number</th>
+                <th style="width:85%;">Video</th>
+                <th style="width:5%;"></th>
+            <th style="width:5%;"></th>
+            </tr>
+    {% for video in videos %}
+        {% for video_link in video_links %}
+        {% if video_link[0] == video[1] %}
+        <tr>
+            <form method="post" class="form" enctype=multipart/form-data>
+            {{ form_edit_video.csrf_token }}
+            {{ form_edit_video.videoFile(value = video[1])}}<br>
+                <td>{{ form_edit_video.orderNo6(class='form', value=video[2]) }}</td>
+
+
+        <td>
+        <video width="200" controls>
+            <source src="{{video[1]}}">
+        </video>
+        </td>
+                <td><input type="submit" value="Save" class="btn btn1"></td>
+        </form>
+        <td>
+            <form method="post" class="form">
+                {{ form_delete_video.csrf_token }}
+                {{ form_delete_video.videoFile2(value = video[1])}}
+                <button type="submit" value="Delete Video"class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa fa-trash"></i></button>
+            </form>
+        </td>
+        {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table><br><br>
 
     <!-- Trigger/Open The Modal -->
     <button id="questionBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#createQuestionModal">Add Question</button>{{ tips("question", "Here you can add, edit and delete. There are four different
@@ -192,40 +231,7 @@
             </tr>
              {% endfor %}
         </table><br><br>
-    <button id="videoBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#addVidModal">Add Video</button>{{ tips("video","Here you can add videos and set what order the videos appear for the students. ") }}
 
-    <h3>Videos</h3>
-    <table id="myTable1">
-        <tr class="header">
-                 <th style="width:5%;">Video Number</th>
-                <th style="width:85%;">Video</th>
-                <th style="width:5%;"></th>
-            <th style="width:5%;"></th>
-            </tr>
-    {% for video in videos %}
-        {% for video_link in video_links %}
-        {% if video_link[0] == video[1] %}
-        <tr>
-            <form method="post" class="form" enctype=multipart/form-data>
-            {{ form_edit_video.csrf_token }}
-            {{ form_edit_video.videoFile(value = video[1])}}<br>
-                <td>{{ form_edit_video.orderNo6(class='form', value=video[2]) }}</td>
-
-
-        <td>
-        <video width="200" controls>
-            <source src="{{video[1]}}">
-        </video>
-        </td>
-                <td><input type="submit" value="Save" class="btn btn1"></td>
-        </form>
-        <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/delete/video/{{video_link[1]}}"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a></td>
-        {% endif %}
-        {% endfor %}
-        </tr>
-    {% endfor %}
-
-    </table>
 
 <script>
 // Get the modal

@@ -279,3 +279,12 @@ class Subscription(FlaskForm):
 
 class DeleteImage(FlaskForm):
     sectionBlockID2 = HiddenField()
+
+
+class DeleteVideo(FlaskForm):
+    videoFile2 = HiddenField()
+
+
+class DeleteTermImage(FlaskForm):
+    termID3 = HiddenField()
+    imageFile = HiddenField()
