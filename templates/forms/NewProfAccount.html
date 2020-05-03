@@ -1,6 +1,16 @@
 {% extends 'layouts/main-login.html' %}
 {% block title %}Register{% endblock %}
 {% block content %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
   <form method="post" class="form student-login-form">
       {{ form.csrf_token }}
     <h3 class="form-heading">Professor Registration <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home float-right"></i></a></h3>

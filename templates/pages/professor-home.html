@@ -3,6 +3,16 @@
 {% block content %}
 <!-- Begin page content -->
 <main id="structure" role="main" class="main-content-container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> {% if admin==True %}<a href="/administrator"><button type="button" class="btn btn-success btn3">Administrator</button></a>{% endif %}
     <div>
         <h1>Welcome, {{ name }}</h1>

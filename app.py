@@ -311,6 +311,11 @@ def home():
 def edit_class(classID):
     formEdit = EditChapter()
     form = CreateChapter()
+    form_publish = PublishChapter()
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash("Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     if formEdit.orderNo1.data is not None and formEdit.validate():
         chapterID = formEdit.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
@@ -332,7 +337,7 @@ def edit_class(classID):
         return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
-    form_publish = PublishChapter()
+
     if not form_publish.chapterID.data == "" and form_publish.validate() and not form.validate() and form.orderNo2.data is None:
         chapterID = form_publish.data["chapterID"]
         one_chapter = Chapter.query.filter_by(chapterID=chapterID).first()
@@ -362,6 +367,11 @@ def edit_class(classID):
 @app.route('/edit-class/<classID>/glossary', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_glossary(classID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     form = CreateTerm()
     if form.term.data is not None and form.validate():
         one_entry = Glossary()
@@ -445,6 +455,11 @@ def edit_glossary(classID):
 @app.route('/edit-class/<classID>/<chapterID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_chapter(classID, chapterID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     form = CreateSection()
     if form.orderNo2.data is not None and form.validate():
         one_section = Section()
@@ -499,6 +514,11 @@ def edit_chapter(classID, chapterID):
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
     image_files = []
     for sectionBlock in sectionBlocks:
@@ -753,6 +773,11 @@ def edit_section(classID, chapterID, sectionID):
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/text/<sectionBlockID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     sectionText = query_db('SELECT sectionText from Sections where sectionID="%s"' % sectionBlockID)[0][0]
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
     return render_template('pages/edit-section-block.html', sectionBlocks=sectionBlocks, classID=classID,
@@ -762,6 +787,11 @@ def edit_section_block(classID, chapterID, sectionID, sectionBlockID):
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/question/<questionID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_question(classID, chapterID, sectionID, questionID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     point_n_click_answer_form = PointNClickAnswer()
     drag_n_drop_image_form = UploadDragNDropImage()
     drag_n_drop_form = CreateDragNDropAnswer()
@@ -966,6 +996,11 @@ def delete_video(classID, chapterID, sectionID, videoFile):
 @app.route('/delete/<classID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def delete_class(classID):
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription:
+        flash(
+            "Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
     class_to_delete = Class.query.filter_by(classID=classID).first()
     db.session.delete(class_to_delete)
     db.session.commit()
@@ -1206,6 +1241,11 @@ def professor_home():
     form_create = CreateClass()
     formEdit = EditClass()
     share_class_with_canvas_form = ShareClassWithCanvas()
+    active = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if not active.subscription and (share_class_with_canvas_form.validate() or prof_join_class_form.validate() or form_create.validate_on_submit() or formEdit.validate_on_submit()):
+        flash("Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
+        return redirect('/professor-home')
+
     if share_class_with_canvas_form.canvasClassCode is not None and share_class_with_canvas_form.validate():
         print("validated share form")
 
@@ -1258,10 +1298,12 @@ def professor_home():
         for fn in os.listdir(basedirV):
             if fn == formEdit.data["classID"]:
                 os.rename(os.path.join(basedirV, fn), os.path.join(basedirV, str(formEdit.newClassID.data)))
+        return redirect('/professor-home')
     elif formEdit.newClassID.data is not None and formEdit.validate_on_submit() and not query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
         classID = formEdit.data["classID"]
         Class.query.filter_by(classID=classID).update(dict(className=formEdit.data["className"]))
         db.session.commit()
+        return redirect('/professor-home')
     elif request.method == 'POST':
         flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
@@ -1469,6 +1511,10 @@ def new_prof_acc():
         user_object = query_db('select * from Users where email= ?', [form.data["email"]], one=True)
         # this lets us verify that the professor is actually working at a particular school before they make an account
         school_code = query_db('select * from School where schoolID= ?', [form.data["schoolProfCode"]], one=True)
+        print(school_code)
+        if not school_code[2]:
+            flash("Sorry, the organization is currently inactive. Please contact pugetsoundhelp@gmail.com for more information")
+            return render_template('forms/NewProfAccount.html', form=form)
         if user_object is None and school_code is not None:
             password = form.data["password"]
             h = hashlib.md5(password.encode())
@@ -1491,7 +1537,7 @@ def new_prof_acc():
 def new_student_account():
     form = StudentRegForm()
     organizations = query_db('SELECT schoolID, schoolName FROM School')
-    choices = [('', 'Select your Organization')]
+    choices = [('', 'Select your Organization'), ('N/A', 'Other')]
     for organization in organizations:
         if not organization[0] == "3141592653589admin":
             choices.append(organization)
