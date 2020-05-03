@@ -620,12 +620,12 @@ def edit_section(classID, chapterID, sectionID):
                 if not allowed_video(video.filename):
                     flash("Video must be .mp4 or .mov")
                     break
-                if not one_video.videoFile == v[1] and counter == len(videos):
-                    print("video")
-                    db.session.commit()
-                else:
+                elif one_video.videoFile == v[1]:
                     flash("Video already exists for this section")
                     break
+
+                elif counter == len(videos):
+                    db.session.commit()
         else:
             db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
