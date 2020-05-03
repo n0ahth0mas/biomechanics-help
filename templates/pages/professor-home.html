@@ -103,7 +103,7 @@
 
             <td><ul class="class-student-list">
             {% for student in _class[2] %}
-                {% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a><a href="/professor-home/delete/{{_class[1]}}/{{student[0]}}"><button type="button" class="btn" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a></li>{% endif %}
+                {% if student[0] != current_user.id %}<li><a href="mailto:{{student[0]}}">{{ student[0] }}</a><a href="/professor-home/delete/{{_class[1]}}/{{student[0]}}"><button type="button" class="btnsmall" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-remove"></i></button></a></li>{% endif %}
             {% endfor %}
             </ul></td>
              <td><a href="/professor-class-overview/{{_class[1]}}"><button type="button" class="btn btn1">View Class</button></a></td>
