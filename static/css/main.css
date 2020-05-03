@@ -392,7 +392,7 @@ h1, h3, h4 {
     margin-bottom: 25px;
 }
 
-#answer-zone-deets{
+.answer-zone-deets{
     display: none;
 }
 
