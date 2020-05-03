@@ -594,10 +594,12 @@ def edit_section(classID, chapterID, sectionID):
         db.session.add(one_video)
         counter=0
         if len(videos) > 0:
-            for video in videos:
+            for v in videos:
                 counter = counter + 1
-
-                if not one_video.videoFile == video[1] and counter == len(videos):
+                if not allowed_video(video.filename):
+                    flash("Video must be .mp4 or .mov")
+                    break
+                if not one_video.videoFile == v[1] and counter == len(videos):
                     print("video")
                     db.session.commit()
                 else:
