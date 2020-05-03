@@ -3,7 +3,7 @@
 {% block content %}
 <main id="structure" role="main" class="main-content-container">
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/question/{{questionID}}">{{questions}}</a>
-    <h3>{{questions}}</h3>
+    <h3>Edit Question: {{questions}}</h3>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Answer</button>
     {% if questionType == "dragndrop" %}{{ tips("dragAndDropHelp", "First, Pick an image and decide whether this answer will be correct or incorrect. Next, you will be asked to pick a size for the answer image and to place this image on the question image where you would like the student to drag their answer. Only right answers will be given a dropbox.") }}
