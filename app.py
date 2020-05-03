@@ -1043,7 +1043,7 @@ def student_home():
 def section_page(class_id, chapter, section):
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         # Section Text
-        text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s"' % section)
+        text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s" ORDER BY orderNo' % section)
         section_text = []
         blockIDs = []
 
@@ -1074,7 +1074,7 @@ def section_page(class_id, chapter, section):
                 section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2]))
 
         # get video file
-        video_files = query_db('SELECT * from Videos WHERE sectionID = "%s"' % section)
+        video_files = query_db('SELECT * from Videos WHERE sectionID = "%s" ORDER BY orderNo' % section)
         print(video_files)
         # video = "/static/video/samplevid.mp4"
         # get quiz data
