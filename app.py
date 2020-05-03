@@ -846,14 +846,19 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.correctness = form_a.data["correctness"]
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
-        image = request.files["imageFile1"]
-        if 'imageFile1' not in request.files:
+        print(form_a.data["imageFile"])
+        print("here")
+        image = request.files["imageFile"]
+        print(image)
+        print(allowed_file(image.filename))
+        if 'imageFile' not in request.files:
             return redirect(request.url)
         if image and allowed_file(image.filename):
+            print("Yes")
             filename = secure_filename(image.filename)
             img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
             image.save(img_path)
-            answer_to_change.imageFile = "/static/img/" + str(classID) + "/" + filename
+            one_answer.imageFile = "/static/img/" + str(classID) + "/" + filename
         db.session.commit()
         db.session.add(one_answer)
         db.session.commit()

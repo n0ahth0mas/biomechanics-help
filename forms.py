@@ -215,7 +215,7 @@ class CreateAnswer(FlaskForm):
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = TextAreaField('Answer Text', validators=[DataRequired()])
     answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
-    imageFile = FileField('Image File')
+    imageFile = FileField()
 
 
 class CreateShortAnswer(FlaskForm):
