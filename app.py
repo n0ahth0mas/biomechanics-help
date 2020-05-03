@@ -1284,11 +1284,11 @@ def professor_home():
         else:
             print("Successfully created the directory %s " % pathV)
         return redirect(url_for('professor_home'))
-    elif request.method == 'POST':
+    elif request.method == 'POST' and not formEdit.validate_on_submit():
         flash("We're sorry but a class already exists with that code, please enter another unique code")
+        pass
     if formEdit.newClassID.data is not None and formEdit.validate_on_submit() and query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
         classID = formEdit.data["classID"]
-        print(query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data)
         if query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == [] or classID == formEdit.newClassID.data:
             Class.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data, className=formEdit.data["className"]))
             UserClasses.query.filter_by(classID=classID).update(dict(classID=formEdit.newClassID.data))
@@ -1306,12 +1306,12 @@ def professor_home():
                 os.rename(os.path.join(basedirV, fn), os.path.join(basedirV, str(formEdit.newClassID.data)))
         return redirect('/professor-home')
     elif formEdit.newClassID.data is not None and formEdit.validate_on_submit() and not query_db('SELECT * from Classes where classID="%s"' % formEdit.newClassID.data) == []:
+        flash("We're sorry but a class already exists with that code, please enter another unique code")
         classID = formEdit.data["classID"]
         Class.query.filter_by(classID=classID).update(dict(className=formEdit.data["className"]))
         db.session.commit()
         return redirect('/professor-home')
     elif request.method == 'POST':
-        flash("We're sorry but a class already exists with that code, please enter another unique code")
         pass
     # render our classes
     classes_list = []
