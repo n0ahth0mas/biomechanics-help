@@ -1370,6 +1370,33 @@ def delete_school(schoolID):
     return render_template('pages/delete-school.html', schoolID=schoolID)
 
 
+@app.route('/edit-student-profile', methods=('GET', 'POST'))
+@roles_required('Student')
+def edit_student_profile():
+    form_password = ProfilePassword()
+    current_school = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if form_password.validate():
+        password = form_password.data["oldpassword"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        # check passhash against the database
+        user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (current_user.id, passhash), one=True)
+        if user_object is None:
+            flash("Unable to find user with those details, please try again")
+            return redirect('/edit-student-profile')
+        else:
+            user = User.query.filter_by(id=current_user.id).one()
+            newpassword = form_password.data["password"]
+            h = hashlib.md5(newpassword.encode())
+            passhash = h.hexdigest()
+            user.password = passhash
+            db.session.commit()
+            login_user(user)
+            return redirect('/edit-student-profile')
+    return render_template('pages/edit-student-profile.html', current_user=current_user,
+                           form_password=form_password, current_school=current_school)
+
+
 @app.route('/edit-profile', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_profile():
