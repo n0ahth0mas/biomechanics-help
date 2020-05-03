@@ -592,12 +592,17 @@ def edit_section(classID, chapterID, sectionID):
             video.save(video_path)
             one_video.videoFile = "/static/video/" + str(classID) + "/" + filename
         db.session.add(one_video)
+        counter=0
         if len(videos) > 0:
             for video in videos:
-                if not one_video.videoFile in video[1]:
+                counter = counter + 1
+
+                if not one_video.videoFile == video[1] and counter == len(videos):
+                    print("video")
                     db.session.commit()
                 else:
                     flash("This video already exists for this section")
+                    break
         else:
             db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
