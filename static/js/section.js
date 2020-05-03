@@ -10,7 +10,7 @@ const modalBody = document.getElementById("modal-body");
 
 //timer Setup
 let TIMER;
-const questionTime = 60; // total seconds
+const questionTime = 6000; // total seconds
 let gaugeWidth = 200;
 const counter = document.getElementById("timer_time");
 var count = 1;
@@ -233,8 +233,7 @@ function drop(ev, element) {
     console.log("drop_zones.length: " + drop_zones.length);
     ev.target.appendChild(document.getElementById(data));
     if(correctSubmitCount === drop_zones.length){
-        console.log("about to say that you finished!");
-        modalHead.innerHTML = "<h4>Correct! You Finished!</h4>";
+        modalHead.innerHTML = "<h4>Correct! You finished the problem!</h4>";
         modalBody.innerHTML = this_reason;
         progress(true);
         //need to reset the question elements
@@ -264,7 +263,7 @@ function drop(ev, element) {
     //then we just dragged the wrong answer onto this drop zone
     //for now just make this wrong
     progress(false);
-    modalHead.innerHTML = "<h4>InCorrect!</h4>";
+    modalHead.innerHTML = "<h4>Incorrect!</h4>";
     modalBody.innerHTML = "Let's try that again!";
     tries++;
   }
@@ -283,6 +282,7 @@ function submitShortAnswer(submitButton, answerList){
             break;
         }
     }
+    progress(correct);
     if(correct){
         if(tries == 0) firstTry++;
         console.log(firstTry)
@@ -310,7 +310,6 @@ function submitShortAnswer(submitButton, answerList){
         modalBody.innerHTML = "Oops! Let's try this one again";
         tries++;
     }
-    progress(correct);
     submitButton.parentElement.children[0].value=""
 }
 

@@ -168,6 +168,13 @@ after{
     padding-left: 10px;
 }
 
+.mcAns{
+    width:90%;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+}
+
 .timer_box {
     align-items: center;
     display: flex;

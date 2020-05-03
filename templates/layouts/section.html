@@ -180,7 +180,7 @@
                             <button class="btn-success btn" data-toggle="modal" data-target="#myModal" onclick="submitShortAnswer(this, {{ saList }})">Submit </button>
                             <!-- multiple choice -->
                             {% elif question[3] == "multiple" %}
-                             <div id="answers{{outer_loop.index-1}}">
+                             <div id="answers{{outer_loop.index-1}}" class="mcAns">
                             {% for answer in a_list[outer_loop.index-1] %}
                             {% set answer_loop = loop %}
                             <button class="mult_choice" id="Button{{ answer[0] }}"  value="{{answer[2]}}" onclick="toggleSelected('Button{{ answer[0] }}', this, '{{answer[4]}}', '{{answer[2]}}', '{{answer[3]}}')" >
