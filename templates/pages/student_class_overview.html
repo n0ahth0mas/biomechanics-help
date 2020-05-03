@@ -4,6 +4,7 @@
 <main id="structure" role="main" class="main-content-container">
     <h1>{{class_name}} Overview</h1>
     <a href="/section/{{classID}}/{{last_chapter_ID}}/{{last_section_ID}}"><button class="btn btn-primary btn-lg btn-block restart-btn">Pick Up Where You Left Off</button></a>
+    If there aren't any links or little to no info, then your professor has not published much or any content to this class.
     {% for chapter in chapters %}
         {% set outer_loop = loop %}
         {% if chapter[4] ==1 %}
