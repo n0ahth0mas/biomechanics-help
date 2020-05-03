@@ -88,7 +88,7 @@ div.indent {
   font-size: 12px;
 }
 
-#myTable1 th, #myTable td {
+#myTable1 th, #myTable1 td {
   text-align: left;
   padding: 12px;
 }
@@ -97,7 +97,7 @@ div.indent {
   border-bottom: 1px solid #ddd;
 }
 
-#myTable1 tr.header, #myTable tr:hover {
+#myTable1 tr.header, #myTable1 tr:hover {
   background-color: #f1f1f1;
 }
 
