@@ -16,7 +16,6 @@
                     {% for _text in section_text %}
 
                     <p id="{{_text[0]}}">
-                        <strong>Section Block {{_text[0]}}:</strong><br>
                         {{_text[1]}}
                         {% for _image in section_images%}
                             {% if _image[0] == _text[0] %}
