@@ -107,9 +107,9 @@
     <table id="myTable">
             <tr class="header">
                 <th style="width:5%;">Text Number</th>
-                <th style="width:50%;">Text</th>
+                <th style="width:40%;">Text</th>
                  <th style="width:5%;"></th>
-                <th style="width:10%;">Images
+                <th style="width:20%;">Images
                 <!-- Trigger/Open The Modal -->
 
                </th>
@@ -132,18 +132,18 @@
                     {% if image_file[0] == sectionBlock[0] %}
                         {% for link in links %}
                             {% if link[1] == image_file[1] %}
-                                <li><img src="{{image_file[1]}}" width="100" height="100"></li><!--form to unpublish-->
+                                <!--form to unpublish-->
                         <form method="post" class="form">
                             {{ form_delete_image.csrf_token }}
                             {{ form_delete_image.sectionBlockID2(value = sectionBlock[0])}}
-                            <input type="submit" value="Delete Image"class="btn btn2">
+                            <li><img src="{{image_file[1]}}" width="100" height="100"><button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn2"><i class="fa fa-close"></i></button></li>
                         </form>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
                 </ul></td>
-                <td><button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal" onclick="setFormTextNumber({{block_loop.index}})">Add Image</button>{{ tips("image", "Add images to text blocks by clicking the 'Add Image' button. This will associate the given image with that text block. You will also be asked for a position for the image relative to the text block.") }}</td>
+                <td><button id="myBtn" class="btn myBtn btn1" data-toggle="modal" data-target="#addImageModal" onclick="setFormTextNumber({{block_loop.index}})">Replace Image</button>{{ tips("image", "Add images to text blocks by clicking the 'Add Image' button. This will associate the given image with that text block. You will also be asked for a position for the image relative to the text block.") }}</td>
                 <!--<td></div><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}/add-section-block-images"><button type="button" class="btn btn1" >Add/Edit Images</button></a><br></a></h5></td>-->
                 <td><a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}/text/{{sectionBlock[0]}}/delete"><button type="button" class="btn btn2" onclick="return confirm('Are you sure you want to delete this item?');" ><i class="fa fa-trash"></i></button></a><br></h5></td>
             </tr>
