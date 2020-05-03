@@ -1,0 +1,91 @@
+{% extends 'layouts/base' %}
+{% block title %}Professor Home{% endblock %}
+{% block content %}
+<!-- Begin page content -->
+<main id="structure" role="main" class="main-content-container">
+    <div id="changePasswordModal" class="modal">
+
+        <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form method="post" class="form">
+            <h2>Change Password</h2>
+            {{ form_password.csrf_token }}
+            Current Password:
+            {{ form_password.oldpassword(class_ = 'form-control', placeholder = form_password.oldpassword.label.text) }}
+            New Password:
+            {{ form_password.password(class_ = 'form-control', placeholder = form_password.password.label.text) }}
+            Confirm Password:
+            {{ form_password.confirm(class_ = 'form-control', placeholder = form_password.confirm.label.text, required = true) }}
+            <br>
+        <input type="submit" value="Change Password" class="btn btn-primary btn-lg btn-block">
+    </form>
+    </div>
+    </div>
+
+    <!-- Change School Modal -->
+        <div id="changeSchoolModal" class="modal">
+
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        <form method="post" class="form">
+            <h3>Change School</h3>
+            {{ form_school.csrf_token }}
+            Organization Code:
+            {{ form_school.code(class='form-control', placeholder = form_school.code.label.text, required = true) }}
+            <input type="submit" value="Change School" class="btn-primary btn-lg btn-block">
+        </form>
+    </div>
+</div>
+    <div id="changeProfileModal" class="modal">
+
+        <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <form method="post" class="form">
+            <h3>Change User Profile</h3>
+      {{ form.csrf_token }}
+        Full Name:
+    {{ form.fullName(class_ = 'form-control',value = current_user.name) }}
+    <input type="submit" value="Save" class="btn btn-primary btn-lg btn-block">
+  </form>
+    </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-profile">{{current_user.name}}</a>
+    <div>
+        <h1>Welcome, {{ current_user.name }}</h1>
+    </div>
+    Manage your profile and information.<br>
+    <button id="profileBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changeProfileModal">Change Name</button>
+    <button id="passwordBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
+    <button id="schoolBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changeSchoolModal">Change School</button><br>
+    <div class="profile">
+    <h2>Full Name:</h2>
+        <p>{{current_user.name}}</p>
+    <h2>Email:</h2>
+        <p>{{current_user.id}}</p>
+    <h2>Organization:</h2>
+        <p>{{current_school.schoolName}}</p>
+    <h2>Status:</h2>
+        {% if current_school.subscription == True %}
+        <p>Active</p>
+        {% else %}
+        <p>Inactive</p>
+        {% endif %}
+</div>
+</main>
+{% endblock %}

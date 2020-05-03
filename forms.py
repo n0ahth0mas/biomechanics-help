@@ -26,6 +26,10 @@ class RegisterForm(FlaskForm):
     )
 
 
+class EditProfessorRegForm(FlaskForm):
+    fullName = StringField('Full name', validators=[DataRequired()])
+
+
 class LoginForm(FlaskForm):
     email = EmailField('Email', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
@@ -288,3 +292,17 @@ class DeleteVideo(FlaskForm):
 class DeleteTermImage(FlaskForm):
     termID3 = HiddenField()
     imageFile = HiddenField()
+
+
+class ProfileSchool(FlaskForm):
+    code = StringField('Organization Code', validators=[DataRequired()])
+
+
+class ProfilePassword(FlaskForm):
+    oldpassword = PasswordField('Your password', validators=[DataRequired()])
+    password = PasswordField('Your password', validators=[DataRequired()])
+    confirm = PasswordField(
+        'Repeat Password',
+        [DataRequired(),
+         EqualTo('password', message='Passwords must match')]
+    )

@@ -286,6 +286,7 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 @app.route('/')
 def home():
     adminID = "3141592653589admin"
+    print(query_db('SELECT * from School where schoolID="%s"' % adminID))
     if not query_db('SELECT * from School where schoolID="%s"' % adminID):
         admin = School()
         admin.schoolID = adminID
@@ -1319,6 +1320,48 @@ def delete_school(schoolID):
     db.session.delete(school_to_delete)
     db.session.commit()
     return render_template('pages/delete-school.html', schoolID=schoolID)
+
+
+@app.route('/edit-profile', methods=('GET', 'POST'))
+@roles_required('Professor')
+def edit_profile():
+    form = EditProfessorRegForm()
+    form_school = ProfileSchool()
+    form_password = ProfilePassword()
+    current_school = School.query.filter_by(schoolID=current_user.schoolID).first()
+    if form.validate():
+        current_user.name = form.data["fullName"]
+        db.session.commit()
+        return redirect('/edit-profile')
+    if form_school.validate():
+        if School.query.filter_by(schoolID=form_school.data["code"]).first() is not None:
+            current_user.schoolID = form_school.data["code"]
+            db.session.commit()
+            return redirect('/edit-profile')
+        else:
+            flash("Unable to find school with those details, please try again")
+            return redirect('/edit-profile')
+        return redirect('/edit-profile')
+    if form_password.validate():
+        password = form_password.data["oldpassword"]
+        h = hashlib.md5(password.encode())
+        passhash = h.hexdigest()
+        # check passhash against the database
+        user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (current_user.id, passhash), one=True)
+        if user_object is None:
+            flash("Unable to find user with those details, please try again")
+            return redirect('/edit-profile')
+        else:
+            user = User.query.filter_by(id=current_user.id).one()
+            newpassword = form_password.data["password"]
+            h = hashlib.md5(newpassword.encode())
+            passhash = h.hexdigest()
+            user.password = passhash
+            db.session.commit()
+            login_user(user)
+            return redirect('/edit-profile')
+    return render_template('pages/edit-profile.html', current_user=current_user, form=form, form_school=form_school,
+                           form_password=form_password, current_school=current_school)
 
 
 @app.route('/student-short')
