@@ -409,8 +409,11 @@ def edit_glossary(classID):
             img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
             image.save(img_path)
             one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
-        db.session.add(one_image)
-        db.session.commit()
+        if GlossaryImages.query.filter_by(termID=one_image.termID).filter_by(imageFile=one_image.imageFile).first() is None:
+            db.session.add(one_image)
+            db.session.commit()
+        else:
+            flash("Image already exist for that term")
         return redirect('/edit-class/%s/glossary' % classID)
     elif request.method == 'POST':
         pass
@@ -495,9 +498,6 @@ def edit_chapter(classID, chapterID):
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>', methods=('GET', 'POST'))
 @roles_required('Professor')
 def edit_section(classID, chapterID, sectionID):
-
-
-
     sectionBlocks = query_db('SELECT * from SectionBlock where sectionID="%s" ORDER BY orderNo' % sectionID)
     image_files = []
     for sectionBlock in sectionBlocks:
@@ -601,7 +601,7 @@ def edit_section(classID, chapterID, sectionID):
                     print("video")
                     db.session.commit()
                 else:
-                    flash("This video already exists for this section")
+                    flash("Video already exists for this section")
                     break
         else:
             db.session.commit()
