@@ -22,6 +22,12 @@ html, body {
     cursor: pointer;
 }
 
+.edit-section-button{
+    bottom: 40px;
+    position: relative;
+    left: 100%;
+}
+
 #imageFile2{
     margin-bottom: 20px;
 }
