@@ -2,6 +2,16 @@
 {% block title %}Class Overview{% endblock %}
 {% block content %}
 <main id="structure" role="main" class="main-content-container">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-block alert-error section-error-alert">
+      <a class="close" data-dismiss="alert">&times;</a>
+      {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <h1>{{class_name}} Overview</h1>
     <a href="/section/{{classID}}/{{last_chapter_ID}}/{{last_section_ID}}"><button class="btn btn-primary btn-lg btn-block restart-btn">Pick Up Where You Left Off</button></a>
     If there aren't any links or little to no info, then your professor has not published much or any content to this class.

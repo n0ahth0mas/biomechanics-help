@@ -1077,6 +1077,12 @@ def student_home():
 @app.route('/section/<class_id>/<chapter>/<section>', methods=['GET'])
 @roles_required(['Professor', 'Student'])
 def section_page(class_id, chapter, section):
+    prof = False
+    if query_db('SELECT role_id from User_roles where user_id = "%s"' % current_user.id)[0][0] == 35:
+        prof = True
+    if not prof and query_db('SELECT publish from Sections where sectionID="%s"' % section) == [(0,)]:
+        flash("Sorry, but the section you have chosen has not been published yet")
+        return redirect('/student-class-overview/%s' % class_id)
     if query_db('SELECT * from Enroll where email="%s" AND classID="%s"' % (session["email"], class_id)) != []:
         # Section Text
         text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s" ORDER BY orderNo' % section)
