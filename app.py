@@ -986,7 +986,7 @@ def delete_student(classID, studentemail):
     student_to_delete = UserClasses.query.filter_by(classID=classID).filter_by(email=studentemail).first()
     db.session.delete(student_to_delete)
     db.session.commit()
-    return render_template('pages/delete-student.html')
+    return render_template('pages/delete-student.html', classID=classID)
 
 
 @app.route('/edit-class/<classID>/<chapterID>/<sectionID>/delete/video/<videoFile>',
@@ -1331,7 +1331,7 @@ def professor_home():
     for _class in current_user.classes:
         # we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
-        class_tuple = (_class[0], _class[1], query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))
+        class_tuple = (_class[0], _class[1], len(query_db('SELECT * from Enroll WHERE classID="%s"' % _class[1]))-1)
         classes_list.append(class_tuple)
     admin = False
     if current_user.schoolID == "3141592653589admin":
@@ -1340,6 +1340,20 @@ def professor_home():
     return render_template('pages/professor-home.html', name=current_user.name, classes=classes_list, form=form_create,
                            formEdit=formEdit, prof_join_class_form=prof_join_class_form,
                            share_with_canvas_form=share_class_with_canvas_form, admin=admin)
+
+
+@app.route('/professor-home/<classID>/students', methods=('GET', 'POST'))
+@roles_required('Professor')
+def view_students(classID):
+    students = query_db('SELECT * from Enroll WHERE classID="%s"' % classID)
+    className = query_db('SELECT * FROM Classes where classID="%s"' % classID)[0][0]
+    users = query_db('SELECT * FROM Users')
+    list = []
+    for user in users:
+        for student in students:
+            if user[0] == student[0]:
+                list.append((student[0], student[2], user[2]))
+    return render_template('pages/view-students.html', classID=classID, list=list, className=className)
 
 
 @app.route('/administrator', methods=('GET', 'POST'))
