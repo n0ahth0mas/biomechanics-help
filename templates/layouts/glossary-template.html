@@ -3,32 +3,11 @@
 {% block content %}
 <div id="sidebar" class="sidenav" style="font-size:10px;">
 
-    <a href="#glossA">A</a> <!--Link to A page in Glossary-->
-    <a href="#glossB">B</a> <!--Link to B page in Glossary-->
-    <a href="#glossC">C</a> <!--Link to C page in Glossary-->
-    <a href="#glossD">D</a> <!--Link to D page in Glossary-->
-    <a href="#glossE">E</a> <!--Link to E page in Glossary-->
-    <a href="#glossF">F</a> <!--Link to F page in Glossary-->
-    <a href="#glossG">G</a> <!--Link to G page in Glossary-->
-    <a href="#glossH">H</a> <!--Link to H page in Glossary-->
-    <a href="#glossI">I</a> <!--Link to I page in Glossary-->
-    <a href="#glossJ">J</a> <!--Link to J page in Glossary-->
-    <a href="#glossK">K</a> <!--Link to K page in Glossary-->
-    <a href="#glossL">L</a> <!--Link to L page in Glossary-->
-    <a href="#glossM">M</a> <!--Link to M page in Glossary-->
-    <a href="#glossN">N</a> <!--Link to N page in Glossary-->
-    <a href="#glossO">O</a> <!--Link to O page in Glossary-->
-    <a href="#glossP">P</a> <!--Link to P page in Glossary-->
-    <a href="#glossQ">Q</a> <!--Link to Q page in Glossary-->
-    <a href="#glossR">R</a> <!--Link to R page in Glossary-->
-    <a href="#glossS">S</a> <!--Link to S page in Glossary-->
-    <a href="#glossT">T</a> <!--Link to T page in Glossary-->
-    <a href="#glossU">U</a> <!--Link to U page in Glossary-->
-    <a href="#glossV">V</a> <!--Link to V page in Glossary-->
-    <a href="#glossW">W</a> <!--Link to W page in Glossary-->
-    <a href="#glossX">X</a> <!--Link to X page in Glossary-->
-    <a href="#glossY">Y</a> <!--Link to Y page in Glossary-->
-    <a href="#glossZ">Z</a> <!--Link to Z page in Glossary-->
+    {% for _alpha in alpha %}
+        <a href="#gloss{{_alpha}}">{{_alpha}}</a>
+    {% endfor %}
+
+
 </div>
 
     <!-- Begin page content -->
