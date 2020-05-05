@@ -2,6 +2,7 @@
 {% block title %}Login{% endblock %}
 {% block content %}
 <body>
+{% from "layouts/macros.html" import tips with context %}
 {% with messages = get_flashed_messages() %}
     {% if messages %}
     {% for message in messages %}
@@ -14,7 +15,7 @@
     {% endwith %}
   <form method="post" class="form student-login-form">
     {{ form.csrf_token }}
-    <h3 class="form-heading">Login or Create an Account<a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h3 class="form-heading">Login or Create an Account {{ tips("demo", "To access a demo of this project, create a student account and enroll under classcode 'DEMO'") }}<a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
     <ul class="float-left login-form-options">
       <h5><a href="{{ url_for('new_student_account') }}">Student Registration </a></h5>
       <h5><a href="{{ url_for('new_prof_acc') }}">Professor Registration</a></h5>
