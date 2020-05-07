@@ -1107,7 +1107,7 @@ def section_page(class_id, chapter, section):
 
         for y in range(len(blockIDs)):
             if images_info[y]:
-                section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2]))
+                section_images.append((images_info[y][0][0], images_info[y][0][1], images_info[y][0][2], images_info[y][0][3]))
 
         # get video file
         video_files = query_db('SELECT * from Videos WHERE sectionID = "%s" ORDER BY orderNo' % section)

@@ -15,6 +15,28 @@ main{
     justify-content: center;
 }
 
+.center_img_container{
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    height: 25%;
+    width: 25%;
+}
+
+.right_img_container{
+    display: block;
+    margin-left:auto
+    height: 25%;
+    width: 25%;
+}
+
+.left_img_container{
+    display: block;
+    margin-right:auto
+    height: 25%;
+    width: 25%;
+}
+
 .img{
     max-height: 100%;
     max-width: 100%;

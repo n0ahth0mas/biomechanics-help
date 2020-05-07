@@ -18,13 +18,38 @@
                     <p id="{{_text[0]}}">
                         {{_text[1]}}
                         {% for _image in section_images%}
-                            {% if _image[0] == _text[0] %}
-                                <br>
-                                    <div class="img_container" id="{{_text[0]}} Image">
-                                        <p title="{{_image[1]}}" style="text-align: {{_image[2]}}">
-                                            <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
-                                        </p>
-                                    </div>
+                            <!-- Align Center -->
+                            {% if _image[2] == "center" %}
+                                {% if _image[0] == _text[0] %}
+                                    <br>
+                                        <div class="center_img_container" id="{{_text[0]}} Image">
+                                            <p title="{{_image[1]}}">
+                                                <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                                            </p>
+                                        </div>
+                                {% endif %}
+                            {% endif %}
+                            <!-- Align Right -->
+                            {% if _image[2] == "right" %}
+                                {% if _image[0] == _text[0] %}
+                                    <br>
+                                        <div class="right_img_container" id="{{_text[0]}} Image">
+                                            <p title="{{_image[1]}}">
+                                                <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                                            </p>
+                                        </div>
+                                {% endif %}
+                            {% endif %}
+                            <!-- Align Left-->
+                            {% if _image[2] == "left" %}
+                                {% if _image[0] == _text[0] %}
+                                    <br>
+                                        <div class="left_img_container" id="{{_text[0]}} Image">
+                                            <p title="{{_image[1]}}">
+                                                <img class ="img" alt="Section Block {{_text[0]}} Image" src="{{ _image[1] }}">
+                                            </p>
+                                        </div>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
 
