@@ -25,14 +25,14 @@ main{
 
 .right_img_container{
     display: block;
-    margin-left:auto
+    margin-left:auto;
     height: 25%;
     width: 25%;
 }
 
 .left_img_container{
     display: block;
-    margin-right:auto
+    margin-right:auto;
     height: 25%;
     width: 25%;
 }
