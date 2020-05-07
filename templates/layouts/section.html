@@ -295,7 +295,7 @@
 
         <!-- If there is a section after this one -->
         {% if section_id_after != [] and section_after[4] == 1 %}
-            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
+            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_after[0] }}">
                 <button id="next" class="btn btn-primary next-hidden">Next Page</button>
             </a>
 
@@ -327,7 +327,7 @@
             <div class="page_nav">
             <!-- If there is a section after this one -->
             {% if section_after != [] and section_after[4] == 1 %}
-            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_id_after}}">
+            <a href="/section/{{ classID }}/{{ chapter }}/{{ section_after[0] }}">
                 <button class="btn btn-primary next-btn">Next Page</button>
             </a>
 
