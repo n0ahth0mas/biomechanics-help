@@ -17,7 +17,14 @@
                     {% for _text in section_text %}
 
                     <p id="{{_text[0]}}">
+                        {% if section_images == [] %}
+                            {{_text[1]}}
+                        {% endif %}
+
                         {% for _image in section_images%}
+                            {% if _image[0] != _text[0] %}
+                                {{_text[1]}}
+                            {% endif %}
                             <!-- Align Below-->
                             {% if _image[3] == "below" %}
                                 {{_text[1]}}
@@ -93,7 +100,6 @@
                                 {{_text[1]}}
                             {% endif %}
                         {% endfor %}
-
                     </p>
                     {% endfor %}
                 </p>
