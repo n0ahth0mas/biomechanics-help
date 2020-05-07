@@ -649,17 +649,7 @@ def edit_section(classID, chapterID, sectionID):
             one_image.xposition = form_si.data["xposition"]
             one_image.yposition = form_si.data["yposition"]
             db.session.add(one_image)
-            if len(images) > 0:
-                add=True
-                for image in images:
-                    if one_image.imageFile == image[1]:
-                        add=False
-                    else:
-                        flash("This image already exists for this section")
-                if add:
-                    db.session.commit()
-            else:
-                db.session.commit()
+            db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     form_delete_image = DeleteImage()
     print(form_delete_image.validate())
