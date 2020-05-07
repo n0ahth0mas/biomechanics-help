@@ -1,6 +1,5 @@
 //for professor when building drag and drop question
 $("#drag-question-image").on("click", function(event) {
-        console.log("called function");
         bounds=this.getBoundingClientRect();
         var left=bounds.left;
         var bottom=bounds.bottom;
@@ -71,8 +70,6 @@ $( "#start-quiz-button" ).on("click", function() {
     var point_and_click_question_img = document.getElementById("point-click-question-img" + String(0));
     if(point_and_click_question_img !== null){
         point_and_click_question_img.className = "active_point_n_click big-section-img";
-    }else{
-        console.log("thinks its null");
     }
 });
 
@@ -88,11 +85,9 @@ $( document ).ready(function() {
             document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementsByClassName("drag-n-drop-img")[0].clientHeight) + "px";
         }else{
             document.getElementById("drag_n_drop_answer_img").style.maxHeight = String(document.getElementById("drag_n_drop_answer_img").naturalHeight) + "px";
-            console.log(document.getElementById("drag_n_drop_answer_img").style.maxHeight);
             document.getElementsByClassName("drag-answer-img-container")[0].style.height = document.getElementById("drag_n_drop_answer_img").style.maxHeight;
         }
     }
-    console.log("got this far");
     //reset select fields so that they cooperate in professor section
     var els = document.getElementsByClassName("reset_me");
     for (i = 0; i < els.length; i++) {
@@ -140,7 +135,6 @@ function changedPointNClickWidth(element){
     document.getElementById("point-n-click-answer-area").style.width = new_width;
     var this_question_image_width = document.getElementById("point-n-click-question-image").clientWidth;
     document.getElementById("area-adjusted-width-ratio").value = element.value/this_question_image_width;
-    console.log("adjustment percentage: " + document.getElementById("area-adjusted-width-ratio").value);
 }
 
 //changing the size of a point and click area
@@ -149,11 +143,9 @@ function changedPointNClickHeight(element){
     document.getElementById("point-n-click-answer-area").style.height = new_height;
     var this_question_image_height = document.getElementById("point-n-click-question-image").clientHeight;
     document.getElementById("area-adjusted-height-ratio").value = element.value/this_question_image_height;
-    console.log("adjustment percentage: " + document.getElementById("area-adjusted-height-ratio").value);
 }
 
 $("#point-n-click-question-image").on("click", function(event) {
-        console.log("called correct function");
         bounds=this.getBoundingClientRect();
         var left=bounds.left;
         var bottom=bounds.bottom;
@@ -186,7 +178,6 @@ $( "#drag-and-drop-form" ).submit(function( event ) {
   if ( $( "#adjusted-height-ratio" ).val() === "" ) {
     //then we need to set that now
     //we need to divide the answer image clientHeight by the client height of our question image
-    console.log("thinks that we didnt change the size of the image");
     if(document.getElementById("drag-question-image") !== null){
         var question_img_height = Number(document.getElementById("drag-question-image").clientHeight);
         var question_img_width = Number(document.getElementById("drag-question-image").clientWidth);

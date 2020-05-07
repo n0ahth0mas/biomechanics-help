@@ -28,7 +28,6 @@ var answerIdCounter = 0;
 
 
 function makeQuestions(){
-console.log(q_list);
     for(var i =0; i<q_list.length; i++){
         var question = new Object();
         question.qID = q_list[i][0];
@@ -94,7 +93,6 @@ function makeBubbles(answerList){
     for(var i=0; i<answerList.length; i++){
         var text = answerList[i].text;
         var choice = "<div class='choice' id= " +i + " onclick=checkAnswer(\""+i+"\")  data-toggle='modal' data-target='#answerModal'>"+ text+"</div>";
-        console.log(choice);
         choices.innerHTML += choice;
     }
 }
@@ -114,12 +112,9 @@ function startQuiz(){
 
 // render progress
 function renderProgress(){
-    console.log("running");
     progress.innerHTML = "";
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-    console.log(qIndex);
         progress.innerHTML += "<div class='prog' id="+ "button"+qIndex +"></div>";
-        console.log("<div class='prog' id="+ "button "+qIndex +"></div>");
     }
 }
 
@@ -149,7 +144,6 @@ function renderCounter(){
 // checkAnswer
 
 function checkAnswer(answerID){
-    console.log(answerID);
     let currentAnswer = true
     var answerTruth;
     if(questions[runningQuestion].answers[answerID].correct.toLowerCase() == "true"){
@@ -167,7 +161,6 @@ function checkAnswer(answerID){
         // change progress color to red
         currentAnswer = false;
         firstAttempt = false;
-        console.log("answerID is" + answerID);
         answerIsClicked(currentAnswer, answerTruth, answerID);
         changeColor(pastAnswers);
         answerIsWrong();
@@ -195,7 +188,6 @@ function answerIsClicked(correct, answer, i){
         pastAnswers = [];
     } else{
         modalHead.innerHTML = "<p>Incorrect<p>";
-        console.log("i " + i);
         pastAnswers += i
     }
     modalBody.innerHTML = "<p>" + questions[runningQuestion].answers[i].reasoning + "</p>";

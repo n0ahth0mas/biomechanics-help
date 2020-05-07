@@ -286,7 +286,6 @@ user_manager = UserManager(app, get_sql_alc_db(), User)
 @app.route('/')
 def home():
     adminID = "3141592653589admin"
-    print(query_db('SELECT * from School where schoolID="%s"' % adminID))
     if not query_db('SELECT * from School where schoolID="%s"' % adminID):
         admin = School()
         admin.schoolID = adminID
@@ -333,7 +332,6 @@ def edit_class(classID):
         one_chapter.publish = False
         db.session.add(one_chapter)
         db.session.commit()
-        print(classID)
         return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
@@ -447,7 +445,6 @@ def edit_glossary(classID):
     links = []
     for image_file in image_files:
         links.append((image_file[0], image_file[1], image_file[1].replace("/", "%%")))
-    print(links)
     return render_template('pages/edit-glossary.html', classID=classID, form=form, terms=terms, className=className,
                            form_i=form_i, image_files=image_files, form_edit=form_edit, links=links, form_delete_image=form_delete_image)
 
@@ -652,8 +649,6 @@ def edit_section(classID, chapterID, sectionID):
             db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     form_delete_image = DeleteImage()
-    print(form_delete_image.validate())
-    print(form_delete_image.sectionBlockID2.data)
     if form_delete_image.sectionBlockID2.data is not None and form_delete_image.validate() and not form_delete_image.sectionBlockID2.data == "":
         sectionBlockID = form_delete_image.data["sectionBlockID2"]
         one_image = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first()
@@ -694,9 +689,7 @@ def edit_section(classID, chapterID, sectionID):
     form_delete_video = DeleteVideo()
     if form_delete_video.videoFile2.data is not None and form_delete_video.validate():
         videoFile = form_delete_video.data["videoFile2"]
-        print("here")
         one_video = Video.query.filter_by(sectionID=sectionID).filter_by(videoFile=videoFile).first()
-        print(one_video)
         db.session.delete(one_video)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
@@ -821,21 +814,15 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
-        print("here")
         one_answer = Answer()
         one_answer.questionID = questionID
         one_answer.correctness = form_a.data["correctness"]
         one_answer.answerText = form_a.data["answerText"]
         one_answer.answerReason = form_a.data["answerReason"]
-        print(form_a.data["imageFile"])
-        print("here")
         image = request.files["imageFile"]
-        print(image)
-        print(allowed_file(image.filename))
         if 'imageFile' not in request.files:
             return redirect(request.url)
         if image and allowed_file(image.filename):
-            print("Yes")
             filename = secure_filename(image.filename)
             img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
             image.save(img_path)
@@ -949,10 +936,8 @@ def delete_section_block(classID, chapterID, sectionID, sectionBlockID):
 @roles_required('Professor')
 def delete_section_block_image(classID, chapterID, sectionID, sectionBlockID, imageFile):
     imageFile = imageFile.replace("%%", "/")
-    print(imageFile)
     section_block_image_to_delete = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).filter_by(
         imageFile=imageFile).first()
-    print(section_block_image_to_delete)
     db.session.delete(section_block_image_to_delete)
     db.session.commit()
     return render_template('pages/delete-section-block-image.html', classID=classID, chapterID=chapterID,
@@ -976,10 +961,7 @@ def delete_student(classID, studentemail):
 @roles_required('Professor')
 def delete_video(classID, chapterID, sectionID, videoFile):
     videoFile = videoFile.replace("%%%", "/")
-    print(sectionID)
-    print(videoFile)
     video_to_delete = Video.query.filter_by(sectionID=sectionID).filter_by(videoFile=videoFile).first()
-    print(video_to_delete)
     db.session.delete(video_to_delete)
     db.session.commit()
     return render_template('pages/delete-video.html', classID=classID, chapterID=chapterID,
@@ -1050,7 +1032,6 @@ def delete_term_image(classID, termID, imageFile):
 @app.route('/student-home', methods=('GET', 'POST'))
 @roles_required('Student')
 def student_home():
-    print(request.endpoint)
     # add a class form
     form = AddClass()
     if form.validate_on_submit():
@@ -1060,7 +1041,6 @@ def student_home():
 
     # render our classes
     classes_list = []
-    print(current_user.classes)
     for _class in current_user.classes:
         # we want to use the class code to get a class name from classes
         _class = query_db('SELECT * from Classes WHERE classID="%s"' % _class.classID, one=True)
@@ -1082,10 +1062,6 @@ def section_page(class_id, chapter, section):
         text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s" ORDER BY orderNo' % section)
         section_text = []
         blockIDs = []
-
-        print("classid")
-        print(type(class_id))
-
         chapter_data = query_db('SELECT * from Chapters where chapterID ="%c"' % chapter, one=True)
         chapter_name = chapter_data[1]
         chapter_order = chapter_data[3]
@@ -1111,7 +1087,6 @@ def section_page(class_id, chapter, section):
 
         # get video file
         video_files = query_db('SELECT * from Videos WHERE sectionID = "%s" ORDER BY orderNo' % section)
-        print(video_files)
         # video = "/static/video/samplevid.mp4"
         # get quiz data
         a_list = []
@@ -1135,10 +1110,7 @@ def section_page(class_id, chapter, section):
             # print(query_db('SELECT * from Answers where questionID = "{}"'.format(answer_id))[0][7])
 
         # q_image_list = query_db('SELECT * from QuestionImages')
-        print("section " + section)
         section_data = query_db('SELECT * from Sections WHERE sectionID = "%s"' % section, one=True)
-        print("Section data below")
-        print(section_data)
         section_name = section_data[2]
         section_order = section_data[3]
 
@@ -1192,10 +1164,8 @@ def forgot():
             return redirect("/login")
         else:
             token = get_user_token(email)
-            print(token)
             html_body = render_template('email/reset_password.html', token=token)
             html = MIMEText(html_body, 'html')
-            print(html)
             msg = MIMEMultipart()
             msg["From"] = sender
             msg["To"] = email
@@ -1211,7 +1181,6 @@ def forgot():
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
     user = verify_reset_password_token(token)
-    print(token)
     if user == -1:
         return redirect(home_url)
     else:
@@ -1245,8 +1214,8 @@ def professor_home():
         flash("Sorry, the organization you are currently enrolled for is inactive. Please contact pugetsoundhelp@gmail.com for more information")
         return redirect('/professor-home')
 
-    if share_class_with_canvas_form.canvasClassCode is not None and share_class_with_canvas_form.validate():
-        print("validated share form")
+    #if share_class_with_canvas_form.canvasClassCode is not None and share_class_with_canvas_form.validate():
+    #    print("validated share form")
 
     if prof_join_class_form.classCode is not None and prof_join_class_form.validate():
         one_class = Class.query.filter_by(classID=prof_join_class_form.classCode.data).one()
@@ -1515,7 +1484,6 @@ def login():
         if Role.query.filter_by(name='Professor').one() in current_user.roles:
             return redirect(home_url + "professor-home")
         elif Role.query.filter_by(name='Student').one() in current_user.roles:
-            print("think that it has the role ")
             return redirect(home_url + "student-home")
     form = LoginForm(request.form)
     if form.validate_on_submit():
@@ -1525,21 +1493,16 @@ def login():
         passhash = h.hexdigest()
         # check passhash against the database
         user_object = query_db('SELECT * from Users WHERE email="%s" AND password="%s"' % (email, passhash), one=True)
-        print(user_object)
         if user_object is None:
             flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
         else:
             user = User.query.filter_by(id=form.email.data).one()
-            print(user)
-            print(user.roles)
             session["email"] = form.data["email"]
             login_user(user)
-            print(current_user.email)
             if Role.query.filter_by(name='Professor').one() in current_user.roles:
                 return redirect(home_url + "professor-home")
             elif Role.query.filter_by(name='Student').one() in current_user.roles:
-                print("think that it has the role ")
                 return redirect(home_url + "student-home")
     return render_template('forms/login.html', form=form, noNav=True)
 
@@ -1551,7 +1514,6 @@ def new_prof_acc():
         user_object = query_db('select * from Users where email= ?', [form.data["email"]], one=True)
         # this lets us verify that the professor is actually working at a particular school before they make an account
         school_code = query_db('select * from School where schoolID= ?', [form.data["schoolProfCode"]], one=True)
-        print(school_code)
         if not school_code[2]:
             flash("Sorry, the organization is currently inactive. Please contact pugetsoundhelp@gmail.com for more information")
             return render_template('forms/NewProfAccount.html', form=form)
@@ -1611,10 +1573,8 @@ def new_student_account():
 @app.route('/professor-class-overview/<classID>')
 @roles_required('Professor')
 def professor_class_home(classID):
-    print("called professor class home")
     # get chapters in order like we should
     chapters = query_db('SELECT * from Chapters where classID="%s" ORDER by "orderNo"' % classID)
-    print(chapters)
     # 2d array of sections, also in order like they should be
     sections_arrays = []
     for chapter in chapters:
@@ -1625,16 +1585,12 @@ def professor_class_home(classID):
     for sectionarray in sections_arrays:
         for section in sectionarray:
             questions.append(query_db('SELECT * from Questions where sectionID="%s" ORDER by "orderNo" ' % section[0]))
-    print(sections_arrays)
-    print(questions)
     # 3d array of answers
     answers = []
     for question_array in questions:
         for question in question_array:
             answers.append(query_db('SELECT * from Answers where questionID="%s"' % question[0]))
-    print(answers)
     class_name = query_db('SELECT * from Classes where classID="%s"' % classID)[0][0]
-    print(class_name)
     return render_template('pages/professor_class_overview.html', chapters=chapters, sections=sections_arrays,
                            questions=questions, class_name=class_name, answers=answers, classID=classID)
 
@@ -1669,7 +1625,6 @@ def student_class_home(classID):
         last_chapter_ID = first_chapter_ID
     else:
         last_chapter_ID = query_db("SELECT * from Sections where sectionID='%s'" % last_section_ID, one=True)[1]
-    print(last_chapter_ID)
     return render_template('pages/student_class_overview.html', chapters=chapters, sections=sections_arrays,
                            class_name=class_name, classID=classID, last_chapter_ID=last_chapter_ID,
                            last_section_ID=last_section_ID)

@@ -48,7 +48,6 @@ Question Creation
 
 //Question population
 function makeQuestions(){
-console.log(q_list);
     for(var i =0; i<q_list.length; i++){
         let question = new Object();
         question.qID = q_list[i][0];
@@ -129,10 +128,8 @@ function startQuiz(){
 
 // render progress
 function renderProgress(){
-    console.log("running");
     progress.innerHTML = "";
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-    console.log(qIndex);
         progress.innerHTML += "<div class='prog' id="+ "button"+qIndex +"></div>";
     }
 }
