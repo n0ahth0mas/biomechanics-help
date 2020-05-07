@@ -1153,7 +1153,6 @@ def section_page(class_id, chapter, section):
             'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order + 1), one=True)
         next_ch_sect = []
         chapter_after = []
-        section_id_after = []
         if not section_after:
             chapter_after = query_db(
                 'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1),
