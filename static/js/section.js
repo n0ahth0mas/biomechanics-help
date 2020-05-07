@@ -2,7 +2,7 @@
 const scoreCounter = document.getElementById("scoreCounter");
 const finalScore = document.getElementById("quiz-final-score");
 const progressDiv = document.getElementById("prog_bub");
-const totalIndex = progressDiv.childElementCount-1;
+var totalIndex = 0
 const enlargeBtn = document.getElementById("enlarge");
 
 const modalHead = document.getElementById("modal-header");
@@ -34,6 +34,7 @@ var greyedOut = [];
 
 function startQuiz(){
 
+    totalIndex = progressDiv.childElementCount-1;
     document.getElementById("questions").style.display = "flex"
     document.getElementById("header").style.display = "none"
     TIMER = setInterval(renderCounter, 1000);

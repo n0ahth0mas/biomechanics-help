@@ -232,13 +232,13 @@ after{
     grid-column-end: three;
     grid-row-end: bottom;
     width=100%;
-    height=100%;}
+    height=100%;
+}
 
 
 
 .page_nav{
     padding-top: 1.5%;
-    width = 70%;
 }
 
 .previous{
@@ -246,7 +246,7 @@ after{
     float: left;
 }
 
-.next{
+.next-btn{
     display: flex;
     float: right;
 }
