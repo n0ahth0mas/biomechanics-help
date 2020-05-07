@@ -205,7 +205,7 @@ $( "#drag-and-drop-form" ).submit(function( event ) {
 
 
 function setFormTextNumber (index){
-    document.getElementById("orderNo4").value = index
+    document.getElementById("sectionBlockID4").value = index
 }
 
 var nav = document.getElementById("nav")

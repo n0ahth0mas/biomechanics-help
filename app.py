@@ -632,44 +632,35 @@ def edit_section(classID, chapterID, sectionID):
     elif request.method == 'POST':
         pass
     form_si = CreateSectionBlockImages()
-    if form_si.orderNo4.data is not None and form_si.validate_on_submit():
-        orderNo = form_si.data["orderNo4"]
-        list = []
-        list = query_db('SELECT * from SectionBlock where sectionID="%s"' % sectionID)
-        counter = 1
-        for i in list:
-            if i[0] != orderNo:
-                if len(list) == counter:
-                    flash("Text Number does not exists")
-            else:
-                sectionBlockID = query_db('SELECT * from SectionBlock where sectionID="%s" AND orderNo= "%s"' % (sectionID, orderNo))[0][0]
-                if SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first() is not None:
-                    one_image = SectionBlockImages.query.filter_by(sectionBlockID=sectionBlockID).first()
-                    print("no")
-                else:
-                    one_image = SectionBlockImages()
-                    one_image.sectionBlockID = sectionBlockID
-                image = request.files["imageFile"]
-                if 'imageFile' not in request.files:
-                    return redirect(request.url)
-                if image and allowed_file(image.filename):
-                    filename = secure_filename(image.filename)
-                    img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
-                    image.save(img_path)
-                    one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
-                one_image.xposition = form_si.data["xposition"]
-                one_image.yposition = form_si.data["yposition"]
-                db.session.add(one_image)
-                if len(images) > 0:
-                    for image in images:
-                        if not one_image.imageFile in image[1]:
-                            db.session.commit()
-                        else:
-                            flash("This image already exists for this section")
-                else:
+    if form_si.sectionBlockID4.data is not None and form_si.validate_on_submit():
+        if SectionBlockImages.query.filter_by(sectionBlockID=form_si.data["sectionBlockID4"]).first() is None:
+            one_image = SectionBlockImages()
+            one_image.sectionBlockID = form_si.data["sectionBlockID4"]
+        else:
+            one_image = SectionBlockImages.query.filter_by(sectionBlockID=form_si.data["sectionBlockID4"]).first()
+        image = request.files["imageFile"]
+        if 'imageFile' not in request.files:
+            return redirect(request.url)
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+            image.save(img_path)
+            one_image.imageFile = "/static/img/" + str(classID) + "/" + filename
+            one_image.xposition = form_si.data["xposition"]
+            one_image.yposition = form_si.data["yposition"]
+            db.session.add(one_image)
+            if len(images) > 0:
+                add=True
+                for image in images:
+                    if one_image.imageFile == image[1]:
+                        add=False
+                    else:
+                        flash("This image already exists for this section")
+                if add:
                     db.session.commit()
-                return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
-            counter = counter + 1
+            else:
+                db.session.commit()
+        return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     form_delete_image = DeleteImage()
     print(form_delete_image.validate())
     print(form_delete_image.sectionBlockID2.data)

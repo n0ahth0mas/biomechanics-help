@@ -133,7 +133,7 @@ class ResetPasswordForm(FlaskForm):
 class CreateSectionBlockImages(FlaskForm):
     xposition_choices = [('right', 'right'), ('left', 'left'), ('center', 'center')]
     yposition_choices = [('above', 'above'), ('below', 'below')]
-    orderNo4 = IntegerField('Text Number', validators=[DataRequired()])
+    sectionBlockID4 = IntegerField('Text Number', validators=[DataRequired()])
     imageFile = FileField('Image File', validators=[DataRequired()])
     xposition = SelectField('X Position', choices=xposition_choices)
     yposition = SelectField('Y position', choices=yposition_choices)
