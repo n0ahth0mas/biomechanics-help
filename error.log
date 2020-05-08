@@ -21191,3 +21191,17 @@ Traceback (most recent call last):
     {% set textIndex = textIndex + 1 %}
 jinja2.exceptions.UndefinedError: 'textIndex' is undefined
 2020-05-08 14:13:35,093 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1688]
+2020-05-08 15:08:17,096 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:08:59,086 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:09:54,360 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:10:16,075 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:12:51,473 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:13:28,652 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:13:56,304 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:15:28,135 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:15:52,733 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:18:24,439 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:20:58,134 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:21:14,274 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:21:36,822 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-08 15:22:20,411 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
