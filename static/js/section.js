@@ -79,9 +79,14 @@ function renderQuestion(){
     //hide current timer and show the next one
     //make sure to set the timer to the right starting value
     currentTimer.className = "timer_box";
-    currentTimer.children[0].innerHTML = currentTimer.children[1].innerHTML;
     console.log(String("timer" + (questionIndex)));
     currentTimer = document.getElementById(String("timer" + (questionIndex)));
+    if(currentTimer.children[1].innerHTML === ''){
+        currentTimer.children[0].innerHTML = 60;
+        currentTimer.children[1].innerHTML = 60;
+    }else{
+        currentTimer.children[0].innerHTML = currentTimer.children[1].innerHTML;
+    }
     currentTimer.className = "timer_box_active";
     count = 1;
 }
