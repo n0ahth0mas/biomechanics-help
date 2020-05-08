@@ -436,7 +436,9 @@ function clickedPointAndClickQ(event, question_image){
     for(i = 0; i < info_by_answer.length;i++){
         var this_answer_details = info_by_answer[i].children;
         var this_box_x_local_position = (Number(this_answer_details[0].innerHTML)/question_image.naturalWidth) * question_image.clientWidth;
+        console.log("local x position: " + this_box_x_local_position);
         var this_box_y_local_position = (Number(this_answer_details[1].innerHTML)/question_image.naturalHeight) * question_image.clientHeight;
+        console.log(this_box_y_local_position);
         var this_box_width_ratio = Number(this_answer_details[3].innerHTML);
         var this_box_height_ratio = Number(this_answer_details[4].innerHTML);
         var this_answer_correctness = this_answer_details[5].innerHTML;

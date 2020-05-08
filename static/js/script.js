@@ -160,8 +160,11 @@ $("#point-n-click-question-image").on("click", function(event) {
         document.getElementById("point-n-click-x-coord").value = px.toFixed(2);
         document.getElementById("point-n-click-y-coord").value = py.toFixed(2);
         var answer_box = document.getElementById("point-n-click-answer-area");
+        console.log("py: " + py);
+        console.log("y: " + y);
         answer_box.style.left = String((px/iw) * cw) + "px";
-        answer_box.style.bottom = String((py/iw) * cw) + "px";
+        //compensate for mystery offset
+        answer_box.style.bottom = String((py + 20) + "px");
         answer_box.style.top = "unset";
 });
 

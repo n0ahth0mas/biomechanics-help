@@ -850,7 +850,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
         one_answer.answerText = form_short.data["answerText3"]
         one_answer.correctness = True
         one_answer.answerReason = form_short.data["answerReason"]
-        one_answer.imageFile = form_short.data["imageFile"]
         db.session.add(one_answer)
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
