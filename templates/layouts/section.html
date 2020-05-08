@@ -14,20 +14,30 @@
             <!-- Information and Image Blocks -->
             <div class = "section" id="sectionText">
                 <p>
+                    {% set idx = 0 %}
                     {% for _text in section_text %}
 
                     <p id="{{_text[0]}}">
                         {% if section_images == [] %}
-                            {{_text[1]}}
+                            {% if idx < 1 %}
+                                {{_text[1]}}
+                                {% set idx = idx + 1 %}
+                            {% endif %}
                         {% endif %}
 
                         {% for _image in section_images%}
                             {% if _image[0] != _text[0] %}
-                                {{_text[1]}}
+                                {% if idx < 1 %}
+                                    {{_text[1]}}
+                                    {% set idx = idx + 1 %}
+                                    {{idx}}
                             {% endif %}
+                        {% endif %}
                             <!-- Align Below-->
                             {% if _image[3] == "below" %}
-                                {{_text[1]}}
+                                {% if _image[0] == _text[0] %}
+                                    {{_text[1]}}
+                                {% endif %}
                                 <!-- Align Center -->
                                 {% if _image[2] == "center" %}
                                     {% if _image[0] == _text[0] %}
@@ -97,10 +107,13 @@
                                             </div>
                                     {% endif %}
                                 {% endif %}
-                                {{_text[1]}}
+                                {% if _image[0] == _text[0] %}
+                                    {{_text[1]}}
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </p>
+                    {% set idx = 0 %}
                     {% endfor %}
                 </p>
                 <hr>
