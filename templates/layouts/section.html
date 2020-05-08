@@ -8,8 +8,9 @@
 <main>
     <div class="page-container">
         <div class="gridbody">
-            <h1>{{chapter_name}}: {{section_name}}</h1>{% if prof==True %}<a href="/edit-class/{{classID}}/{{chapter}}/{{section}}" class="edit-section-button"><button type="button" class="btn btn-primary btn3">Edit Section</button></a>{% endif %}
-            {% if prof==True and section_after != None %}<a href="/section/{{classID}}/{{chapter}}/{{section_after[0]}}" class="edit-section-button"><button type="button" class="btn btn-primary btn4">View Next Section</button></a>{% endif %}
+            <h1>{{chapter_name}}: {{section_name}}</h1>{% if prof==True and section_id_before != None %} <a href="/section/{{classID}}/{{chapter}}/{{section_id_before}}" class="page-btns"><button type="button" class="btn btn-primary">View Previous Section</button></a> {% elif prof==True %} <a href="/edit-class/{{ classID }}/{{ chapter }}" class="page-btns"><button class="btn btn-primary">Back to Chapter Overview</button></a>{% endif %}
+            {% if prof==True %}<a href="/edit-class/{{classID}}/{{chapter}}/{{section}}" class="page-btns"><button type="button" class="btn btn-primary rightSd">Edit Section</button></a>{% endif %}
+            {% if prof==True and section_after != None %}<a href="/section/{{classID}}/{{chapter}}/{{section_after[0]}}" class="page-btns"><button type="button" class="btn btn-primary rightSd">View Next Section</button></a>{% elif prof==True%}<a href="/edit-class/{{ classID }}/{{ chapter }}" class="page-btns"><button class="btn btn-primary rightSd">Back to Chapter Overview</button></a>{% endif %}
             <hr>
 
             <!-- Information and Image Blocks -->

@@ -22,10 +22,32 @@ html, body {
     cursor: pointer;
 }
 
+.page-btns{
+    position:relative;
+}
+
+.rightSd{
+    float: right;
+    margin-left: 30px;
+}
+.btn3 {
+    position: absolute;
+    right: 0px;
+}
+.btn4 {
+    position: absolute;
+    right: 150px;
+}
+
 .edit-section-button{
     bottom: 40px;
     position: relative;
     left: 100%;
+}
+
+.prev-section-button{
+    bottom: 40px;
+    position: relative;
 }
 
 #imageFile2{
