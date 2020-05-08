@@ -1,5 +1,39 @@
-questionID,questionText,sectionID,questionType,orderNo,imageFile
-3,NoooOOOse,1,pointnclick,1,/static/img/12345/king.jpg
-4,Boing,1,pointnclick,2,/static/img/12345/Datacenter.jpg
-5,Drag em boys,1,dragndrop,3,/static/img/12345/IMG_3831.jpg
-6,2nd drag and drop,1,dragndrop,4,/static/img/12345/zeus_by_dariojart_d5nj96d-fullview.jpg
+questionID,questionText,sectionID,questionType,orderNo,imageFile,questionTime
+1,Click each response which names an active force in the action you just saw.,7,multiple,1,/static/img/question.png,60
+2,"Watch the second example again. For this scene, identify which major external force was overcome as the three villains climbed into the Harrod's truck.
+",7,multiple,2,/static/img/question.png,60
+3,Now watch example 3 again. What force is holding Ringo's arm over his head?,7,short,3,/static/img/question.png,60
+4,Now watch example 4 again. Which force was preventing Ringo from sinking through the floor?,7,multiple,4,/static/img/question.png,60
+7,"How has this man's COG moved from its anatomical position?
+Click the mouse in the appropriate box(es):
+",4,pointnclick,2,/static/img/biomechanicshelp/answersFullCOG.png,60
+8,"For the mad scientist on the right of the screen, how did his COG move in getting into this position? (INCLUDE HIS PISTOL.) Click the mouse in the appropriate box(es):",4,pointnclick,3,/static/img/biomechanicshelp/answersFullCOG.png,60
+9,"For the villain on the screen, how did his COG move in assuming this position? Click the mouse in the appropriate box(es):",4,short,4,/static/img/biomechanicshelp/answersFullCOG.png,60
+10,"Now you try it!
+After using a straight edge (pencil, pen, or ruler) to locate the COG of this flexed body part, click the mouse button on the approximate location of the COG
+",10,pointnclick,1,/static/img/biomechanicshelp/flexedArmCOG.png,60
+11,Locate COG for the following body part:,10,pointnclick,2,/static/img/biomechanicshelp/bodyPartCOG.png,60
+12,Click the mouse on the vector which is oriented correctly for the LOG of the following part:,8,dragndrop,1,/static/img/biomechanicshelp/LOGquestion.png,60
+13,"In each case, because of external (gravity or opponent's push) or internal (muscle contracting for a jump) forces, the LOG of the person was caused to fall outside the base of support, producing disequilibrium.
+Click the mouse on the oval corresponding to the correct answer:
+",8,pointnclick,2,/static/img/biomechanicshelp/equilibriumQuestion.png,60
+14,"Observe the mad scientist on the right.
+Does he demonstrate stable, unstable, or dis-equilibrium? Click on the oval.
+",8,pointnclick,3,/static/img/biomechanicshelp/equilibriumQuestion.png,60
+15,WHY??? Select the reason(s) why the mad scientist is in unstable equilibrium. Click on the box(es):,8,multiple,4,/static/img/question.png,60
+16,"John, the Beatle in the center of the screen, is presently in stable Select the best set of reasons why equilibrium. this is so.",8,multiple,5,/static/img/question.png,60
+17,"Beatle John is the second person from the left, with hands overhead. How did his COG move when he got into this position? (Assume he started in the anatomical position.) Click the mouse on the correct box below:",4,pointnclick,1,/static/img/biomechanicshelp/answersCOG.png,60
+18,Question 1: Select all of the following which are internal forces;,6,multiple,1,/static/img/question.png,60
+19,Question 2: (Please watch the first video) How has the Center of Gravity of the person shown moved from its location in the anatomical position?,6,pointnclick,2,/static/img/biomechanicshelp/answersFullCOG.png,60
+20,"Question 3:
+Click on the lower extremity which shows the correct location of the center of gravity:
+",6,pointnclick,3,/static/img/biomechanicshelp/forcesQuestion3.png,60
+21,"Question 4 :(Please watch the second video)
+Why don't the ""curling kettles"" sink into the snow under the force of gravity?
+",6,multiple,4,/static/img/question.png,60
+22,"Question 5: (Please watch the third video) 
+Why did the snowman (actually the swamy in disguise) fall down? Type in the phrase describing the condition which existed when this happened, then hit the return key.
+",6,short,5,/static/img/question.png,60
+23,Question 6: (Please watch the fourth video) How has the Center of Gravity of the person shown (now that he has picked up the disguised bomb) moved from its location in the anatomical position,6,pointnclick,6,/static/img/biomechanicshelp/answersFullCOG.png,60
+24,"Question 7: (Please watch the fifth video) For the two Beatles in the center of the screen, what have they done to increase their stability? Click all boxes which are correct. ",6,multiple,7,/static/img/question.png,60
+25,Question 8: Move the dot (by clicking and dragging with the mouse) to the correct location of the human center of gravity in the anatomical position:,6,dragndrop,8,/static/img/biomechanicshelp/question8Body.png,60
