@@ -100,6 +100,7 @@ class CreateQuestion(FlaskForm):
     questionText = TextAreaField('Question Text', validators=[DataRequired()])
     questionType = SelectField('Question Type', validators=[DataRequired()], choices=question_type_choices)
     imageFile2 = FileField('Image')
+    questionTime = IntegerField('Time For Student to Complete Question In Seconds', validators=[validators.Optional()])
 
 
 class CreateImage(FlaskForm):
@@ -180,6 +181,7 @@ class EditQuestion(FlaskForm):
     orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
     questionText = TextAreaField(validators=[DataRequired()])
     questionType = SelectField(choices=question_type_choices, default=('', 'Change Question Type'))
+    questionTime = IntegerField('Time For Student to Complete Question In Seconds', validators=[DataRequired()])
 
 
 class EditAnswer(FlaskForm):

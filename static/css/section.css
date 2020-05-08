@@ -199,6 +199,18 @@ after{
 
 .timer_box {
     align-items: center;
+    display: none;
+    justify-content: center;
+    grid-column-start: one;
+    grid-row-start: bottom;
+    grid-column-end: one;
+    grid-row-end: bottom;
+    width: 100%;
+    height: 100%;
+}
+
+.timer_box_active{
+    align-items: center;
     display: flex;
     justify-content: center;
     grid-column-start: one;

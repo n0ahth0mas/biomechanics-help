@@ -55,6 +55,7 @@ create TABLE Questions(
         questionType  TEXT check(questionType IS NOT NULL),
         orderNo       INTEGER,
         imageFile     TEXT,
+        questionTime  INTEGER,
         PRIMARY KEY (questionID),
         FOREIGN KEY (sectionID) REFERENCES Sections (sectionID)
             ON UPDATE CASCADE

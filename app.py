@@ -197,6 +197,7 @@ class Question(db.Model):
     orderNo = db.Column(db.Integer())
     imageFile = db.Column(db.String())
     answers = db.relationship("Answer", cascade="all, delete-orphan")
+    questionTime = db.Column(db.Integer())
 
 
 class School(db.Model):
@@ -552,7 +553,7 @@ def edit_section(classID, chapterID, sectionID):
     elif request.method == 'POST':
         pass
     form_q = CreateQuestion()
-    if form_q.orderNo3.data is not None and form_q.validate_on_submit():
+    if form_q.orderNo3.data is not None and form_q.validate():
         one_question = Question()
         one_question.questionText = form_q.data["questionText"]
         one_question.orderNo = form_q.data["orderNo3"]
@@ -564,6 +565,12 @@ def edit_section(classID, chapterID, sectionID):
         # flash('Please enter a question order number that does not already exist.')
         # return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
         one_question.questionType = form_q.data["questionType"]
+        print(form_q.questionTime.data)
+        if form_q.questionTime.data is None:
+            #default to 60 on no input
+            one_question.questionTime = 60
+        else:
+            one_question.questionTime = int(form_q.questionTime.data)
         if not form_q.data["imageFile2"]:
             one_question.imageFile = "/static/img/question.png"
             # we want to decline producing this form if there is no image and we are a drag and drop question
@@ -590,6 +597,7 @@ def edit_section(classID, chapterID, sectionID):
         one_question = Question.query.filter_by(questionID=questionID).first()
         one_question.questionText = form_edit_question.data["questionText"]
         one_question.orderNo = form_edit_question.data["orderNo5"]
+        one_question.questionTime = form_edit_question.questionTime.data
         if not form_edit_question.data["questionType"] == "":
             one_question.questionType = form_edit_question.data["questionType"]
         db.session.commit()

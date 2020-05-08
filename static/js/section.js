@@ -12,7 +12,8 @@ const modalBody = document.getElementById("modal-body");
 let TIMER;
 const questionTime = 60; // total seconds
 let gaugeWidth = 200;
-const counter = document.getElementById("timer_time");
+//const counter = document.getElementById("timer_time");
+var currentTimer = document.getElementById("timer0");
 var count = 1;
 
 var questionIndex = 0;
@@ -39,6 +40,7 @@ function startQuiz(){
     document.getElementById("header").style.display = "none"
     TIMER = setInterval(renderCounter, 1000);
     renderQuestion();
+    currentTimer.className = "timer_box_active";
 }
 
 function restart(){
@@ -74,6 +76,14 @@ function renderQuestion(){
     if(document.getElementById("mcSubmit"+questionIndex)!= null){
         enlargeBtn.style.display = "flex"
     }
+    //hide current timer and show the next one
+    //make sure to set the timer to the right starting value
+    currentTimer.className = "timer_box";
+    currentTimer.children[0].innerHTML = currentTimer.children[1].innerHTML;
+    console.log(String("timer" + (questionIndex)));
+    currentTimer = document.getElementById(String("timer" + (questionIndex)));
+    currentTimer.className = "timer_box_active";
+    count = 1;
 }
 
 function popImageModal(){
@@ -95,8 +105,6 @@ function removePrevious(){
         document.getElementById("q_img_container"+questionIndex).style.display = "none";
     }
     questionIndex++;
-    counter.innerHTML = 60;
-    count = 1;
 }
 
 function progress(correct){
@@ -111,8 +119,10 @@ function progress(correct){
 }
 
 function renderCounter(){
-    if(count<questionTime){
-        counter.innerHTML = questionTime - count;
+    var totalQuestionTime = Number(currentTimer.children[1].innerHTML);
+    var currentQuestionTime = Number(currentTimer.children[0].innerHTML);
+    if(count<totalQuestionTime){
+        currentTimer.children[0].innerHTML = currentQuestionTime - 1;
         count++;
     } else{
         nextQuestion();
