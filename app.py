@@ -1111,7 +1111,6 @@ def section_page(class_id, chapter, section):
                 q_list.append(q)
 
         # finding all the answers of the questions on the page
-        q_image_list = []
 
         for questions in q_list:
             answer_id = questions[0]
@@ -1129,12 +1128,12 @@ def section_page(class_id, chapter, section):
         if section_before:
             section_id_before = section_before[0]
         else:
-            section_id_before = []
+            section_id_before = None
 
         section_after = query_db(
             'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order + 1), one=True)
-        next_ch_sect = []
-        chapter_after = []
+        next_ch_sect = None
+        chapter_after = None
         if not section_after:
             chapter_after = query_db(
                 'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1),
