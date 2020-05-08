@@ -1,0 +1,5 @@
+questionID,questionText,sectionID,questionType,orderNo,imageFile
+3,NoooOOOse,1,pointnclick,1,/static/img/12345/king.jpg
+4,Boing,1,pointnclick,2,/static/img/12345/Datacenter.jpg
+5,Drag em boys,1,dragndrop,3,/static/img/12345/IMG_3831.jpg
+6,2nd drag and drop,1,dragndrop,4,/static/img/12345/zeus_by_dariojart_d5nj96d-fullview.jpg

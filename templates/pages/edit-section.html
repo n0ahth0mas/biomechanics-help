@@ -59,6 +59,8 @@
             Image File: (If no image is uploaded, there will be a default image uploaded)<br>
             {{ form_q.imageFile2(placeholder = form_q.imageFile2.label.text) }}
             <br>
+            Timer amount for this question (in seconds, defaults to 60 seconds if left blank)
+            {{ form_q.questionTime(class_ = 'form-control', placeholder = form_q.questionTime.label.text) }}
         <input type="submit" value="Create Question" class="btn btn-primary btn-lg btn-block">
     </form>
     </div>
@@ -91,6 +93,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+
     <a href="/professor-home"><button type="button" class="btn bt1"><i class="fa fa-home"></i></button></a> > <a href="/edit-class/{{classID}}">{{className}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}">{{chapterName}}</a> > <a href="/edit-class/{{classID}}/{{chapterID}}/{{sectionID}}">{{sectionName}}</a>
     <br><br>
 
@@ -200,6 +203,7 @@
                 <th style="width:5%;">Question Number</th>
                 <th style="width:50%;">Question</th>
                 <th style="width:5%;">Question Type</th>
+                <th style="width: 10%">Question Time</th>
                 <th style="width:5%;"></th>
                 <th style="width:25%;">Image File</th>
                 <th style="width:5%;"></th>
@@ -215,6 +219,9 @@
                      <td>{{ form_edit_question.questionText(class_ = 'form reset_me', value = question[1]) }}</td>
                      <td>
                          {{ form_edit_question.questionType(value = question[3], class_ = 'form reset_me') }}
+                     </td>
+                     <td>
+                         {{ form_edit_question.questionTime(value = question[6], class_ = 'form reset_me') }}
                      </td>
                      <td><input type="submit" value="Save" class="btn btn1"></td>
                     </form>

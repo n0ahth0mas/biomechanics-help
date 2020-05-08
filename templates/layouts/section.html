@@ -192,13 +192,14 @@
                             {% endfor %}
                         </div>
 
-                        <!-- timer-->
-                        <div class="timer_box">
-                            <div class="timer_time" id="timer_time">60</div>
-                        </div>
                         <!-- for loop question content -->
                         {% for question in q_list %}
                         {% set outer_loop = loop %}
+                        <!-- timer-->
+                        <div id="timer{{outer_loop.index-1}}" class="timer_box">
+                            <div class="timer_time" id="timer_time{{ outer_loop.index-1 }}">{{ question[6]}}</div>
+                            <div style="display: none;" id="time_for_this_question{{outer_loop.index-1}}">{{ question[6]}}</div>
+                        </div>
                         <!-- image -->
                         {% if question[5] == None %}
                             {% set img = "../static/img/question.png" %}
