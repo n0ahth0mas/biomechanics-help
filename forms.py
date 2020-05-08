@@ -189,13 +189,13 @@ class EditAnswer(FlaskForm):
     answerID = HiddenField()
     correctness = SelectField(choices=question_type_choices)
     answerText2 = TextAreaField('Answer Text', validators=[DataRequired()])
-    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired(), Length(max=498)])
 
 
 class EditShortAnswer(FlaskForm):
     answerID = HiddenField()
     answerText4 = TextAreaField('Answer Text', validators=[DataRequired()])
-    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired(), Length(max=498)])
 
 
 class ChangeImage(FlaskForm):
@@ -215,13 +215,13 @@ class CreateAnswer(FlaskForm):
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
     answerText = TextAreaField('Answer Text', validators=[DataRequired()])
-    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired(), Length(max=498, message='Answer Reason is too long. Must be less than 499 characters')])
     imageFile = FileField()
 
 
 class CreateShortAnswer(FlaskForm):
     answerText3 = TextAreaField('Answer Text', validators=[DataRequired()])
-    answerReason = TextAreaField('Answer Reason', validators=[DataRequired()])
+    answerReason = TextAreaField('Answer Reason', validators=[DataRequired(), Length(max=498)])
     imageFile = FileField('Image File')
 
 
@@ -239,7 +239,7 @@ class PointNClickAnswer(FlaskForm):
     answerText = HiddenField('Answer Text')
     correctness_choices = [('0', 'False'), ('1', 'True')]
     correctness = SelectField(validators=[DataRequired()], choices=correctness_choices)
-    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerReason = StringField('Answer Reason', validators=[DataRequired(), Length(max=498)])
     answerXCoord = StringField('X Coord', validators=[DataRequired()])
     answerYCoord = StringField('Y Coord', validators=[DataRequired()])
     # this is a percentage of the original image size
@@ -251,7 +251,7 @@ class PointNClickAnswer(FlaskForm):
 
 class CreateDragNDropAnswer(FlaskForm):
     answerText = HiddenField('Answer Text')
-    answerReason = StringField('Answer Reason', validators=[DataRequired()])
+    answerReason = StringField('Answer Reason', validators=[DataRequired(), Length(max=498)])
     answerImage = HiddenField('File Path')
     answerXCoord = StringField('X Coord', validators=[DataRequired()])
     answerYCoord = StringField('Y Coord', validators=[DataRequired()])
