@@ -48,14 +48,12 @@ div.indent {
 }
 
 .btn3 {
-     position: absolute;
-     top: 10%;
-    right: 5%;
+    position: absolute;
+    right: 0px;
 }
 .btn4 {
-     position: absolute;
-     top: 15%;
-    right: 5%;
+    position: absolute;
+    right: 150px;
 }
 
 .form {
