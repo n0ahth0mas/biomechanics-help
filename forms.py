@@ -222,7 +222,6 @@ class CreateAnswer(FlaskForm):
 class CreateShortAnswer(FlaskForm):
     answerText3 = TextAreaField('Answer Text', validators=[DataRequired()])
     answerReason = TextAreaField('Answer Reason', validators=[DataRequired(), Length(max=498)])
-    imageFile = FileField('Image File')
 
 
 class UploadDragNDropImage(FlaskForm):
