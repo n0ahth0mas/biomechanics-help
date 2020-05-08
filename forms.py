@@ -181,7 +181,7 @@ class EditQuestion(FlaskForm):
     orderNo5 = IntegerField('Section Number', validators=[DataRequired()])
     questionText = TextAreaField(validators=[DataRequired()])
     questionType = SelectField(choices=question_type_choices, default=('', 'Change Question Type'))
-    questionTime = IntegerField('Time For Student to Complete Question In Seconds', validators=[DataRequired()])
+    questionTime = IntegerField('Time For Student to Complete Question In Seconds', validators=[validators.Optional()])
 
 
 class EditAnswer(FlaskForm):

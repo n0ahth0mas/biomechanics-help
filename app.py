@@ -597,7 +597,10 @@ def edit_section(classID, chapterID, sectionID):
         one_question = Question.query.filter_by(questionID=questionID).first()
         one_question.questionText = form_edit_question.data["questionText"]
         one_question.orderNo = form_edit_question.data["orderNo5"]
-        one_question.questionTime = form_edit_question.questionTime.data
+        if form_edit_question.questionTime.data is None:
+            one_question.questionTime = 60
+        else:
+            one_question.questionTime = form_edit_question.questionTime.data
         if not form_edit_question.data["questionType"] == "":
             one_question.questionType = form_edit_question.data["questionType"]
         db.session.commit()
