@@ -470,7 +470,7 @@ function clickedPointAndClickQ(event, question_image){
             }else{
                 //they have clicked the wrong place
                 $('#myModal').find('#modal-header').html("<h4>Incorrect!</h4>");
-                $('#myModal').find('#modal-body').html("Let's try that again!");
+                $('#myModal').find('#modal-body').html(this_answer_reason);
                 $('#myModal').modal('show');
                 tries++;
                 progress(false);
