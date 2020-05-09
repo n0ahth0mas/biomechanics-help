@@ -108,13 +108,6 @@ def allowed_video(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS_VIDEO
 
 
-# Automatically tear down SQLAlchemy.
-'''
-@app.teardown_request
-def shutdown_session(exception=None):
-    db_session.remove()
-'''
-
 # ----------------------------------------------------------------------------#
 # Controllers.
 # ----------------------------------------------------------------------------#
@@ -1695,8 +1688,3 @@ if __name__ == '__main__':
     app.run(threaded=True)
 
 # Or specify port manually:
-'''
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-'''
