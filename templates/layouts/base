@@ -46,7 +46,16 @@ div.indent {
 .btn2:hover {
   background-color: Maroon;
 }
-
+.btn3 {
+     position: absolute;
+     top: 10%;
+    right: 10%;
+}
+.btn4 {
+     position: absolute;
+     top: 15%;
+    right: 5%;
+}
 .form {
   width: 100%;
   padding: 12px 20px;
