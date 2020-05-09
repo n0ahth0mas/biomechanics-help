@@ -62,7 +62,7 @@ home_url = "http://127.0.0.1:5000/"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
-smtpObj.login(sender, "Mouse12345!")
+smtpObj.login(sender, "xrsrsnfrxthbhqsy")
 
 def get_sql_alc_db():
     with app.app_context():
