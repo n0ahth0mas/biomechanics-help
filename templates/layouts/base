@@ -47,15 +47,6 @@ div.indent {
   background-color: Maroon;
 }
 
-.btn3 {
-    position: absolute;
-    right: 0px;
-}
-.btn4 {
-    position: absolute;
-    right: 150px;
-}
-
 .form {
   width: 100%;
   padding: 12px 20px;
