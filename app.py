@@ -58,7 +58,6 @@ pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
-home_url = "https://turing.pugetsound.edu/capstone2020/biomechanics-help/"
 
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
@@ -1151,7 +1150,7 @@ def section_page(class_id, chapter, section):
                                chapter_after=chapter_after, section_after=section_after)
     else:
         flash("Please enroll in a class before navigating to it.")
-        return redirect(home_url)
+        return redirect("/")
 
 
 @app.route('/forgot', methods=('GET', 'POST'))
@@ -1174,7 +1173,7 @@ def forgot():
             msg["Subject"] = "Reset Password"
             msg.attach(html)
             smtpObj.sendmail(sender, msg["To"], msg.as_string())
-            successurl = home_url + "forgot-success"
+            successurl = "/forgot-success"
             return redirect(successurl)
             # except :
     return render_template('forms/forgotPassword.html', form=form)
@@ -1184,7 +1183,7 @@ def forgot():
 def reset_password(token):
     user = verify_reset_password_token(token)
     if user == -1:
-        return redirect(home_url)
+        return redirect("/")
     else:
         form = ResetPasswordForm(request.form)
         if form.validate_on_submit():
@@ -1195,7 +1194,7 @@ def reset_password(token):
             user_object.password = hashvalue
             db.session.add(user_object)
             db.session.commit()
-            return redirect(home_url)
+            return redirect("/")
         return render_template('forms/reset_password.html', form=form)
 
 
@@ -1484,9 +1483,9 @@ def about():
 def login():
     if current_user.is_authenticated:
         if Role.query.filter_by(name='Professor').one() in current_user.roles:
-            return redirect(home_url + "professor-home")
+            return redirect("/professor-home")
         elif Role.query.filter_by(name='Student').one() in current_user.roles:
-            return redirect(home_url + "student-home")
+            return redirect("/student-home")
     form = LoginForm(request.form)
     if form.validate_on_submit():
         email = form.data["email"]
@@ -1503,9 +1502,9 @@ def login():
             session["email"] = form.data["email"]
             login_user(user)
             if Role.query.filter_by(name='Professor').one() in current_user.roles:
-                return redirect(home_url + "professor-home")
+                return redirect("/professor-home")
             elif Role.query.filter_by(name='Student').one() in current_user.roles:
-                return redirect(home_url + "student-home")
+                return redirect("/student-home")
     return render_template('forms/login.html', form=form, noNav=True)
 
 
@@ -1533,7 +1532,7 @@ def new_prof_acc():
             user = User.query.filter_by(email=form.email.data).first()
             session["email"] = form.data["email"]
             login_user(user)
-            return redirect(home_url + "professor-home")
+            return redirect("/professor-home")
     return render_template('forms/NewProfAccount.html', form=form)
 
 
@@ -1568,7 +1567,7 @@ def new_student_account():
             user_details = User.query.filter_by(email=form.email.data).first()
             session["email"] = form.data["email"]
             login_user(user_details)
-            return redirect(home_url + "student-home")
+            return redirect("/student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
 
 
@@ -1646,7 +1645,7 @@ def developers():
 @roles_required(['Student', 'Professor'])
 def logout():
     logout_user()
-    return redirect(home_url)
+    return redirect("/")
 
 
 # Error handlers.
