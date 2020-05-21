@@ -5,6 +5,7 @@ WTForms
 coverage
 gunicorn
 email-validator
+flask_login
 # ecdsa
 # paramiko
 # pycrypto
