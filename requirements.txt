@@ -4,6 +4,7 @@ Flask-WTF
 WTForms
 coverage
 gunicorn
+email-validator
 # ecdsa
 # paramiko
 # pycrypto
