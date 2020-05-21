@@ -6,6 +6,8 @@ coverage
 gunicorn
 email-validator
 flask_login
+flask_user
+PyJWT
 # ecdsa
 # paramiko
 # pycrypto
