@@ -41,6 +41,10 @@ class ConfigClass(object):
     UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
 
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
+
 app.config.from_object(__name__+'.ConfigClass')
 #app.secret_key = 'xxxxyyyyyzzzzz'
 # app.config.from_object('config')

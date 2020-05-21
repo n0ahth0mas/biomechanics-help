@@ -21205,3 +21205,4 @@ jinja2.exceptions.UndefinedError: 'textIndex' is undefined
 2020-05-08 15:21:14,274 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
 2020-05-08 15:21:36,822 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
 2020-05-08 15:22:20,411 INFO: errors [in C:/Users/ashbr/OneDrive/Documents/College/Senior/Capstone/biomechanics-help/app.py:1687]
+2020-05-21 16:52:35,859 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1682]
