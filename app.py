@@ -35,7 +35,11 @@ class ConfigClass(object):
     SECRET_KEY = 'xxxxyyyyyzzzzz'
     USER_UNAUTHENTICATED_ENDPOINT = 'login'
     USER_UNAUTHORIZED_ENDPOINT = 'login'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///database/help.db'
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    if os.environ.get('DATABASE_URL') is None:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///database/help.db'
+    else:
+        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     USER_EMAIL_SENDER_EMAIL = "jriley9000@gmail.com"
     UPLOAD_FOLDER = os.path.abspath('static/img')
     UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')

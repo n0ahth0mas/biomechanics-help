@@ -8,6 +8,7 @@ email-validator
 flask_login
 flask_user
 PyJWT
+dj-database-url
 psycopg2
 # ecdsa
 # paramiko
