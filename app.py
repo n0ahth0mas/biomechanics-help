@@ -39,7 +39,7 @@ class ConfigClass(object):
     if os.environ.get('DATABASE_URL') is None:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///database/help.db'
     else:
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     USER_EMAIL_SENDER_EMAIL = "jriley9000@gmail.com"
     UPLOAD_FOLDER = os.path.abspath('static/img')
     UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
