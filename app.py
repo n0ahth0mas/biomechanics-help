@@ -7,10 +7,12 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from flask import Flask, render_template, request, flash, url_for, json, session
+from flask.cli import with_appcontext
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
+import click
 import os
 import sqlite3
 import hashlib
@@ -70,6 +72,11 @@ sender = "pugetsoundhelp@gmail.com"
 smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
 smtpObj.login(sender, "xrsrsnfrxthbhqsy")
+
+@click.command(name='create_tables')
+@with_appcontext
+def create_tables():
+    db.create_all()
 
 def get_sql_alc_db():
     with app.app_context():
