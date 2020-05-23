@@ -70,7 +70,7 @@ db = SQLAlchemy(app)
 @app.cli.command("create_tables")
 def create_tables():
     db.create_all()
-    
+
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
 
@@ -128,7 +128,7 @@ def allowed_video(filename):
 
 class Class(db.Model):
     __tablename__ = "Classes"
-    classID = db.Column(db.Integer(), primary_key=True)
+    classID = db.Column(db.String(), primary_key=True)
     className = db.Column(db.String())
     chapters = db.relationship("Chapter", cascade="all, delete-orphan, save-update")
     enrolled = db.relationship("UserClasses", cascade="all, delete-orphan, save-update")
@@ -159,7 +159,7 @@ class Section(db.Model):
 
 class Glossary(db.Model):
     __tablename__ = 'Glossary'
-    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'))
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
     termID = db.Column(db.Integer(), primary_key=True)
     term = db.Column(db.String())
     definition = db.Column(db.String())
@@ -242,7 +242,7 @@ class Video(db.Model):
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
     email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
-    classID = db.Column(db.Integer(), db.ForeignKey('Classes.classID'), primary_key=True)
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'), primary_key=True)
     lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
 
     class Meta:
