@@ -73,11 +73,6 @@ smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
 smtpObj.starttls()
 smtpObj.login(sender, "xrsrsnfrxthbhqsy")
 
-@click.command(name='create_tables')
-@with_appcontext
-def create_tables():
-    db.create_all()
-
 def get_sql_alc_db():
     with app.app_context():
         return SQLAlchemy(app)
