@@ -21209,3 +21209,4 @@ jinja2.exceptions.UndefinedError: 'textIndex' is undefined
 2020-05-21 17:06:01,991 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1682]
 2020-05-22 17:14:28,286 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1686]
 2020-05-22 17:47:26,176 INFO: errors [in C:/Users/jrile/Desktop/Software Engineering/HelpInPT/flask-boilerplate/app.py:1686]
+2020-05-23 08:59:58,311 INFO: errors [in C:\Users\jrile\Desktop\Software Engineering\HelpInPT\flask-boilerplate\app.py:1688]

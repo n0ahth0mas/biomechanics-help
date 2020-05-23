@@ -66,6 +66,11 @@ ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
+
+@app.cli.command("create_tables")
+def create_tables():
+    db.create_all()
+    
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
 
