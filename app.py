@@ -74,9 +74,9 @@ def create_tables():
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
 
-smtpObj = smtplib.SMTP(host="smtp.gmail.com", port=587)
+smtpObj = smtplib.SMTP(host="email-smtp.us-east-1.amazonaws.com", port=587)
 smtpObj.starttls()
-smtpObj.login(sender, "xrsrsnfrxthbhqsy")
+smtpObj.login("AKIA5HVQCWCE2PLVZSUH", "BN+WL3PxGlN855kxOeWgu4F5fFwW9R71xwKJMjtIXnIk")
 
 def get_sql_alc_db():
     with app.app_context():
@@ -1699,6 +1699,6 @@ if not app.debug:
 # Default port: want to switch this
 if __name__ == '__main__':
     #app.secret_key = 'xxxxyyyyyzzzzz'
-    app.run(threaded=True)
+    app.run(host="0.0.0.0", threaded=True)
 
 # Or specify port manually:
