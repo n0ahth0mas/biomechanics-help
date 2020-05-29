@@ -145,6 +145,13 @@ create TABLE Videos(
             ON DELETE CASCADE
 );
 
+CREATE TABLE Users(
+        email           TEXT,
+        password        TEXT,
+        name            TEXT,
+        schoolID        TEXT,
+        PRIMARY KEY(email)
+);
 
 CREATE TABLE Enroll(
         email      TEXT,
@@ -167,14 +174,6 @@ CREATE TABLE School(
         schoolName     TEXT,
         subscription    BOOLEAN check(subscription IS NOT NULL),
         PRIMARY KEY(schoolID)
-);
-
-CREATE TABLE Users(
-        email           TEXT,
-        password        TEXT,
-        name            TEXT,
-        schoolID        TEXT,
-        PRIMARY KEY(email)
 );
 
 CREATE TABLE User_roles(
