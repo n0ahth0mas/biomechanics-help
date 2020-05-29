@@ -140,7 +140,7 @@ class Chapter(db.Model):
     __tablename__ = 'Chapters'
     chapterID = db.Column(db.Integer(), primary_key=True)
     chapterName = db.Column(db.String())
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+    classID = db.Column(db.String(), db.ForeignKey(Class.classID))
     orderNo = db.Column(db.Integer())
     publish = db.Column(db.Boolean())
     sections = db.relationship("Section", cascade="all, delete-orphan, save-update")
@@ -149,7 +149,7 @@ class Chapter(db.Model):
 class Section(db.Model):
     __tablename__ = 'Sections'
     sectionID = db.Column(db.Integer(), primary_key=True)
-    chapterID = db.Column(db.Integer(), db.ForeignKey('Chapters.chapterID'))
+    chapterID = db.Column(db.Integer(), db.ForeignKey(Chapter.chapterID))
     sectionName = db.Column(db.String())
     orderNo = db.Column(db.Integer())
     publish = db.Column(db.Boolean())
@@ -160,7 +160,7 @@ class Section(db.Model):
 
 class Glossary(db.Model):
     __tablename__ = 'Glossary'
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'))
+    classID = db.Column(db.String(), db.ForeignKey(Class.classID))
     termID = db.Column(db.Integer(), primary_key=True)
     term = db.Column(db.String())
     definition = db.Column(db.String())
@@ -169,7 +169,7 @@ class Glossary(db.Model):
 
 class GlossaryImages(db.Model):
     __tablename__ = 'GlossaryImages'
-    termID = db.Column(db.Integer(), db.ForeignKey('Glossary.termID'), primary_key=True)
+    termID = db.Column(db.Integer(), db.ForeignKey(Glossary.termID), primary_key=True)
     imageFile = db.Column(db.String(), primary_key=True)
 
     class Meta:
@@ -181,13 +181,13 @@ class SectionBlock(db.Model):
     orderNo = db.Column(db.Integer())
     sectionBlockID = db.Column(db.Integer(), primary_key=True)
     sectionText = db.Column(db.String())
-    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    sectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID))
     images = db.relationship("SectionBlockImages", cascade="all, delete-orphan")
 
 
 class SectionBlockImages(db.Model):
     __tablename__ = 'SectionBlockImages'
-    sectionBlockID = db.Column(db.Integer(), db.ForeignKey('SectionBlock.sectionBlockID'), primary_key=True)
+    sectionBlockID = db.Column(db.Integer(), db.ForeignKey(SectionBlock.sectionBlockID), primary_key=True)
     imageFile = db.Column(db.String(), primary_key=True)
     xposition = db.Column(db.String())
     yposition = db.Column(db.String())
@@ -200,7 +200,7 @@ class Question(db.Model):
     __tablename__ = 'Questions'
     questionID = db.Column(db.Integer(), primary_key=True)
     questionText = db.Column(db.String())
-    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    sectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID))
     questionType = db.Column(db.String())
     orderNo = db.Column(db.Integer())
     imageFile = db.Column(db.String())
@@ -218,7 +218,7 @@ class School(db.Model):
 class Answer(db.Model):
     __tablename__ = 'Answers'
     answerID = db.Column(db.Integer(), primary_key=True)
-    questionID = db.Column(db.Integer(), db.ForeignKey('Questions.questionID'))
+    questionID = db.Column(db.Integer(), db.ForeignKey(Question.questionID))
     correctness = db.Column(db.String())
     answerText = db.Column(db.String())
     answerReason = db.Column(db.String())
@@ -232,7 +232,7 @@ class Answer(db.Model):
 
 class Video(db.Model):
     __tablename__ = 'Videos'
-    sectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'), primary_key=True)
+    sectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID), primary_key=True)
     videoFile = db.Column(db.String(), primary_key=True)
     orderNo = db.Column(db.Integer())
 
@@ -246,7 +246,7 @@ class User(db.Model, UserMixin):
     id = email
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
-    schoolID = db.Column(db.String(), db.ForeignKey('School.schoolID'))
+    schoolID = db.Column(db.String(), db.ForeignKey(School.schoolID))
     roles = db.relationship('Role', secondary='User_roles')
     classes = db.relationship('Class', secondary='Enroll')
     active = True
@@ -266,9 +266,9 @@ class User(db.Model, UserMixin):
 
 class UserClasses(db.Model):
     __tablename__ = "Enroll"
-    email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'), primary_key=True)
-    lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+    email = db.Column(db.String(), db.ForeignKey(User.email), primary_key=True)
+    classID = db.Column(db.String(), db.ForeignKey(Class.classID), primary_key=True)
+    lastSectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID))
 
     class Meta:
         unique_together = (("email", "classID"),)
@@ -284,8 +284,8 @@ class Role(db.Model):
 class UserRoles(db.Model):
     __tablename__ = 'User_roles'
     id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
-    role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
+    user_id = db.Column(db.String(), db.ForeignKey(User.email, ondelete='CASCADE'))
+    role_id = db.Column(db.Integer(), db.ForeignKey(Role.id, ondelete='CASCADE'))
 
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
