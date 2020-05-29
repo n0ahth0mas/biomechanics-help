@@ -1582,10 +1582,13 @@ def new_student_account():
             user.roles.append(role)
             db.session.add(user)
             db.session.commit()
+            print("commited the new user")
             # log in the user
             user_details = User.query.filter_by(email=form.email.data).first()
             session["email"] = form.data["email"]
+            print("about to try to login")
             login_user(user_details)
+            print("logged in!")
             return redirect("/student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
 
