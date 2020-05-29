@@ -245,7 +245,7 @@ class User(db.Model, UserMixin):
     __tablename__ = 'Users'
     # User Authentication fields
     email = db.Column(db.String(255), primary_key=True)
-    #id = email
+    id = db.Column(db.Integer, primary_key=True)
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
     schoolID = db.Column(db.String(), db.ForeignKey(School.schoolID))
