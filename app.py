@@ -35,6 +35,8 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import and_, text
 class ConfigClass(object):
     SECRET_KEY = 'xxxxyyyyyzzzzz'
+    USER_ENABLE_EMAIL = True  # Enable email authentication
+    USER_ENABLE_USERNAME = False
     USER_UNAUTHENTICATED_ENDPOINT = 'login'
     USER_UNAUTHORIZED_ENDPOINT = 'login'
     basedir = os.path.abspath(os.path.dirname(__file__))
