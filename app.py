@@ -68,6 +68,7 @@ pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 
 @app.cli.command("create_tables")
+@with_appcontext
 def create_tables():
     db.create_all()
 
@@ -1699,6 +1700,6 @@ if not app.debug:
 # Default port: want to switch this
 if __name__ == '__main__':
     #app.secret_key = 'xxxxyyyyyzzzzz'
-    app.run(host="0.0.0.0", threaded=True)
+    app.run(threaded=True)
 
 # Or specify port manually:
