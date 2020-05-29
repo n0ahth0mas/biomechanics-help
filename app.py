@@ -1570,8 +1570,12 @@ def new_student_account():
             password = form.data["password"]
             h = hashlib.md5(password.encode())
             passhash = h.hexdigest()
-            user = User(email=form.data["email"], name=form.data["fullName"], schoolID=form.data["organization"], active=True,
-                password=passhash)
+            user = User()
+            user.email = form.data["email"]
+            user.name = form.data["fullName"]
+            user.active = True
+            user.password = passhash
+            user.schoolID = form.data["organization"]
             # prof_role = Role(name='Student')
             # user.roles = [prof_role]
             role = Role.query.filter_by(name='Student').one()
