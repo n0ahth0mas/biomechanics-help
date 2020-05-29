@@ -239,31 +239,6 @@ class Video(db.Model):
     class Meta:
         unique_together = (("sectionID", "videoFile"),)
 
-
-class UserClasses(db.Model):
-    __tablename__ = "Enroll"
-    email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
-    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'), primary_key=True)
-    lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
-
-    class Meta:
-        unique_together = (("email", "classID"),)
-
-
-class Role(db.Model):
-    __tablename__ = 'Roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(50), unique=True)
-
-
-# Define the UserRoles association table
-class UserRoles(db.Model):
-    __tablename__ = 'User_roles'
-    id = db.Column(db.Integer(), primary_key=True)
-    user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
-    role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
-
-
 class User(db.Model, UserMixin):
     __tablename__ = 'Users'
     # User Authentication fields
@@ -288,6 +263,29 @@ class User(db.Model, UserMixin):
 
     def get_email(self):
         return self.email
+
+class UserClasses(db.Model):
+    __tablename__ = "Enroll"
+    email = db.Column(db.String(), db.ForeignKey('Users.email'), primary_key=True)
+    classID = db.Column(db.String(), db.ForeignKey('Classes.classID'), primary_key=True)
+    lastSectionID = db.Column(db.Integer(), db.ForeignKey('Sections.sectionID'))
+
+    class Meta:
+        unique_together = (("email", "classID"),)
+
+
+class Role(db.Model):
+    __tablename__ = 'Roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(50), unique=True)
+
+
+# Define the UserRoles association table
+class UserRoles(db.Model):
+    __tablename__ = 'User_roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.String(), db.ForeignKey('Users.email', ondelete='CASCADE'))
+    role_id = db.Column(db.Integer(), db.ForeignKey('Roles.id', ondelete='CASCADE'))
 
 
 user_manager = UserManager(app, get_sql_alc_db(), User)
