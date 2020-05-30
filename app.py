@@ -77,6 +77,8 @@ def import_tables():
     answersDF = pd.read_csv(".../database/Answers.csv")
     print(answersDF[1:2])
 
+app.cli.add_command(import_tables)
+
 
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
