@@ -1590,6 +1590,7 @@ def new_student_account():
             print("about to try to login")
             login_user(user_details)
             print("logged in!")
+            print("password: " + current_user.password)
             return redirect("/student-home")
     return render_template('forms/NewStudentAccount.html', form=form)
 
