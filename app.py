@@ -92,7 +92,7 @@ def import_tables():
     rolesDF = pd.read_csv("Roles.csv", encoding = "ISO-8859-1")
     rolesDF.to_sql(name='Roles', con=db.engine, index=False)
     schoolDF = pd.read_csv("School.csv", encoding = "ISO-8859-1")
-    
+
     schoolDF.to_sql(name='School', con=db.engine, index=False)
     section_blockDF = pd.read_csv('SectionBlock.csv', encoding = "ISO-8859-1")
     section_blockDF.to_sql(name='SectionBlock', con=db.engine, index=False)
@@ -100,7 +100,7 @@ def import_tables():
     section_block_imagesDF.to_sql(name="SectionBlockImages", con=db.engine, index=False)
     sectionsDF = pd.read_csv("Sections.csv", encoding = "ISO-8859-1")
     sectionsDF.to_sql(name="Sections", con=db.engine, index=False)
-    user_rolesDF = pd.read("User_roles.csv", encoding = "ISO-8859-1")
+    user_rolesDF = pd.read_csv("User_roles.csv", encoding = "ISO-8859-1")
     user_rolesDF.to_sql(name='User_roles', con=db.engine, index=False)
     usersDF = pd.read_csv('Users.csv', encoding = "ISO-8859-1")
     usersDF.to_sql(name='Users', con=db.engine, index=False)
