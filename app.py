@@ -1056,7 +1056,8 @@ def student_home():
         one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
         current_user.classes.append(one_class)
         db.session.commit()
-
+    print("in student home, about to ask for current user")
+    print("current_user_name: " + current_user.name)
     # render our classes
     classes_list = []
     for _class in current_user.classes:
