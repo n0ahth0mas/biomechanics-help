@@ -1515,7 +1515,7 @@ def login():
             flash("Unable to find user with those details, please try again")
             return render_template('forms/login.html', form=form)
         else:
-            user = User.query.filter_by(id=form.email.data).one()
+            user = User.query.filter_by(email=form.email.data).one()
             session["email"] = form.data["email"]
             login_user(user)
             if Role.query.filter_by(name='Professor').one() in current_user.roles:
