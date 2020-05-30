@@ -28,6 +28,7 @@ from time import time
 import jwt
 import sys
 from werkzeug.utils import secure_filename
+import pandas as pd
 
 # ----------------------------------------------------------------------------#
 # App Config.
@@ -69,10 +70,13 @@ ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
 
-@app.cli.command("create_tables")
+@app.cli.command("import_tables")
 @with_appcontext
-def create_tables():
-    db.create_all()
+def import_tables():
+    #db.create_all()
+    answersDF = pd.read_csv(".../database/Answers.csv")
+    print(answersDF[1:2])
+
 
 print(pathToDB)
 sender = "pugetsoundhelp@gmail.com"
