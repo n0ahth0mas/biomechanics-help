@@ -83,7 +83,7 @@ def import_tables():
     classesDF.to_sql(name='Classes', con=db.engine, index=False)
     user_classesDF = pd.read_csv("Enroll.csv", encoding = "ISO-8859-1")
     user_classesDF.to_sql(name='Enroll', con=db.engine, index=False)
-    glossaryDF = pd.read_csv("Glosary.csv", encoding = "ISO-8859-1")
+    glossaryDF = pd.read_csv("Glossary.csv", encoding = "ISO-8859-1")
     glossaryDF.to_sql(name='Glossary', con=db.engine, index=False)
     glossary_imagesDF = pd.read_csv("GlossaryImages.csv", encoding = "ISO-8859-1")
     glossary_imagesDF.to_sql(name='GlossaryImages', con=db.engine, index=False)
