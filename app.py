@@ -1710,6 +1710,6 @@ if not app.debug:
 # Default port: want to switch this
 if __name__ == '__main__':
     #app.secret_key = 'xxxxyyyyyzzzzz'
-    app.run(threaded=True)
+    app.run(host='0.0.0.0', threaded=True)
 
 # Or specify port manually:
