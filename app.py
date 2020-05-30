@@ -1051,6 +1051,7 @@ def delete_term_image(classID, termID, imageFile):
 @roles_required('Student')
 def student_home():
     # add a class form
+    print("CALLED STUDENT HOME!!!")
     form = AddClass()
     if form.validate_on_submit():
         one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
