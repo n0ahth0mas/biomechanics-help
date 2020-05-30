@@ -1,0 +1,126 @@
+sectionBlockID,sectionText,sectionID,orderNo
+1,Chapter 1 Overview: FORCES,1,1
+2,"Definition: a force is something which creates a push or a pull on another object, causing or affecting motion.",7,1
+3,"Examples: gravity, friction, muscle contraction, reactive forces (see Newton's Laws of Motion module for more about reactive forces)",7,2
+4,"Characteristics: a force is a vector quantity, that is, it has a magnitude (size) and a direction. Both must be known in order to understand how the force will affect other objects.",7,3
+5,"Representation: a force may be symbolized by an arrow, whose length represents the magnitude of the force, whose tail represents the point of application of the force, and whose tip represents the direction of the force.",7,4
+6,"Forces are everywhere around us, some seen and some unseen. Watch the video screen to see some examples from ""everyday"" life.",7,5
+7,Some forces are called internal forces and some are called external forces. Internal forces are found inside the body; external forces outside.,7,6
+8,"Here are some examples of each:
+Internal- muscle contraction, joint reactive force, friction(inside joint)
+External- gravity, friction(against skin), reactive force(from ground), resistance(objects carried, other forces applied to the body)",7,7
+9,Now watch the example scenes and identify internal and external forces which are active.,7,8
+10,"FRICTION occurs whenever there is motion. For the sake of simplicity, we are ignoring in this tutorial air friction, and the small amount of friction within joints of the body. Of concern is friction between two solid objects which are in contact.",3,1
+11,"Friction is a force whose direction is opposite the direction of motion or attempted motion of one object on another. Its magnitude depends on the characteristics of the surfaces of the objects (how rough they are, or how ""sticky""): If the table is very clean, the friction force will be small, and so a small push will set the box moving. If the table is rough or sticky, a larger force will be needed.",3,2
+12,"Static and Kinetic Friction
+As you notice probably everyday, friction is greater when the two objects are at rest than it is when one is already moving on the other. This is referred to in the expression, ""static friction is greater than kinetic friction"" (in most cases), In common speech, we say, ""it's easier to keen something moving than to get it moving.""
+",3,3
+13,"STATIC FRICTION
+From the first video, as long as each ski comes to rest between steps, the friction between snow and ski is relatively high. This static friction makes standing and keeping one's balance easier.",3,4
+14,"Contrast this however to kinetic friction, in the second scene...",3,5
+15,"Kinetic Friction
+Here, in contrast, the friction between ski and snow is smaller because there already is movement of the ski on the snow.
+Although John manages not to fall down, he is unable to stop himself, as he accelerates downhill.
+",3,6
+16,"Applications
+An awareness of friction, and of the difference between static and kinetic friction, is important in allied health jobs.
+",3,7
+17,"For example, when you attempt to transfer a patient, you may exert much force at the beginning to get the patient moving. As soon as the patient begins to move (across the bedsheet, say) the amount of friction opposing your force will drop (kinetic < static friction) and you must reduce the force you apply. Otherwise, the patient may just sail off the edge of the bed.",3,8
+18,"When working with tools and machinery (as therapists often do), the principle arises again. The force you apply to a ""stuck"" part to get it moving, will suddenly become excessive when the part (or tool) breaks free and begins to move. (Again, kinetic < static friction.) Unless you are careful, the tool or part could accelerate right into your face, hand, or someone else's!",3,9
+20,Gravity is the force which accelerates the ski jumper through the air toward the bottom of the slope...,4,2
+21,Gravity is the force which nulls us to earth when we lose our balance... ,4,3
+22,Gravity nulls round objects downhill...,4,4
+23,And gravity produces the needed null on bodies for modern dance...,4,5
+24,Watch the examples videos for these four examples.,4,6
+27,"The total effect of gravity on an object can be represented as a vector directed toward the center of the earth, whose point of application is the imaginary point of an object, around which the mass is evenly distributed. This point is called the off Gravity, or COG for short. The object has equal mass above this point as below it, in front of it as behind it, and to the right of this point as to the left of it: ",4,8
+28,"COG'S of other objects.
+Here are some examples of where the COG occurs in other objects:
+",4,10
+29,"As you can see from the ring, the COG of an object does not even have to be inside that object! As an imaginary point, it merely represents where the mass is centered in space.",4,11
+30,Now watch the video screen again for another example of human movement where the COG does not change its position within the body...,4,12
+31,"COG of Human Body 
+To analyze human movement, it is important to know the COG of the human body. When the body is in the anatomical position, its COG is located just anterior to sacral vertebra number 2 (S2 for short).
+",4,13
+32,No matter how the body as a whole moves. the COG stays in the body (as long as the anatomical position is held).,4,14
+33,"Generally, when mass is moved from the anatomical position, the COG moves a little in the direction the mass moved. Here, superiorly and to his Ml.",4,15
+34,"Center of Gravity
+Gravity exerts a pull on every point of an object. The pull is directed toward the center of the earth. The greater the total mass of the object, the greater the magnitude of the pull of gravity on that object. These three underlined terms define the force of gravity as a vector: point of application, direction. and magnitude.
+",4,7
+36,"Changing COG's Position:
+You have just seen some examples of movement where the COG of the human body does not change its position within the body.
+",4,16
+37,"There are motions, however, which do change the location of the COG: movements of the limbs or head away from the anatomical position. In addition. anvthin2 which adds or takes away mass from the body (things carried or amputations) also changes the location of the COG.",4,17
+38,"How the Center of Gravity Moves -V
+In the previous graphic, the man’s left upper extremity moved superiorly and to his left. The COG moved superiorly and to his left.
+",4,18
+39,"Flexing at the hip and knee would move mass superiorly, and thus also the COG.",4,19
+40,"Picking up a weight moves the COG of the body-and-weight-together in the direction of the weight, usually superiorly and anteriorly.",4,20
+41,An amputation causes the COG to move in the opposite direction from the removed cart (left lower leg amputated. COG moves superiorly and to the right). ,4,21
+42,"And so that there is no confusion,
+...a clarification of terminology is in order. When the COG moves vertically within the body, that is called moving SUPERIORLY or INFERIORLY. When the body as a whole moves vertically, one could say that the COG, in moving with the body, is moving up. and down.
+",4,22
+43,"Whenever you are asked in this tutorial for ""how the COG moved,"" this means how did the COG move within the body.
+NOW, how does the COG move when... (please watch the x through x videos)
+",4,23
+44,"What happens when the part is not straight but flexed?
+We shall see!
+",10,1
+45,Segmental COG when Part is Flexed,10,2
+46,"If the body part is flexed, use the 4/9 rule on each individual segment:
+Connect these COG’s, mark 4/9 of these two lines:
+Then connect the squares and mark 4/9 along this line:
+",10,3
+47,"Body Segment Center of Gravity:
+Very often it is crucial to know the location of the COG of individual body segments- the lower extremity, or the forearm and hand, or the lower leg and foot, for example.
+",10,4
+48,"In this case, you would use the “4/9 Rule” which is that the COG is located 4/9 of the distance from the proximal end of the part toward the distal end.",10,5
+49,"Mark the three points, 4/9’s along the upper and lower arms, and hand.",10,6
+50,Draw the two connecting lines and mark 4/9’s of their lengths.,10,7
+51,Connect these two points with a line. 4/9’s along this line is COG!,10,8
+52,"Line of Gravity- the Gravity Vector:
+Now that you know how to find the center of gravity for various body parts, you will be able to draw the force vector which gravity applies to that part. It is. very simply, an arrow drawn from the COG downward toward the center of the earth. This vector is called the line of gravity, or LOG for short:
+",8,1
+53,"NOTICE: Although the COG stayed in the same location, the LOG (always pointing toward the earth's center) changed its orientation with respect to the lower extremity!!!",8,2
+54,"Equilibrium: Now You Try It
+Watch the first video example from real life and answer whether the person shown is in stable equilibrium, unstable equilibrium, or disequilibrium at the moment of the final freeze frame. ",8,3
+55,"Equilibrium/Stability:
+The stability, or equilibrium, of an object or a person in a particular position is determined by the location of the relevant line of gravity, with respect to that object’s (or person's) base of support. The base of support is simply the area enclosed by that object’s (or person’s) supporting surface:
+",8,4
+56,"People use both these positions for a base of support (and everything in between), for many daily activities. Watch the second video for some examples. ",8,5
+57,"Line of Gravity & Base of Support:
+In order to maintain stability, or equilibrium, the object or person must keep the LOG within the base of support. If the LOG falls outside the base of support, that object or person will fall over.
+",8,6
+58,"The broader a person's base of support, the more stable that person is, because it takes a greater push or pull (force) to move the LOG outside the base.",8,7
+59,This applies to objects as well. (As shown in the next display).,8,8
+60,"Stable, Unstable, & Disequilibrium
+The three objects below illustrate the three cases of stability:
+",8,9
+61,"Stable equilibrium: object is balanced, force will not tip over.",8,10
+62,"Unstable equilibrium: object is balanced, but force will tip over.",8,11
+63,"Disequilibrium: object is not balanced, is falling.",8,12
+64,Now watch video three for some scenes from everyday life where questions of equilibrium are important.,8,13
+65,"Footnote:
+Reactive forces will be covered again in the section on Newton's Laws of Motion, coming up soon.
+",8,14
+66,"Reactive Forces:
+Some of the more difficult to visualize forces are reactive forces. These are forces which arise in response or reaction to other forces at work. An example you have already encountered is friction, which is a force arising from attempted motion between two objects or materials. Its direction is opposite that of the attempted motion and its magnitude depends upon the qualities of the surfaces or materials involved (called the coefficient of friction).
+",5,1
+67,"An external reactive force you have also observed in the scene where Ringo and his drums drop through the floor. Until the floor was cut out around him, it resisted his falling through by pushing back on him with an equal and opposite force to his pressing down on it. Of course he was pressing down on the floor because of the attraction of gravity for him and his drums.",5,2
+68,Now you will look at some more examples of reactive forces in the first two videos.,5,3
+69,"The stick applied a force to the gong because of its motion. At the moment of its striking, why didn't the gong move? It was held in place by the assistant's arms, hands and body. Therefore the force of the stick to push the gong was counterbalanced by an equal and opposite push from the gong to the stick- a reactive force:",5,4
+70,"BUT WHERE DID THE FORCE, ""GONG ON STICK"" COME FROM??? It came from the reactive forces in the holder's upper extremity joints pushing back against the push of the stick. In each joint (fingers, wrists, elbows, shoulders) the bone and cartilage, rather than collapse, pushed back!",5,5
+71,"Reactive Force Example 2:
+Watch the third video for another case of reactive forces.
+",5,6
+72,"Reactive forces are very important in explaining what happened here. Ringo exerted a strong pull (force) on the ring, hoping that force would cause the ring to slide off his finger. But the ring wouldn't budge (for mystical reasons only revealed later). Why didn’t Ringo’s pulling cause his ring finger to come off?",5,7
+73,"Because of joint reactive force inside the metacarpophalangeal joint. The first tug exerted by Ringo applied a distraction force to the joint. The ligaments stretched a little, then became taut. From then on, the harder Ringo pulled, the stronger the equal but opposite reactive force exerted by the ligaments against his pull.",5,8
+74,"During this quiz, you will be asked a number of different types of questions. The computer will keep track of your right and wrong answers and give you a report at the end on how well you did.",6,1
+75,This chapter on forces contains the following topics:,1,2
+76,1) Basics- Internal and External Forces,1,3
+77,2) Friction- Static and Kinetic Friction,1,4
+78,"3) Gravity- Center of Gravity, Line of Gravity, Equilibrium",1,5
+79,"4) Reactive Forces- Reaction to Compression, to Distraction",1,6
+80,5) Forces Quiz- 8 Questions and a Report on how well you did,1,7
+81,"GRAVITY: 
+We live in a constantly present field of gravitational force. No one knows exactly what gravity is or what causes it, but it seems to be an attraction emitted by all objects in the universe with mass. The greater the mass, the greater the attraction, and the greater the force of gravity.
+",4,1
