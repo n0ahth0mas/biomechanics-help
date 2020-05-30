@@ -1587,6 +1587,7 @@ def new_student_account():
             print("commited the new user")
             # log in the user
             user_details = User.query.filter_by(email=form.email.data).first()
+            print(user_details.password)
             session["email"] = form.data["email"]
             print("about to try to login")
             login_user(user_details)
