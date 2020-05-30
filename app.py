@@ -245,14 +245,14 @@ class User(db.Model, UserMixin):
     __tablename__ = 'Users'
     # User Authentication fields
     email = db.Column(db.String(255), primary_key=True)
-    id = db.Column(db.String(255))
     email_confirmed_at = datetime.datetime.now()
     password = db.Column(db.String(255))
+    name = db.Column(db.String(255))
     schoolID = db.Column(db.String(), db.ForeignKey(School.schoolID))
+    id = db.Column(db.String(255))
     roles = db.relationship('Role', secondary='User_roles')
     classes = db.relationship('Class', secondary='Enroll')
     active = True
-    name = db.Column(db.String(255))
 
     def has_role(self, role):
         return role in self.roles
@@ -1574,10 +1574,11 @@ def new_student_account():
             passhash = h.hexdigest()
             user = User()
             user.email = form.data["email"]
-            user.name = form.data["fullName"]
-            user.active = True
             user.password = passhash
+            user.name = form.data["fullName"]
             user.schoolID = form.data["organization"]
+            user.id = user.email
+            user.active = True
             # prof_role = Role(name='Student')
             # user.roles = [prof_role]
             role = Role.query.filter_by(name='Student').one()
