@@ -92,6 +92,7 @@ def import_tables():
     rolesDF = pd.read_csv("Roles.csv", encoding = "ISO-8859-1")
     rolesDF.to_sql(name='Roles', con=db.engine, index=False)
     schoolDF = pd.read_csv("School.csv", encoding = "ISO-8859-1")
+    
     schoolDF.to_sql(name='School', con=db.engine, index=False)
     section_blockDF = pd.read_csv('SectionBlock.csv', encoding = "ISO-8859-1")
     section_blockDF.to_sql(name='SectionBlock', con=db.engine, index=False)
