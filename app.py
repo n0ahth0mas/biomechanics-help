@@ -78,7 +78,7 @@ def import_tables():
     answersDF = pd.read_csv("Answers.csv", encoding = "ISO-8859-1")
     answersDF.to_sql(name='Answers', con=db.engine, index=False)
     chaptersDF = pd.read_csv("Chapters.csv", encoding = "ISO-8859-1")
-    chaptersDF.to_sql(name='Chapers', con=db.engine, index=False)
+    chaptersDF.to_sql(name='Chapters', con=db.engine, index=False)
     classesDF = pd.read_csv("Classes.csv", encoding = "ISO-8859-1")
     classesDF.to_sql(name='Classes', con=db.engine, index=False)
     user_classesDF = pd.read_csv("Enroll.csv", encoding = "ISO-8859-1")
