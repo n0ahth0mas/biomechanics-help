@@ -74,7 +74,7 @@ db = SQLAlchemy(app)
 @with_appcontext
 def import_tables():
     #db.create_all()
-    answersDF = pd.read_csv(".../database/Answers.csv")
+    answersDF = pd.read_csv("Answers.csv")
     print(answersDF[1:2])
 
 app.cli.add_command(import_tables)
