@@ -99,7 +99,6 @@ def github_webhook_endpoint():
     signature = request.headers.get("X-Hub-Signature")
     if not signature or not signature.startswith("sha1="):
         abort(400, "X-Hub-Signature required")
-    app.logger.info("test")
     # Create local hash of payload
     digest = hmac.new("help123".encode(),
                       request.data, hashlib.sha1).hexdigest()
