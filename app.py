@@ -100,7 +100,7 @@ def github_webhook_endpoint():
     if not signature or not signature.startswith("sha1="):
         abort(400, "X-Hub-Signature required")
     # Create local hash of payload
-    digest = hmac.new("help123".encode(),
+    digest = hmac.new(os.environ['GIT_REP_KEY'].encode(),
                       request.data, hashlib.sha1).hexdigest()
 
     # Verify signature
