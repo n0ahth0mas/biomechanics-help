@@ -1,6 +1,7 @@
 # ----------------------------------------------------------------------------#
 # Imports
 # ----------------------------------------------------------------------------#
+import hmac
 import shutil
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -69,6 +70,43 @@ ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
+
+# IMPORTANT: Make sure to specify this route (https://<this server>/myhook) on
+# GitHub's webhook configuration page as "Payload URL".
+@app.route("/myhook", methods=['POST'])
+def github_webhook_endpoint():
+    app.logger.info("called webhook route")
+    # Extract signature header
+    signature = request.headers.get("X-Hub-Signature")
+    if not signature or not signature.startswith("sha1="):
+        abort(400, "X-Hub-Signature required")
+
+    # Create local hash of payload
+    digest = hmac.new("help123".encode(),
+                      request.data, hashlib.sha1).hexdigest()
+
+    # Verify signature
+    if not hmac.compare_digest(signature, "sha1=" + digest):
+        abort(400, "Invalid signature")
+
+    # The signature was fine, let's parse the data
+    request_data = request.get_json()
+
+    # now we want to run our .sh file in our home page
+    import subprocess
+    os.environ['PATH'] = '/home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git'
+    os.environ['GIT_SSH_COMMAND'] = "ssh -o IdentitiesOnly=yes -i /home/ubuntu/.ssh/id_rsa"
+    app.logger.info("path: " + str(os.environ['PATH']))
+
+    process =subprocess.Popen('git pull origin deployment', cwd="/home/ubuntu/biomechanicshelp", universal_newlines=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+    app.logger.info(process.stdout.read())
+    #now we need to restart the server
+    restart_process = subprocess.Popen('sudo systemctl restart biomechanicshelp', cwd="/home/ubuntu/biomechanicshelp",
+                               universal_newlines=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
+    app.logger.info(restart_process.stdout.read())
+    app.logger.info("finished running the command")
+    return "Okay, thank you, if you still care."
+
 
 @app.cli.command("import_tables")
 @with_appcontext
