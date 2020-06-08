@@ -30,7 +30,8 @@ import jwt
 import sys
 from werkzeug.utils import secure_filename
 import pandas as pd
-
+from flask.logging import default_handler
+from logging.config import dictConfig
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
@@ -50,10 +51,28 @@ class ConfigClass(object):
     UPLOAD_FOLDER = os.path.abspath('static/img')
     UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
 
+dictConfig({
+    'version': 1,
+    'formatters': {
+        'f': {'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'}
+    },
+    'handlers': {
+        'ch': {'class': 'logging.StreamHandler',
+               'formatter': 'f',
+               'level': 'DEBUG'},
+        'fh': {'class': 'logging.FileHandler',
+               'formatter': 'f',
+               'filename': 'app.log',
+               'level': 'DEBUG'}
+    },
+    'root': {
+        'handlers': ['ch', 'fh'],
+        'level': 'DEBUG',
+    }
+})
 app = Flask(__name__)
 
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+app.logger.removeHandler(default_handler)
 
 app.config.from_object(__name__+'.ConfigClass')
 #app.secret_key = 'xxxxyyyyyzzzzz'
