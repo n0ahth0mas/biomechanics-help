@@ -953,6 +953,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
+        app.logger.info("validated new answer form")
         saved_new_answer = False
         while saved_new_answer is False:
             one_answer = Answer()
