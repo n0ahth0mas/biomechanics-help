@@ -1,0 +1,475 @@
+2020-06-08 16:18:41,151 app          INFO     errors
+2020-06-08 16:21:16,369 app          INFO     called webhook route
+2020-06-08 16:21:16,371 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:21:16,846 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   5f654a0..d250583  deployment -> origin/deployment\nUpdating 5f654a0..d250583\nFast-forward\n app.py | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-08 16:21:19,034 app          INFO     errors
+2020-06-08 16:22:33,416 app          INFO     called webhook route
+2020-06-08 16:22:33,417 app          INFO     test
+2020-06-08 16:22:33,419 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:22:33,899 app          INFO     b"Warning: Permanently added the RSA host key for IP address '140.82.114.3' to the list of known hosts.\r\nFrom github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   d250583..1dfb2d4  deployment -> origin/deployment\nUpdating d250583..1dfb2d4\nFast-forward\n app.py | 1 -\n 1 file changed, 1 deletion(-)\n"
+2020-06-08 16:22:36,048 app          INFO     errors
+2020-06-08 16:23:46,613 app          INFO     called webhook route
+2020-06-08 16:23:46,615 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:23:47,097 app          INFO     b"Warning: Permanently added the RSA host key for IP address '140.82.112.3' to the list of known hosts.\r\nFrom github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   1dfb2d4..ea22cb0  deployment -> origin/deployment\nUpdating 1dfb2d4..ea22cb0\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n"
+2020-06-08 16:23:49,292 app          INFO     errors
+2020-06-08 16:24:29,083 app          INFO     called webhook route
+2020-06-08 16:24:29,084 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:24:29,555 app          INFO     b"Warning: Permanently added the RSA host key for IP address '140.82.114.4' to the list of known hosts.\r\nFrom github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   ea22cb0..c625a19  deployment -> origin/deployment\nUpdating ea22cb0..c625a19\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n"
+2020-06-08 16:24:31,712 app          INFO     errors
+2020-06-08 16:29:44,646 app          INFO     called webhook route
+2020-06-08 16:29:44,648 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:29:45,124 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   c625a19..afeb8c8  deployment -> origin/deployment\nUpdating c625a19..afeb8c8\nFast-forward\n app.py | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-08 16:29:47,354 app          INFO     errors
+2020-06-08 16:30:28,568 app          INFO     called webhook route
+2020-06-08 16:30:28,569 app          ERROR    Exception on /myhook [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app.py", line 103, in github_webhook_endpoint
+    digest = hmac.new(os.environ['GIT_REP_KEY'].encode(),
+  File "/usr/lib/python3.5/os.py", line 725, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'GIT_REP_KEY'
+2020-06-08 16:33:34,985 app          INFO     called webhook route
+2020-06-08 16:33:34,986 app          ERROR    Exception on /myhook [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app.py", line 103, in github_webhook_endpoint
+    digest = hmac.new(os.environ['GIT_REP_KEY'].encode(),
+  File "/usr/lib/python3.5/os.py", line 725, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'GIT_REP_KEY'
+2020-06-08 16:34:15,496 app          INFO     errors
+2020-06-08 16:34:45,195 app          INFO     called webhook route
+2020-06-08 16:34:45,197 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:34:45,663 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   43c81fc..daf9984  deployment -> origin/deployment\nUpdating 43c81fc..daf9984\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-08 16:34:47,816 app          INFO     errors
+2020-06-08 16:35:11,015 app          INFO     called webhook route
+2020-06-08 16:35:11,017 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-08 16:35:11,483 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   daf9984..6573ae7  deployment -> origin/deployment\nUpdating daf9984..6573ae7\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-08 16:35:13,628 app          INFO     errors
+2020-06-09 17:04:52,086 app          INFO     errors
+2020-06-09 17:18:41,648 app          INFO     errors
+2020-06-09 17:19:14,907 app          INFO     errors
+2020-06-09 17:24:10,502 app          INFO     called webhook route
+2020-06-09 17:24:10,504 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:24:10,985 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   12dfee5..3707025  deployment -> origin/deployment\nUpdating 12dfee5..3707025\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:24:13,156 app          INFO     errors
+2020-06-09 17:40:40,942 app          INFO     called webhook route
+2020-06-09 17:40:40,943 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:40:41,430 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   3707025..21a3625  deployment -> origin/deployment\nUpdating 3707025..21a3625\nFast-forward\n app.py | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:40:43,640 app          INFO     errors
+2020-06-09 17:41:21,411 app          INFO     called webhook route
+2020-06-09 17:41:21,413 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:41:21,848 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   21a3625..c0dec98  deployment -> origin/deployment\nUpdating 21a3625..c0dec98\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:41:24,034 app          INFO     errors
+2020-06-09 17:42:13,047 app          INFO     called webhook route
+2020-06-09 17:42:13,048 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:42:13,491 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   c0dec98..b4ee6c5  deployment -> origin/deployment\nUpdating c0dec98..b4ee6c5\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:42:15,665 app          INFO     errors
+2020-06-09 17:46:22,890 app          INFO     errors
+2020-06-09 17:47:22,347 app          INFO     called webhook route
+2020-06-09 17:47:22,349 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:47:22,792 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   b4ee6c5..c517dca  deployment -> origin/deployment\nUpdating b4ee6c5..c517dca\nFast-forward\n app.py | 5 +----\n 1 file changed, 1 insertion(+), 4 deletions(-)\n'
+2020-06-09 17:47:24,962 app          INFO     errors
+2020-06-09 17:47:52,536 app          INFO     called webhook route
+2020-06-09 17:47:52,538 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:47:52,968 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   c517dca..cf1e96d  deployment -> origin/deployment\nUpdating c517dca..cf1e96d\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:47:55,091 app          INFO     errors
+2020-06-09 17:48:54,657 app          INFO     called webhook route
+2020-06-09 17:48:54,658 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 17:48:55,095 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   cf1e96d..14369f9  deployment -> origin/deployment\nUpdating cf1e96d..14369f9\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 17:48:57,269 app          INFO     errors
+2020-06-09 18:06:30,748 app          ERROR    Exception on /new-professor-account [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app.py", line 1625, in new_prof_acc
+    if not school_code[2]:
+TypeError: 'NoneType' object is not subscriptable
+2020-06-09 18:17:09,688 app          INFO     called webhook route
+2020-06-09 18:17:09,689 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-09 18:17:10,215 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   14369f9..2613dce  deployment -> origin/deployment\nUpdating 14369f9..2613dce\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-09 18:17:12,397 app          INFO     errors
+2020-06-09 20:01:32,483 app          ERROR    Exception on /new-professor-account [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app.py", line 1625, in new_prof_acc
+    if not school_code[2]:
+TypeError: 'NoneType' object is not subscriptable
+2020-06-15 16:37:27,385 app          ERROR    Exception on /new-professor-account [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "./app.py", line 1625, in new_prof_acc
+    if not school_code[2]:
+TypeError: 'NoneType' object is not subscriptable
+2020-06-15 16:42:14,542 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 16:43:20,346 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 16:43:49,069 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 17:15:48,193 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 17:16:07,070 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 17:16:28,828 app          ERROR    Exception on /student-home [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 1146, in student_home
+    one_class = Class.query.filter_by(classID=form.data["class_code"]).one()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/query.py", line 3446, in one
+    raise orm_exc.NoResultFound("No row was found for one()")
+sqlalchemy.orm.exc.NoResultFound: No row was found for one()
+2020-06-15 20:36:39,642 app          ERROR    Exception on /edit-class/biomechanicshelp/1/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 809, in edit_section
+    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+IndexError: list index out of range
+2020-06-15 20:37:10,181 app          ERROR    Exception on /edit-class/biomechanicshelp/1 [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 584, in edit_chapter
+    one_section.publish = not one_section.publish
+AttributeError: 'NoneType' object has no attribute 'publish'
+2020-06-15 20:38:30,805 app          ERROR    Exception on /edit-class/biomechanicshelp/1 [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 574, in edit_chapter
+    one_section.orderNo = form_edit.data["orderNo1"]
+AttributeError: 'NoneType' object has no attribute 'orderNo'
+2020-06-15 20:39:07,605 app          ERROR    Exception on /edit-class/biomechanicshelp/1/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 809, in edit_section
+    sectionName = query_db('SELECT sectionName from Sections where sectionID="%s"' % sectionID)[0][0]
+IndexError: list index out of range
+2020-06-15 20:46:44,237 app          ERROR    Exception on /edit-class/biomechanicshelp/1/1/question/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 993, in edit_question
+    questions = query_db('SELECT questionText from Questions where questionID="%s"' % questionID)[0][0]
+IndexError: list index out of range
+2020-06-16 15:04:36,139 app          INFO     called webhook route
+2020-06-16 15:04:36,140 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-16 15:04:37,249 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   2613dce..e8fc2e8  deployment -> origin/deployment\nUpdating 2613dce..e8fc2e8\nFast-forward\n templates/pages/landing.html | 2 +-\n 1 file changed, 1 insertion(+), 1 deletion(-)\n'
+2020-06-16 15:04:40,070 app          INFO     errors
+2020-06-16 15:06:18,437 app          ERROR    Exception on /edit-class/99/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 591, in edit_chapter
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
+IndexError: list index out of range
+2020-06-16 15:06:33,487 app          ERROR    Exception on /edit-class/99/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 591, in edit_chapter
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
+IndexError: list index out of range
+2020-06-16 15:15:51,111 app          INFO     called webhook route
+2020-06-16 15:15:51,113 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-16 15:15:51,544 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   e8fc2e8..7e73508  deployment -> origin/deployment\nUpdating e8fc2e8..7e73508\nFast-forward\n app.py | 6 +++---\n 1 file changed, 3 insertions(+), 3 deletions(-)\n'
+2020-06-16 15:15:53,729 app          INFO     errors
+2020-06-16 15:16:39,164 app          ERROR    Exception on /edit-class/999/None [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 591, in edit_chapter
+    chapterName = query_db('SELECT chapterName from Chapters where chapterID="%s"' % chapterID)[0][0]
+IndexError: list index out of range
+2020-06-16 15:18:51,153 app          INFO     called webhook route
+2020-06-16 15:18:51,154 app          INFO     path: /home/ubuntu/bin:/home/ubuntu/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/bin/git
+2020-06-16 15:18:51,598 app          INFO     b'From github.com:n0ahth0mas/biomechanics-help\n * branch            deployment -> FETCH_HEAD\n   7e73508..24a2712  deployment -> origin/deployment\nUpdating 7e73508..24a2712\nFast-forward\n app.py | 1 +\n 1 file changed, 1 insertion(+)\n'
+2020-06-16 15:18:53,769 app          INFO     errors
+2020-06-16 15:19:13,595 app          ERROR    Exception on /edit-class/999 [POST]
+Traceback (most recent call last):
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/flask_user/decorators.py", line 143, in decorator
+    return view_function(*args, **kwargs)
+  File "./app.py", line 433, in edit_class
+    app.logger.info("new chapter id: " + str(one_chapter.chapterID))
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/attributes.py", line 287, in __get__
+    return self.impl.get(instance_state(instance), dict_)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/attributes.py", line 718, in get
+    value = state._load_expired(state, passive)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/state.py", line 652, in _load_expired
+    self.manager.deferred_scalar_loader(self, toload)
+  File "/home/ubuntu/biomechanicshelp/biomechanicshelpenv/lib/python3.5/site-packages/sqlalchemy/orm/loading.py", line 1018, in load_scalar_attributes
+    raise orm_exc.ObjectDeletedError(state)
+sqlalchemy.orm.exc.ObjectDeletedError: Instance '<Chapter at 0x7f5078e2d9b0>' has been deleted, or its row is otherwise not present.
