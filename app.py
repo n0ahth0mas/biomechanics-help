@@ -32,6 +32,9 @@ from werkzeug.utils import secure_filename
 import pandas as pd
 from flask.logging import default_handler
 from logging.config import dictConfig
+from random import seed, randint
+from random import random
+from sqlalchemy.exc import IntegrityError
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
@@ -229,7 +232,7 @@ class Class(db.Model):
 
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
-    chapterID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    chapterID = db.Column(db.Integer(), primary_key=True, unique=True)
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey(Class.classID))
     orderNo = db.Column(db.Integer())
@@ -239,7 +242,7 @@ class Chapter(db.Model):
 
 class Section(db.Model):
     __tablename__ = 'Sections'
-    sectionID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    sectionID = db.Column(db.Integer(), primary_key=True, unique=True)
     chapterID = db.Column(db.Integer(), db.ForeignKey(Chapter.chapterID))
     sectionName = db.Column(db.String())
     orderNo = db.Column(db.Integer())
@@ -289,7 +292,7 @@ class SectionBlockImages(db.Model):
 
 class Question(db.Model):
     __tablename__ = 'Questions'
-    questionID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    questionID = db.Column(db.Integer(), primary_key=True, unique=True)
     questionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID))
     questionType = db.Column(db.String())
@@ -423,13 +426,24 @@ def edit_class(classID):
     elif request.method == 'POST':
         pass
     if form.orderNo2.data is not None and form.validate():
-        one_chapter = Chapter()
-        one_chapter.orderNo = form.data["orderNo2"]
-        one_chapter.chapterName = form.data["chapterName"]
-        one_chapter.classID = classID
-        one_chapter.publish = False
-        db.session.add(one_chapter)
-        db.session.commit()
+        #we have not yet saved the chapter
+        saved_new_chapter = False
+        while saved_new_chapter is False:
+            one_chapter = Chapter()
+            one_chapter.orderNo = form.data["orderNo2"]
+            one_chapter.chapterName = form.data["chapterName"]
+            one_chapter.classID = classID
+            one_chapter.publish = False
+            seed(1)
+            one_chapter.chapterID = randint(0, 1000000000)
+            try:
+                #try to save this new chapter with its id
+                db.session.add(one_chapter)
+                db.session.commit()
+                saved_new_chapter = True
+            except IntegrityError:
+                #else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
