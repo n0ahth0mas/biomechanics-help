@@ -675,40 +675,47 @@ def edit_section(classID, chapterID, sectionID):
         pass
     form_q = CreateQuestion()
     if form_q.orderNo3.data is not None and form_q.validate():
-        one_question = Question()
-        one_question.questionText = form_q.data["questionText"]
-        one_question.orderNo = form_q.data["orderNo3"]
-        # we need to check and make sure that the order of this question wont clash with other order conflicts
-        one_question.sectionID = sectionID
-        print(query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None)
-        # if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
-        # then we are about to have a conflict
-        # flash('Please enter a question order number that does not already exist.')
-        # return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
-        one_question.questionType = form_q.data["questionType"]
-        print(form_q.questionTime.data)
-        if form_q.questionTime.data is None:
-            #default to 60 on no input
-            one_question.questionTime = 60
-        else:
-            one_question.questionTime = int(form_q.questionTime.data)
-        if not form_q.data["imageFile2"]:
-            one_question.imageFile = "/static/img/question.png"
-            # we want to decline producing this form if there is no image and we are a drag and drop question
-            if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
-                flash('Please provide a question image for this question type.')
-                return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
-        else:
-            image = request.files["imageFile2"]
-            if 'imageFile2' not in request.files:
-                return redirect(request.url)
-            if image and allowed_file(image.filename):
-                filename = secure_filename(image.filename)
-                img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
-                image.save(img_path)
-                one_question.imageFile = "/static/img/" + str(classID) + "/" + filename
-        db.session.add(one_question)
-        db.session.commit()
+        saved_new_question = False
+        while saved_new_question is False:
+            one_question = Question()
+            one_question.questionText = form_q.data["questionText"]
+            one_question.orderNo = form_q.data["orderNo3"]
+            # we need to check and make sure that the order of this question wont clash with other order conflicts
+            one_question.sectionID = sectionID
+            # if query_db('SELECT * from Questions where orderNo="%s"' % one_question.orderNo) is not None:
+            # then we are about to have a conflict
+            # flash('Please enter a question order number that does not already exist.')
+            # return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+            one_question.questionType = form_q.data["questionType"]
+            if form_q.questionTime.data is None:
+                #default to 60 on no input
+                one_question.questionTime = 60
+            else:
+                one_question.questionTime = int(form_q.questionTime.data)
+            if not form_q.data["imageFile2"]:
+                one_question.imageFile = "/static/img/question.png"
+                # we want to decline producing this form if there is no image and we are a drag and drop question
+                if one_question.questionType == 'dragndrop' or one_question.questionType == 'pointnclick':
+                    flash('Please provide a question image for this question type.')
+                    return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
+            else:
+                image = request.files["imageFile2"]
+                if 'imageFile2' not in request.files:
+                    return redirect(request.url)
+                if image and allowed_file(image.filename):
+                    filename = secure_filename(image.filename)
+                    img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                    image.save(img_path)
+                    one_question.imageFile = "/static/img/" + str(classID) + "/" + filename
+            seed(1)
+            one_question.questionID = randint(0, ID_RAND_UPPER_BOUND)
+            try:
+                db.session.add(one_question)
+                db.session.commit()
+                saved_new_question = True
+            except IntegrityError:
+                #else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
