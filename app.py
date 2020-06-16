@@ -81,6 +81,7 @@ app.config.from_object(__name__+'.ConfigClass')
 #app.config['USER_EMAIL_SENDER_EMAIL'] = "jriley9000@gmail.com"
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'mp4'}
 ALLOWED_EXTENSIONS_VIDEO = {'mp4', 'mov'}
+ID_RAND_UPPER_BOUND = 1000000000
 #UPLOAD_FOLDER = os.path.abspath('static/img')
 #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #UPLOAD_VIDEO_FOLDER = os.path.abspath('static/video')
@@ -435,7 +436,7 @@ def edit_class(classID):
             one_chapter.classID = classID
             one_chapter.publish = False
             seed(1)
-            one_chapter.chapterID = randint(0, 1000000000)
+            one_chapter.chapterID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 #try to save this new chapter with its id
                 db.session.add(one_chapter)
@@ -571,13 +572,22 @@ def edit_chapter(classID, chapterID):
         return redirect('/professor-home')
     form = CreateSection()
     if form.orderNo2.data is not None and form.validate():
-        one_section = Section()
-        one_section.chapterID = chapterID
-        one_section.orderNo = form.data["orderNo2"]
-        one_section.sectionName = form.data["sectionName"]
-        one_section.publish = False
-        db.session.add(one_section)
-        db.session.commit()
+        saved_new_section = False
+        while saved_new_section is False:
+            one_section = Section()
+            one_section.chapterID = chapterID
+            one_section.orderNo = form.data["orderNo2"]
+            one_section.sectionName = form.data["sectionName"]
+            one_section.publish = False
+            seed(1)
+            one_section.sectionID = randint(0, ID_RAND_UPPER_BOUND)
+            try:
+                db.session.add(one_section)
+                db.session.commit()
+                saved_new_section = True
+            except IntegrityError:
+                #else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s/%s' % (classID, chapterID))
     elif request.method == 'POST':
         pass
