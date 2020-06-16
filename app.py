@@ -953,22 +953,30 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.commit()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
-        one_answer = Answer()
-        one_answer.questionID = questionID
-        one_answer.correctness = form_a.data["correctness"]
-        one_answer.answerText = form_a.data["answerText"]
-        one_answer.answerReason = form_a.data["answerReason"]
-        image = request.files["imageFile"]
-        if 'imageFile' not in request.files:
-            return redirect(request.url)
-        if image and allowed_file(image.filename):
-            filename = secure_filename(image.filename)
-            img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
-            image.save(img_path)
-            one_answer.imageFile = "/static/img/" + str(classID) + "/" + filename
-        db.session.commit()
-        db.session.add(one_answer)
-        db.session.commit()
+        saved_new_answer = False
+        while saved_new_answer is False:
+            one_answer = Answer()
+            one_answer.questionID = questionID
+            one_answer.correctness = form_a.data["correctness"]
+            one_answer.answerText = form_a.data["answerText"]
+            one_answer.answerReason = form_a.data["answerReason"]
+            image = request.files["imageFile"]
+            if 'imageFile' not in request.files:
+                return redirect(request.url)
+            if image and allowed_file(image.filename):
+                filename = secure_filename(image.filename)
+                img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
+                image.save(img_path)
+                one_answer.imageFile = "/static/img/" + str(classID) + "/" + filename
+            seed(1)
+            one_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
+            try:
+                db.session.add(one_answer)
+                db.session.commit()
+                saved_new_answer = True
+            except IntegrityError:
+                #else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
         pass
