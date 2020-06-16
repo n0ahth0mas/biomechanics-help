@@ -970,10 +970,13 @@ def edit_question(classID, chapterID, sectionID, questionID):
                 one_answer.imageFile = "/static/img/" + str(classID) + "/" + filename
             seed(1)
             one_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
+            id_val = one_answer.answerID
             try:
                 db.session.add(one_answer)
                 db.session.commit()
                 saved_new_answer = True
+                app.logger.info("this new question id: " + id_val)
+                app.logger.info("this new question text: " + Answer.query.filter_by(answerID=id_val).answerText)
             except IntegrityError:
                 #else rollback and try again
                 db.session.rollback()
