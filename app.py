@@ -90,6 +90,8 @@ ID_RAND_UPPER_BOUND = 1000000000
 # login.init_app(app)
 pathToDB = os.path.abspath("database/help.db")
 db = SQLAlchemy(app)
+#seed our random number generator
+seed(1)
 
 # IMPORTANT: Make sure to specify this route (https://<this server>/myhook) on
 # GitHub's webhook configuration page as "Payload URL".
@@ -435,7 +437,6 @@ def edit_class(classID):
             one_chapter.chapterName = form.data["chapterName"]
             one_chapter.classID = classID
             one_chapter.publish = False
-            seed(1)
             one_chapter.chapterID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 #try to save this new chapter with its id
@@ -579,7 +580,6 @@ def edit_chapter(classID, chapterID):
             one_section.orderNo = form.data["orderNo2"]
             one_section.sectionName = form.data["sectionName"]
             one_section.publish = False
-            seed(1)
             one_section.sectionID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 db.session.add(one_section)
@@ -707,7 +707,6 @@ def edit_section(classID, chapterID, sectionID):
                     img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
                     image.save(img_path)
                     one_question.imageFile = "/static/img/" + str(classID) + "/" + filename
-            seed(1)
             one_question.questionID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 db.session.add(one_question)
@@ -973,7 +972,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
                 img_path = os.path.join((app.config['UPLOAD_FOLDER'] + "/" + str(classID)), filename)
                 image.save(img_path)
                 one_answer.imageFile = "/static/img/" + str(classID) + "/" + filename
-            seed(1)
             one_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
             id_val = one_answer.answerID
             try:
