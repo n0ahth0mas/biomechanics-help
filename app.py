@@ -1787,7 +1787,13 @@ def logout():
     logout_user()
     return redirect("/")
 
-
+@app.route("/delete-account/<email>")
+def delete_account(email):
+    logout_user()
+    account_to_delete = School.query.filter_by(email=email).first()
+    db.session.delete(account_to_delete)
+    db.session.commit()
+    return redirect("/edit-profile")
 # Error handlers.
 
 

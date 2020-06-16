@@ -73,6 +73,7 @@
     <button id="profileBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changeProfileModal">Change Name</button>
     <button id="passwordBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changePasswordModal">Change Password</button>
     <button id="schoolBtn" class="btn btn-primary myBtn" data-toggle="modal" data-target="#changeSchoolModal">Change School</button><br>
+    <a href="/delete-account/{{current_user.email}}"><button class="btn btn-danger myBtn">Delete Account</button></a>
     <div class="profile">
     <h2>Full Name:</h2>
         <p>{{current_user.name}}</p>
