@@ -1353,7 +1353,7 @@ def professor_home():
         one_class = Class.query.filter_by(classID=prof_join_class_form.classCode.data).one()
         current_user.classes.append(one_class)
         db.session.commit()
-    if form_create.validate_on_submit() and query_db(
+    elif form_create.validate_on_submit() and query_db(
             'SELECT * from Classes where classID="%s"' % form_create.data["class_id"]) == []:
         one_class = Class()
         one_class.classID = form_create.data["class_id"]
