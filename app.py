@@ -913,6 +913,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     local_img_path = ""
     drag_n_drop_correct = ""
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
+        app.logger.info("thinks this is dnd")
         # validated point and click answer form
         point_answer = Answer()
         point_answer.questionID = questionID
@@ -928,6 +929,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
         db.session.add(point_answer)
         db.session.commit()
     if drag_n_drop_image_form.drag_answer_image.data is not None and drag_n_drop_image_form.validate():
+        app.logger.info("thinks this is dnd")
         image = request.files['drag_answer_image']
         drag_n_drop_correct = drag_n_drop_image_form.data["correctness"]
         if 'drag_answer_image' not in request.files:
@@ -938,6 +940,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
             image.save(img_path)
             local_img_path = "/static/img/" + str(classID) + "/" + filename
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
+        app.logger.info("thinks this is dnd")
         drag_answer = Answer()
         drag_answer.questionID = questionID
         drag_answer.correctness = drag_n_drop_form.data["correctness"]
