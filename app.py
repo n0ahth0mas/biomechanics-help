@@ -912,6 +912,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
     form_short = CreateShortAnswer()
     local_img_path = ""
     drag_n_drop_correct = ""
+    app.logger.info("called this correct view!!!")
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
         app.logger.info("thinks this is dnd")
         # validated point and click answer form
