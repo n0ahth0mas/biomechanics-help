@@ -486,12 +486,19 @@ def edit_glossary(classID):
         return redirect('/professor-home')
     form = CreateTerm()
     if form.term.data is not None and form.validate():
-        one_entry = Glossary()
-        one_entry.classID = classID
-        one_entry.term = form.data["term"]
-        one_entry.definition = form.data["definition"]
-        db.session.add(one_entry)
-        db.session.commit()
+        created_term = False
+        while created_term is False:
+            one_entry = Glossary()
+            one_entry.classID = classID
+            one_entry.term = form.data["term"]
+            one_entry.definition = form.data["definition"]
+            one_entry.termID = randint(0, ID_RAND_UPPER_BOUND)
+            try:
+                db.session.add(one_entry)
+                db.session.commit()
+                created_term = True
+            except IntegrityError:
+                db.session.rollback()
         one_image = GlossaryImages()
         one_image.termID = one_entry.termID
         image = request.files["imageFile"]
