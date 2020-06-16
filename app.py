@@ -131,7 +131,6 @@ def github_webhook_endpoint():
 @with_appcontext
 def import_tables():
     #db.create_all()
-    logout_user()
     db.drop_all()
     answersDF = pd.read_csv("Answers.csv", encoding = "ISO-8859-1")
     answersDF.to_sql(name='Answers', con=db.engine, index=False)
