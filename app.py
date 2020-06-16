@@ -229,7 +229,7 @@ class Class(db.Model):
 
 class Chapter(db.Model):
     __tablename__ = 'Chapters'
-    chapterID = db.Column(db.Integer(), primary_key=True)
+    chapterID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     chapterName = db.Column(db.String())
     classID = db.Column(db.String(), db.ForeignKey(Class.classID))
     orderNo = db.Column(db.Integer())
@@ -239,7 +239,7 @@ class Chapter(db.Model):
 
 class Section(db.Model):
     __tablename__ = 'Sections'
-    sectionID = db.Column(db.Integer(), primary_key=True)
+    sectionID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     chapterID = db.Column(db.Integer(), db.ForeignKey(Chapter.chapterID))
     sectionName = db.Column(db.String())
     orderNo = db.Column(db.Integer())
@@ -289,7 +289,7 @@ class SectionBlockImages(db.Model):
 
 class Question(db.Model):
     __tablename__ = 'Questions'
-    questionID = db.Column(db.Integer(), primary_key=True)
+    questionID = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     questionText = db.Column(db.String())
     sectionID = db.Column(db.Integer(), db.ForeignKey(Section.sectionID))
     questionType = db.Column(db.String())
