@@ -913,21 +913,26 @@ def edit_question(classID, chapterID, sectionID, questionID):
     drag_n_drop_correct = ""
     app.logger.info("called this correct view!!!")
     if point_n_click_answer_form.answer_box_width.data is not None and point_n_click_answer_form.validate():
-        app.logger.info("thinks this is dnd")
-        # validated point and click answer form
-        point_answer = Answer()
-        point_answer.questionID = questionID
-        point_answer.correctness = point_n_click_answer_form.correctness.data
-        point_answer.answerText = ""
-        point_answer.answerReason = point_n_click_answer_form.answerReason.data
-        point_answer.xPosition = point_n_click_answer_form.answerXCoord.data
-        point_answer.yPosition = point_n_click_answer_form.answerYCoord.data
-        point_answer.imageFile = ""
-        point_answer.dropBoxHeightAdjustment = float(point_n_click_answer_form.answer_area_adjusted_height_ratio.data)
-        point_answer.dropBoxWidthAdjustment = float(point_n_click_answer_form.answer_area_adjusted_width_ratio.data)
-        point_answer.dropBoxColor = ""
-        db.session.add(point_answer)
-        db.session.commit()
+        saved_point_n_click_answer = False
+        while saved_point_n_click_answer is False:
+            # validated point and click answer form
+            point_answer = Answer()
+            point_answer.questionID = questionID
+            point_answer.correctness = point_n_click_answer_form.correctness.data
+            point_answer.answerText = ""
+            point_answer.answerReason = point_n_click_answer_form.answerReason.data
+            point_answer.xPosition = point_n_click_answer_form.answerXCoord.data
+            point_answer.yPosition = point_n_click_answer_form.answerYCoord.data
+            point_answer.imageFile = ""
+            point_answer.dropBoxHeightAdjustment = float(point_n_click_answer_form.answer_area_adjusted_height_ratio.data)
+            point_answer.dropBoxWidthAdjustment = float(point_n_click_answer_form.answer_area_adjusted_width_ratio.data)
+            point_answer.dropBoxColor = ""
+            try:
+                db.session.add(point_answer)
+                db.session.commit()
+                saved_point_n_click_answer = True
+            except:
+                db.session.rollback()
     if drag_n_drop_image_form.drag_answer_image.data is not None and drag_n_drop_image_form.validate():
         app.logger.info("thinks this is dnd")
         image = request.files['drag_answer_image']
@@ -940,23 +945,28 @@ def edit_question(classID, chapterID, sectionID, questionID):
             image.save(img_path)
             local_img_path = "/static/img/" + str(classID) + "/" + filename
     if drag_n_drop_form.answerImage.data is not None and drag_n_drop_form.validate():
-        app.logger.info("thinks this is dnd")
-        drag_answer = Answer()
-        drag_answer.questionID = questionID
-        drag_answer.correctness = drag_n_drop_form.data["correctness"]
-        drag_answer.answerText = ""
-        drag_answer.answerReason = drag_n_drop_form.data["answerReason"]
-        drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
-        drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
-        drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
-        drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
-        drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
-        drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
-        db.session.add(drag_answer)
-        db.session.commit()
+        saved_drag_n_drop_answer = False
+        while saved_drag_n_drop_answer is False:
+            drag_answer = Answer()
+            drag_answer.questionID = questionID
+            drag_answer.correctness = drag_n_drop_form.data["correctness"]
+            drag_answer.answerText = ""
+            drag_answer.answerReason = drag_n_drop_form.data["answerReason"]
+            drag_answer.xPosition = drag_n_drop_form.data["answerXCoord"]
+            drag_answer.yPosition = drag_n_drop_form.data["answerYCoord"]
+            drag_answer.imageFile = drag_n_drop_form.data["answerImage"]
+            drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
+            drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
+            drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
+            try:
+                db.session.add(drag_answer)
+                db.session.commit()
+                saved_drag_n_drop_answer = True
+            except IntegrityError:
+                # else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     if form_a.answerText.data is not None and form_a.validate():
-        app.logger.info("validated new answer form")
         saved_new_answer = False
         while saved_new_answer is False:
             one_answer = Answer()
@@ -978,8 +988,6 @@ def edit_question(classID, chapterID, sectionID, questionID):
                 db.session.add(one_answer)
                 db.session.commit()
                 saved_new_answer = True
-                app.logger.info("this new question id: " + id_val)
-                app.logger.info("this new question text: " + Answer.query.filter_by(answerID=id_val).answerText)
             except IntegrityError:
                 #else rollback and try again
                 db.session.rollback()
@@ -987,13 +995,20 @@ def edit_question(classID, chapterID, sectionID, questionID):
     elif request.method == 'POST':
         pass
     if form_short.answerText3.data is not None and form_short.validate():
-        one_answer = Answer()
-        one_answer.questionID = questionID
-        one_answer.answerText = form_short.data["answerText3"]
-        one_answer.correctness = True
-        one_answer.answerReason = form_short.data["answerReason"]
-        db.session.add(one_answer)
-        db.session.commit()
+        saved_short_answer = False
+        while saved_short_answer is False:
+            one_answer = Answer()
+            one_answer.questionID = questionID
+            one_answer.answerText = form_short.data["answerText3"]
+            one_answer.correctness = True
+            one_answer.answerReason = form_short.data["answerReason"]
+            try:
+                db.session.add(one_answer)
+                db.session.commit()
+                saved_short_answer = True
+            except IntegrityError:
+                # else rollback and try again
+                db.session.rollback()
         return redirect('/edit-class/%s/%s/%s/question/%s' % (classID, chapterID, sectionID, questionID))
     elif request.method == 'POST':
         pass
