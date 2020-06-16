@@ -927,6 +927,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
             point_answer.dropBoxHeightAdjustment = float(point_n_click_answer_form.answer_area_adjusted_height_ratio.data)
             point_answer.dropBoxWidthAdjustment = float(point_n_click_answer_form.answer_area_adjusted_width_ratio.data)
             point_answer.dropBoxColor = ""
+            point_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 db.session.add(point_answer)
                 db.session.commit()
@@ -958,6 +959,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
             drag_answer.dropBoxHeightAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_height_ratio"])
             drag_answer.dropBoxWidthAdjustment = float(drag_n_drop_form.data["drop_zone_adjusted_width_ratio"])
             drag_answer.dropBoxColor = drag_n_drop_form.data["drop_zone_color"]
+            drag_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 db.session.add(drag_answer)
                 db.session.commit()
@@ -1002,6 +1004,7 @@ def edit_question(classID, chapterID, sectionID, questionID):
             one_answer.answerText = form_short.data["answerText3"]
             one_answer.correctness = True
             one_answer.answerReason = form_short.data["answerReason"]
+            one_answer.answerID = randint(0, ID_RAND_UPPER_BOUND)
             try:
                 db.session.add(one_answer)
                 db.session.commit()
