@@ -131,6 +131,7 @@ def github_webhook_endpoint():
 @with_appcontext
 def import_tables():
     #db.create_all()
+    logout_user()
     db.drop_all()
     answersDF = pd.read_csv("Answers.csv", encoding = "ISO-8859-1")
     answersDF.to_sql(name='Answers', con=db.engine, index=False)
@@ -312,7 +313,7 @@ class School(db.Model):
 
 class Answer(db.Model):
     __tablename__ = 'Answers'
-    answerID = db.Column(db.Integer(), primary_key=True)
+    answerID = db.Column(db.Integer(), primary_key=True, unique=True)
     questionID = db.Column(db.Integer(), db.ForeignKey(Question.questionID))
     correctness = db.Column(db.String())
     answerText = db.Column(db.String())
