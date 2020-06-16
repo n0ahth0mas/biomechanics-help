@@ -661,12 +661,19 @@ def edit_section(classID, chapterID, sectionID):
         video_links.append((video[1], video[1].replace("/", "%%%")))
     form_s = CreateSectionBlock()
     if form_s.orderNo2.data is not None and form_s.validate():
-        one_section_block = SectionBlock()
-        one_section_block.orderNo = form_s.data["orderNo2"]
-        one_section_block.sectionText = form_s.data["sectionText"]
-        one_section_block.sectionID = sectionID
-        db.session.add(one_section_block)
-        db.session.commit()
+        created_section_block = False
+        while created_section_block is False:
+            one_section_block = SectionBlock()
+            one_section_block.orderNo = form_s.data["orderNo2"]
+            one_section_block.sectionText = form_s.data["sectionText"]
+            one_section_block.sectionID = sectionID
+            one_section_block.sectionBlockID = randint(0, ID_RAND_UPPER_BOUND)
+            try:
+                db.session.add(one_section_block)
+                db.session.commit()
+                created_section_block = True
+            except IntegrityError:
+                db.session.rollback()
         return redirect('/edit-class/%s/%s/%s' % (classID, chapterID, sectionID))
     elif request.method == 'POST':
         pass
