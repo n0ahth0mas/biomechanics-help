@@ -430,6 +430,7 @@ def edit_class(classID):
         one_chapter.publish = False
         db.session.add(one_chapter)
         db.session.commit()
+        app.logger.info("new chapter id: " + str(one_chapter.chapterID))
         return redirect('/edit-class/%s' % classID)
     elif request.method == 'POST':
         pass
