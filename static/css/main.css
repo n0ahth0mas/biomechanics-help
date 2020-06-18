@@ -484,3 +484,18 @@ ul {
  ****************************************************************************/
 
 /* Various other styles end */
+
+/* Mobile */
+
+@media only screen and (max-width: 600px) {
+  .student-login-form{
+    width: 80%;
+    position: relative;
+    margin-top: 250px;
+    margin-bottom: 30%;
+    background: rgba(195, 201, 233, .7);
+    padding: 30px;
+    border-radius: 30px;
+    left: 10%;
+  }
+}
