@@ -498,14 +498,4 @@ ul {
     border-radius: 30px;
     left: 10%;
   }
-
-  .box {
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    font-size: 2em;
-    color: #fff;
-    width: 100%;
-    text-shadow: 0 2px 2px rgba(0,0,0,.5);
-  }
 }
