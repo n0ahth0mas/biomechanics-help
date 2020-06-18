@@ -1300,19 +1300,19 @@ def section_page(class_id, chapter, section):
         section_order = section_data[3]
 
         section_before = query_db(
-            'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order - 1), one=True)
+            'SELECT * from Sections WHERE chapterID = "%s" AND orderNo="%s"' % (chapter, section_order - 1), one=True)
         if section_before:
             section_id_before = section_before[0]
         else:
             section_id_before = None
 
         section_after = query_db(
-            'SELECT * from Sections WHERE chapterID = "%c" AND orderNo="%o"' % (chapter, section_order + 1), one=True)
+            'SELECT * from Sections WHERE chapterID = "%s" AND orderNo="%s"' % (chapter, section_order + 1), one=True)
         next_ch_sect = None
         chapter_after = None
         if not section_after:
             chapter_after = query_db(
-                'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%o" ' % (class_id, chapter_order + 1),
+                'SELECT * from Chapters WHERE classID = "%s" AND orderNo = "%s" ' % (class_id, chapter_order + 1),
                 one=True)
             if chapter_after:
                 chapter_id_after = chapter_after[0]
