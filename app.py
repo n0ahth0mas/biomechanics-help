@@ -1248,7 +1248,7 @@ def section_page(class_id, chapter, section):
         text_info = query_db('SELECT * from SectionBlock WHERE sectionID = "%s" ORDER BY orderNo' % section)
         section_text = []
         blockIDs = []
-        chapter_data = query_db('SELECT * from Chapters where chapterID ="%c"' % chapter, one=True)
+        chapter_data = query_db('SELECT * from Chapters where chapterID ="%s"' % chapter, one=True)
         chapter_name = chapter_data[1]
         chapter_order = chapter_data[3]
         for i in text_info:
