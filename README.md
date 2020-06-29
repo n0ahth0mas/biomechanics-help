@@ -32,6 +32,16 @@ In late Fall 2020, the instructor asked Computer Science students to develop a m
 ## Project Details
 </a>
 
+After taking all of the client's needs into account, this project was developed with flexibility in mind - rather than statically creating and populating a website, professors can dynamically create courses with chapters, sections, and questions. Each page can flexibility hold text, images, videos, and a quiz. Each quiz is populated with any combination of multiple choice, short answer, drag and drop, and point and click questions.
+
+### Login and Account Creation
+
+Users are immediately greeted with a dynamic home screen, highlighting some of the many use cases with this program. After entering the site, users are prompted to either create or login to an account. There are two account types: student and professor. Students can only enroll in classes, while professors can manage, create, and collaborate on these classes. This site is also equipped with password management, allowing users to reset their password via automated email.
+
+| HELP Splash Screen  | Login Page |
+| ------------- | ------------- |
+| ![HELP Splash Screen](static/screenshots/splash.png) | ![Login Page](static/screenshots/login.png)  |
+
 <a name="built">
 
 ## Built With
