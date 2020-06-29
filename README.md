@@ -3,9 +3,13 @@ Welcome to HELP, the Higher Education Learning Program! This project was created
 
 ## Table of Contents
 [Background](#background)
+
 [Project Details](#details)
+
 [Built With](#built)
+
 [Authors](#authors)
+
 [Acknowledgments](#ack)
 
 
