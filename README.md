@@ -42,6 +42,26 @@ Users are immediately greeted with a dynamic home screen, highlighting some of t
 | ------------- | ------------- |
 | ![HELP Splash Screen](static/screenshots/splash.png) | ![Login Page](static/screenshots/login.png)  |
 
+### Professor Home
+
+Professors and students are each welcomed to the app with a home screen, allowing them to view their list of classes, along with basic profile editing functionality. Every professor view is also populated with question mark blocks, showing tip popups explaining how to perform actions relevant to the content of the page. Professors can also access a full tutorial from the navbar at any time.
+
+| Professor Home Page | Tip Popup Example |
+| ------------- | ------------- |
+| ![Professor Home Page](static/screenshots/prof_home.png) | ![Tip Popup Example](static/screenshots/tip.png)  |
+
+### Creating Classes, Chapters, and Sections
+
+Once a professor navigates to the class they want to edit, they are presented with the edit class page. Each class is made up of a set of chapters, which is made up of a set of sections. Each chapter and section must be published in order for students to be able to see that content. This allows professors to create content ahead of the time they want to roll it out to their students.
+
+| Edit Class Page| Edit Chapter Page |
+| ------------- | ------------- |
+| ![Edit Class Page](static/screenshots/edit_class.png) | ![Edit Chapter Page](static/screenshots/edit_chap.png)  |
+
+Professors can also edit sections. The section page is where the students will spend most of their time using the program, and as previously stated, holds a flexible amount of content. A section page is broken into 3 blocks: text, video, and quiz, in that order. Each section can hold an unlimited amount of content. A screenshot of the edit section page can be seen here, as the image is too long to be visible in this readme.
+
+![Edit Class Page](static/screenshots/FS_section.png)
+
 <a name="built">
 
 ## Built With
