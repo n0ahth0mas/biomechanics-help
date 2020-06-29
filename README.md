@@ -1,5 +1,5 @@
 # HELP! The Higher Education Learning Program
-Welcome to HELP, the Higher Education Learning Program! This project was created by [Braden Ash](https://github.com/ashbraden1), [Ricardo Barraza](https://github.com/rbarraza21), [Jack Riley](https://github.com/Jriles), and [Noah Thomas](https://github.com/n0ahth0mas) for the University of Puget Sound's Computer Science Capstone Class. The end goal of this project was to replace and update an online Biomechanics course created using a 1980s copy of Adobe Authorware. The current version of the system is up and running at [helppugetsound.com](helppugetsound.com), and can be tested by making a free account and enrolling in a demo class using the class code **DEMO**.
+Welcome to HELP, the Higher Education Learning Program! This project was created by [Braden Ash](https://github.com/ashbraden1), [Ricardo Barraza](https://github.com/rbarraza21), [Jack Riley](https://github.com/Jriles), and [Noah Thomas](https://github.com/n0ahth0mas) for the University of Puget Sound's Computer Science Capstone. The end goal of this project was to replace and update an online Biomechanics course created using a 1980s copy of Adobe Authorware. The current version of the system is up and running at [helppugetsound.com](helppugetsound.com), and can be tested by making a free account and enrolling in a demo class using the class code **DEMO**.
 
 ## Table of Contents
 
@@ -86,7 +86,7 @@ As previously stated, there are four types of questions: Multiple Choice, Short 
 | ------------- | ------------- |
 | ![Drag and Drop Question](static/screenshots/dragndrop.png) | ![Point and Click Question](static/screenshots/pointnclick.png)  |
 
-After submitting an answer to a question, the student is presented with a popup explaining why their answer was correct or incorrect. As this is a learning tool, it is important that students understand why their answer was correct or incorrect, and are granted multiple tries to reach the right answer.
+After submitting an answer to a question, the student is presented with a popup explaining why their answer was correct or incorrect. As this is a learning tool, it is important that students understand why their answer was marked the way it was, and are granted multiple tries to reach the right answer.
 
 | Correct | Partially Correct | Incorrect |
 | ------------- | ------------- |------------- |
@@ -119,13 +119,13 @@ All creators worked together in all aspects of this project. However, each perso
 - [Braden Ash](https://github.com/ashbraden1) - glossary, data translation and population, section page (text)
 - [Ricardo Barraza](https://github.com/rbarraza21) - database manager, database integration, publishing and uploading,  professor portal
 - [Jack Riley](https://github.com/Jriles) - flask guru, account and form system, professor and student portal, web hosting, quiz development (drag and drop, point and click), tooltips
-- [Noah Thomas](https://github.com/n0ahth0mas) - front end framework, section page (video, quiz) and professor integration, quiz development (multiple choice, short answer), tooltips
+- [Noah Thomas](https://github.com/n0ahth0mas) - front end framework, section page (video, quiz) and professor integration, quiz development (multiple choice, short answer), tooltips, readme
 <a name="ack">
 
 ## Acknowledgments
+</a>
 
 - David Chiu, our capstone professor
 - George Tomlin, our patient and optimistic client
 - University of Puget Sound Tech Services, ripping our copy of the film
 - Occupational Therapy and Math/CS Departments, for their continued support throughout this project's development
-</a>
