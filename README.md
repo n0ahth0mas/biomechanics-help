@@ -105,12 +105,27 @@ Each class also has a custom glossary that allows students to look up words impo
 ## Built With
 </a>
 
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) - Python framework and boilerplate
+- [SQLite](https://www.sqlite.org/index.html) - Database
+- [Amazon Web Services](https://aws.amazon.com/) - Web hosting
+
 <a name="authors">
 
 ## Authors
 </a>
 
+All creators worked together in all aspects of this project. However, each person had a few central focuses for this project.
+
+- [Braden Ash](https://github.com/ashbraden1) - glossary, data translation and population, section page (text)
+- [Ricardo Barraza](https://github.com/rbarraza21) - database manager, database integration, publishing and uploading,  professor portal
+- [Jack Riley](https://github.com/Jriles) - flask guru, account and form system, professor and student portal, web hosting, quiz development (drag and drop, point and click), tooltips
+- [Noah Thomas](https://github.com/n0ahth0mas) - front end framework, section page (video, quiz) and professor integration, quiz development (multiple choice, short answer), tooltips
 <a name="ack">
 
 ## Acknowledgments
+
+- David Chiu, our capstone professor
+- George Tomlin, our patient and optimistic client
+- University of Puget Sound Tech Services, ripping our copy of the film
+- Occupational Therapy and Math/CS Departments, for their continued support throughout this project's development
 </a>
