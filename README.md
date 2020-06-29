@@ -60,6 +60,43 @@ Once a professor navigates to the class they want to edit, they are presented wi
 
 Professors can also edit sections. The section page is where the students will spend most of their time using the program, and as previously stated, holds a flexible amount of content. A section page is broken into 3 blocks: text, video, and quiz, in that order. Each section can hold an unlimited amount of content. A screenshot of the edit section page can be seen [here](static/screenshots/FS_section.png), as the image is too long to be visible in this readme.
 
+### Creating a Question
+
+There are four different variations of question elements. These elements can be mixed and matched in a quiz element. When creating a new quiz element, professors are prompted with this popup window asking for basic question details.
+
+![Add Question](static/screenshots/add_question.png)
+
+After creating a question, professors can create the answers. Each question type can have multiple correct answers, and will not be visible if there are none. A screenshot of the edit question section page can be seen [here](static/screenshots/FS_question.png), as the image is too long to be visible in this readme.
+
+### Previewing the Section Page
+
+After populating a section, a professor can preview their work from a student's point of view. This project allows for easy switching between professor and student views, ensuring that a professor's published page will meet their expectations once it goes live. If a professor populated a page using the same data from the project screenshots, their section page preview would be populated like this:
+
+![Populated Section Page](static/screenshots/FS_page.png)
+
+### Published Question Types
+
+As previously stated, there are four types of questions: Multiple Choice, Short Answer, Drag and Drop, and Point and Click. All of these are housed in the quiz box at the bottom of the section page. Once a student presses the start quiz button, the first question is presented. The student's progess is automatically tracked throughout the quiz in a set of colored bubbles - grey = not taken, red = incorrect, orange = correct (second try or later), and green = correct (first try)
+
+| Multiple Choice Question | Short Answer Question |
+| ------------- | ------------- |
+| ![Multiple Choice Question](static/screenshots/mc.png) | ![Short Answer Question](static/screenshots/sa.png)  |
+| **Drag and Drop Question**| **Point and Click Question**|
+| ![Drag and Drop Question](static/screenshots/dragndrop.png) | ![Point and Click Question](static/screenshots/pointnclick.png)  |
+
+After submitting an answer to a question, the student is presented with a popup explaining why their answer was correct or incorrect. As this is a learning tool, it is important that students understand why their answer was correct or incorrect, and are granted multiple tries to reach the right answer.
+
+| Correct | Partially Correct | Incorrect |
+| ------------- | ------------- |------------- |
+| ![Correct](static/screenshots/correct_ans.png) | ![Partially Correct](static/screenshots/partial_ans.png)  | ![Incorrect](static/screenshots/incorrect_ans.png)  |
+
+### Glossary
+
+Each class also has a custom glossary that allows students to look up words important to their course. This glossary is accessible from the navbar on any page, and professors can edit the glossary from the chapter homepage at any time.
+
+| Glossary Creation | Published Glossary |
+| ------------- | ------------- |
+| ![Glossary Creation](static/screenshots/edit_gloss.png) | ![Published Glossary](static/screenshots/glossary.png)  |
 
 <a name="built">
 
