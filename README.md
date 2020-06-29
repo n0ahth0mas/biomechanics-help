@@ -81,7 +81,9 @@ As previously stated, there are four types of questions: Multiple Choice, Short 
 | Multiple Choice Question | Short Answer Question |
 | ------------- | ------------- |
 | ![Multiple Choice Question](static/screenshots/mc.png) | ![Short Answer Question](static/screenshots/sa.png)  |
-| **Drag and Drop Question**| **Point and Click Question**|
+
+| Drag and Drop Question| Point and Click Question|
+| ------------- | ------------- |
 | ![Drag and Drop Question](static/screenshots/dragndrop.png) | ![Point and Click Question](static/screenshots/pointnclick.png)  |
 
 After submitting an answer to a question, the student is presented with a popup explaining why their answer was correct or incorrect. As this is a learning tool, it is important that students understand why their answer was correct or incorrect, and are granted multiple tries to reach the right answer.
