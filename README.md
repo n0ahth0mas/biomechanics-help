@@ -58,9 +58,8 @@ Once a professor navigates to the class they want to edit, they are presented wi
 | ------------- | ------------- |
 | ![Edit Class Page](static/screenshots/edit_class.png) | ![Edit Chapter Page](static/screenshots/edit_chap.png)  |
 
-Professors can also edit sections. The section page is where the students will spend most of their time using the program, and as previously stated, holds a flexible amount of content. A section page is broken into 3 blocks: text, video, and quiz, in that order. Each section can hold an unlimited amount of content. A screenshot of the edit section page can be seen here, as the image is too long to be visible in this readme.
+Professors can also edit sections. The section page is where the students will spend most of their time using the program, and as previously stated, holds a flexible amount of content. A section page is broken into 3 blocks: text, video, and quiz, in that order. Each section can hold an unlimited amount of content. A screenshot of the edit section page can be seen [here](static/screenshots/FS_section.png), as the image is too long to be visible in this readme.
 
-![Edit Class Page](static/screenshots/FS_section.png)
 
 <a name="built">
 
