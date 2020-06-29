@@ -3,12 +3,19 @@ Welcome to HELP, the Higher Education Learning Program! This project was created
 
 ## Table of Contents
 [Background](#background)
+[Project Details](#details)
+[Built With](#built)
+[Authors](#authors)
+[Acknowledgments](#ack)
+
+
+
 
 <a name="background">
 
 ## Background
 </a>
-Due the the nature of the University of Puget Sound's Occupational Therapy Program, students often found themselves needing review for a handful of introductory biomechanics topics. However, because each student needed to review a different topic, there was no way the instructor  could refresh them on every topic. Thus, the original Help! program was born.
+Due the the nature of the University of Puget Sound's Occupational Therapy Program, students often found themselves needing review for a handful of introductory biomechanics topics. However, because each student needed to review a different topic, there was no way the instructor  could refresh them on every topic. Thus, the original Help! program was born.\  
 
 The instructor of this course created a multi-part review system covering all introductory topics essential to the students' success in the program using [Adobe Authorware](https://en.wikipedia.org/wiki/Adobe_Authorware). This multimedia study tool quizzed students on different biomechanical functions by asking them to watch certain clips of the Beatle's movie [Help!](https://en.wikipedia.org/wiki/Help!_(film)) and analyze what was happening in their bodies.
 
